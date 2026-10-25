@@ -450,6 +450,8 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 **边界（必须与补2 一起记住）**：锚点齐了**仍然重建不出 `cortico/dist/web`** —— 缺的是 `scripts/build-web.ts` / `tsconfig*.json` / `bin/cortico.mjs`，与依赖版本无关。`payload.asset` 的 sha256 也不会因此对上。
 
+**补２ 已入远端**：远端 `main = 4fbd4bd0`（1,114 文件 / 19,539,351 B）；本轮上传 9 个 blob。离线复算已验证：`--offline` 重跑 42 行锚点与入库 JSON 逐行一致（`identical=True`，退出码 0）。
+
 **流程教训**：proot heredoc 传中文偶尔会把单个汉字传成 `U+FFFD`（本轮实际踩到一次）。因此每次写文件后必须做一次 `assert chr(0xfffd) not in text`，已内建到本次所有写入。
 
 ### 下一步
