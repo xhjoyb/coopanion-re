@@ -79,13 +79,17 @@ def rules(group):
         #      bare-fs      -> bare-events, bare-stream, bare-url
         #    这些包的 package.json 互相引用，形成闭合集合，全树无任何外部 require。
         #    实证：12 个包同时 mv 走 -> rc=0，web面板 17788 已启动，core已启动，shutdown 六步全 ok。
-        # 2) esbuild-native：`@esbuild/linux-arm64/bin/esbuild`（10,289,264 B）。
-        #    esbuild@0.28.2 的 lib/main.js 里 build/transform 等导出全是
-        #    `() => ensureServiceIsRunning().xxx()`，require 时不 spawn；tsx@4.23.15 只在
-        #    fallback 时才需要它。包内 Node 是 v24.21.0（原生剥 TypeScript 类型），
-        #    app/ 下仅 5 个 .ts 且无 enum/namespace/装饰器，走不到 esbuild 二进制。
-        #    实证：单独 mv 走 -> rc=0，六步全 ok，模块错误 0。
-        #    注意：JS 包 `esbuild` 本身必须保留（static import 会加载 lib/main.js）。
+        # 2) esbuild-native：**已作废，P6 真机证伪后撤回（cut-sym7 起不再裁）**。
+        #    曾判定「esbuild 的 build/transform 导出全是 `() => ensureServiceIsRunning().xxx()`，
+        #    require 时不 spawn」，据此把 `@esbuild/linux-arm64/`（10,289,264 B）裁掉，
+        #    本地两轮 strace 也确实 rc=0。真机首启当场 rc=1：
+        #      Error: The package "@esbuild/linux-arm64" could not be found, and is needed by esbuild.
+        #        at generateBinPath (esbuild/lib/main.js:2044)
+        #        at startSyncServiceWorker (esbuild/lib/main.js:2478)
+        #        at Object.<anonymous> (esbuild/lib/main.js:2519)   <-- 模块顶层同步语句
+        #    main.js:2519 是**顶层**调用，`require('esbuild')` 那一刻就 startSyncServiceWorker()，
+        #    压根没有「惰性」这回事；随后 core rc=1、17788 永不监听、Web 面板 ERR_CONNECTION_REFUSED。
+        #    ⇒ 与 B 组同性质：esbuild 的 JS 包**和**其平台二进制必须整套保留。详见 docs/05 §10.5。
         dead = ('bare-path', 'bare-events', 'bare-stream', 'bare-fs', 'bare-url',
                 'tar-stream', 'streamx', 'b4a', 'events-universal', 'teex',
                 'fast-fifo', 'text-decoder')
@@ -96,13 +100,7 @@ def rules(group):
                 return False
             return n[len(NM):].split('/', 1)[0] in dead
 
-        def is_esbuild_native(n):
-            return n.startswith(NM + '@esbuild/linux-arm64/')
-
-        return [
-            ('dead-dep-subtree', is_dead_subtree),
-            ('esbuild-native', is_esbuild_native),
-        ]
+        return [('dead-dep-subtree', is_dead_subtree)]
     raise SystemExit('unknown group ' + group)
 
 
