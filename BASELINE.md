@@ -26,7 +26,7 @@
 
 ## 2. 本仓库纳入了什么
 
-合计 **1,101 文件 / 19,422,577 B（18.52 MiB）**。
+合计 **1,101 文件 / 19,431,426 B（18.52 MiB）**。
 
 > 口径：`git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{print n, s}'`（见 §5）。
 > 旧版本此处写「1,072 文件 / 19,742,777 B」，与任何一次提交都对不上，已按实测重算，勘误说明见 §7。
@@ -109,7 +109,7 @@ python3 tools/check_res.py --json | python3 -c 'import json,sys; d=json.load(sys
 
 # 6) 仓库规模（§2 数字的口径）
 git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{printf "%d files, %d bytes\n", n, s}'
-# → 1101 files, 19422577 bytes
+# → 1101 files, 19431426 bytes
 
 # 7) 上游对账（入仓源码 ↔ APK 部署态，逐文件 sha256）
 python3 tools/recon_upstream.py                  # → 862/862 相同，exit 0
@@ -291,6 +291,44 @@ GitHub Actions，工作流 20 秒跑完，`gh` token 的 `workflow` scope 足够
 **JSON 里没有 `when`**，反过来实证了 §2 校正第 6 条。
 
 
+
+#### 第四批：另外两种形态 + 辅助类（`§8` / `§9`），P2 收口
+
+`§8.1 PetActivity` 偏差最多（6 处）：`REQ_FILE` 是 **20819** 不是 4001；**透明与否由
+`intent.getBooleanExtra("transparent")` 决定**；`petHostNative` 与 `petHost` **各注册一个不同实例**；
+有 `WebChromeClient`（只放行 `AUDIO_CAPTURE`、`onShowFileChooser` 走 `GET_CONTENT`+`image/*`）；
+`onPageFinished` 有探针；还会**申请 `RECORD_AUDIO`**（requestCode 10088）。
+`§8.2` 的 v3 修订把 `BASE_TOUCH` / `SHIM` 记成死字段是错的（`BASE_TOUCH = 520` 当触摸层边长、`SHIM` 在
+`onPageFinished` 执行），但「整个类未接线」的结论仍成立。
+`§8.3 WebRetry` **没有指数退避**：延迟由调用方给、下限 300 ms、上限 **40**、30 s 内未再失败就清零，
+`ok()` 只清 `tries`。
+`§8.4 PetKeyboardGuard` **每 150 ms 都 publish**（只有 `Log.i` 按高度变化节流），
+`__petKeyboard(h, seq)` 是**两个参数**，另有死常量 `IME_RATIO = 0.12f`。
+`§9` 三处：`AppLog` 落 **`<externalFilesDir>/coop-run.log`**（`coop-diag.txt` 是 `PetWindowService.diag()` 的另一份）；
+`CrashApp` 写栈后串接原 handler；`RepairActivity` 是**网页修复页**（`:7797/repair`），不是「删 rootfs 重解包」。
+
+**实测证据（比上一批更硬，两条都落在持久文件/独立 tag 上）**：
+
+```
+# ① PetActivity 真的能起，页面真的加载出来
+[18:59:48.989] I/PetWindow: [PETACT][P5] ===== PetActivity onCreate =====
+[18:59:49.062] I/PetWindow: [PETACT] onPageFinished: http://127.0.0.1:7797/pet?host=app
+[18:59:49.065] I/PetWindow: [PETACT] probe -> "petEl=yes raf=function vp=360x792"
+
+# ② PetKeyboardGuard 在桌宠窗口建立时被安装，随后立刻走 evaluate 的首次上报
+I PetKb|P5: installed screenH=2378 a11y=false
+I PetKb   : touch layer attached=true
+I PetKb   : init a11y=off 需要开启无障碍
+
+# ③ RepairActivity 打开的是网页修复页（不是本地删文件）
+[19:00:35.724] I/PetWindow: [REPAIRACT] ===== RepairActivity onCreate =====
+[19:00:35.733] I/PetWindow: [REPAIRACT] loadUrl -> http://127.0.0.1:7797/repair
+```
+
+顺带印证 `§9` 的 `AppLog` 路径：这些行**只在 `coop-run.log` 里有、logcat 里已被 `DIAG` 洪流冲掉**，
+正说明 `AppLog` 是独立落盘、且与 `coop-diag.txt` 两份文件分工不同。
+
+
 ### 出包验收台账（每个逆向单元必出一个可安装包）
 
 **规则（用户 2026-10-25 定）**：每完成一个逆向单元 → 构建 APK → 装机 → 用户实测。本地无 JDK / Android SDK，出包一律走 **MT MCP 重打包**（axml / smali 级编辑 + 内置签名）。MT 的 Home 是 `/storage/emulated/0/MT2/mcp`，其余路径被策略拒绝；`outputName` 必须给**绝对路径**（带子目录的相对路径会报 `INVALID_ARGUMENT: outputName`）。
@@ -301,11 +339,13 @@ GitHub Actions，工作流 20 秒跑完，`gh` token 的 `workflow` scope 足够
 | 2 | `12.71-p2` | `doBoot()` 里 `[2] 启动 Coopanion Core ...` → 加 `[P2]` 标记（验证 Java 层可定位、可改写、可观测） | 137,258,773 | 同上 | 就地升级成功；冷启动 30 s、`pid` 稳定、`libproot.so` + `node` 起；`coop-run.log:279` 实测出现 `[2][P2] 启动 Coopanion Core ...`，控制台与桌宠均正常 |
 | 3 | `12.71-p3` | `PetWindowService.diag()` 的 `[DIAG] ` → `[DIAG][P2] `（本批核心类可定位、可改、可观测） | 137,258,773 | 同上 | 就地升级；冷启动 32 s、`pid` 稳定、`libproot.so`+`node` 活；**`logcat` 32 秒内命中 20 条 `[DIAG][P2] probe box=…`**；crash 缓冲空 |
 | 4 | `12.71-p4` | `EyesService.helpJson()` 的 `coopanion-eyes` → `coopanion-eyes-p2` | 137,258,773 | 同上 | `curl :17898/help` 返回 `coopanion-eyes-p2`；`/health` 实测 `frameAgeMs:-1/frameBytes:0/error:""`；`curl :17899/notifications` 抓到 5 条真实通知且**无 `when` 字段**；crash 缓冲 0 |
+| 5 | `12.71-p5` | `PetActivity.onCreate` 日志加 `[P5]`；`PetKeyboardGuard.install` 的 tag `PetKb` → `PetKb|P5` | 137,258,773 | 同上 | `coop-run.log` 见 `[PETACT][P5]` + `probe -> petEl=yes … vp=360x792`；logcat 见 `PetKb|P5: installed screenH=2378`；`RepairActivity` 实开 `:7797/repair`；crash 0 |
 
 产物：`/storage/emulated/0/MT2/mcp/Coopanion_v12.71/Coopanion-v12.71-p0-signed.apk`，sha256 `842cd2b76e60f60518e2c4775aa6f55e50dc050d940abd25553d7645c18e4c1a`（不入库，MT2/mcp 与 apk/ 均在 `.gitignore` 内）。
 `12.71-p2` 同目录 `Coopanion-v12.71-p2-signed.apk`，sha256 `1fe2dc52982dc27765e0dc75c23c6d4f65c44d31b79ced6a6f0ed3b89827218e`（两份包体字节数相同，靠 sha256 与 `versionName` 区分）。
 `12.71-p3` 同目录 `Coopanion-v12.71-p3-signed.apk`，sha256 `9f685e18fa52e630789f67d438ea5a5a1e5f5bedecfad8eb5aef2547e2bce530`。
 `12.71-p4` 同目录 `Coopanion-v12.71-p4-signed.apk`，sha256 `b6c9d5d3034968d507b8ec1f7cb27c0c97916ad72c1a803a4034a3b338cfa650`。
+`12.71-p5` 同目录 `Coopanion-v12.71-p5-signed.apk`，sha256 `43435c6d17de7de4bf2d6500595f1d688d5a628e707d8c011adf44074a1d0d3b`。
 
 首次出包踩到的四个坑，后续每个单元都会复用：
 
@@ -326,12 +366,13 @@ GitHub Actions，工作流 20 秒跑完，`gh` token 的 `workflow` scope 足够
 | **+ P0（2 个工具：`tools/recon_upstream.py`、`tools/check_deps.py`）** | **1,085** | **19,186,454** |
 | **+ P2（jadx 基线 14 文件 + `decompile.yml` + `src/java/PROVENANCE.md`）** | **1,101** | **19,410,855** |
 | **+ P2 第二批（`docs/02` §2 校正 10 处 + §3/§4 核对 + 台账新增 1 行）** | **1,101** | **19,417,222** |
-| **+ P2 第三批（`docs/02` §5/§6/§7 校正 9 处 + 台账新增 1 行）** | **1,101** | **19,422,577** |
+| **+ P2 第三批（`docs/02` §5/§6/§7 校正 9 处 + 台账新增 1 行）** | **1,101** | **19,431,426** |
+| **+ P2 第四批（`docs/02` §8/§9 校正 14 处 + 台账新增 1 行）** | **1,101** | **19,431,426** |
 
 同时修正两处子项计数：`src/recovered/` 863 → **853**（差值是那 10 个 `dist`）、`src/x/` 21 → **20**（实为 `lib` 5 + `META-INF` 5 + `assets/probe` 3 + dex 与清单与 arsc 与 `axml.py` 与 2 份 `.classes.txt`）。
 
 ### 下一步
 
 P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；**P2 第一批完成**（jadx 基线 14 文件 + `docs/02 §1.3/§1.4` 校正 8 处，出包 `12.71-p2` 装机验证）。
-P2 第三批完成（`§5` 校正 4 处 / `§6` 3 处 / `§7` 2 处，出包 `12.71-p4`，并首次打通 HTTP 功能级实测）；最后一批：`§8 PetActivity` / `PetWindow2` / `WebRetry` / `PetKeyboardGuard` + `§9 辅助类`（`AppLog` / `CrashApp` / `WebRetry`），收口整个 P2。
+**P2 全部完成**（四批：`§1.3/§1.4` → `§2/§3/§4` → `§5/§6/§7` → `§8/§9`，共校正 34 处，`docs/02` 已与 `src/java/` 逐节对齐，`§10` 的「未逐行还原」表可据此收窄）。下一步 **P3 预编译清单**：从 `assets/payload.asset` 里抽出 `node_modules` 顶层目录清单 + 原生 `.node`/`.so` 清单，标注哪些是运行时必需、哪些可裁，为 P4 的确定性重打包定输入。
 之后 P3 预编译清单 → **P4**：`build-payload.py` 确定性 gzip+tar，复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`）→ **P5** 等价性验证（含 sherpa native 真机加载与 `.ok` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**

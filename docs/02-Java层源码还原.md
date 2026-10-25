@@ -855,28 +855,45 @@ public class NotifListenerService extends NotificationListenerService {
 
 ## 8. 桌宠另外两种形态
 
-### 8.1 `PetActivity`（全屏 App 形态）
+### 8.1 `PetActivity`（全屏 App 形态，透明与否由 Intent 决定）
 
 ```java
 public class PetActivity extends Activity {
     private static final String PET_URL = "http://127.0.0.1:7797/pet?host=app";
-    private static final int REQ_FILE = 4001;
-    private WebView web;
-    private FrameLayout root;
-    private ValueCallback<Uri[]> filePathCallback;   // <input type=file> 桥
+    private static final int    REQ_FILE = 20819;          // 原文档写的 4001 是错的
+    private WebView web;  private FrameLayout root;
+    private ValueCallback<Uri[]> filePathCallback;
 
     @Override protected void onCreate(Bundle b) {
-        super.onCreate(b);
-        Log.i("PETACT", "===== PetActivity onCreate =====");
-        getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));  // "transparent"
-        // 透明全屏 WebView + 右上角「✕ 退出」按钮
-        web.loadUrl(PET_URL);   // 日志：loadUrl -> http://127.0.0.1:7797/pet?host=app
+        AppLog.init(this);  AppLog.i("[PETACT] ===== PetActivity onCreate =====");
+        boolean z = getIntent() != null && getIntent().getBooleanExtra("transparent", false);
+        if (z) {                                            // ← 透明不是写死的，靠 extra
+            getWindow().setBackgroundDrawable(new ColorDrawable(0));
+            getWindow().addFlags(32);
+        }
+        getWindow().setFlags(1024, 1024);                   // FLAG_FULLSCREEN
+        if (SDK >= 28) getWindow().getAttributes().layoutInDisplayCutoutMode = 1;
+
+        root.setBackgroundColor(z ? 0 : -16052460);
+        web.addJavascriptInterface(new PetHostBridge(), "petHostNative");  // ← 两个名字
+        web.addJavascriptInterface(new PetHostBridge(), "petHost");        //   各一个新实例
+        // WebChromeClient.onPermissionRequest：只放行 AUDIO_CAPTURE，其余 deny()
+        // WebChromeClient.onShowFileChooser：GET_CONTENT + image/* → REQ_FILE（失败回 null）
+        // WebViewClient.onPageFinished：注入探针（__rc 用 rAF 自增 / petEl 是否存在 /
+        //                                innerWidth x innerHeight），结果打 [PETACT] probe ->
+        // 右上角「✕ 退出」：gravity 53(TOP|END)、topMargin 40、rightMargin 24、alpha 0.55
+        if (checkSelfPermission(RECORD_AUDIO) != 0) requestPermissions({RECORD_AUDIO}, 10088);
+        web.loadUrl(PET_URL);
     }
-    @Override public void onBackPressed() { finish(); }   // 不吞返回键
-    @Override protected void onActivityResult(int req, int res, Intent d) { … "onActivityResult ok=" … }
-    @Override protected void onDestroy() { web.destroy(); super.onDestroy(); }
+    onActivityResult: 只处理 REQ_FILE，回填 Uri[]，日志 "[PETACT][FILE] onActivityResult ok=<bool>"
+    onBackPressed:    finish()                              // 不吞返回键
+    onDestroy:        先 web.loadUrl("about:blank") 再 destroy()
 }
 ```
+
+`PetHostBridge`（本类内 `public static`）10 个方法**全带 `@JavascriptInterface`**，
+但除 `jsw(String)` 真正 `AppLog.i("[JS] " + s)` 外**全是空实现**（`sampleBackdrop()` 恒返回 `null`）。
+App 形态不自己挪窗口，所以 `reportPetRect(int,int,int,int)` 在这里没有任何副作用。
 
 ### 8.2 `PetWindow2`（第二只，`7797/pet?pet=2`）
 
@@ -909,13 +926,17 @@ final class PetWindow2 {
 页面侧对应 `pet-multi.js`（多宠），桥名探测顺序 `['petRectNative','pet2Native','cooClone']`，
 判据是 `typeof n.petRect === 'function'` —— 与原生暴露的 `rect(FFFF)` **名字不匹配**。
 
-> **修订记录 v3**（`docs/03 §12.2` 取证后回改）：`BASE_TOUCH` / `SHIM` 都是死字段；
-> 更关键的是 **`PetWindow2` 全库无任何外部类引用、`start()`/`stop()` 零调用**，
-> `build()` 从不执行 ⇒ `pet2Native` 从不注册 ⇒ `petL/T/R/B` 恒 `-1` ⇒ `sync()` 的
-> `petL >= 0` 永远不成立。**整个类是未接线的实验实现，不要当成活代码读。**
-> `sync()` 的真实语义（读 `pet_scale` clamp 0.2–3.0、`size = max(160, round(scale*520))`、
-> 按中点重算 `touchLp`、`wm.updateViewLayout`）一次都不会执行；
-> `tick` 的 120 ms 周期同理。
+> **修订记录 v4**：`BASE_TOUCH` 与 `SHIM` **都不是死字段** ——
+> `BASE_TOUCH = 520`，在 `build()` 里当触摸层边长
+> （`new WindowManager.LayoutParams(BASE_TOUCH, BASE_TOUCH, type, 776, -3)`）；
+> `SHIM` 也在 `onPageFinished` 里 `evaluateJavascript` 执行（v3 写「两者都是死字段」是错的）。
+>
+> 但**「整个类未接线」这个结论成立**：全库 `grep PetWindow2` 除本文件外**零命中**，
+> `start()` / `stop()` 无人调用 ⇒ `build()` 从不执行 ⇒ `pet2Native` / `petHostNative` 都不注册
+> ⇒ `petL/T/R/B` 恒 `-1` ⇒ `sync()` 首行 `petL < 0` 就 return。
+> 窗口参数：`webLp = (-1,-1,type,792,-3)`、`touchLp = (520,520,type,776,-3)`，`gravity` 均 `8388659 (0x800033)`；
+> `web.setLayerType(2, null)`（硬件层）。`Bridge` 暴露 `rect(FFFF)` + `log(String)`，
+> `HostBridge` 9 个方法全空（`getAlpha()` 恒 `1.0f`、`openApp()` 恒 `false`）。
 
 ### 8.3 `WebRetry`（加载失败重试）
 
@@ -926,14 +947,19 @@ final class WebRetry {
     private static int  tries;
     private static long lastAt;
 
-    /** 失败后指数退避重载；超过上限放弃。 */
+    /** 失败重载：**没有指数退避**，延迟由调用方给，且下限 300 ms。 */
     static void fail(WebView web, long delayMs) {
+        if (web == null) return;
+        long now = System.currentTimeMillis();
+        if (now - lastAt > 30000) tries = 0;      // 30 s 内没再失败就清零（原文档漏）
+        lastAt = now;
+        if (tries >= 40) { Log.w(TAG, "give up after " + tries); return; }   // 上限 40
         tries++;
-        Log.w(TAG, "load failed, retry #" + tries + " in " + delayMs + "ms");
-        if (tries > MAX) { Log.w(TAG, "give up after " + tries); return; }
-        UI.postDelayed(() -> web.reload(), delayMs);
+        Log.i(TAG, "load failed, retry #" + tries + " in " + delayMs + "ms");
+        UI.postDelayed(() -> { try { web.reload(); } catch (Throwable t) { Log.w(TAG, "reload: " + t); } },
+                       Math.max(300L, delayMs));
     }
-    static void ok() { tries = 0; lastAt = System.currentTimeMillis(); }
+    static void ok() { tries = 0; }               // 只清计数，不动 lastAt
 }
 ```
 
@@ -941,40 +967,73 @@ final class WebRetry {
 
 ```java
 final class PetKeyboardGuard {
-    private final Context ctx;
-    private View touchLayer;
-    private final Handler ui;
-    private final View root;
+    private static final float IME_RATIO  = 0.12f;   // 全库零引用 → 死常量
+    private static final long  INTERVAL_MS = 150;    // tick 周期
+    private static final String TAG = "PetKb";
+    private static volatile PetKeyboardGuard current;
+    private static volatile View touchLayer;
 
-    static void install(Context c, View root, View touchLayer);
-    static void setTouchLayer(View v);
+    private final Context app;  private volatile View root;  private final int screenH;
+    private volatile View target;  private WebView web;  private final Handler ui;
+    private long seq;  private int lastHeight = -1;  private String lastSource = "";
+    private boolean reportedOnce;
 
-    private int  a11yOrInsets();          // 先问 EyesService.imeHeight()，为 0 时直接返回它（不再 clampH）
-    private int  imeHeight();             // 五级兜底：a11y 高度 → a11y 估算(screenH*0.38) → root insets
-                                          //          → 触控层 insets → visibleDisplayFrame → 0
-    private int  clampH(int h);           // h<=0 → 0；否则 min(h, (int)(screenH * 0.75))
-    private void evaluate();              // 高度变化才 publish
+    static void install(Context c, View root, View touchLayer);  // 顺带 EyesService.setImeListener(...)
+    static void setTouchLayer(View v);                          // 只赋值 + 打日志
+    private int  a11yOrInsets();   // 先 EyesService.imeHeight()，>0 采信，否则回退 imeHeight()
+    private int  imeHeight();      // a11y 三态 → (慎：见 §5 校正) → root insets → 触摸层 insets → visibleDisplayFrame
+    private int  clampH(int h);    // h<=0 → 0；否则 min(h, (int)(screenH * 0.75))
+    private void evaluate();       // 见下：**每 150 ms 都 publish**，只有日志按高度变化节流
     private void publish(int h, String src);
-    private void reportKeyboard(int h);   // → window.__petKeyboard(h)
-    private void reportIme(boolean on, String detail);
-    private void onImeFromA11y(int h);
-    private void retarget(View root, View touchLayer);
-    private static WebView findWeb(View v);   // 递归找 WebView
+    private void reportKeyboard(int h);   // window.__petKeyboard(h, seq)   ← 两个参数
+    private void reportIme(boolean on, String detail);  // window.__petIme(bool,'src')
+    private void onImeFromA11y(int h);    // h<0 归 0 后 publish(h,"a11y")
+    private void retarget(View root, View touchLayer);  // web 缓存清空
+    private static WebView findWeb(View v);             // 递归找第一个 WebView
 }
 ```
 
----
+`evaluate()` 的真实形状（原文档写成「高度变化才 publish」，反了）：
+
+```java
+boolean a11y = EyesService.isRunning();
+int h = a11y ? a11yOrInsets() : imeHeight();
+if (!reportedOnce) { reportedOnce = true; Log.i(TAG, a11y ? "init a11y=on" : "init a11y=off 需要开启无障碍"); reportIme(false, …); }
+if (h != lastHeight) Log.i(TAG, "ime height " + h + " (" + lastSource + ")");   // 只有日志节流
+lastHeight = h;
+reportKeyboard(h);          // ← 每 tick 都推
+reportIme(h > 0, lastSource);
+```
 
 ## 9. 辅助类
 
 | 类 | 作用 |
 |---|---|
-| `AppLog` | 统一落盘（`/sdcard/Download/coop-diag.txt`，前缀 `[DIAG] `），跨服务共享 |
-| `CrashApp` | `Application` 子类：`Thread.setDefaultUncaughtExceptionHandler` 写崩溃栈后交给系统 |
-| `RepairActivity` | 手动修复：删除 `rootfs-v8-*` 与 `.ok-*` 后回主界面重新解包 |
+| `AppLog` | 落盘到 **`<getExternalFilesDir>/coop-run.log`**（即 `/sdcard/Android/data/com.palai.prootsmoke/files/coop-run.log`），行格式 `[HH:mm:ss.SSS] I/PetWindow: 内容`；`Log` 的 tag 也是 `PetWindow`，与 `PetWindowService` 撞名。**`/sdcard/Download/coop-diag.txt` 是 `PetWindowService.diag()` 自己写的另一份**，不归 `AppLog` 管 | |
+| `CrashApp` | `Application` 子类（TAG `CoopCrash`）：`onCreate` 里 `Thread.setDefaultUncaughtExceptionHandler`，写崩溃栈后**串接**原 handler |给系统 |
+| `RepairActivity` | **不是「删文件重解包」**：`WebView` 打开 `http://127.0.0.1:7797/repair`，带 `onShowFileChooser` 与页面按钮，真正的修复动作在网页侧（`REPAIR_URL`） |
 | `R` 系列 | 资源索引（`R$id` / `R$layout` / `R$string`…），无逻辑 |
 
 ---
+
+#### §8/§9 校正记录（2026-10-25）
+
+| # | 章节 | 原版 | 实际 |
+|---|---|---|---|
+| 1 | §8.1 | `REQ_FILE = 4001` | **20819** |
+| 2 | §8.1 | 窗口写死透明 | 由 `getIntent().getBooleanExtra("transparent", false)` 决定；不透明时底色 `-16052460` |
+| 3 | §8.1 | 只注册 `petHostNative` | `petHostNative` **和** `petHost` 各注册一个**不同实例** |
+| 4 | §8.1 | 未提 WebChromeClient | 有 `onPermissionRequest`（只放行 `AUDIO_CAPTURE`，其余 `deny`）与 `onShowFileChooser`（`GET_CONTENT` + `image/*`） |
+| 5 | §8.1 | 未提探针 | `onPageFinished` 注入探针：`__rc` 用 rAF 自增、查 `#pet` 是否存在、`innerWidth x innerHeight`，打 `[PETACT] probe ->` |
+| 6 | §8.1 | 未提录音权限 | `checkSelfPermission(RECORD_AUDIO)` 不为 0 就 `requestPermissions(…, 10088)` |
+| 7 | §8.2 | `BASE_TOUCH` / `SHIM` 都是死字段 | **两者都在用**：`BASE_TOUCH = 520` 当触摸层边长，`SHIM` 在 `onPageFinished` 执行；但整个类仍未被接线（`grep PetWindow2` 外部零命中） |
+| 8 | §8.3 | 「指数退避重载」，上限 `MAX` 未给值 | **没有退避算法**，延迟由调用方传、下限 `300 ms`；上限 **40**；`30 s` 内未再失败则 `tries` 归零 |
+| 9 | §8.3 | `ok()` 清 `tries` 并写 `lastAt` | 只 `tries = 0` |
+| 10 | §8.4 | 「高度变化才 publish」 | **每次 tick（150 ms）都 publish**，只有 `Log.i` 按高度变化节流 |
+| 11 | §8.4 | `window.__petKeyboard(h)` | **`__petKeyboard(h, seq)`** 两个参数，`seq` 自增 |
+| 12 | §8.4 | 未给周期/常量 | `INTERVAL_MS = 150`、`TAG = "PetKb"`、`IME_RATIO = 0.12f`（**死常量**） |
+| 13 | §9 | `AppLog` 落盘 `/sdcard/Download/coop-diag.txt`，前缀 `[DIAG] ` | 落 **`<externalFilesDir>/coop-run.log`**，格式 `[HH:mm:ss.SSS] I/PetWindow: …`；`coop-diag.txt` 是 `PetWindowService.diag()` 的另一份 |
+| 14 | §9 | `RepairActivity` 删 `rootfs-v8-*` 与 `.ok-*` | 是**网页版修复页**（`http://127.0.0.1:7797/repair`），删除动作在 JS 侧 |
 
 ## 10. 未逐行还原的部分（如实说明）
 
