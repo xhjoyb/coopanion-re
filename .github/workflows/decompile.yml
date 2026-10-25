@@ -1,0 +1,85 @@
+name: decompile-java
+
+# 用途：Java 层 124 类 smali → .java（P2 的机械基线）
+# 本地 proot 无 JDK，jadx 需要 JVM，因此放在 Actions 里跑。
+# 产物推到 jadx-out 分支，主分支只保留手写内容。
+
+on:
+  workflow_dispatch:
+    inputs:
+      dex:
+        description: "要反编译的 dex（空格分隔，相对仓库根）"
+        required: false
+        default: "src/x/classes.dex src/x/classes2.dex"
+
+permissions:
+  contents: write
+
+jobs:
+  jadx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Install jadx (latest release)
+        run: |
+          set -euo pipefail
+          URL=$(curl -sS https://api.github.com/repos/skylot/jadx/releases/latest \
+                | jq -r '[.assets[] | select(.name | test("\\.zip$"))][0].browser_download_url')
+          echo "asset: $URL"
+          curl -sSL -o jadx.zip "$URL"
+          mkdir -p "$RUNNER_TEMP/jadx"
+          unzip -q jadx.zip -d "$RUNNER_TEMP/jadx"
+          chmod +x "$RUNNER_TEMP/jadx/bin/jadx"
+          "$RUNNER_TEMP/jadx/bin/jadx" --version | tee "$RUNNER_TEMP/jadx-version.txt"
+
+      - name: Decompile
+        run: |
+          set -euo pipefail
+          rm -rf build/jadx
+          mkdir -p build/jadx
+          "$RUNNER_TEMP/jadx/bin/jadx" \
+            --no-res \
+            --decompilation-mode auto \
+            -d build/jadx \
+            ${{ inputs.dex }}
+          echo "--- 产物统计 ---"
+          find build/jadx -name '*.java' | wc -l
+          du -sh build/jadx
+
+      - name: Publish to jadx-out branch
+        run: |
+          set -euo pipefail
+          VER=$(cat "$RUNNER_TEMP/jadx-version.txt")
+          {
+            echo "# jadx 反编译产物（不入主分支）"
+            echo
+            echo "- jadx: \`$VER\`"
+            echo "- 输入: \`${{ inputs.dex }}\`"
+            echo "- commit: \`${GITHUB_SHA}\`"
+            echo "- 生成时间: $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo "- java 文件数: $(find build/jadx -name '*.java' | wc -l)"
+            echo
+            echo "用法：\`git fetch origin jadx-out && git show origin/jadx-out:<path>\`。"
+            echo "主分支只放手写内容，本分支由 CI 每次覆盖。"
+          } > build/jadx/PROVENANCE.md
+          git config user.name "jadx-bot"
+          git config user.email "jadx-bot@users.noreply.github.com"
+          git checkout --orphan jadx-out-clean
+          git rm -rq --cached . || true
+          rm -rf src .github tools docs *.md 2>/dev/null || true
+          mkdir -p java
+          cp -r build/jadx/. java/
+          git add -A java
+          git commit -q -m "chore(java): jadx 产物 $VER（${{ inputs.dex }}）"
+          git push -f origin HEAD:jadx-out
+          echo "pushed: $(git rev-parse HEAD)"
