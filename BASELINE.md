@@ -371,7 +371,7 @@ I PetKb   : init a11y=off 需要开启无障碍
 | **+ P2 第三批（`docs/02` §5/§6/§7 校正 9 处 + 台账新增 1 行）** | **1,101** | **19,431,450** |
 | **+ P2 第四批（`docs/02` §8/§9 校正 14 处 + 台账新增 1 行）** | **1,101** | **19,431,450** |
 
-同时修正两处子项计数：`src/recovered/` 863 → **853**（差值是那 10 个 `dist`）、`src/x/` 21 → **20**（实为 `lib` 5 + `META-INF` 5 + `assets/probe` 3 + dex 与清单与 arsc 与 `axml.py` 与 2 份 `.classes.txt`）。
+同时修正两处子项计数：`src/recovered/` 口径区分（**863 = 全树含 10 个 `dist` / 853 = 纯源码**，两数都对；本文件用 **863**）、`src/x/` 21 → **20**（实为 `lib` 5 + `META-INF` 5 + `assets/probe` 3 + dex 与清单与 arsc 与 `axml.py` 与 2 份 `.classes.txt`）。
 
 ### P3 · payload 预编译清单（已完成）
 
@@ -389,8 +389,38 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 工具与耗时：`tools/p3_tarstruct.py`（3.465 s，块级状态机）、`tools/p3_longname.py`（4.180 s，长名清单 + trailer 直读）、`tools/p3_report.py`（3.590 s，216 行全表）。**性能纪律**：处理 344 MB 级流式数据禁止 `buf = buf[512:]` 逐块切片（O(n²) 拷贝），须「整块读入 + 下标扫描 + 只留尾部残余」。
 
+### P4 前置 · 源码缺口盘点与两份政策文档（已完成）
+
+用户将目标从「各阶段逆向进度」重新定义为「**拿到源码**」，据此把完成标准拆成三层并在每一层给出实测数字：
+
+| 层 | 状态 | 关键依据 |
+|---|---|---|
+| **原样源码** | ✅ **齐了，且是原厂原样** | `rootfs/.../cortico/src` 存在 193 文件 / 1,832,204 B（181 `.ts`），对账 **862/862 sha256 相同** ⇒ `src/recovered` 不是还原，是**逐字节副本** |
+| **可编译工程** | ⚠️ 差 3 块 | ① 无 Gradle 工程；② **构建必需件不在 APK 内**（`bin/cortico.mjs`、`scripts/build-web.ts`、`tsconfig*`、`tailwind.config.*`、`src/launcher.ts` 全 MISS）；③ devDeps 无版本锚（cortico 20 / pet 5 / cua 3） |
+| **构建产物** | ✅ 当前不需重建 | `cortico/dist` 8 文件 / 917,106 B 与 `vendor/pet/dist` 2 文件 / 11,766 B **原样在包内**；`payload.asset` 136,348,624 B 在手，确定性重打包可做 |
+
+**本轮最关键的认知修正（推翻 `DEPS.md §6` 两条旧计划）**：
+
+1. **`patches/` 不存在也不需要存在**。`recon_upstream.py` 对账对象是**部署态**（APK 内实际运行的代码）而非上游 git，结果 862/862 全同 ⇒ 本样本未改上游代码，无补丁可打。详见 `UPSTREAM.md §5`。
+2. **`cortico/dist` 必须保留入仓**。旧计划说「10 个构建产物按政策移除、改由构建链生成」——但 `build:web` 依赖的 `scripts/build-web.ts` **不在 APK 内**，移除即丢失唯一权威产物。详见 `PREBUILT.md §2 §7`。
+3. **上游包名纠正**：`Pal-AI-Lab/Coopanion` → **`Pal-AI-Lab/Cortico`**（读自 `cortico/package.json → repository.url`），版权方 `Copyright (c) 2026 Phantivia`，MIT。
+
+产出两份根级文档：
+
+| 文件 | 行数 | 内容 |
+|---|---|---|
+| `UPSTREAM.md` | **150** | 上游身份 / 5 个包的版本锚点（`cortico 0.1.5`、`coop-android 0.1.6`、`coo 0.2.0`、`cua 0.1.2`、`pet 0.1.4`）/ **全树指纹** `fd419624741071da…b6b9`（863 文件 / 16,350,953 B）/ 「部署态没有但上游有」的 5 项缺失件 / 为何无 `patches/` / 补 commit sha 的步骤 |
+| `PREBUILT.md` | **168** | 5 个 proot `.so` 逐文件 sha256（**实测 5/5 与 APK 逐字节相同**，入仓于 `src/x/lib/arm64-v8a/`）/ `payload.asset` sha256 `39899fa0…0ea50` / `cortico/dist` 8 文件与 `vendor/pet/dist` 2 文件逐文件 sha256 / sherpa·esbuild·koffi 的 sha256 与份数 / 2 条软链 / 「能不能一条命令复原」判定表 |
+
+**四处一致性补正**：`DEPS.md` 6 处理引用落地（L29 上游名、L33 入仓路径 `src/x/lib/arm64-v8a/`、L35 补 5/5 实测、L127 无补丁、L156/L157 两条旧计划标为已推翻）；`docs/00` 产物地图补 4 行根级文档索引（原先 `DEPS.md`/`BASELINE.md` 完全没被索引）；`README.md` 读路表 +2 行、目录树 +4 行；`BASELINE.md` 本节记录的 `src/recovered` 口径矛盾（863 与 853）已改为「两口径并存，本文件用 863」。
+
+**已知未对账项（新发现）**：`coop-stage/` 实有 **58** 文件，但 `recon_upstream.py` 的 `STAGE_SUBSET` 只列 5 项 ⇒ 覆盖 57，**`boot.sh`（3,190 B）未被 sha256 比对**。这也是「全树 863」与「对账 862」差 1 的原因。建议把 `boot.sh` 加入 `STAGE_SUBSET`（一行改动，未做，先登记在 `UPSTREAM.md §7`）。
+
+**未做**：Gradle 工程（性价比最低，APK 侧已有 MT 重打包闭环，用户已明确「3 再说」）。
+
+
 ### 下一步
 
-P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处，`docs/02` 已与 `src/java/` 逐节对齐，`§10` 的「未逐行还原」表可据此收窄）；**P3 已完成**（见上节与 `docs/05-预编译清单与裁包评估.md`）。
+P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处，`docs/02` 已与 `src/java/` 逐节对齐）；P3 已完成（`docs/05`）；**P4 前置已完成**（`UPSTREAM.md` + `PREBUILT.md`，见上节）。
 
-下一步 **P4**：`build-payload.py` 确定性 gzip+tar，按 `docs/05 §6` 的八条硬约束复刻，并复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`）→ **P5** 等价性验证（含 sherpa native 真机加载与 `.ok` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+下一步 **补 2 · devDeps 版本锚**：`cortico` 20 个 / `pet` 5 个 / `cua` 3 个 devDeps 目前只有 `^x.y.z` 范围、无精确版本，`node_modules` 里到底装的哪个版本无法复原。补齐后 `npm ci` 可复现，但**仍不能重建 `dist/web`**（缺上游 `scripts/build-web.ts`，见 `UPSTREAM.md §4`）—— 这两件事要分清。之后 → **P4-A 零裁剪等价重打包**（验收 = 重打包 tar 与原 tar sha256 相等，不再受 devDeps 阻塞）→ **P4-B 裁包**（`docs/05 §4` 的 B/C/D/E 四组，payload 136.35 → 60~62 MB，需真机冒烟）→ **P5** 等价性验证（含 sherpa native 真机加载与 `boot.sh` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**

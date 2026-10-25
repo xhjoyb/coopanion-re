@@ -26,13 +26,13 @@
 | `sherpa-onnx-linux-arm64`（`sherpa-onnx.node` + 3 个 `.so`，40.3 MB） | 部署态存 **2 份**：顶层 1 份（7 文件）+ `sherpa-onnx-node/node_modules/` 下 1 份（仅 4 个 native，无 `README/index.js/package.json`） | 可下载依赖 | 随 `sherpa-onnx-node@1.13.8` 安装后手工补嵌套那 4 个 native（见 §3.1） | 版本 1.13.8 |
 | `assets/payload.asset` | **137,118,068 B** | 构建产物 | `python3 tools/build-payload.py`（确定性 gzip+tar） | 长度 + sha256 |
 | `apk/*.apk`、`mcp_out/*.apk` | 各 ~137 MB | 构建产物 / 发行物 | `./gradlew assembleRelease` 或原厂发行物 | md5 `ed319932…e00b1` |
-| 上游 `Pal-AI-Lab/Coopanion` 源码树 | 41 MB | 可下载依赖 | `git clone` 指定 tag（见 `UPSTREAM.md`，P0 产出） | tag + commit sha |
+| 上游 `Pal-AI-Lab/Cortico` 源码树 | 41 MB | 可下载依赖 | `git clone` 指定 tag（**已有锚点：版本号 + 树指纹，见 `UPSTREAM.md §1 §2 §3`**） | tag + commit sha（待补，见 `UPSTREAM.md §6`） |
 
 ### 例外：唯一必须进仓库的二进制
 
-`lib/arm64-v8a/` 下 5 个 `.so`（共 **388,758 B**）：`libproot.so`(264,105) / `libandroid-shmem.so`(66,681) / `libtalloc.so`(33,592) / `libprootloader.so`(18,136) / `libprootloader32.so`(6,244)。
+**`src/x/lib/arm64-v8a/`** 下 5 个 `.so`（APK 内路径为 `lib/arm64-v8a/`，共 **388,758 B**）：`libproot.so`(264,105) / `libandroid-shmem.so`(66,681) / `libtalloc.so`(33,592) / `libprootloader.so`(18,136) / `libprootloader32.so`(6,244)。
 
-理由：它们是这层 Android 移植**独有**的资产，公开源里没有现成 aarch64 产物，重建需要 NDK 工具链。体量小（380 KB），按「不可用一条命令复原」保留，并在 `PREBUILT.md` 记 sha256。
+理由：它们是这层 Android 移植**独有**的资产，公开源里没有现成 aarch64 产物，重建需要 NDK 工具链。体量小（380 KB），按「不可用一条命令复原」保留。**实测 5/5 与 APK 内逐字节相同**；逐文件 sha256 见 `PREBUILT.md §1`。
 
 ---
 
@@ -124,7 +124,7 @@ P4 的处置路线（择一，届时按实测定性）：从上游 `pnpm-lock.ya
 
 ```
 1. 取上游源码            git clone <upstream> --branch <tag>     ← 不进仓库，靠 UPSTREAM.md 锚点
-2. 应用本地改动          git apply patches/*.patch
+2. 应用本地改动          （无：实测 862/862 零差异，本样本未改上游代码 —— 见 UPSTREAM.md §5）
 3. 装依赖                npm ci --ignore-scripts && npm i --no-save …   ← 见 §3.2，node_modules 由此生成
 4. 建前端产物            pnpm --filter cortico build:web ; npm --prefix vendor/pet run build
 5. 打 payload            python3 tools/build-payload.py          ← payload.asset 由此生成
@@ -153,6 +153,6 @@ P4 的处置路线（择一，届时按实测定性）：从上游 `pnpm-lock.ya
 
 ## §6 与 `v12.71-baseline` 的关系
 
-1. **已发布基线里混进了 10 个构建产物**（`cortico/dist/web` 8 + `vendor/pet/dist` 2，共 928,872 B），按本政策移除，改由构建链生成。
-2. **`src/recovered/` 的 259 个 `.ts` 属上游代码**。P0 对账完成后按结果收缩：与上游 tag 逐字节相同的文件不再入库，只留 `patches/` + 自研文件清单。预计仓库从 18.8 MiB 降到 2 MB 量级。
+1. ~~**已发布基线里混进了 10 个构建产物**（`cortico/dist/web` 8 + `vendor/pet/dist` 2，共 928,872 B），按本政策移除，改由构建链生成。~~ **已推翻（P4 前置实测）**：`cortico/dist` 的 `build:web` 依赖 `scripts/build-web.ts`，而该文件**不在 APK 内**（见 `UPSTREAM.md §4`）→ 移除即丢失唯一权威产物。**结论：10 个文件全部保留入仓**，sha256 见 `PREBUILT.md §2 §3`。
+2. ~~**`src/recovered/` 的 259 个 `.ts` 属上游代码**。P0 对账完成后按结果收缩：与上游 tag 逐字节相同的文件不再入库，只留 `patches/` + 自研文件清单。~~ **已推翻**：P0 对账的对象是**部署态**（APK 内实际运行的代码），结果 862/862 全同 —— 全树 863 个文件**都是部署态的一部分**，不存在「与上游相同故可删」的冗余。且 `UPSTREAM.md §4` 证明这棵树**缺构建必需件**（`bin/ scripts/ tsconfig*`），删掉 src 只会让仓库更不完整。**结论：不入 `patches/`，不做收缩，仓库体积维持 18.8 MiB 量级。**
 3. 移除/收缩都是**可回退的**：`git checkout v12.71-baseline -- <path>` 即可取回。
