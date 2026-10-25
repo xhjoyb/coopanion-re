@@ -60,129 +60,179 @@ public class MainActivity extends Activity {
 
 ### 1.3 启动链 `boot()` → `doBoot()`
 
+> **本节已用 jadx 基线逐句校正（2026-10-25，`src/java/com/palai/prootsmoke/MainActivity.java`）。**
+> 原版本节有 8 处与字节码不符，逐条列在节末「校正记录」。
+
 ```java
-private void boot() {
-    if (booting) return;
-    booting = true;
-    new Thread(this::doBoot, "coop-boot").start();
+// 真实实现：boot() 同步调 doBoot()，线程由调用方决定（没有再 new Thread）
+public void boot() {
+    if (this.booting) { log("[BOOT] 已在启动中，忽略重复调用"); return; }
+    this.booting = true;
+    try { doBoot(); } finally { this.booting = false; }
 }
 
 private void doBoot() {
-    File files = getFilesDir();
+    log("[BOOT] 日志文件 = " + (getExternalFilesDir(null) != null
+            ? getExternalFilesDir(null).getAbsolutePath() : "?") + "/coop-run.log");
+    String libDir = getApplicationInfo().nativeLibraryDir;
+
+    // ① payload 长度是「指纹」的一半；三级兜底：openFd → 流式计数 → -1
     long payloadLen;
-    try { payloadLen = getAssets().openFd("payload.asset").getLength(); }
-    catch (IOException e) { setStatus("资源缺失"); return; }
-
-    int vc;
-    try { vc = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode; }
-    catch (Exception e) { vc = 0; }
-
-    String name  = "rootfs-v8-" + vc + "-" + payloadLen;
-    File   dir   = new File(files, name);
-    File   ok    = new File(files, ".ok-v8-" + vc + "-" + payloadLen);
-
-    if (!ok.exists()) {
-        log("[0] 检测到新指纹，解压到新目录 " + name);
-        log("[1] 解压 rootfs (payload=" + payloadLen + "B, 耐心等 1-2 分钟) ...");
-        dir.mkdirs();
-        long t0 = System.currentTimeMillis();
-        try { extractTarGz(getAssets().open("payload.asset"), dir); }
-        catch (Throwable e) { log("[1-ERR] 解压失败: " + e); return; }
-        fixPerms(dir);
-        log("    完成 " + (System.currentTimeMillis() - t0) + "ms");
-
-        int good = 0;
-        for (String[] c : CRITICAL) {                 // 5 个关键文件
-            long got = new File(dir, c[0]).length();
-            long want = Long.parseLong(c[1]);
-            if (got == want) good++;
-            else log("[CHK] MISMATCH " + c[0] + " got=" + got + " want=" + want);
-        }
-        log("[CHK] critical files: " + good + "/5 OK" + (good == 5 ? "" : "  <-- !!! 解压有问题，语音会失败"));
-        if (good == 5) { try { ok.createNewFile(); } catch (IOException ignored) {} }
-    }
-
-    // 清理旧指纹目录
-    for (File f : files.listFiles()) {
-        if (f.isDirectory() && f.getName().startsWith("rootfs-v8-") && !f.getName().equals(name)) deleteRec(f);
-    }
-
-    root = dir;
-    setStatus("正在启动内核…");
-    runCore(dir);          // → §1.4
-}
-```
-
-`CRITICAL` 即 01 文档 §3.1 的五条（`bin/node` = 123024744 等）。
-
-### 1.4 `runCore(File root)` —— proot 拉起 + 看护
-
-```java
-private void runCore(File root) {
-    File lib  = new File(getApplicationInfo().nativeLibraryDir);
-    File boot = new File(root, "app/boot.sh");
-
-    List<String> cmd = new ArrayList<>();
-    cmd.add(new File(root, "libproot.so").getAbsolutePath());
-    cmd.add("-0");
-    cmd.add("-r"); cmd.add(root.getAbsolutePath());
-    cmd.add("--link2symlink");
-    cmd.add("-b"); cmd.add("/dev");
-    cmd.add("-b"); cmd.add("/proc");
-    cmd.add("-b"); cmd.add("/sys");
-    cmd.add("-b"); cmd.add(lib.getAbsolutePath() + ":/hostlib");
-    cmd.add("-w"); cmd.add("/app/coop-stage");
-
-    if (boot.exists()) {
-        cmd.add("/bin/sh"); cmd.add("/app/boot.sh");
-    } else {
-        log("[1b] 未找到 boot.sh，直接用 run-core.mjs 兜底启动 ...");
-        cmd.add("/bin/node");
-        cmd.add("--experimental-transform-types");
-        cmd.add("run-core.mjs");
-    }
-
-    ProcessBuilder pb = new ProcessBuilder(cmd);
-    pb.redirectErrorStream(true);
-    pb.directory(root);
-    Map<String, String> env = pb.environment();
-    String cache = getCacheDir().getAbsolutePath();
-    env.put("TMPDIR", cache); env.put("TMP", cache); env.put("TEMP", cache); env.put("PROOT_TMP_DIR", cache);
-    env.put("PROOT_LOADER",    new File(lib, "libprootloader.so").getAbsolutePath());
-    env.put("PROOT_LOADER_32", new File(lib, "libprootloader32.so").getAbsolutePath());
-    env.put("PROOT_NO_SECCOMP", "1");
-    env.put("HOME", "/root");
-    env.put("LANG", "en_US.UTF-8");
-    env.put("TZ",  "Asia/Shanghai");
-    env.put("CORTICO_SUPERVISED", "1");
-    env.remove("LD_PRELOAD");
-
     try {
-        Process p = pb.start();
-        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream(), "UTF-8"));
-        String line;
-        while ((line = r.readLine()) != null) {
-            log(line);
-            if (!coreReady && line.contains("core已启动")) {
-                coreReady = true;
-                new Thread(new MainActivity$17(this)).start();   // 把 WebView 指向控制台
+        AssetFileDescriptor fd = getAssets().openFd("payload.asset");
+        payloadLen = fd.getLength();
+        fd.close();
+    } catch (Throwable t1) {
+        try {
+            InputStream in = getAssets().open("payload.asset");
+            byte[] buf = new byte[65536];
+            long n = 0; int r;
+            while ((r = in.read(buf)) > 0) n += r;
+            in.close();
+            payloadLen = n;
+        } catch (Throwable t2) { payloadLen = -1; }
+    }
+
+    int vc = 0;
+    try { vc = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode; }
+    catch (Throwable ignored) { }
+
+    String name = "rootfs-v8-" + vc + "-" + payloadLen;
+
+    // ② 清理旧指纹目录 —— 发生在解包判定之前，不是之后
+    File[] ls = getFilesDir().listFiles();
+    if (ls != null) {
+        for (File f : ls) {
+            String n = f.getName();
+            if (f.isDirectory() && n.startsWith("rootfs-v8-") && !n.equals(name)) {
+                try { deleteRec(f); log("[0b] 清理旧 rootfs 目录: " + n); }
+                catch (Throwable ignored) { }
             }
         }
-        int rc = p.waitFor();
-        log("[4] core 进程结束 rc=" + rc);
+    }
 
-        File rr = new File(root, "app/coop-stage/home/companion/data/.restart-request");
-        if (rr.exists()) {
-            rr.delete();
-            log("[!] 检测到重启请求：扩展已安装，正在重启内核以生效 ...");
-            log("[!] 重启中，请稍等 10~30 秒，控制台页面会自动刷新。");
-            coreReady = false;
-            Thread.sleep(1000);
-            new Thread(new MainActivity$18(this)).start();      // 递归重启
+    File dir = new File(getFilesDir(), name);
+    File ok  = new File(dir, ".ok-v8-" + vc + "-" + payloadLen);   // 标记在 rootfs 目录内部
+
+    if (!ok.exists()) {
+        log("[0] 检测到新指纹，解压到新目录 " + name + " ...");
+        log("[1] 解压 rootfs (payload=" + payloadLen + "B, 耐心等 1-2 分钟) ...");
+        long t0 = System.currentTimeMillis();
+        dir.mkdirs();
+        extractTarGz(getAssets().open("payload.asset"), dir);
+        fixPerms(dir);
+
+        int bad = 0;
+        for (String[] c : CRITICAL) {                 // 5 条硬约束，见 docs/01 §3.1
+            long got  = new File(dir, c[0]).length();
+            long want = Long.parseLong(c[1]);
+            if (got != want) {
+                log("[CHK] MISMATCH " + c[0] + " got=" + got + " want=" + want);
+                bad++;
+            }
         }
-    } catch (Throwable e) { log("[4-ERR] " + e); }
+        log("[CHK] critical files: " + (5 - bad) + "/5 OK"
+                + (bad > 0 ? "  <-- !!! 解压有问题，语音会失败" : ""));
+        ok.createNewFile();                          // ⚠ 无条件写标记，见校正记录第 5 条
+        log("    完成 " + (System.currentTimeMillis() - t0) + "ms");
+    } else {
+        log("[1] rootfs 已解压（指纹一致）");
+    }
+
+    // ③ 之后紧接着就是 proot 启动（**内联在 doBoot 里**，没有独立的 runCore 方法）
+    ...// 见 §1.4
 }
 ```
+
+### 1.4 proot 拉起与看护（`doBoot()` 后半段）
+
+```java
+File ptmp = new File(getFilesDir(), "ptmp");        // 不是 getCacheDir()
+ptmp.mkdirs();
+ptmp.setReadable(true, false);
+ptmp.setWritable(true, false);
+ptmp.setExecutable(true, false);                    // 777，proot 子进程要写这里
+log("[2] 启动 Coopanion Core ...");
+
+List<String> cmd = new ArrayList<>();
+cmd.add(libDir + "/libproot.so");                  // proot 在 nativeLibraryDir，不在 rootfs 里
+cmd.add("-0");
+cmd.add("-r");  cmd.add(dir.getAbsolutePath());
+cmd.add("--link2symlink");
+cmd.add("-b");  cmd.add("/dev");
+cmd.add("-b");  cmd.add("/proc");
+cmd.add("-b");  cmd.add("/sys");
+cmd.add("-b");  cmd.add(libDir + ":/hostlib");
+cmd.add("-w");  cmd.add("/app/coop-stage");
+
+if (new File(dir, "app/boot.sh").exists()) {
+    cmd.add("/bin/sh"); cmd.add("/app/boot.sh");
+} else {
+    log("[1b] 未找到 boot.sh，直接用 run-core.mjs 兜底启动 ...");
+    cmd.add("/bin/node");
+    cmd.add("--experimental-transform-types");
+    cmd.add("run-core.mjs");
+}
+
+ProcessBuilder pb = new ProcessBuilder(cmd);
+pb.redirectErrorStream(true);
+pb.directory(dir);
+Map<String, String> env = pb.environment();
+String tmp = ptmp.getAbsolutePath();
+env.put("TMPDIR", tmp); env.put("TMP", tmp); env.put("TEMP", tmp); env.put("PROOT_TMP_DIR", tmp);
+env.put("PROOT_LOADER",    libDir + "/libprootloader.so");
+env.put("PROOT_LOADER_32", libDir + "/libprootloader32.so");
+env.put("PROOT_NO_SECCOMP", "1");
+env.put("HOME", "/root");
+env.put("LANG", "en_US.UTF-8");
+env.put("TZ",   "Asia/Shanghai");
+env.put("CORTICO_SUPERVISED", "1");
+env.remove("LD_PRELOAD");
+
+Process p = pb.start();                             // 任何 Throwable → log("[EXC] " + th)
+BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+String line; int i = 0;
+while ((line = r.readLine()) != null) {
+    log(line);
+    if (line.contains("core已启动") && !coreReady) {
+        coreReady = true;
+        new Thread(new MainActivity$17(this)).start();  // 等 17788 就绪 → web.loadUrl("http://127.0.0.1:17788/")
+    }
+    if (++i > 500) break;                           // 单次读循环上限 500 行
+}
+int rc = p.waitFor();
+
+File rr = new File(dir, "app/coop-stage/home/companion/data/.restart-request");
+if (rr.exists()) {                                  // 扩展安装后自重启协议
+    rr.delete();
+    log("[!] 检测到重启请求：扩展已安装，正在重启内核以生效 ...");
+    log("[!] 重启中，请稍等 10~30 秒，控制台页面会自动刷新。");
+    coreReady = false;
+    Thread.sleep(1000L);
+    new Thread(new MainActivity$18(this)).start();  // 递归重跑 boot()
+    return;
+}
+log("[4] core 进程结束 rc=" + rc);
+```
+
+`waitPortOpen` 的真实签名是 **`static boolean waitPortOpen(String host, int port, int timeoutMs)`**，
+调用点 `waitPortOpen("127.0.0.1", 17788, 60000)`；`MainActivity$17` 在端口超时时打印 `[3] Web UI 端口超时未就绪`。
+
+#### 校正记录（原版 → 字节码）
+
+| # | 原版写法 | 实际字节码 |
+|---|---|---|
+| 1 | `boot()` 里 `new Thread(this::doBoot)` | **同步调用** `doBoot()`，用 `try/finally` 复位 `booting`；线程由调用方给 |
+| 2 | payload 长度失败即 `return`（“资源缺失”） | 三级兜底 `openFd → 流式计数 → -1`，**从不 return** |
+| 3 | `.ok` 标记放 `getFilesDir()` 下 | 放**rootfs 目录内部**：`new File(dir, ".ok-v8-…")` |
+| 4 | 旧目录清理在解包之后 | 在**解包判定之前**，且用 `!n.equals(name)` 比对 |
+| 5 | CHK 通过才 `createNewFile()` | **无条件**创建标记（解压不完整也会打标记 → 下次直接跳过） |
+| 6 | `TMPDIR = getCacheDir()` | `TMPDIR = getFilesDir()/ptmp`，并先 `chmod 777` |
+| 7 | `libproot.so` 在 `root` 下 | 在 `getApplicationInfo().nativeLibraryDir` 下，且 `-b <libDir>:/hostlib` |
+| 8 | 独立方法 `runCore(File root)` | **没有这个方法**，全部内联在 `doBoot()`；重启判定在 `waitFor()` 之后、`[4]` 之前 |
+
+第 5 条是原厂的一个真实隐患：**解包内容长度不符时仍然写 `.ok` 标记**，下次启动会直接跳过解包，语音组件永久坏掉且不自愈。
+这条已作为候选修正点登记（`BASELINE.md §7 P2`），改与不改都需真机验证。
 
 ### 1.5 桌宠开关
 

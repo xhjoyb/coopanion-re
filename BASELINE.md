@@ -26,7 +26,7 @@
 
 ## 2. 本仓库纳入了什么
 
-合计 **1,085 文件 / 19,186,454 B（18.30 MiB）**。
+合计 **1,101 文件 / 19,410,855 B（18.51 MiB）**。
 
 > 口径：`git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{print n, s}'`（见 §5）。
 > 旧版本此处写「1,072 文件 / 19,742,777 B」，与任何一次提交都对不上，已按实测重算，勘误说明见 §7。
@@ -109,7 +109,7 @@ python3 tools/check_res.py --json | python3 -c 'import json,sys; d=json.load(sys
 
 # 6) 仓库规模（§2 数字的口径）
 git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{printf "%d files, %d bytes\n", n, s}'
-# → 1085 files, 19186454 bytes
+# → 1101 files, 19410855 bytes
 
 # 7) 上游对账（入仓源码 ↔ APK 部署态，逐文件 sha256）
 python3 tools/recon_upstream.py                  # → 862/862 相同，exit 0
@@ -193,6 +193,44 @@ arsc：15 条配置 × 条目 / 7 个符号 / 11 个文件型条目
 - `--link2symlink` 把硬链接模拟成 `.l2s.<name>` 真文件 + 同名软链；**删悬空链必须用 `unlink`**（`rm` 报 `Operation not permitted`）。proot 里装出的 `node_modules` 只可用于等价性验证，**不能当交付物**。
 - `sherpa-onnx.node` 需要 glibc 加载器 `ld-linux-aarch64.so.1`，而本机 proot 是 Alpine/musl（`ldd` 显示 musl 装载 + 大量 `Error relocating`）→ **native 加载验证只能在 P5 的真 payload 运行时里做**。`boot.sh` 里 `librt.so.1 → libc.so.6` 的自愈软链，正是为 glibc ≥ 2.34 环境准备的。
 
+### P2 · Java 层复原（jadx 基线 + 启动链校正）
+
+**产出**：124 个类 → `src/java/com/palai/prootsmoke/*.java`（14 个文件 / 246,289 B，匿名类被 jadx 内联进外层类）。
+生成方式是 **CI**（`.github/workflows/decompile.yml`，`jadx --no-res`，产物推 `jadx-out` 分支再取回），
+不是我手抄——`src/x/classes*.dex` 在仓库里，产物可重复生成，来源记在 `src/java/PROVENANCE.md`。
+
+**为什么必须上 CI**：jadx 要 JVM，本机 proot 没有 JDK（`which javac java` 皆空）。这是本项目第一次用
+GitHub Actions，工作流 20 秒跑完，`gh` token 的 `workflow` scope 足够，`api.github.com` 可达。
+
+#### 校正：旧 `docs/02` 的启动链写错了 8 处
+
+`docs/02-Java层源码还原.md` 是早期人工重建版，声称「逐字来自字节码」。用 jadx 基线逐句核对后，
+`§1.3 boot()/doBoot()` 与 `§1.4`（原记为独立方法 `runCore`）共 8 处与字节码不符，已全部改正：
+
+| # | 原版 | 实际 |
+|---|---|---|
+| 1 | `boot()` 里 `new Thread(this::doBoot)` | **同步调用**，`try/finally` 复位 `booting`，线程由调用方给 |
+| 2 | payload 长度取失败就 `return` | 三级兜底 `openFd → 流式计数 → -1`，**从不 return** |
+| 3 | `.ok` 标记在 `getFilesDir()` 下 | 在 **rootfs 目录内部**：`new File(dir, ".ok-v8-…")` |
+| 4 | 清旧目录在解包之后 | 在**解包判定之前**，用 `!n.equals(name)` 比对 |
+| 5 | CHK 通过才写标记 | **无条件** `createNewFile()` |
+| 6 | `TMPDIR = getCacheDir()` | `TMPDIR = getFilesDir()/ptmp`，且先 `chmod 777` |
+| 7 | `libproot.so` 取自 rootfs | 取自 `applicationInfo.nativeLibraryDir`，并 `-b <libDir>:/hostlib` |
+| 8 | 有独立 `runCore()` 方法 | **没有**，全部内联在 `doBoot()`；重启判定在 `waitFor()` 之后 |
+
+#### P2 期间发现的原厂隐患（候选修正点，未改）
+
+第 5 条：`ok.createNewFile()` **无条件执行**。也就是解包后即使 5 个关键文件长度不符（`[CHK] x/5 OK`），
+`.ok` 标记照样写下 → 下次启动直接跳过解包 → 语音组件永久坏掉且**不会自愈**。
+合理修法是把 `createNewFile()` 挪进 `if (bad == 0)` 分支。改不改留给 P5 决定：改了属于行为变更，
+需要真机跑一次「故意删掉 sherpa native → 重启 → 观察是否自动重解包」的对照实验。
+
+#### 尚未逐条对照的部分
+
+`docs/02` 其余章节（`§2 SenseBridge` / `§3 PetWindowService` / `§5 EyesService` / `§6 VoiceBridge` /
+`§7 NotifListenerService` / `§8 PetActivity / PetWindow2 / WebRetry / PetKeyboardGuard`）仍是早期人工重建，
+尚未用 `src/java/` 逐条核对，按批次推进。
+
 ### 出包验收台账（每个逆向单元必出一个可安装包）
 
 **规则（用户 2026-10-25 定）**：每完成一个逆向单元 → 构建 APK → 装机 → 用户实测。本地无 JDK / Android SDK，出包一律走 **MT MCP 重打包**（axml / smali 级编辑 + 内置签名）。MT 的 Home 是 `/storage/emulated/0/MT2/mcp`，其余路径被策略拒绝；`outputName` 必须给**绝对路径**（带子目录的相对路径会报 `INVALID_ARGUMENT: outputName`）。
@@ -200,8 +238,10 @@ arsc：15 条配置 × 条目 / 7 个符号 / 11 个文件型条目
 | # | 版本名 | 改动 | 字节 | 签名证书 sha256 | 验收结论 |
 |---|---|---|---|---|---|
 | 1 | `12.71-p0` | **仅** `versionName` 标记（P0 无代码改动，本轮验证的是重打包链路本身） | 137,258,773 | `a40da80a…bf5dc` | 就地升级成功；冷启动 24 s+ 无崩溃、crash 缓冲空；`libproot.so` + `node` 均拉起；`coop-run.log` 到 `core已启动`、Web 面板 `127.0.0.1:17788` 与桌宠悬浮窗就绪 |
+| 2 | `12.71-p2` | `doBoot()` 里 `[2] 启动 Coopanion Core ...` → 加 `[P2]` 标记（验证 Java 层可定位、可改写、可观测） | 137,258,773 | 同上 | 就地升级成功；冷启动 30 s、`pid` 稳定、`libproot.so` + `node` 起；`coop-run.log:279` 实测出现 `[2][P2] 启动 Coopanion Core ...`，控制台与桌宠均正常 |
 
 产物：`/storage/emulated/0/MT2/mcp/Coopanion_v12.71/Coopanion-v12.71-p0-signed.apk`，sha256 `842cd2b76e60f60518e2c4775aa6f55e50dc050d940abd25553d7645c18e4c1a`（不入库，MT2/mcp 与 apk/ 均在 `.gitignore` 内）。
+`12.71-p2` 同目录 `Coopanion-v12.71-p2-signed.apk`，sha256 `1fe2dc52982dc27765e0dc75c23c6d4f65c44d31b79ced6a6f0ed3b89827218e`（两份包体字节数相同，靠 sha256 与 `versionName` 区分）。
 
 首次出包踩到的四个坑，后续每个单元都会复用：
 
@@ -220,9 +260,12 @@ arsc：15 条配置 × 条目 / 7 个符号 / 11 个文件型条目
 | 移除 10 个构建产物（`cortico/dist/web` 8 + `vendor/pet/dist` 2，928,872 B）+ 新增 `DEPS.md` | 1,066 | 18,839,530 |
 | **+ P1（17 个文件：`src/android/` 15 + `tools/*.py` 2）** | **1,083** | **19,159,224** |
 | **+ P0（2 个工具：`tools/recon_upstream.py`、`tools/check_deps.py`）** | **1,085** | **19,186,454** |
+| **+ P2（jadx 基线 14 文件 + `decompile.yml` + `src/java/PROVENANCE.md`）** | **1,101** | **19,410,855** |
 
 同时修正两处子项计数：`src/recovered/` 863 → **853**（差值是那 10 个 `dist`）、`src/x/` 21 → **20**（实为 `lib` 5 + `META-INF` 5 + `assets/probe` 3 + dex 与清单与 arsc 与 `axml.py` 与 2 份 `.classes.txt`）。
 
 ### 下一步
 
-P0 运行时侧已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异），出包链路已用 `12.71-p0` 验证通过 → **P2**：Java 层 124 类 smali → `.java`，分 4 批，核心是 proot 启动器、payload 解包、指纹算法 → P3 预编译清单 → **P4**：`build-payload.py` 确定性 gzip+tar，并复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`，否则 `dist/web` 重建不出来）→ **P5** 等价性验证。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；**P2 第一批完成**（jadx 基线 14 文件 + `docs/02 §1.3/§1.4` 校正 8 处，出包 `12.71-p2` 装机验证）。
+P2 下一批：`§2 SenseBridge` + `§3 PetWindowService` + `§4 PetHostBridge`（桥接与桌宠、三条 JS 通道）→ `§5 EyesService` / `§6 VoiceBridge` / `§7 NotifListener` → `§8` 三个小类。
+之后 P3 预编译清单 → **P4**：`build-payload.py` 确定性 gzip+tar，复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`）→ **P5** 等价性验证（含 sherpa native 真机加载与 `.ok` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
