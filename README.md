@@ -40,6 +40,7 @@ Cortico 控制台 :17788 · 眼睛 :17898 · 感知 :17899 · 桌宠页 :7797
 | 哪些二进制必须入仓、`dist` 能不能重建 | [`PREBUILT.md`](PREBUILT.md) |
 | 重建时 `node_modules` 该装哪个精确版本 | [`BUILDDEPS.md`](BUILDDEPS.md) |
 | payload 能不能逐字节重建出来 | `python3 tools/p4_verify.py`（四层 sha256 全 PASS），细节见 [`docs/05`](docs/05-预编译清单与裁包评估.md) §7 |
+| payload 能裁到多小、裁完怎么出包 | `python3 tools/p4_cut.py --groups B,C,D,E`，实测见 [`docs/05`](docs/05-预编译清单与裁包评估.md) §5（137.1 → 99.6 MB） |
 | 结论索引 / 数字总表 / 边界清单 | [`docs/00-总目录与导读.md`](docs/00-总目录与导读.md) |
 
 ---
@@ -49,6 +50,7 @@ Cortico 控制台 :17788 · 眼睛 :17898 · 感知 :17899 · 桌宠页 :7797
 ```text
 Coopanion_v12.71/
 ├── apk/          Coopanion-v12.71.apk        原件，只读
+│               Coopanion-v12.71-cut-BCDE-signed.apk  P4-B 裁包产物（待真机冒烟）
 ├── log/          ziplist.txt / rootfs_list.txt（原始清单，可复现）
 ├── src/
 │   ├── x/        APK 解包产物（20 文件 / 552,100 B，不含 payload.asset）
@@ -63,6 +65,7 @@ Coopanion_v12.71/
 ├── BUILDDEPS.md  构建期依赖版本锚（28 个缺包 / 四级证据链 / 可复算）
 ├── DEPS.md       依赖三分法（运行时已闭合 / 构建期已补锚）
 ├── BASELINE.md   验收台账（P0–P3 逐单元结果、出包记录、基线回退点）
+├── tools/        复现脚本（p4_verify 四层验收 / p4_repack / p4_gzip / p4_cut）
 └── docs/         00 导读 · 01 架构 · 02 Java · 03 协议 · 04 工具链 · 05 预编译清单
 ```
 

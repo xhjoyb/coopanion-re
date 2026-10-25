@@ -383,7 +383,7 @@ I PetKb   : init a11y=off 需要开启无障碍
 
 体积分布：`app 137,479,592 / 2,322 条`、`bin 124,939,524 / 56`、`lib 94,650,199 / 2,692`、`etc 123 / 5`，文件字节和 357,069,438。**`node_modules` 有六个根**，不是一个：`app/coop-stage` 121,128,639 B / 99 包、`lib` 54,622,799 B / 3 包（`pnpm` + `npm` + `corepack`）、`build/cortico` 与 `vendor/{cua,coo,pet}` 四个根全为 0 B 软链（合计 22 条接线，Node 解析路径会走到，P4 必须原样重建）。原生 ELF 18 个 / 122,980,048 B：`libonnxruntime.so` 三份同 hash `cfc800d4438f15e8` 各 34,606,912、`libsherpa-onnx-c-api.so` 两份 `d1b41ded09e00017`、`sherpa-onnx.node` 两份 `ae1459b87db45cdc`、`libsherpa-onnx-cxx-api.so` 两份 `49fe5a314d4fc4f1`；`koffi.node` 的 `linux_arm64`（1,172,200）与 `musl_arm64`（1,169,936）是两份不同 hash。tar 元数据：`uid/gid` 全 `(0,0)`，`mode 0o600×2247 / 0o644×1713 / 0o700×529 / 0o755×520 / 0o777×86 / 0o1777×1`，`uname/gname ('root','root')×5086 / ('','')×10`，`mtime` 89 种（min 0、max 1792164366）⇒ P4 要确定性重打包必须固定 `mtime`。
 
-必需性分六类（A 硬必需 / B 构建期 / C 平台不可达 / D 字节重复 / E 从不调用 / F 保留），每条带代码坐标，明细见 `docs/05 §4`。可裁合计约 **112.5 MB 原始 / 约 75.6 MB 压缩后**：B `esbuild` + `@esbuild/linux-arm64` = 20,717,064（`cortico/package.json:54` devDep 与 `pet/scripts/build-console.mjs:10`，`dist/` 已预构建）；C `koffi` + `@koromix/koffi-linux-arm64` = 4,065,490（`cua/src/definition.ts:12` 在非 win/darwin 直接 throw，`pet/src/asr/hotkey.ts:119/131` 只在 win/darwin reader 内 import）；D 嵌套 sherpa native 副本 40,305,256 + `lib/aarch64-linux-gnu/libonnxruntime.so` 34,606,912；E `lib/node_modules/npm` 10,685,798（源码里 `'npm'` 只是扩展来源的 UI 枚举值，无 `spawn('npm')`）+ `home/…/runs/**` 41,977（`carryOverHome()` 明确 filter `/data/runs`）+ 包内 `docs/tests/licenses` 2,075,062；F 保留 `bare-*` 家族约 5.7 MB（依赖链指向扩展安装，收益不足）。整包重压已确认无效（`level=6 → 136,348,642`、`level=9 → 136,348,529`，ratio 0.994），收益只能来自删条目 ⇒ `payload.asset` 预计 136.35 → **60~62 MB**，整包 137.2 → **65~70 MB**（以 P4 实测为准）。
+必需性分六类（A 硬必需 / B 构建期 / C 平台不可达 / D 字节重复 / E 从不调用 / F 保留），每条带代码坐标，明细见 `docs/05 §4`。可裁合计约 **112.5 MB 原始 / 约 75.6 MB 压缩后**：B `esbuild` + `@esbuild/linux-arm64` = 20,717,064（`cortico/package.json:54` devDep 与 `pet/scripts/build-console.mjs:10`，`dist/` 已预构建）；C `koffi` + `@koromix/koffi-linux-arm64` = 4,065,490（`cua/src/definition.ts:12` 在非 win/darwin 直接 throw，`pet/src/asr/hotkey.ts:119/131` 只在 win/darwin reader 内 import）；D 嵌套 sherpa native 副本 40,305,256 + `lib/aarch64-linux-gnu/libonnxruntime.so` 34,606,912；E `lib/node_modules/npm` 10,685,798（源码里 `'npm'` 只是扩展来源的 UI 枚举值，无 `spawn('npm')`）+ `home/…/runs/**` 41,977（`carryOverHome()` 明确 filter `/data/runs`）+ 包内 `docs/tests/licenses` 2,075,062；F 保留 `bare-*` 家族约 5.7 MB（依赖链指向扩展安装，收益不足）。整包重压已确认无效（`level=6 → 136,348,642`、`level=9 → 136,348,529`，ratio 0.994），收益只能来自删条目 ⇒ `payload.asset` 预计 136.35 → **60~62 MB**，整包 137.2 → **65~70 MB**（以 P4 实测为准）。**事后订正（P4-B 实测）**：四组全裁只省 **37,502,237 B**（累计删原始 111,875,725 B），`payload.asset` 实际到 **99,615,831 B**、整包 **100,034,325 B**，`60~62 MB` 与 `65~70 MB` 两个区间均不成立；错因是「删文件省的是压缩后体积，不是与整包压缩的差额」，详见 `docs/05 §5`。
 
 P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` 头 / 2 个零块 / `mtime` 固定 / gzip 头固定 / `mode` 差异保留 / `boot.sh` 自愈逻辑 / 改长度会触发 rootfs 重建）。**本轮新增一条**：`boot.sh:52` 的 `PKG-ABS` 自检硬编码了嵌套路径 `sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/sherpa-onnx.node`，P4 删嵌套副本后需同步改，否则会打印一条不阻断启动的 `FAIL`；保留顶层副本是安全的，因为 `addon-static-import.js` 对 `arm64-linux` **先** `require('../sherpa-onnx-linux-arm64/sherpa-onnx.node')`，命中后不再走 `addon.js` 的 `possible_paths`。
 
@@ -479,10 +479,40 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 **方法论教训**：先做「单条目写头探针」再整体重打。首轮直接整体重打，只在末尾 11 条上差了 checksum（漂移区仅 104,448 B，即 360,719,872–360,824,320）；先抽 4 类样本（文件/目录/软链/L 头）逐字节对头，才定位到「magic 混合」这一层。
 
+### P4-B 裁包（已完成 · 待真机冒烟）
+
+四组全开（B 构建期工具链 / C 平台不可达 / D 字节重复 / E 从不被调用），走 P4-A 验证过的同一条重打流水线，逐级实测：
+
+| 阶段 | 累计删原始 | tar | payload.asset(gz6) | 本组实测省 |
+|---|---:|---:|---:|---:|
+| 基线 | 0 | 360,825,344 | 137,118,068 | — |
+| B | 20,717,064 | 340,091,904 | 128,686,928 | 8,431,140 |
+| +C | 24,782,554 | 335,943,680 | 127,714,726 | 972,202 |
+| +D | 99,694,722 | 261,023,744 | 102,734,742 | 24,979,984 |
+| +E | 111,875,725 | 247,073,280 | **99,615,831** | 3,118,911 |
+
+**结果**：`payload.asset` 137,118,068 → **99,615,831**（−27.4%）；APK 137,205,527 → **100,034,325**（−27.1%）。
+
+| 对象 | 字节 | sha256 |
+|---|---:|---|
+| `cut_bcde.tar` | 247,073,280 | `59e89556…` |
+| `cut_bcde.asset` | 99,615,831 | `c03fd392…` |
+| `Coopanion-v12.71-cut-BCDE-signed.apk` | 100,034,325 | `13fcc08e…` |
+
+**结构校验**：2,576 条目 = 2,019 文件 + 467 目录 + 83 软链 + 9 长名头；悬空软链只剩 1 条且是原厂自带的 `app/sherpa-native/librt.so.1`（boot.sh 自愈）；因裁剪断掉的 2 条 koffi 工作区软链已连带删除；运行期要件（`bin/node`、`pnpm`、`tsx`、顶层 sherpa 四 native 含 `libonnxruntime.so`、`opencc-js`、`express`、`boot.sh`、`run-core.mjs`）逐项在位。
+
+**APK 校验**：zip `testzip` OK、29 条目无缺失；内含 `assets/payload.asset` 的 sha256 与 `cut_bcde.asset` 完全一致；除 `META-INF/*`（重签产生）外仅 `assets/payload.asset` 变化。
+
+**boot.sh 补丁**：D 组删掉嵌套 sherpa 后，`boot.sh` 里 `PKG-ABS` 自检的硬编码路径会失效，已改指顶层副本（3,190 → 3,160 B）。该补丁只进裁包产物；基准解包树用 P4-A 重跑覆盖还原，**P4-A 双层校验复跑仍 PASS**（`be2293e6…` / `39899fa0…`），基准未被污染。
+
+**签名**：本机无 JDK / keytool / apksigner（proot 里全 MISSING，且无 openssl），改走 MT MCP：`mt_apk_workspace_open` → `mt_apk_session_create` → `mt_apk_copy_entry(local_to_edit_session)` → `mt_apk_session_check(passed)` → `mt_apk_build(sign=true)`，结果 V1+V2+V3。证书是 MT 默认测试证书（`a40da80a…`），**与原厂不同** ⇒ 不能覆盖安装，装机前须先卸载原应用。
+
+**方法论教训（又一次「估算 vs 实测」）**：`docs/05 §5` 原表把「原始大小 − 该组独立压缩后大小」当收益（如嵌套 sherpa `40,305,256 − 13,511,959`），于是 D 组被多算一倍、「60~62 MB」目标不成立。真实收益是删掉文件的**压缩后体积**：D 组 74.9 MB 重复 native 只换来 25 MB。以后估体积收益一律以「同一条流水线逐级重打实测」为准，不要用单组独立 gzip 的数字做加减。
+
 ### 下一步
 
 P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 前置全部完成**（补1 `UPSTREAM.md` + `PREBUILT.md` 已推远端，补2 构建期依赖版本锚 28/28 补完，见上两节）。
 
-下一步 **P4-B 裁包**：按 `docs/05 §4` 的 B/C/D/E 四组从解包树里删文件，用 P4-A 已验证的重打流水线出新 payload，预期 136.35 → 60~62 MB，需真机冒烟。（`docs/05 §4` 的 B/C/D/E 四组，payload 136.35 → 60~62 MB，需真机冒烟）→ **P5** 等价性验证（含 sherpa native 真机加载与 `boot.sh` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+下一步 **真机冒烟**：产物已在 `apk/Coopanion-v12.71-cut-BCDE-signed.apk`（100,034,325 B）。证书与原厂不同，装机前须先卸载原应用；装上后重点看三件：App 能否起来、`boot.sh` 的 native 自检是否不再出 `PKG-ABS FAIL`、sherpa 语音链路是否可用。冒烟通过 → **P5** 等价性验证（sherpa native 真机加载 + `boot.sh` 自愈实验），并处理 `recon_upstream.py` 的 `STAGE_SUBSET` 遗留。（`docs/05 §4` 的 B/C/D/E 四组，payload 136.35 → 60~62 MB，需真机冒烟）→ **P5** 等价性验证（含 sherpa native 真机加载与 `boot.sh` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
 
 Gradle 工程仍挂起（用户「3 再说」）。
