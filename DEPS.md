@@ -20,10 +20,10 @@
 
 | 对象 | 体量 | 类别 | 重现方式 | 校验 |
 |---|---|---|---|---|
-| `src/rootfs/…/coop-stage/node_modules/` | **119.2 MB / 95 包**（直接依赖 8 个） | 可下载依赖 | `npm ci`（现有 `package-lock.json` 37,020 B） | 见 §5 |
+| `src/rootfs/…/coop-stage/node_modules/` | **119.2 MB / 95 个顶层条目**（= 91 个包 + 4 个本地软链；直接依赖 8 个） | 可下载依赖 | `npm ci` + 补装 5 个 lock 外真实包 + 4 条 `ln -s`（见 §3.1） | `tools/check_deps.py`（见 §3.2） |
 | `src/recovered/cortico/dist/web/` | 8 文件 / **917,106 B**（esbuild 打包产物） | 构建产物 | `pnpm --filter cortico build:web`（`tsx scripts/build-web.ts` + tailwindcli） | asset-manifest 对齐 |
 | `src/recovered/vendor/pet/dist/` | 2 文件 / **11,766 B**（`console.js` 单行 9,793 字符，已压缩） | 构建产物 | `npm run build`（`node scripts/build-console.mjs`） | 同上 |
-| `sherpa-onnx-linux-arm64`（`sherpa-onnx.node` + `libonnxruntime.so`） | 随 npm 包安装 | 可下载依赖 | npm 安装 `sherpa-onnx-node` 时自带 | 版本号锁在 lock |
+| `sherpa-onnx-linux-arm64`（`sherpa-onnx.node` + 3 个 `.so`，40.3 MB） | 部署态存 **2 份**：顶层 1 份（7 文件）+ `sherpa-onnx-node/node_modules/` 下 1 份（仅 4 个 native，无 `README/index.js/package.json`） | 可下载依赖 | 随 `sherpa-onnx-node@1.13.8` 安装后手工补嵌套那 4 个 native（见 §3.1） | 版本 1.13.8 |
 | `assets/payload.asset` | **137,118,068 B** | 构建产物 | `python3 tools/build-payload.py`（确定性 gzip+tar） | 长度 + sha256 |
 | `apk/*.apk`、`mcp_out/*.apk` | 各 ~137 MB | 构建产物 / 发行物 | `./gradlew assembleRelease` 或原厂发行物 | md5 `ed319932…e00b1` |
 | 上游 `Pal-AI-Lab/Coopanion` 源码树 | 41 MB | 可下载依赖 | `git clone` 指定 tag（见 `UPSTREAM.md`，P0 产出） | tag + commit sha |
@@ -36,19 +36,87 @@
 
 ---
 
-## §3 可复现性缺口（lock 状态）
+## §3 可复现性现状（运行时已闭合，构建期仍是缺口）
 
-| 包 | lock | 版本约束 |
+先摆结论，因为它**推翻了本文件早前「补齐 4 个缺失 lock」的假设**：
+
+| 层面 | 状态 | 依据 |
 |---|---|---|
-| `coop-stage` | ✅ `package-lock.json` 37,020 B | — |
-| `cortico` | ❌ **无** | `engines.node >=22`、`packageManager pnpm@11.5.0`、16 deps + 15 devDeps |
-| `vendor/coo` | ❌ **无** | — |
-| `vendor/cua` | ❌ **无** | — |
-| `vendor/pet` | ❌ **无** | — |
+| **运行时依赖**（payload 真正加载的） | ✅ **已闭合，可 100% 复原** | 两条命令复原出 95 个顶层条目，与部署态**包清单 / 版本 / 体积全同**（`tools/check_deps.py` → `EXIT=0`，0 处差异） |
+| **运行时的 lock** | ✅ **不缺，且是部署态的严格子集** | 入仓 `package-lock.json` 与部署态那份 sha256 同为 `ab11e9882cdeb2252a572103879a4390df13e6db660ba9472a05d8e7feff7600`；lock 内 84 包 vs 磁盘 95 条目 = **缺 9、多 0** |
+| **构建期依赖**（重建 `dist/` 用） | ❌ **无锁、无来源记录** | `cortico` 缺 20 个、`pet` 缺 5、`cua` 缺 3（§3.3） |
 
-**后果**：没有 lock 就没有 `--frozen-lockfile`，装出来的依赖版本会漂移，打出的 `payload.asset` 指纹与 `v12.71` 不一致，等价性验证永远过不了。
+### 3.1 子包不需要独立 lock（已证伪「补 4 个 lock」）
 
-**补齐（P0 阶段）**：从上游 `pnpm-lock.yaml` + `pnpm-workspace.yaml`（顶层 `pnpm-workspace.yaml` 已在上游仓库确认存在）取得并提交；上游对不上时用 `pnpm install --lockfile-only` 生成后提交。
+`src/recovered/` 有 5 个 `package.json`、却只有 1 个 lock。四个子包（`cortico` / `vendor/{coo,cua,pet}`）之所以没有独立 lock，是因为**它们的 `node_modules` 只是 stage 根的同源复制**，不是各自独立安装的：
+
+| 指纹 | 位置 | sha256 前 16 位 |
+|---|---|---|
+| `package-lock.json` | 入仓 ↔ 部署态 | `ab11e9882cdeb225`（全同） |
+| `jpeg-js@0.4.4` | stage 根 / `vendor/cua` / `vendor/pet` 三处 | `0c3f17f5209104f4`（全同） |
+| `ws@8.22.0` | stage 根 / `vendor/coo` 两处 | `21ae3727f788533f`（全同） |
+
+另：`vendor/coo` 的 `package.json` **没有任何 dependencies**（只有 `scripts`），本就无需 lock；`cortico` 的 `packageManager` 声明是 `pnpm@11.5.0`，但部署态并不是 pnpm 布局（无 `.pnpm`、无 `node_modules/.modules.yaml`），而是扁平 npm 布局。
+
+### 3.2 运行时依赖复原配方（实测等价）
+
+```bash
+cd <stage 根>          # 布局：package.json / package-lock.json / run-core.mjs / app/ / home/
+                       #       + build/cortico + vendor/{coo,cua,pet} + node_modules/
+                       # 仓库里 build/cortico = src/recovered/cortico，
+                       # vendor/* = src/recovered/vendor/*；由 build-payload.py 拼成该布局（P4）
+
+# ① lock 内 84 个包（2–4 s）
+npm ci --ignore-scripts
+
+# ② lock 外的 5 个真实包（16 s，必须一次装完）
+npm i --no-save --ignore-scripts \
+  esbuild@0.28.2 koffi@3.3.1 tsx@4.23.15 \
+  sherpa-onnx-node@1.13.8 sherpa-onnx-linux-arm64@1.13.8
+
+# ③ 补 esbuild 的真二进制（--ignore-scripts 跳过了它的 postinstall）
+node node_modules/esbuild/install.js
+
+# ④ 4 条本地包软链（npm 不会创建，目标路径是部署态 stage 根的相对布局）
+cd node_modules
+ln -sfn ../build/cortico   cortico
+ln -sfn ../vendor/coo      cortico-provider-coo
+ln -sfn ../vendor/cua      cortico-world-cua
+ln -sfn ../vendor/pet      cortico-world-desktop-pet
+cd ..
+
+# ⑤ 补 sherpa 的嵌套 native（部署态存了第二份，只含 4 个二进制，不含 README/index.js/package.json）
+d=node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64
+mkdir -p "$d"
+cp -f node_modules/sherpa-onnx-linux-arm64/libonnxruntime.so \
+      node_modules/sherpa-onnx-linux-arm64/libsherpa-onnx-c-api.so \
+      node_modules/sherpa-onnx-linux-arm64/libsherpa-onnx-cxx-api.so \
+      node_modules/sherpa-onnx-linux-arm64/sherpa-onnx.node "$d"/
+```
+
+**实测结果**：95 个顶层条目 / 70.9 MB，`tools/check_deps.py` 判定「包清单 / 版本 / 体积全部一致」，**0 处差异、0 条备注**。
+
+几处反直觉、但必须照做的点：
+
+1. **步骤顺序不能反**。`npm i --no-save <pkg>` 会按 `package.json` + 本次入参**剪掉**其余多余包；若先补装外包再跑 `npm ci`，或中间插一次单包 `npm i`，5 个外包会被清空（实测树从 91 掉回 85）。
+2. **`--ignore-scripts` 是刻意保留的**。lock 内 84 个包 `hasInstallScript` 全为空；5 个外包里 `esbuild` 有 `postinstall`、`koffi` 有 `install`（`node ./cnoke.cjs … --release`，会尝试本机编译 native）。跳过 `koffi` 的 install 是**必需**的（`@koromix/koffi-linux-arm64` 自带预编译件，实测 `require('koffi')` 正常）；跳过 `esbuild` 的 postinstall 只影响 CLI 可执行文件，需按 ③ 显式补回。
+3. **`tsx` 是运行时依赖，不是构建工具**。`boot.sh` 末行 `exec /bin/node --import tsx run-core.mjs`，而 `run-core.mjs` 结尾直接 `await import('app/core/boot.ts')` —— 加载 `.ts` 全靠 tsx 的 loader。它绝不能按「devDependencies 不入库」处理。
+4. **proot 环境会污染依赖树**：`--link2symlink` 把硬链接模拟成 `.l2s.<name>` 真文件 + 同名软链，删除时 `rm` 会报 `Operation not permitted`（须用 `unlink`）。所以在 proot 里装出来的 `node_modules` **只能用于等价性验证，不能当交付物**；P4 若在 proot 内构建 payload，必须在打包 `tar` 时排除 `.l2s.*`，或改用真 Linux/CI。
+
+### 3.3 真正的缺口：构建期依赖（P4 处理）
+
+把 4 个子包的 `package.json` 声明与部署态运行时树逐项对账，缺失项全部落在「构建/测试」一侧：
+
+| 子包 | dependencies | devDependencies | 缺失明细 |
+|---|---|---|---|
+| `cortico` | 14（缺 9） | 13（缺 11） | 缺的 9 个 dependencies 是**浏览器侧**（`react`/`react-dom`/`@codemirror/*`/`mineflayer`/`mineflayer-pathfinder`/`prismarine-viewer`/`canvas`/`react-textarea-autosize`），已被 esbuild 打进 `dist/web`，运行时树里没有它们**是正确的**；缺的 11 个 devDeps 是 `@tailwindcss/cli`、`tailwindcss`、`typescript`、`vitest`、`jsdom`、`@types/*` |
+| `vendor/pet` | 4（**全齐**） | 7（缺 5） | 缺 `electron`、`typescript`、`vitest`、`@types/node`、`@types/ws` |
+| `vendor/cua` | 2（**全齐**） | 4（缺 3） | 缺 `typescript`、`vitest`、`@types/node` |
+| `vendor/coo` | 0 | 0 | — |
+
+**含义**：运行时依赖已可一键复原，但 `cortico/dist/web`（8 文件 / 917,106 B）**重建不出来** —— 它需要上述 20 个包，而它们既不在 lock 里、也没有任何版本锚点。`vendor/pet/dist` 的 `dependencies` 齐备，`node scripts/build-console.mjs` 预期可行，P4 需实测确认。
+
+P4 的处置路线（择一，届时按实测定性）：从上游 `pnpm-lock.yaml`（`packageManager` 指明 pnpm 工作区）取版本锚点并提交；或 `pnpm install --lockfile-only` 生成后提交；或从部署态 `dist/web` 的 `asset-manifest.json` + sourcemap 反推。**在这条闭合之前，`payload.asset` 的 sha256 不可能与 `v12.71` 对上**。
 
 ---
 
@@ -57,7 +125,7 @@
 ```
 1. 取上游源码            git clone <upstream> --branch <tag>     ← 不进仓库，靠 UPSTREAM.md 锚点
 2. 应用本地改动          git apply patches/*.patch
-3. 装依赖                pnpm install --frozen-lockfile          ← node_modules 由此生成
+3. 装依赖                npm ci --ignore-scripts && npm i --no-save …   ← 见 §3.2，node_modules 由此生成
 4. 建前端产物            pnpm --filter cortico build:web ; npm --prefix vendor/pet run build
 5. 打 payload            python3 tools/build-payload.py          ← payload.asset 由此生成
 6. 打 APK                ./gradlew assembleRelease               ← 需要 P1 资源 + P2 Java
@@ -72,6 +140,7 @@
 
 | 项 | 基线值 |
 |---|---|
+| `node_modules` 依赖树 | 95 个顶层条目（91 包 + 4 软链），`tools/check_deps.py` 与部署态 **0 差异** |
 | `payload.asset` 长度 | 137,118,068 B |
 | `payload.asset` 内条目数 | 5,096（lib 2,693 / app 2,323 / bin 57 / usr 7 / etc 6 / 其余 10） |
 | `classes.dex` / `classes2.dex` | 98,744 B / 37,212 B |

@@ -26,7 +26,7 @@
 
 ## 2. 本仓库纳入了什么
 
-合计 **1,083 文件 / 19,159,224 B（18.27 MiB）**。
+合计 **1,085 文件 / 19,184,047 B（18.30 MiB）**。
 
 > 口径：`git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{print n, s}'`（见 §5）。
 > 旧版本此处写「1,072 文件 / 19,742,777 B」，与任何一次提交都对不上，已按实测重算，勘误说明见 §7。
@@ -47,7 +47,7 @@
 | `src/x/` | 20 | APK 解包产物：`AndroidManifest.xml`、`classes.dex`(98,744 B)、`classes2.dex`(37,212 B)、`resources.arsc`(2,440 B)、`lib/arm64-v8a/*.so` ×5、`assets/probe/*.js` ×3、`META-INF/` ×5、`axml.py`、两份 `.classes.txt` |
 | **`src/android/`** | **15** | **P1 资源树**（§7）：`AndroidManifest.xml` 101 行 + `AndroidManifest.decoded.txt` 62 行留档 + 10 张 `mipmap-*` PNG + `values/strings.xml`、`values/themes.xml`、`xml/eyes_service.xml` = 298,642 B |
 | `src/`（根下散落） | 28 | 20 个 `.py` 逆向脚本（功能 9 + 工具链补丁 3 + 文档回改 8）+ 8 个中间文本（`du.txt`、`static_values.txt/.err`、`log_strings1/2.txt`、`log_manifest.txt`、`js_pethost_strings1_53.js`、`js_pethost_strings2_29.js`） |
-| `tools/` | **3** | `push_repo.py`（Git Data API 推送器，本机 `git` CLI 挂死时的唯一通道）+ **`parse_arsc.py`**（259 行，dense/sparse/offset16 三布局 arsc 解析）+ **`check_res.py`**（131 行，清单↔arsc↔磁盘三方对齐自检） |
+| `tools/` | **5** | `push_repo.py`（Git Data API 推送器，本机 `git` CLI 挂死时的唯一通道）+ `parse_arsc.py`（259 行，dense/sparse/offset16 三布局 arsc 解析）+ `check_res.py`（131 行，清单↔arsc↔磁盘三方对齐自检）+ **`recon_upstream.py`**（157 行，入仓源码 ↔ 部署态逐文件 sha256 对账）+ **`check_deps.py`**（210 行，依赖树「包清单 / 版本 / 体积」三层等价性校验） |
 
 ---
 
@@ -58,7 +58,7 @@
 | `apk/Coopanion-v12.71.apk` | 137 MB | 超 GitHub 单文件 100 MB 硬上限；且为原厂发行物 | 自行取得原包，`md5sum` 核对 `ed319932…e00b1` |
 | `mcp_out/Coopanion-v12.71-mcp.apk` | 137 MB | 同上 | 见 `docs/04 §2`：MT MCP 改 `versionName` → 重签 |
 | `src/rootfs/` | 1,910 文件 / 137,479,592 B | 体积 | `unzip -p apk/Coopanion-v12.71.apk assets/payload.asset \| tar -xz -C src/rootfs` |
-| `src/rootfs/…/node_modules/` | 119.2 MB / 95 包 | 可下载依赖，非逆向产物 | `npm ci`（`package-lock.json` 已在仓库，37,020 B） |
+| `src/rootfs/…/node_modules/` | 119.2 MB / 95 个顶层条目 | 可下载依赖，非逆向产物 | 两步 npm + 4 条 `ln -s`（`DEPS.md §3.2`；`package-lock.json` 已在仓库，37,020 B） |
 | `src/recovered/cortico/dist/web/` | 8 文件 / 917,106 B | 构建产物（esbuild bundle） | `pnpm --filter cortico build:web` |
 | `src/recovered/vendor/pet/dist/` | 2 文件 / 11,766 B | 构建产物（压缩 console） | `npm --prefix vendor/pet run build` |
 
@@ -109,7 +109,13 @@ python3 tools/check_res.py --json | python3 -c 'import json,sys; d=json.load(sys
 
 # 6) 仓库规模（§2 数字的口径）
 git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{printf "%d files, %d bytes\n", n, s}'
-# → 1083 files, 19159224 bytes
+# → 1085 files, 19184047 bytes
+
+# 7) 上游对账（入仓源码 ↔ APK 部署态，逐文件 sha256）
+python3 tools/recon_upstream.py                  # → 862/862 相同，exit 0
+
+# 8) 依赖树等价性（需先按 DEPS.md §3.2 复原出一份 node_modules）
+python3 tools/check_deps.py <复原的 node_modules>  # → ✅ 0 差异，exit 0
 ```
 
 ---
@@ -156,6 +162,37 @@ arsc：15 条配置 × 条目 / 7 个符号 / 11 个文件型条目
 
 - 结构备忘：framework arsc 顶层 = 1 个字符串池（70,497 条）+ **7 个 `0x0200` package 块**（首个承载全部 23 个 type 名与 14,433 个 key 名，其余 6 个 `tso` 恒为 288、type 名读出来是 `?N` 占位），这是 aapt2 的 split 产物、属正常结构，不是错位。
 
+### P0 · 依赖可复原性（运行时已闭合，构建期转 P4）
+
+**原计划的判断被推翻**：上一轮定的任务是「补 `cortico` / `vendor/{coo,cua,pet}` 四个 lock」，实测为**伪需求** —— 三组 sha256 指纹证明四个子包的 `node_modules` 只是 stage 根的同源复制（`jpeg-js` 三处同为 `0c3f17f5…`、`ws` 两处同为 `21ae3727…`），而 `vendor/coo` 根本没有 dependencies。证据链写在 `DEPS.md §3.1`。
+
+**验收标准随之重定义**（从「补齐 4 个 lock 文件」改成两条可断言命题）：
+
+| 命题 | 方法 | 结果 |
+|---|---|---|
+| 入仓源码 = APK 部署态 | `tools/recon_upstream.py`：五组路径映射 + 逐文件 sha256 | **862/862 相同**，1.6 s，`EXIT=0` |
+| 运行时依赖可一条命令复原 | 两步 npm + 4 条 `ln -s` + 2 个显式补丁（配方见 `DEPS.md §3.2`） | 95 个顶层条目，与部署态 **0 差异、0 备注**（`tools/check_deps.py`） |
+
+可复核的关键事实：
+
+- `package-lock.json` 入仓版与部署态那份 **sha256 同为 `ab11e9882cdeb2252a572103879a4390df13e6db660ba9472a05d8e7feff7600`**；lock 内 84 包 ⊂ 磁盘 95 条目（**缺 9、多 0**），即 lock 是部署态的严格子集。
+- 那 9 个「lock 外」条目 = **4 个本地包软链**（`cortico`→`../build/cortico`、`cortico-provider-coo`→`../vendor/coo`、`cortico-world-cua`→`../vendor/cua`、`cortico-world-desktop-pet`→`../vendor/pet`）+ **5 个真实三方包**（`esbuild@0.28.2`、`koffi@3.3.1`、`sherpa-onnx-node@1.13.8`、`sherpa-onnx-linux-arm64@1.13.8`、`tsx@4.23.15`，合 93.2 MB）。
+- **`tsx` 是运行时依赖而非构建工具**：`boot.sh` 末行 `exec /bin/node --import tsx run-core.mjs`，`run-core.mjs` 又直接 `await import('app/core/boot.ts')`，加载 `.ts` 全靠它的 loader。
+- `esbuild/bin/esbuild` 在部署态是**真二进制**（10,289,264 B），与 `@esbuild/linux-arm64/bin/esbuild`、`esbuild/bin/esbuild` 三处 sha256 同为 `90bd2695…25fc2`，即 postinstall 从平台包拷来的；`--ignore-scripts` 会跳过，需 `node node_modules/esbuild/install.js` 补回。
+- **子包的构建期依赖才是真缺口**：`cortico` 缺 20 个、`pet` 缺 5、`cua` 缺 3（`DEPS.md §3.3`）。`vendor/pet/dist` 的 dependencies 齐备，`cortico/dist/web` 则**重建不出来** —— 这是 P4 的前置阻塞，与「payload 指纹能否对上」直接相关。
+
+新增工具：
+
+| 工具 | 行数 | 作用 |
+|---|---|---|
+| `tools/recon_upstream.py` | 157 | 入仓 `src/recovered/` ↔ 部署态 `src/rootfs/app/coop-stage/` 逐文件 sha256 对账（五组映射、`diff`/`only_rootfs` 判失败、`only_recovered` 放行） |
+| `tools/check_deps.py` | 210 | 依赖树等价性校验：包清单 / 版本 / 逐包体积三层，内建 `.l2s.*`、4 条本地软链、`esbuild`、`sherpa` 嵌套四类「已知合理差异」白名单 |
+
+环境备忘录（proot，P4/P5 都会再遇到）：
+
+- `--link2symlink` 把硬链接模拟成 `.l2s.<name>` 真文件 + 同名软链；**删悬空链必须用 `unlink`**（`rm` 报 `Operation not permitted`）。proot 里装出的 `node_modules` 只可用于等价性验证，**不能当交付物**。
+- `sherpa-onnx.node` 需要 glibc 加载器 `ld-linux-aarch64.so.1`，而本机 proot 是 Alpine/musl（`ldd` 显示 musl 装载 + 大量 `Error relocating`）→ **native 加载验证只能在 P5 的真 payload 运行时里做**。`boot.sh` 里 `librt.so.1 → libc.so.6` 的自愈软链，正是为 glibc ≥ 2.34 环境准备的。
+
 ### 数字勘误
 
 旧版 §2 写的「1,072 文件 / 19,742,777 B（18.83 MiB）」与任何一次提交都对不上。以 `git ls-tree -r -l` 实测：
@@ -165,9 +202,10 @@ arsc：15 条配置 × 条目 / 7 个符号 / 11 个文件型条目
 | tag `v12.71-baseline` | 1,075 | 19,760,010 |
 | 移除 10 个构建产物（`cortico/dist/web` 8 + `vendor/pet/dist` 2，928,872 B）+ 新增 `DEPS.md` | 1,066 | 18,839,530 |
 | **+ P1（17 个文件：`src/android/` 15 + `tools/*.py` 2）** | **1,083** | **19,159,224** |
+| **+ P0（2 个工具：`tools/recon_upstream.py`、`tools/check_deps.py`）** | **1,085** | **19,184,047** |
 
 同时修正两处子项计数：`src/recovered/` 863 → **853**（差值是那 10 个 `dist`）、`src/x/` 21 → **20**（实为 `lib` 5 + `META-INF` 5 + `assets/probe` 3 + dex 与清单与 arsc 与 `axml.py` 与 2 份 `.classes.txt`）。
 
 ### 下一步
 
-P1 已收口 → 回 **P0**（上游对账 + 补 4 个包的 lock：`cortico` / `vendor/coo` / `vendor/cua` / `vendor/pet`）→ **P2** Java 层 124 类 smali → `.java`。
+P0 运行时侧已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）→ **P2**：Java 层 124 类 smali → `.java`，分 4 批，核心是 proot 启动器、payload 解包、指纹算法 → P3 预编译清单 → **P4**：`build-payload.py` 确定性 gzip+tar，并复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`，否则 `dist/web` 重建不出来）→ **P5** 等价性验证。
