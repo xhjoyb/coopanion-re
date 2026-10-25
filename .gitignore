@@ -22,3 +22,6 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# npm registry 包元数据缓存（tools/resolve_build_deps.py 生成，见 BUILDDEPS.md）
+.anchor-cache/

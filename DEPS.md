@@ -36,7 +36,7 @@
 
 ---
 
-## §3 可复现性现状（运行时已闭合，构建期仍是缺口）
+## §3 可复现性现状（运行时已闭合，构建期已补版本锚）
 
 先摆结论，因为它**推翻了本文件早前「补齐 4 个缺失 lock」的假设**：
 
@@ -44,7 +44,7 @@
 |---|---|---|
 | **运行时依赖**（payload 真正加载的） | ✅ **已闭合，可 100% 复原** | 两条命令复原出 95 个顶层条目，与部署态**包清单 / 版本 / 体积全同**（`tools/check_deps.py` → `EXIT=0`，0 处差异） |
 | **运行时的 lock** | ✅ **不缺，且是部署态的严格子集** | 入仓 `package-lock.json` 与部署态那份 sha256 同为 `ab11e9882cdeb2252a572103879a4390df13e6db660ba9472a05d8e7feff7600`；lock 内 84 包 vs 磁盘 95 条目 = **缺 9、多 0** |
-| **构建期依赖**（重建 `dist/` 用） | ❌ **无锁、无来源记录** | `cortico` 缺 20 个、`pet` 缺 5、`cua` 缺 3（§3.3） |
+| **构建期依赖**（重建 `dist/` 用） | ⚠️ **已补版本锚、仍无 lock** | 28 个缺包全部锁定（24 个唯一键），见 §3.3 / `BUILDDEPS.md` |
 
 ### 3.1 子包不需要独立 lock（已证伪「补 4 个 lock」）
 
@@ -103,7 +103,7 @@ cp -f node_modules/sherpa-onnx-linux-arm64/libonnxruntime.so \
 3. **`tsx` 是运行时依赖，不是构建工具**。`boot.sh` 末行 `exec /bin/node --import tsx run-core.mjs`，而 `run-core.mjs` 结尾直接 `await import('app/core/boot.ts')` —— 加载 `.ts` 全靠 tsx 的 loader。它绝不能按「devDependencies 不入库」处理。
 4. **proot 环境会污染依赖树**：`--link2symlink` 把硬链接模拟成 `.l2s.<name>` 真文件 + 同名软链，删除时 `rm` 会报 `Operation not permitted`（须用 `unlink`）。所以在 proot 里装出来的 `node_modules` **只能用于等价性验证，不能当交付物**；P4 若在 proot 内构建 payload，必须在打包 `tar` 时排除 `.l2s.*`，或改用真 Linux/CI。
 
-### 3.3 真正的缺口：构建期依赖（P4 处理）
+### 3.3 构建期依赖：已补版本锚（P4 前置完成）
 
 把 4 个子包的 `package.json` 声明与部署态运行时树逐项对账，缺失项全部落在「构建/测试」一侧：
 
@@ -114,9 +114,14 @@ cp -f node_modules/sherpa-onnx-linux-arm64/libonnxruntime.so \
 | `vendor/cua` | 2（**全齐**） | 4（缺 3） | 缺 `typescript`、`vitest`、`@types/node` |
 | `vendor/coo` | 0 | 0 | — |
 
-**含义**：运行时依赖已可一键复原，但 `cortico/dist/web`（8 文件 / 917,106 B）**重建不出来** —— 它需要上述 20 个包，而它们既不在 lock 里、也没有任何版本锚点。`vendor/pet/dist` 的 `dependencies` 齐备，`node scripts/build-console.mjs` 预期可行，P4 需实测确认。
+**含义（已更新）**：运行时依赖可一键复原；构建期那 28 个缺包已在 `BUILDDEPS.md` 里全部锚定。两个原先混在一起的事实现已拆开：
 
-P4 的处置路线（择一，届时按实测定性）：从上游 `pnpm-lock.yaml`（`packageManager` 指明 pnpm 工作区）取版本锚点并提交；或 `pnpm install --lockfile-only` 生成后提交；或从部署态 `dist/web` 的 `asset-manifest.json` + sourcemap 反推。**在这条闭合之前，`payload.asset` 的 sha256 不可能与 `v12.71` 对上**。
+1. `vendor/pet/dist` —— **可重建，且已实测**：用锚定的 `esbuild@0.28.2` 跑树内 `scripts/build-console.mjs`，两个产物**逐字节复现**（`BUILDDEPS.md §4.2`）；
+2. `cortico/dist/web`（8 文件 / 917,106 B）—— **仍不可重建**，但原因**不是缺依赖锚**，而是 `scripts/build-web.ts` / `tsconfig*.json` / `bin/cortico.mjs` 不在 APK 内（`UPSTREAM.md §4`）。装对 20 个 devDeps 也编不出来。
+
+**已执行的处置**（原计划三条路都不适用，改走第四种）：上游 `pnpm-lock.yaml` 不在树内；`pnpm install --lockfile-only` 会按**今天**的 latest 解析（与 2026-10-10 的构建时点错位，实测 `@codemirror/view` 已从 6.43.14 发到 6.43.15、`jsdom` 30.1.2 → 30.1.3）；`asset-manifest.json` 里没有版本号。最终改用**四源证据链**：产物内打印的版本（最硬）→ 部署态实测 → `package.json` 原精确值 → 构建时点（`2026-10-10T17:44:10Z`，取自 `dist` 的 mtime）快照。结果：**28 个缺包全部解出，未解 0**，可复算：`python3 tools/resolve_build_deps.py`。
+
+> ⚠️ 仍然 **没有伪造 lock 文件**：树内无 `pnpm-workspace.yaml`，工作机制拓扑不可知，强行生成的 lock 会把“今天的 latest”当真值写死。锚点表（`build-deps.anchor.json`）是更好的选择，因为它逐行带 `method` / `published` 溯源字段。**给锚点≠能让 `payload.asset` 的 sha256 对上**，那还需要构建脚本 + 相同 node 大版本 + 相同 esbuild 输出同时成立。
 
 ---
 
@@ -125,8 +130,9 @@ P4 的处置路线（择一，届时按实测定性）：从上游 `pnpm-lock.ya
 ```
 1. 取上游源码            git clone <upstream> --branch <tag>     ← 不进仓库，靠 UPSTREAM.md 锚点
 2. 应用本地改动          （无：实测 862/862 零差异，本样本未改上游代码 —— 见 UPSTREAM.md §5）
-3. 装依赖                npm ci --ignore-scripts && npm i --no-save …   ← 见 §3.2，node_modules 由此生成
-4. 建前端产物            pnpm --filter cortico build:web ; npm --prefix vendor/pet run build
+3. 装依赖                npm ci --ignore-scripts && npm i --no-save …   ← 运行时见 §3.2；devDeps 按 BUILDDEPS.md 锚点补装
+4. 建前端产物            npm --prefix vendor/pet run build   ← ✅ 已实测可逐字节复现
+                        pnpm --filter cortico build:web    ← ❌ 缺 scripts/build-web.ts + tsconfig*，本地不可执行
 5. 打 payload            python3 tools/build-payload.py          ← payload.asset 由此生成
 6. 打 APK                ./gradlew assembleRelease               ← 需要 P1 资源 + P2 Java
 7. 签名                  apksigner sign --v1-signing-enabled true --v2-signing-enabled true

@@ -52,6 +52,8 @@ APK 内路径均为 `lib/arm64-v8a/<同名>`，`extractNativeLibs` 相关行为�
 | `web/providers/persona-cormini-RBVEMMCE.js` | 20,479 | `037abba78a0518fb5b43c13437dc790dafaeb6185acec4388ff83401cb1e218a` |
 
 > ⚠️ **这 8 个文件无法从本地源码重建**：`build:web` 脚本依赖 `scripts/build-web.ts`，该文件在 APK 里不存在（见 `UPSTREAM.md §4`）。
+>
+> 补：这 8 个文件「不可重建」的原因是**构建脚本缺失**，与依赖版本无关——20 个 devDeps 的精确锚点已在 `BUILDDEPS.md` 补齐，但 `scripts/build-web.ts` 不在 APK 内，所以仍然跑不起来（`BUILDDEPS.md §4.3`）。
 > 它们目前是**唯一的权威产物**，改动请直接改这 8 个文件，或先补上游 `scripts/`。
 
 ## 3. 构建产物：`vendor/pet/dist/`（2 文件 / 11,766 B）
@@ -142,8 +144,8 @@ APK 内路径均为 `lib/arm64-v8a/<同名>`，`extractNativeLibs` 相关行为�
 | 目标 | 命令 | 结果 |
 |---|---|---|
 | 5 个 proot `.so` | ❌ 无（需 NDK + 源码） | **入仓** |
-| `cortico/dist` | ❌ `scripts/build-web.ts` 缺失 | **入仓，不可重建** |
-| `vendor/pet/dist` | ✅ `node scripts/build-console.mjs` | 已入仓，可重建 |
+| `cortico/dist` | ❌ `scripts/build-web.ts` 缺失（**非依赖问题**） | **入仓，不可重建** |
+| `vendor/pet/dist` | ✅ `node scripts/build-console.mjs` | 已入仓，**已实测逐字节复现**（`esbuild@0.28.2`，见 `BUILDDEPS.md §4.2`） |
 | `payload.asset` | ✅ `unzip apk assets/payload.asset` | 不入仓 |
 | `node_modules`（95 条目） | ✅ `npm ci` + 补 5 包 + 4 软链 | 不入仓 |
 | `sherpa` 嵌套 4 native | ⚠️ 半自动（需手工补嵌套那份） | 不入仓 |

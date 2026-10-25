@@ -396,7 +396,7 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 | 层 | 状态 | 关键依据 |
 |---|---|---|
 | **原样源码** | ✅ **齐了，且是原厂原样** | `rootfs/.../cortico/src` 存在 193 文件 / 1,832,204 B（181 `.ts`），对账 **862/862 sha256 相同** ⇒ `src/recovered` 不是还原，是**逐字节副本** |
-| **可编译工程** | ⚠️ 差 3 块 | ① 无 Gradle 工程；② **构建必需件不在 APK 内**（`bin/cortico.mjs`、`scripts/build-web.ts`、`tsconfig*`、`tailwind.config.*`、`src/launcher.ts` 全 MISS）；③ devDeps 无版本锚（cortico 20 / pet 5 / cua 3） |
+| **可编译工程** | ⚠️ 差 2 块 | ① 无 Gradle 工程；② **构建必需件不在 APK 内**（`bin/cortico.mjs`、`scripts/build-web.ts`、`tsconfig*`、`tailwind.config.*`、`src/launcher.ts` 全 MISS）；③ ~~devDeps 无版本锚~~ **已补齐 28/28（`BUILDDEPS.md`，未解 0）** |
 | **构建产物** | ✅ 当前不需重建 | `cortico/dist` 8 文件 / 917,106 B 与 `vendor/pet/dist` 2 文件 / 11,766 B **原样在包内**；`payload.asset` 136,348,624 B 在手，确定性重打包可做 |
 
 **本轮最关键的认知修正（推翻 `DEPS.md §6` 两条旧计划）**：
@@ -418,9 +418,44 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 **未做**：Gradle 工程（性价比最低，APK 侧已有 MT 重打包闭环，用户已明确「3 再说」）。
 
+**补1 已入远端**：`UPSTREAM.md` + `PREBUILT.md` + 修五处一致性已提交推送，远端 `main = 07bab831`（本地提交 `c303519`，上传 6 个 blob，远端共 1,111 文件 / 19,496,610 B）。
+
+
+### P4 前置 · 补2 构建期依赖版本锚（已完成）
+
+`DEPS.md §3.3` 列的 **28 个构建期缺包**（`cortico` 20 / `pet` 5 / `cua` 3）已全部补上精确版本锚，**未解 0**。
+
+| 证据强度 | 数量 | 获取方式 |
+|---|---|---|
+| artifact | 4 | 版本号印在产物里：`dist/web/styles.css` 首行 `/*! tailwindcss v4.3.3 */`；`main-VF7OQOQ5.js` 内 `version:"19.3.0"`（react / react-dom）；`@tailwindcss/cli` 随 `tailwindcss` 同步发版 |
+| exact | 2 | `@types/tar-stream 3.1.4`、`electron 44.4.4` 本就精确 |
+| deployed | 18 | 部署态 `node_modules` 实测（含 `esbuild 0.28.2`、`tsx 4.23.15`） |
+| snapshot | 18 | 纯 dev 包无痕迹：以**构建时点** `2026-10-10T17:44:10Z`（取自 `dist` mtime）为截止，取已发布且满足范围的最高版 |
+
+**复现实验（本轮最硬的一条）**：用锚定的 `esbuild@0.28.2` 跑树内 `scripts/build-console.mjs`，`vendor/pet/dist` 两个产物**逐字节复现**：
+
+- `console.css` 1,936 B `ef9e1c992b97ac88a699b14c1ff6150ae9f4dbba7d1fa83f8f193e67249a3356` ✅
+- `console.js` 9,830 B `85f2c5616f043afce7321a045dd3d5b35f48e1930f2195b743abe4c61dede19d` ✅
+
+一次跑通、零参数调整 ⇒ 同时证明 ① `esbuild 0.28.2` 锚正确；② `src/recovered/vendor/pet` 源码无漂移；③ `pet/dist` 可重建从「预期」升级为「实测」。
+唯一差异：重建多出两个 `.map`（脚本里 `sourcemap: true`），说明原厂**打包时删 `.map`**，不是关掉了 sourcemap（`console.js` 末尾 `//# sourceMappingURL=console.js.map` 为证）。
+
+**三条方法学结论**：
+
+1. **别用「今天的 latest」**。构建到今天已有包发新版：`@codemirror/view` 6.43.14→6.43.15、`jsdom` 30.1.2→30.1.3、`react` 更高；按 latest 装就是错的。
+2. **别只对子树的账**。pnpm 把依赖扁平化到根树，`cortico/node_modules` 只有 4 项；只比子树会误判「缺 27 个」。必须合并根树 + 全部子树成 95 项全局映射再比。
+3. **不伪造 lock**。树内无 `pnpm-workspace.yaml`，工作机制拓扑不可知；`pnpm install --lockfile-only` 只会把今天的 latest 写死。改交「锚点表 + 可复算工具」，逐行带 `method` / `published` 溯源。
+
+**产出**：`tools/resolve_build_deps.py`（272 行，四级证据链 + registry 快照 + 缓存/离线/退出码）、`build-deps.anchor.json`（42 行，机器可读）、`BUILDDEPS.md`（305 行）。`.anchor-cache/` 已进 `.gitignore`。
+
+**边界（必须与补2 一起记住）**：锚点齐了**仍然重建不出 `cortico/dist/web`** —— 缺的是 `scripts/build-web.ts` / `tsconfig*.json` / `bin/cortico.mjs`，与依赖版本无关。`payload.asset` 的 sha256 也不会因此对上。
+
+**流程教训**：proot heredoc 传中文偶尔会把单个汉字传成 `U+FFFD`（本轮实际踩到一次）。因此每次写文件后必须做一次 `assert chr(0xfffd) not in text`，已内建到本次所有写入。
 
 ### 下一步
 
-P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处，`docs/02` 已与 `src/java/` 逐节对齐）；P3 已完成（`docs/05`）；**P4 前置已完成**（`UPSTREAM.md` + `PREBUILT.md`，见上节）。
+P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 前置全部完成**（补1 `UPSTREAM.md` + `PREBUILT.md` 已推远端，补2 构建期依赖版本锚 28/28 补完，见上两节）。
 
-下一步 **补 2 · devDeps 版本锚**：`cortico` 20 个 / `pet` 5 个 / `cua` 3 个 devDeps 目前只有 `^x.y.z` 范围、无精确版本，`node_modules` 里到底装的哪个版本无法复原。补齐后 `npm ci` 可复现，但**仍不能重建 `dist/web`**（缺上游 `scripts/build-web.ts`，见 `UPSTREAM.md §4`）—— 这两件事要分清。之后 → **P4-A 零裁剪等价重打包**（验收 = 重打包 tar 与原 tar sha256 相等，不再受 devDeps 阻塞）→ **P4-B 裁包**（`docs/05 §4` 的 B/C/D/E 四组，payload 136.35 → 60~62 MB，需真机冒烟）→ **P5** 等价性验证（含 sherpa native 真机加载与 `boot.sh` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+下一步 **P4-A 零裁剪等价重打包**：把现有 863 文件源码树按原布局重打成 tar，与原 `payload` 内的 tar 比 **sha256 是否相等**。验收不看体积、不看是否能装，只看向上逐字节一致——这是证明「源码树完整」的唯一硬标准。此事**不再受 devDeps 阻塞**（锚点已齐）。之后 → **P4-B 裁包**（`docs/05 §4` 的 B/C/D/E 四组，payload 136.35 → 60~62 MB，需真机冒烟）→ **P5** 等价性验证（含 sherpa native 真机加载与 `boot.sh` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+
+Gradle 工程仍挂起（用户「3 再说」）。

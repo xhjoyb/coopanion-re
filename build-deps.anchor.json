@@ -1,0 +1,445 @@
+{
+  "cutoff": "2026-10-10T17:44:10Z",
+  "generated_by": "tools/resolve_build_deps.py",
+  "registry": "https://registry.npmjs.org/",
+  "installed_count": 95,
+  "declarations": 52,
+  "unique": 42,
+  "unresolved": 0,
+  "rows": [
+    {
+      "package": "@codemirror/state",
+      "range": "^6.7.1",
+      "anchor": "6.7.6",
+      "method": "snapshot",
+      "published": "2026-09-22T07:21:29.712Z",
+      "latest_in_range": "6.7.6",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "dependencies"
+    },
+    {
+      "package": "@codemirror/view",
+      "range": "^6.43.8",
+      "anchor": "6.43.14",
+      "method": "snapshot",
+      "published": "2026-10-07T11:24:16.597Z",
+      "latest_in_range": "6.43.15",
+      "newer_than_cutoff": 1,
+      "owner": "cortico",
+      "section": "dependencies"
+    },
+    {
+      "package": "canvas",
+      "range": "^3.2.3",
+      "anchor": "3.2.3",
+      "method": "snapshot",
+      "published": "2026-03-31T02:08:02.710Z",
+      "latest_in_range": "3.2.3",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "dependencies"
+    },
+    {
+      "package": "express",
+      "range": "^4.21.2",
+      "owner": "cortico",
+      "section": "dependencies",
+      "anchor": "4.22.3",
+      "method": "deployed",
+      "note": "部署态实测 4.22.3"
+    },
+    {
+      "package": "fflate",
+      "range": "0.8.3",
+      "owner": "cortico",
+      "section": "dependencies",
+      "anchor": "0.8.3",
+      "method": "deployed",
+      "note": "部署态实测 0.8.3"
+    },
+    {
+      "package": "mineflayer",
+      "range": "^4.37.1",
+      "anchor": "4.39.0",
+      "method": "snapshot",
+      "published": "2026-09-06T16:14:50.871Z",
+      "latest_in_range": "4.39.0",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "dependencies"
+    },
+    {
+      "package": "mineflayer-pathfinder",
+      "range": "^2.4.5",
+      "anchor": "2.4.5",
+      "method": "snapshot",
+      "published": "2023-09-04T05:26:35.551Z",
+      "latest_in_range": "2.4.5",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "dependencies"
+    },
+    {
+      "package": "prismarine-viewer",
+      "range": "^1.33.0",
+      "anchor": "1.33.0",
+      "method": "snapshot",
+      "published": "2025-02-09T16:42:23.102Z",
+      "latest_in_range": "1.33.0",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "dependencies"
+    },
+    {
+      "package": "react",
+      "range": "^19.2.8",
+      "anchor": "19.3.0",
+      "method": "artifact",
+      "source": "dist/web/main-VF7OQOQ5.js 内 version:\"19.3.0\"（4 处）",
+      "published": "2026-09-09T17:21:30.071Z",
+      "satisfies_range": true,
+      "published_before_cutoff": true,
+      "latest_in_range": "19.3.1",
+      "newer_than_cutoff": 2,
+      "owner": "cortico",
+      "section": "dependencies"
+    },
+    {
+      "package": "react-dom",
+      "range": "^19.2.8",
+      "anchor": "19.3.0",
+      "method": "artifact",
+      "source": "同上 bundle（react + react-dom 同版本）",
+      "published": "2026-09-09T17:17:39.744Z",
+      "satisfies_range": true,
+      "published_before_cutoff": true,
+      "latest_in_range": "19.3.1",
+      "newer_than_cutoff": 2,
+      "owner": "cortico",
+      "section": "dependencies"
+    },
+    {
+      "package": "react-textarea-autosize",
+      "range": "^8.5.9",
+      "anchor": "8.5.9",
+      "method": "snapshot",
+      "published": "2025-03-30T22:13:11.081Z",
+      "latest_in_range": "8.5.9",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "dependencies"
+    },
+    {
+      "package": "tar-stream",
+      "range": "3.2.1",
+      "owner": "cortico",
+      "section": "dependencies",
+      "anchor": "3.2.1",
+      "method": "deployed",
+      "note": "部署态实测 3.2.1"
+    },
+    {
+      "package": "vec3",
+      "range": "^0.2.0",
+      "owner": "cortico",
+      "section": "dependencies",
+      "anchor": "0.2.0",
+      "method": "deployed",
+      "note": "部署态实测 0.2.0"
+    },
+    {
+      "package": "ws",
+      "range": "^8.18.0",
+      "owner": "cortico",
+      "section": "dependencies",
+      "anchor": "8.22.0",
+      "method": "deployed",
+      "note": "部署态实测 8.22.0"
+    },
+    {
+      "package": "@tailwindcss/cli",
+      "range": "^4.3.3",
+      "anchor": "4.3.3",
+      "method": "artifact",
+      "source": "与 tailwindcss 同版本流水线（v4 起同步发版），产物 CSS 已证实 4.3.3",
+      "published": "2026-07-16T12:03:50.521Z",
+      "satisfies_range": true,
+      "published_before_cutoff": true,
+      "latest_in_range": "4.3.3",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "@types/express",
+      "range": "^4.17.21",
+      "anchor": "4.17.25",
+      "method": "snapshot",
+      "published": "2025-10-27T20:36:07.728Z",
+      "latest_in_range": "4.17.25",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "@types/node",
+      "range": "^22.10.0",
+      "anchor": "22.20.5",
+      "method": "snapshot",
+      "published": "2026-10-01T22:38:10.803Z",
+      "latest_in_range": "22.20.5",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "@types/react",
+      "range": "^19.2.18",
+      "anchor": "19.3.0",
+      "method": "snapshot",
+      "published": "2026-09-09T18:08:49.750Z",
+      "latest_in_range": "19.3.0",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "@types/react-dom",
+      "range": "^19.2.4",
+      "anchor": "19.3.0",
+      "method": "snapshot",
+      "published": "2026-09-09T18:07:51.886Z",
+      "latest_in_range": "19.3.0",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "@types/tar-stream",
+      "range": "3.1.4",
+      "anchor": "3.1.4",
+      "method": "exact",
+      "note": "package.json 本就精确锁定",
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "@types/ws",
+      "range": "^8.5.13",
+      "anchor": "8.18.2",
+      "method": "snapshot",
+      "published": "2026-09-29T08:07:45.655Z",
+      "latest_in_range": "8.18.2",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "esbuild",
+      "range": "^0.28.2",
+      "owner": "cortico",
+      "section": "devDependencies",
+      "anchor": "0.28.2",
+      "method": "deployed",
+      "note": "部署态实测 0.28.2"
+    },
+    {
+      "package": "jsdom",
+      "range": "^30.0.1",
+      "anchor": "30.1.2",
+      "method": "snapshot",
+      "published": "2026-10-04T09:15:00.333Z",
+      "latest_in_range": "30.1.3",
+      "newer_than_cutoff": 1,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "tailwindcss",
+      "range": "^4.3.3",
+      "anchor": "4.3.3",
+      "method": "artifact",
+      "source": "dist/web/styles.css 首行 /*! tailwindcss v4.3.3 | MIT License */",
+      "published": "2026-07-16T12:03:35.267Z",
+      "satisfies_range": true,
+      "published_before_cutoff": true,
+      "latest_in_range": "4.3.3",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "tsx",
+      "range": "^4.19.2",
+      "owner": "cortico",
+      "section": "devDependencies",
+      "anchor": "4.23.15",
+      "method": "deployed",
+      "note": "部署态实测 4.23.15"
+    },
+    {
+      "package": "typescript",
+      "range": "^5.7.2",
+      "anchor": "5.9.3",
+      "method": "snapshot",
+      "published": "2025-09-30T21:19:38.784Z",
+      "latest_in_range": "5.9.3",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "vitest",
+      "range": "^2.1.8",
+      "anchor": "2.1.9",
+      "method": "snapshot",
+      "published": "2025-02-03T13:44:40.629Z",
+      "latest_in_range": "2.1.9",
+      "newer_than_cutoff": 0,
+      "owner": "cortico",
+      "section": "devDependencies"
+    },
+    {
+      "package": "depd",
+      "range": "^2.0.0",
+      "owner": "coop-stage",
+      "section": "dependencies",
+      "anchor": "2.0.0",
+      "method": "deployed",
+      "note": "部署态实测 2.0.0"
+    },
+    {
+      "package": "express",
+      "range": "^4.22.3",
+      "owner": "coop-stage",
+      "section": "dependencies",
+      "anchor": "4.22.3",
+      "method": "deployed",
+      "note": "部署态实测 4.22.3"
+    },
+    {
+      "package": "fflate",
+      "range": "^0.8.3",
+      "owner": "coop-stage",
+      "section": "dependencies",
+      "anchor": "0.8.3",
+      "method": "deployed",
+      "note": "部署态实测 0.8.3"
+    },
+    {
+      "package": "jpeg-js",
+      "range": "^0.4.4",
+      "owner": "coop-stage",
+      "section": "dependencies",
+      "anchor": "0.4.4",
+      "method": "deployed",
+      "note": "部署态实测 0.4.4"
+    },
+    {
+      "package": "opencc-js",
+      "range": "^1.4.2",
+      "owner": "coop-stage",
+      "section": "dependencies",
+      "anchor": "1.4.2",
+      "method": "deployed",
+      "note": "部署态实测 1.4.2"
+    },
+    {
+      "package": "tar-stream",
+      "range": "^3.2.1",
+      "owner": "coop-stage",
+      "section": "dependencies",
+      "anchor": "3.2.1",
+      "method": "deployed",
+      "note": "部署态实测 3.2.1"
+    },
+    {
+      "package": "ws",
+      "range": "^8.22.0",
+      "owner": "coop-stage",
+      "section": "dependencies",
+      "anchor": "8.22.0",
+      "method": "deployed",
+      "note": "部署态实测 8.22.0"
+    },
+    {
+      "package": "koffi",
+      "range": "3.3.1",
+      "owner": "vendor/cua",
+      "section": "dependencies",
+      "anchor": "3.3.1",
+      "method": "deployed",
+      "note": "部署态实测 3.3.1"
+    },
+    {
+      "package": "@types/node",
+      "range": "^22.20.4",
+      "anchor": "22.20.5",
+      "method": "snapshot",
+      "published": "2026-10-01T22:38:10.803Z",
+      "latest_in_range": "22.20.5",
+      "newer_than_cutoff": 0,
+      "owner": "vendor/cua",
+      "section": "devDependencies"
+    },
+    {
+      "package": "tsx",
+      "range": "^4.23.15",
+      "owner": "vendor/cua",
+      "section": "devDependencies",
+      "anchor": "4.23.15",
+      "method": "deployed",
+      "note": "部署态实测 4.23.15"
+    },
+    {
+      "package": "typescript",
+      "range": "^5.9.3",
+      "anchor": "5.9.3",
+      "method": "snapshot",
+      "published": "2025-09-30T21:19:38.784Z",
+      "latest_in_range": "5.9.3",
+      "newer_than_cutoff": 0,
+      "owner": "vendor/cua",
+      "section": "devDependencies"
+    },
+    {
+      "package": "vitest",
+      "range": "^2.1.9",
+      "anchor": "2.1.9",
+      "method": "snapshot",
+      "published": "2025-02-03T13:44:40.629Z",
+      "latest_in_range": "2.1.9",
+      "newer_than_cutoff": 0,
+      "owner": "vendor/cua",
+      "section": "devDependencies"
+    },
+    {
+      "package": "opencc-js",
+      "range": "^1.4.1",
+      "owner": "vendor/pet",
+      "section": "dependencies",
+      "anchor": "1.4.2",
+      "method": "deployed",
+      "note": "部署态实测 1.4.2"
+    },
+    {
+      "package": "sherpa-onnx-node",
+      "range": "1.13.8",
+      "owner": "vendor/pet",
+      "section": "dependencies",
+      "anchor": "1.13.8",
+      "method": "deployed",
+      "note": "部署态实测 1.13.8"
+    },
+    {
+      "package": "electron",
+      "range": "44.4.4",
+      "anchor": "44.4.4",
+      "method": "exact",
+      "note": "package.json 本就精确锁定",
+      "owner": "vendor/pet",
+      "section": "devDependencies"
+    }
+  ]
+}

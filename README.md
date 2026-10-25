@@ -38,6 +38,7 @@ Cortico 控制台 :17788 · 眼睛 :17898 · 感知 :17899 · 桌宠页 :7797
 | payload 里到底有什么、哪些能裁（P3 预编译清单） | [`docs/05-预编译清单与裁包评估.md`](docs/05-预编译清单与裁包评估.md) |
 | **源码还差多少** / 上游是哪一版 / 缺哪些文件 | [`UPSTREAM.md`](UPSTREAM.md) |
 | 哪些二进制必须入仓、`dist` 能不能重建 | [`PREBUILT.md`](PREBUILT.md) |
+| 重建时 `node_modules` 该装哪个精确版本 | [`BUILDDEPS.md`](BUILDDEPS.md) |
 | 结论索引 / 数字总表 / 边界清单 | [`docs/00-总目录与导读.md`](docs/00-总目录与导读.md) |
 
 ---
@@ -58,7 +59,8 @@ Coopanion_v12.71/
 ├── mcp_out/      Coopanion-v12.71-mcp.apk     重签实证产物（见 docs/04 §2）
 ├── UPSTREAM.md   上游锚点（谁的代码 / 哪一版 / 树指纹 / 缺哪些构建必需件）
 ├── PREBUILT.md   预编译二进制与构建产物清单（逐文件 sha256 + 可复现判定）
-├── DEPS.md       依赖三分法（运行时已闭合 / 构建期仍缺口）
+├── BUILDDEPS.md  构建期依赖版本锚（28 个缺包 / 四级证据链 / 可复算）
+├── DEPS.md       依赖三分法（运行时已闭合 / 构建期已补锚）
 ├── BASELINE.md   验收台账（P0–P3 逐单元结果、出包记录、基线回退点）
 └── docs/         00 导读 · 01 架构 · 02 Java · 03 协议 · 04 工具链 · 05 预编译清单
 ```
