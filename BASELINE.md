@@ -333,6 +333,8 @@ I PetKb   : init a11y=off 需要开启无障碍
 
 **规则（用户 2026-10-25 定）**：每完成一个逆向单元 → 构建 APK → 装机 → 用户实测。本地无 JDK / Android SDK，出包一律走 **MT MCP 重打包**（axml / smali 级编辑 + 内置签名）。MT 的 Home 是 `/storage/emulated/0/MT2/mcp`，其余路径被策略拒绝；`outputName` 必须给**绝对路径**（带子目录的相对路径会报 `INVALID_ARGUMENT: outputName`）。
 
+> **纯分析型单元不出包**：P1（资源层）与 P3（payload 预编译清单）在 APK 侧零改动，出包只会得到「仅 `versionName` 不同」、其余逐字节等价的包，没有可验证对象；出包周期留给有实改动的 P4。P0 的包是为单独验证重打包链路本身而出的。
+
 | # | 版本名 | 改动 | 字节 | 签名证书 sha256 | 验收结论 |
 |---|---|---|---|---|---|
 | 1 | `12.71-p0` | **仅** `versionName` 标记（P0 无代码改动，本轮验证的是重打包链路本身） | 137,258,773 | `a40da80a…bf5dc` | 就地升级成功；冷启动 24 s+ 无崩溃、crash 缓冲空；`libproot.so` + `node` 均拉起；`coop-run.log` 到 `core已启动`、Web 面板 `127.0.0.1:17788` 与桌宠悬浮窗就绪 |
@@ -371,8 +373,24 @@ I PetKb   : init a11y=off 需要开启无障碍
 
 同时修正两处子项计数：`src/recovered/` 863 → **853**（差值是那 10 个 `dist`）、`src/x/` 21 → **20**（实为 `lib` 5 + `META-INF` 5 + `assets/probe` 3 + dex 与清单与 arsc 与 `axml.py` 与 2 份 `.classes.txt`）。
 
+### P3 · payload 预编译清单（已完成）
+
+见 `docs/05-预编译清单与裁包评估.md`（新增，268 行）。四源交叉（自写块级 tar 扫描 + `tarfile` 二次扫 + gzip trailer 直读 + zip 条目元数据）全部一致；`mcp_out/` 下产出 `p3.tsv`（5,096 行 / 344,664 B）、`p3_tarlist.txt`（568,338 B）、`p3_report.txt`（216 行），按仓库纪律不入库。
+
+**先更正上一轮的误判**：上一轮曾怀疑 `360,825,344 B / 344.11 MiB` 差 22,528 B，块级解析已证伪——差额来自 **22 个 GNU `LongLink`（typeflag `L`）扩展头**，每个占「512 头 + 512 名」= 1,024 B，复算 `360,802,816（条目累计）+ 22×1,024（= 22,528）+ 1,024（EOF 双零块）= 360,825,344`，与 gzip `ISIZE` 逐字节相等。`README.md:14`、`BASELINE.md:21`、`docs/00`（14 / 83 / 142）、`docs/04`（275 / 748）六处写的 `344.11 MiB` 与 `38.00%` **全部正确，不需要订正**；`38.00%` 的口径是 `137,118,068 / 360,825,344`（payload 字节 ÷ tar 长度），不是「压缩后 ÷ 解压后」。
+
+容器事实：gzip 头 `1f8b 08 00 00000000 00 ff`（`FLG=0` 无 FNAME/FCOMMENT/FHCRC、`MTIME=0`、`XFL=0`、`OS=255`）、`compress_size=136,348,624`、`crc32=0xbb9152eb`、`post_gzip_eof_bytes=0`（单成员）；tar 为 POSIX ustar（`magic "ustar  \0"`），5,096 条目（4,053 文件 / 957 目录 / 86 软链 / 0 硬链），只有 `L` 头、无 `K`、无 pax `x`/`g`，结尾正好 2 个零块（`zero_start_pos=360,824,320`、`tail_nonzero=0`、无 anomaly）。
+
+体积分布：`app 137,479,592 / 2,322 条`、`bin 124,939,524 / 56`、`lib 94,650,199 / 2,692`、`etc 123 / 5`，文件字节和 357,069,438。**`node_modules` 有六个根**，不是一个：`app/coop-stage` 121,128,639 B / 99 包、`lib` 54,622,799 B / 3 包（`pnpm` + `npm` + `corepack`）、`build/cortico` 与 `vendor/{cua,coo,pet}` 四个根全为 0 B 软链（合计 22 条接线，Node 解析路径会走到，P4 必须原样重建）。原生 ELF 18 个 / 122,980,048 B：`libonnxruntime.so` 三份同 hash `cfc800d4438f15e8` 各 34,606,912、`libsherpa-onnx-c-api.so` 两份 `d1b41ded09e00017`、`sherpa-onnx.node` 两份 `ae1459b87db45cdc`、`libsherpa-onnx-cxx-api.so` 两份 `49fe5a314d4fc4f1`；`koffi.node` 的 `linux_arm64`（1,172,200）与 `musl_arm64`（1,169,936）是两份不同 hash。tar 元数据：`uid/gid` 全 `(0,0)`，`mode 0o600×2247 / 0o644×1713 / 0o700×529 / 0o755×520 / 0o777×86 / 0o1777×1`，`uname/gname ('root','root')×5086 / ('','')×10`，`mtime` 89 种（min 0、max 1792164366）⇒ P4 要确定性重打包必须固定 `mtime`。
+
+必需性分六类（A 硬必需 / B 构建期 / C 平台不可达 / D 字节重复 / E 从不调用 / F 保留），每条带代码坐标，明细见 `docs/05 §4`。可裁合计约 **112.5 MB 原始 / 约 75.6 MB 压缩后**：B `esbuild` + `@esbuild/linux-arm64` = 20,717,064（`cortico/package.json:54` devDep 与 `pet/scripts/build-console.mjs:10`，`dist/` 已预构建）；C `koffi` + `@koromix/koffi-linux-arm64` = 4,065,490（`cua/src/definition.ts:12` 在非 win/darwin 直接 throw，`pet/src/asr/hotkey.ts:119/131` 只在 win/darwin reader 内 import）；D 嵌套 sherpa native 副本 40,305,256 + `lib/aarch64-linux-gnu/libonnxruntime.so` 34,606,912；E `lib/node_modules/npm` 10,685,798（源码里 `'npm'` 只是扩展来源的 UI 枚举值，无 `spawn('npm')`）+ `home/…/runs/**` 41,977（`carryOverHome()` 明确 filter `/data/runs`）+ 包内 `docs/tests/licenses` 2,075,062；F 保留 `bare-*` 家族约 5.7 MB（依赖链指向扩展安装，收益不足）。整包重压已确认无效（`level=6 → 136,348,642`、`level=9 → 136,348,529`，ratio 0.994），收益只能来自删条目 ⇒ `payload.asset` 预计 136.35 → **60~62 MB**，整包 137.2 → **65~70 MB**（以 P4 实测为准）。
+
+P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` 头 / 2 个零块 / `mtime` 固定 / gzip 头固定 / `mode` 差异保留 / `boot.sh` 自愈逻辑 / 改长度会触发 rootfs 重建）。**本轮新增一条**：`boot.sh:52` 的 `PKG-ABS` 自检硬编码了嵌套路径 `sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/sherpa-onnx.node`，P4 删嵌套副本后需同步改，否则会打印一条不阻断启动的 `FAIL`；保留顶层副本是安全的，因为 `addon-static-import.js` 对 `arm64-linux` **先** `require('../sherpa-onnx-linux-arm64/sherpa-onnx.node')`，命中后不再走 `addon.js` 的 `possible_paths`。
+
+工具与耗时：`tools/p3_tarstruct.py`（3.465 s，块级状态机）、`tools/p3_longname.py`（4.180 s，长名清单 + trailer 直读）、`tools/p3_report.py`（3.590 s，216 行全表）。**性能纪律**：处理 344 MB 级流式数据禁止 `buf = buf[512:]` 逐块切片（O(n²) 拷贝），须「整块读入 + 下标扫描 + 只留尾部残余」。
+
 ### 下一步
 
-P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；**P2 第一批完成**（jadx 基线 14 文件 + `docs/02 §1.3/§1.4` 校正 8 处，出包 `12.71-p2` 装机验证）。
-**P2 全部完成**（四批：`§1.3/§1.4` → `§2/§3/§4` → `§5/§6/§7` → `§8/§9`，其中文档核对三批共校正 34 处，`docs/02` 已与 `src/java/` 逐节对齐，`§10` 的「未逐行还原」表可据此收窄）。下一步 **P3 预编译清单**：从 `assets/payload.asset` 里抽出 `node_modules` 顶层目录清单 + 原生 `.node`/`.so` 清单，标注哪些是运行时必需、哪些可裁，为 P4 的确定性重打包定输入。
-之后 P3 预编译清单 → **P4**：`build-payload.py` 确定性 gzip+tar，复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`）→ **P5** 等价性验证（含 sherpa native 真机加载与 `.ok` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处，`docs/02` 已与 `src/java/` 逐节对齐，`§10` 的「未逐行还原」表可据此收窄）；**P3 已完成**（见上节与 `docs/05-预编译清单与裁包评估.md`）。
+
+下一步 **P4**：`build-payload.py` 确定性 gzip+tar，按 `docs/05 §6` 的八条硬约束复刻，并复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`）→ **P5** 等价性验证（含 sherpa native 真机加载与 `.ok` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
