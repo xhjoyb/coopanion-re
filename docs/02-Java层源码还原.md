@@ -274,37 +274,40 @@ private void togglePetWindow() {
 
 ```java
 public final class SenseBridge {
-    private static final int MAX_NOTIFS = 64;
+    private static final int NOTIF_CAP = 64;
+    public static final int PORT = 17899;
     private static volatile SenseBridge instance;
 
     private final Context ctx;
-    private final Handler ui = new Handler(Looper.getMainLooper());
-    private final ArrayList<JSONObject> notifs = new ArrayList<>();
+    private volatile boolean running;
+    private ServerSocket server;
+    private Thread thread;
+    private final List<JSONObject> notifs = new ArrayList<>();
     private long notifSeq = 0;
 
-    public static SenseBridge get(Context c) {           // 双检锁
-        if (instance == null) synchronized (SenseBridge.class) {
-            if (instance == null) instance = new SenseBridge(c.getApplicationContext());
-        }
+    public static synchronized SenseBridge get(Context c) {   // 单检（方法级 synchronized）
+        if (instance == null) instance = new SenseBridge(c.getApplicationContext());
         return instance;
     }
     public static SenseBridge peek() { return instance; }
 
     public void start() {
-        Thread t = new Thread(this::loop, "sense-bridge");
-        t.setDaemon(true);
-        t.start();
+        if (running) return;                              // 幂等守卫
+        running = true;
+        thread = new Thread(this::loop, "sense-bridge");
+        thread.setDaemon(true);                           // loop 线程是 daemon
+        thread.start();
     }
 
     private void loop() {
-        try (ServerSocket ss = new ServerSocket(17899, 8, InetAddress.getByName("127.0.0.1"))) {
-            while (true) {
-                Socket s = ss.accept();
-                Thread c = new Thread(() -> handle(s), "sense-bridge-conn");
-                c.setDaemon(true);
-                c.start();
+        try {
+            server = new ServerSocket(PORT, 8, InetAddress.getByName("127.0.0.1"));
+            while (running) {                             // 退出靠 running 标志
+                Socket s = server.accept();
+                new Thread(() -> handle(s), "sense-bridge-conn").start();  // 连接线程非 daemon
             }
-        } catch (Throwable e) { Log.w("SenseBridge", "loop: " + e); }
+        } catch (IOException e) { running = false; }       // stop() 关 server → accept 抛 IOException
+                                                          // stop() 只置标志 + close，不 join 线程
     }
 
     /** 手写 HTTP/1.1：只支持 GET，读首行 + 头部到空行，路由三选一。 */
@@ -337,6 +340,7 @@ public final class SenseBridge {
         } catch (Throwable ignored) {}
     }
 
+    // ⚠ 没有独立 since() 方法：解析逻辑内联在连接 lambda 里（下为等价渲染）
     private static long since(String path) {
         int i = path.indexOf("since=");
         if (i < 0) return 0;
@@ -377,7 +381,8 @@ private String foregroundPackage() {
 private String screenJson() {   // PowerManager.isInteractive() + KeyguardManager.isKeyguardLocked()
 }
 private String powerJson() {    // 注册 ACTION_BATTERY_CHANGED（registerReceiver(null, filter)）
-    // level = Math.round(level * 100f / scale); charging = status==CHARGING||status==FULL
+    // level = Math.round(level * 100f / scale)，取不到时 level = -1（不是省字段）
+    // charging = status==2(CHARGING) || status==5(FULL)
 }
 
 /** 通知环形缓冲：seq 自增、id = "n"+seq、上限 64 条（超出 remove(0)）。 */
@@ -386,9 +391,9 @@ public void addNotification(String pkg, String app, String title, String text, l
         long seq = ++notifSeq;
         JSONObject o = new JSONObject();
         o.put("seq", seq).put("id", "n" + seq).put("pkg", pkg)
-         .put("app", app).put("title", title).put("text", text).put("when", when);
+         .put("app", app).put("title", title).put("text", text);   // ⚠ 没有 "when"，when 是死参数
         notifs.add(o);
-        while (notifs.size() > MAX_NOTIFS) notifs.remove(0);
+        while (notifs.size() > NOTIF_CAP) notifs.remove(0);
     }
 }
 
@@ -401,6 +406,23 @@ private static String nowIso() {
 ```
 
 > 消费端即 `recovered/vendor/pet/src/eyes.ts#state()`：它把 `app/screen/power` 解成 `ScreenState`。
+
+#### §2 校正记录（原版 → 字节码，2026-10-25）
+
+| # | 原版 | 实际 |
+|---|---|---|
+| 1 | `MAX_NOTIFS` | 常量名 **`NOTIF_CAP`**（值同 64）；另有 `public static final int PORT = 17899` |
+| 2 | `get()` 双检锁 | **`static synchronized` 单检**，`instance` 是 `volatile` |
+| 3 | 有 `Handler ui` 字段 | **没有**；真实字段为 `running / server / thread` |
+| 4 | `start()` 无守卫 | 先 `if (running) return`，再 `running = true`，线程存进 `thread` |
+| 5 | 连接线程 daemon | **连接线程非 daemon**（只有 `sense-bridge` loop 线程 daemon） |
+| 6 | `addNotification` 写 `when` | **不写**；第 5 个参数 `long` 全类未使用（死参数）；JSON 只有 `seq/id/pkg/app/title/text`， 归一为 `""` |
+| 7 | 有独立 `since()` | 解析内联在连接 lambda 里；没有该方法 |
+| 8 | `stop()` 未描述 | 置 `running=false` + `server.close()`，**不 join**；accept 抛 `IOException` 后把 `running` 再置 false |
+| 9 | `powerJson` level 无兜底 | 取不到时 **`level = -1`** |
+| 10 | `addNotification` 块同步 | 实际是 `public synchronized` 方法；`notificationsJson` 只在取 items/cursor 时 `synchronized(this)` |
+
+
 
 ---
 
@@ -615,6 +637,35 @@ public boolean openApp(String raw) {
 > 例：模型说「打开微信」→ `openApp("微信")` → 命中 `com.tencent.mm` 的 label。
 
 ---
+
+#### §3/§4 核对记录（2026-10-25）
+
+`§3` 与字节码**逐项吻合**，未发现偏差。已核对项：
+
+| 项 | 真值 | 结论 |
+|---|---|---|
+| `CHANNEL` | `"coopanion_pet"` | ✓ |
+| `TOUCH_SIZE` | `700`，全类零引用（死常量） | ✓ |
+| `showLp` | `(-1, -1, type, 66328, -3)` | ✓ |
+| `touchLp` | `(520, 520, type, 808, -3)` | ✓ |
+| `PREF` / `KEY_ALPHA` | `coopanion` / `pet_alpha` | ✓ |
+| `imeProxy` | `EditText`，1×1，`textColor=0` / `cursorVisible=false` / `imeOptions=0x2000006` / `inputType=1` / `singleLine` / `focusable=false` | ✓ |
+| `followTick` | `ui.postDelayed(this, 80L)` 自续期 | ✓ |
+| `warmUpRenderer` | 1×1 隐藏 WebView（`type = 2038/2002`、`flags = 24`）预热完 `removeView` | ✓，但它是**第三个 WindowManager 窗口**，正文未点明 |
+
+`§4` 一处校正：
+
+| # | 原版 | 实际 |
+|---|---|---|
+| 1 | 「无 `@JavascriptInterface` 注解（R8 保留名）」 | **有注解**：dex 里 9 个方法全部带 `@JavascriptInterface`，不是靠 `addJavascriptInterface` 隐式暴露 |
+
+另补充两条实测事实（原有正文未写）：
+
+1. `PetHostBridge` 的 9 个方法顺序为 `focus / grabFocus / releaseFocus / setInteractive / setAlpha / getAlpha / openApp / hide / openDress`；
+   其中 **`focus`、`grabFocus`、`releaseFocus` 是彻底空方法**，`setInteractive` 只 `Log.i` 不改任何行为。
+   即 **Service 版的「交互开关」是名义接口**——页面调 `petHost.setInteractive(false)` 在 Java 侧无任何效果。
+2. 触摸层尺寸真正由 **`queryPetRect()` 主动问页面**（`evaluateJavascript` 取并集矩形）→ `sizeTouchTo(x,y,w,h)` 调 `updateViewLayout` 驱动；
+   Service 版**没有** `reportPetRect`（那是 `PetActivity` 的 `PetHostBridge` 才有）。
 
 ## 5. `EyesService`（1570 行 smali，无障碍「眼睛」）
 
