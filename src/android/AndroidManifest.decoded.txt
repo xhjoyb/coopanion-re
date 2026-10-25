@@ -1,0 +1,62 @@
+xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest android:versionCode="1271" android:versionName="12.71" android:compileSdkVersion="35" android:compileSdkVersionCodename="15" package="com.palai.prootsmoke" platformBuildVersionCode="35" platformBuildVersionName="15">
+  <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="35">
+  </uses-sdk>
+  <uses-permission android:name="android.permission.INTERNET">
+  </uses-permission>
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE">
+  </uses-permission>
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE">
+  </uses-permission>
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW">
+  </uses-permission>
+  <uses-permission android:name="android.permission.POST_NOTIFICATIONS">
+  </uses-permission>
+  <uses-permission android:name="android.permission.RECORD_AUDIO">
+  </uses-permission>
+  <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES">
+  </uses-permission>
+  <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS">
+  </uses-permission>
+  <uses-permission android:name="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+  </uses-permission>
+  <queries>
+    <intent>
+      <action android:name="android.speech.RecognitionService">
+      </action>
+    </intent>
+  </queries>
+  <application android:theme="@0x7f020000" android:label="Coopanion" android:icon="@0x7f010000" android:name="com.palai.prootsmoke.CrashApp" android:extractNativeLibs="true" android:usesCleartextTraffic="true" android:roundIcon="@0x7f010001">
+    <activity android:theme="@0x7f020000" android:name="com.palai.prootsmoke.MainActivity" android:exported="true" android:configChanges="0x5a0">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN">
+        </action>
+        <category android:name="android.intent.category.LAUNCHER">
+        </category>
+      </intent-filter>
+    </activity>
+    <activity android:theme="@0x7f020001" android:name="com.palai.prootsmoke.PetActivity" android:exported="false" android:launchMode="2" android:configChanges="0x7a0">
+    </activity>
+    <activity android:theme="@0x7f020000" android:name="com.palai.prootsmoke.RepairActivity" android:exported="false" android:configChanges="0x7a0">
+    </activity>
+    <service android:name="com.palai.prootsmoke.PetWindowService" android:exported="false" android:foregroundServiceType="0x40000000">
+      <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="desktop pet overlay">
+      </property>
+    </service>
+    <service android:label="Coopanion 手机感知" android:name="com.palai.prootsmoke.NotifListenerService" android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" android:exported="true">
+      <intent-filter>
+        <action android:name="android.service.notification.NotificationListenerService">
+        </action>
+      </intent-filter>
+    </service>
+    <service android:label="Coopanion 眼睛" android:name="com.palai.prootsmoke.EyesService" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" android:exported="true">
+      <intent-filter>
+        <action android:name="android.accessibilityservice.AccessibilityService">
+        </action>
+      </intent-filter>
+      <meta-data android:name="android.accessibilityservice" android:resource="@0x7f040000">
+      </meta-data>
+    </service>
+  </application>
+</manifest>
+

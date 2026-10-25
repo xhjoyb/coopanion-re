@@ -26,22 +26,28 @@
 
 ## 2. 本仓库纳入了什么
 
-合计 **1,072 文件 / 19,742,777 B（18.83 MiB）**。
+合计 **1,083 文件 / 19,159,224 B（18.27 MiB）**。
+
+> 口径：`git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{print n, s}'`（见 §5）。
+> 旧版本此处写「1,072 文件 / 19,742,777 B」，与任何一次提交都对不上，已按实测重算，勘误说明见 §7。
 
 | 路径 | 文件数 | 说明 |
 |---|---|---|
 | `docs/` | 5 | 00 导读 302 行 · 01 架构 216 · 02 Java 856 · 03 桥接协议 1182 · 04 工具链 754 = **3,403 行** |
-| `README.md` | 1 | 93 行，入口 |
+| `README.md` | 1 | 入口 |
 | `BASELINE.md` | 1 | 本文件 |
+| `DEPS.md` | 1 | 依赖/产物取舍政策（能 `rm` 掉再用一条命令复原的一律不入库） |
+| `.gitignore` | 1 | 排除 `node_modules`、`dist`、`apk/` 等 |
 | `log/` | 6 | `ziplist.txt`、`rootfs_list.txt`(568 KB)、`doc-round7/8.txt`、`dex2smali-v2-to-v3.diff`、`pip.log` |
-| `src/recovered/` | **863** | 原厂 TypeScript 源码树（**259 个 `.ts`**，未混淆、未编译、中文注释完整），含 `package.json`/`tsconfig.json` |
+| `src/recovered/` | **853** | 原厂 TypeScript 源码树（**259 个 `.ts`**，未混淆、未编译、中文注释完整），含 `package.json`/`tsconfig.json`。基准时 863，减去被排除的 10 个 `dist` 产物 |
 | `src/java2/` | 132 | smali 精确视图：合并 2 份 + `classes/` **124 个一类一文件** = **544 个 `.method`** |
 | `src/java2_v2/` | 2 | 旧工具链基线（v2，对照用） |
 | `src/java/` | 3 | 早期反编译尝试产物 |
 | `src/js/` | 12 | Java 内嵌注入脚本 12 段（4,776 B） |
-| `src/x/` | 21 | APK 解包产物：`AndroidManifest.xml`、`classes.dex`(98,744 B)、`classes2.dex`(37,212 B)、`resources.arsc`(2,440 B)、5 个 `.so`、`assets/probe/*.js`、`META-INF/*` |
-| `src/*.py` | 20 | 逆向脚本（功能 9 + 工具链补丁 3 + 文档回改 8） |
-| `tools/push_repo.py` | 1 | Git Data API 推送器（本机 `git` CLI 挂死时的唯一通道） |
+| `src/x/` | 20 | APK 解包产物：`AndroidManifest.xml`、`classes.dex`(98,744 B)、`classes2.dex`(37,212 B)、`resources.arsc`(2,440 B)、`lib/arm64-v8a/*.so` ×5、`assets/probe/*.js` ×3、`META-INF/` ×5、`axml.py`、两份 `.classes.txt` |
+| **`src/android/`** | **15** | **P1 资源树**（§7）：`AndroidManifest.xml` 101 行 + `AndroidManifest.decoded.txt` 62 行留档 + 10 张 `mipmap-*` PNG + `values/strings.xml`、`values/themes.xml`、`xml/eyes_service.xml` = 298,642 B |
+| `src/`（根下散落） | 28 | 20 个 `.py` 逆向脚本（功能 9 + 工具链补丁 3 + 文档回改 8）+ 8 个中间文本（`du.txt`、`static_values.txt/.err`、`log_strings1/2.txt`、`log_manifest.txt`、`js_pethost_strings1_53.js`、`js_pethost_strings2_29.js`） |
+| `tools/` | **3** | `push_repo.py`（Git Data API 推送器，本机 `git` CLI 挂死时的唯一通道）+ **`parse_arsc.py`**（259 行，dense/sparse/offset16 三布局 arsc 解析）+ **`check_res.py`**（131 行，清单↔arsc↔磁盘三方对齐自检） |
 
 ---
 
@@ -73,7 +79,7 @@
 已知的「没做」：
 
 1. **Java 侧没有 `.java`、没有 Gradle 工程** —— 只有 smali（`src/java2/`）+ `docs/02` 的可读重建；
-2. **`res/` 未还原成工程树** —— 实测全包仅 11 个资源条目、`resources.arsc` 2,440 B、15 个符号（`ic_launcher`、`ic_launcher_round`、`AppTheme`、`PetTheme`、`app_name`、`eyes_*`）；
+2. ~~**`res/` 未还原成工程树**~~ → **P1 已还原**：`src/android/`，15 文件 / 298,642 B，`tools/check_res.py` 三方对齐 `ok: true`。全包仅 11 个资源条目、`resources.arsc` 2,440 B、15 个符号——小到可以逐条人工核对，这也是 P1 能一次做净的前提。详见 §7；
 3. **`node_modules` 未独立抽出**（真跑起来不需要，用 `src/rootfs/` 那份运行时即可）。
 
 ---
@@ -87,7 +93,7 @@ python3 src/dex2smali.py src/x/classes.dex | diff -q - src/java2/classes.dex.sma
 
 # 2) 原厂 TS 源码规模
 find src/recovered -name '*.ts' | wc -l        # → 259
-find src/recovered -type f | wc -l             # → 863
+git ls-files src/recovered | wc -l             # → 853（入仓数；磁盘 863，多出的 10 个是 .gitignore 排除的 dist 产物）
 
 # 3) Java 规模
 ls src/java2/classes | wc -l                   # → 124
@@ -95,6 +101,15 @@ grep -h '^\.method' src/java2/classes/*.smali | wc -l   # → 544
 
 # 4) 文档规模
 wc -l docs/*.md README.md | tail -1            # → 3403 total
+
+# 5) P1 资源树三方对齐（清单 ↔ arsc ↔ 磁盘）
+python3 tools/check_res.py                     # → ✅ 资源树与 arsc 完全对齐（exit 0）
+python3 tools/check_res.py --json | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d["ok"], d["arsc_files"], d["refs"])'
+# → True 11 9
+
+# 6) 仓库规模（§2 数字的口径）
+git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{printf "%d files, %d bytes\n", n, s}'
+# → 1083 files, 19159224 bytes
 ```
 
 ---
@@ -108,3 +123,51 @@ git log v12.71-baseline..HEAD        # 基准之后的提交
 ```
 
 **回退**：`git checkout v12.71-baseline` 即回到本基准的完整文件状态（不含 §3 三个大产物）。
+
+---
+
+## 7. 增量记录（基准之后）
+
+### P1 · 资源层还原 → `src/android/`
+
+目标：把 `res/` 从「APK 里的二进制」变成「可直接进 Android 工程的源树」，且与清单/arsc 三方自洽。
+
+| 产物 | 说明 |
+|---|---|
+| `AndroidManifest.xml` | 101 行，可直接编译。两处等价化：① 资源引用 `0x7f……` → `@mipmap/@style/@string/@xml`；② 枚举位标志 `0x……` → 符号名 —— `0x5a0` → `keyboardHidden\|orientation\|screenLayout\|screenSize`、`0x7a0` 再加 `uiMode`、`0x2` → `launchMode="singleTask"`、`0x40000000` → `foregroundServiceType="specialUse"` |
+| `AndroidManifest.decoded.txt` | 62 行。`src/axml.py` 对 `src/x/AndroidManifest.xml` 的原始反编译留档（保留原始资源 ID），与上面那份互为对照 |
+| `res/mipmap-{mdpi,hdpi,xhdpi,xxhdpi,xxxhdpi}/ic_launcher{,_round}.png` | 10 张，**与 APK 内字节完全一致**（未重压，`sha256sum` 可复核）；合计 288,259 B，mdpi 5,289/6,283 → xxxhdpi 64,580/68,924 |
+| `res/values/strings.xml` | 2 条中文逐字保留：`app_name`「Coopanion 自己的桌宠，让它在刷视频、看东西的时候能看见并吐槽。只在手机本地使用，不往外传。」、`eyes_service_description`「让桌宠看得见屏幕」 |
+| `res/values/themes.xml` | `AppTheme` / `PetTheme`，parent 均为 `@android:style/Theme.DeviceDefault.Light.NoActionBar`（= framework `0x0103012c`，已反查确认，非先前猜测的 `Theme.Material` 系）。`windowNoTitle` / `windowActionBar` / `windowFullscreen` 三项由 framework attr 反查得名（`0x01010056` / `0x010102cd` / `0x0101020d`），值 `0xffffffff` / `0x0` → `true` / `false` |
+| `res/xml/eyes_service.xml` | 无障碍服务配置：`accessibilityEventTypes` = `0x400020` → `typeWindowStateChanged\|typeWindowsChanged`、`feedbackGeneric` = `0x10`、`notificationTimeout=500`、`accessibilityFlags` = `0x41` → `flagDefault\|flagRetrieveInteractiveWindows`、`canRetrieveWindowContent` / `canTakeScreenshot` = `true` |
+
+支撑工具（同时是本轮踩坑的产物）：
+
+- **`tools/parse_arsc.py` 新增 `entry_offsets()`**，支持 **dense / sparse（`FLAG_SPARSE`）/ offset16（`FLAG_OFFSET16`）** 三种 `ResTable_type` 布局。framework 的 `resources.arsc`（7,690,504 B）用的正是 sparse —— 旧实现按 dense 读 `u32` 偏移，直接 `IndexError` 崩在这里。这是 P2/P3 复用资源解析的基础设施。
+- **`tools/check_res.py`** 做三方对齐自检：清单与 XML 里的 `@type/name` 引用 ↔ arsc 符号表 ↔ `res/` 磁盘实况，任一方向多/少都报错。当前实测：
+
+```
+$ python3 tools/check_res.py
+arsc：15 条配置 × 条目 / 7 个符号 / 11 个文件型条目
+源树：4 个 XML / 9 处 @type/name 引用
+
+✅ 资源树与 arsc 完全对齐
+```
+
+- 结构备忘：framework arsc 顶层 = 1 个字符串池（70,497 条）+ **7 个 `0x0200` package 块**（首个承载全部 23 个 type 名与 14,433 个 key 名，其余 6 个 `tso` 恒为 288、type 名读出来是 `?N` 占位），这是 aapt2 的 split 产物、属正常结构，不是错位。
+
+### 数字勘误
+
+旧版 §2 写的「1,072 文件 / 19,742,777 B（18.83 MiB）」与任何一次提交都对不上。以 `git ls-tree -r -l` 实测：
+
+| 时点 | 文件数 | 字节 |
+|---|---|---|
+| tag `v12.71-baseline` | 1,075 | 19,760,010 |
+| 移除 10 个构建产物（`cortico/dist/web` 8 + `vendor/pet/dist` 2，928,872 B）+ 新增 `DEPS.md` | 1,066 | 18,839,530 |
+| **+ P1（17 个文件：`src/android/` 15 + `tools/*.py` 2）** | **1,083** | **19,159,224** |
+
+同时修正两处子项计数：`src/recovered/` 863 → **853**（差值是那 10 个 `dist`）、`src/x/` 21 → **20**（实为 `lib` 5 + `META-INF` 5 + `assets/probe` 3 + dex 与清单与 arsc 与 `axml.py` 与 2 份 `.classes.txt`）。
+
+### 下一步
+
+P1 已收口 → 回 **P0**（上游对账 + 补 4 个包的 lock：`cortico` / `vendor/coo` / `vendor/cua` / `vendor/pet`）→ **P2** Java 层 124 类 smali → `.java`。
