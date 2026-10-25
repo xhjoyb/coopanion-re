@@ -23,6 +23,7 @@
 
 import argparse
 import base64
+import fnmatch
 import hashlib
 import json
 import os
@@ -52,15 +53,41 @@ def pace(interval):
             time.sleep(gap)
         _PACE["last"] = time.time()
 
-# 目录级排除（相对仓库根）
-EXCLUDE_DIRS = {
-    ".git", ".backup", ".operit", "__pycache__", "node_modules",
-    "apk", "mcp_out",          # 137 MB 级原始/重签 APK，超 GitHub 单文件上限
-}
-# 路径前缀排除（深层大目录）
-EXCLUDE_PREFIXES = ("src/rootfs/",)   # 137 MB rootfs，可从 payload.asset 重现
+# 强制排除（无法被 .gitignore 覆盖）
+MANDATORY_DIRS = {".git", ".backup", ".operit", "__pycache__", "node_modules"}
+MANDATORY_SUFFIXES = (".pyc",)
 EXCLUDE_FILES = {".DS_Store", "Thumbs.db"}
-EXCLUDE_SUFFIXES = (".apk", ".aab", ".pyc")
+
+
+def load_ignores(root):
+    """从仓库根 .gitignore 读排除规则，作为唯一事实来源。
+
+    支持三种写法：
+      `name/`        → 任意层级的同名目录
+      `a/b/`、`a/b`  → 相对仓库根的路径前缀
+      `*.apk`        → 文件名 glob
+    不支持取反（`!`）语义：遇到直接忽略，不会误传。
+    """
+    dirs, prefixes, globs = set(), [], []
+    path = os.path.join(root, ".gitignore")
+    if not os.path.isfile(path):
+        return dirs, prefixes, globs
+    with open(path, encoding="utf-8", errors="replace") as fh:
+        for line in fh:
+            s = line.strip()
+            if not s or s.startswith("#") or s.startswith("!"):
+                continue
+            if s.endswith("/"):
+                body = s.rstrip("/")
+                if "/" in body:
+                    prefixes.append(body + "/")
+                else:
+                    dirs.add(body)
+            elif "/" in s:
+                prefixes.append(s)
+            else:
+                globs.append(s)
+    return dirs, prefixes, globs
 
 
 def log(msg):
@@ -120,22 +147,25 @@ def blob_sha(data):
 
 
 def collect(root):
+    ig_dirs, ig_prefixes, ig_globs = load_ignores(root)
+    dirs_excl = MANDATORY_DIRS | ig_dirs
     out = []
     for dirpath, dirnames, filenames in os.walk(root):
-        dirnames[:] = sorted(d for d in dirnames if d not in EXCLUDE_DIRS)
+        dirnames[:] = sorted(d for d in dirnames if d not in dirs_excl)
         for name in sorted(filenames):
-            if name in EXCLUDE_FILES or name.endswith(EXCLUDE_SUFFIXES):
+            if name in EXCLUDE_FILES or name.endswith(MANDATORY_SUFFIXES):
+                continue
+            if any(fnmatch.fnmatch(name, g) for g in ig_globs):
                 continue
             full = os.path.join(dirpath, name)
             if os.path.islink(full):
                 continue
             rel = os.path.relpath(full, root).replace(os.sep, "/")
-            if any(rel.startswith(p) for p in EXCLUDE_PREFIXES):
+            if any(rel.startswith(p) for p in ig_prefixes):
                 continue
+            mode = "100755" if os.access(full, os.X_OK) else "100644"
             with open(full, "rb") as fh:
-                mode = "100755" if os.access(full, os.X_OK) else "100644"
-                with open(full, "rb") as fh:
-                    out.append((rel, fh.read(), mode))
+                out.append((rel, fh.read(), mode))
     return out
 
 
