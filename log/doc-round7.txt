@@ -1,0 +1,59 @@
+第七轮：工具链 v3 落地 + 文档一致性回改（2026-10）
+
+一、本轮改了什么（代码）
+
+1) src/dex2smali.py（406 → 486 行）
+   - 修 `22s` 位域：A = (unit >> 8) & 0xf、B = (unit >> 12) & 0xf
+     旧版把整个高位字节当寄存器号，本包 5 处输出成 v136 / v51 / v68 / v24 这类不存在的寄存器。
+     修复后：and-int/lit16 v3, v3, #255；rsub-int/lit16 v8, v8, #700 / #500；
+             and-int/lit16 v4, v4, #256；add-int/lit16 v8, v1, #-200（EyesService.imeHeightOf）
+   - 新增 switch / array payload 解析：`.packed-switch` / `.sparse-switch` / `.array-data`
+     + `:pswitch_data_N` / `:pswitch_N` 标签。本包命中 1 处（VoiceBridge.errName(I) 的 9 个 case）。
+
+2) src/axml.py（新增 0x0180 resource map 解析）
+   - 按 attr 资源 id 高字节补命名空间：0x01xxxxxx → `android:`；其余非零保留 `0x7fxxxxxx:`
+   - 输出从 `versionCode="1271"` 变成 `android:versionCode="1271"`
+
+3) src/read_static.py
+   - 本轮只做核验，未改代码：三个类 19 个字段名实测全对
+     （此前 docs 记的「错显成 packageName / ARGB_8888」已不成立；值一直是对的）
+
+二、基线重建
+
+- 旧基线保留：src/java2_v2/（v2 工具产物）
+- 新基线：src/java2/（v3 工具产物）
+- 差异：log/dex2smali-v2-to-v3.diff（104 行，27 行 +/-，23 行新增）
+
+实测字节数（os.path.getsize 求和）
+- src/java2/classes.dex.smali   449,149 B
+- src/java2/classes2.dex.smali  163,100 B
+- src/java2/classes/            124 文件 / 612,228 B
+  （合并视图 449,149 + 163,100 = 612,249；拆文件时少了 21 B 的分隔，两者不等是正常的）
+
+三、验证（全部通过）
+
+  python3 src/dex2smali.py src/x/classes.dex  | diff -q - src/java2/classes.dex.smali  → identical
+  python3 src/dex2smali.py src/x/classes2.dex | diff -q - src/java2/classes2.dex.smali → identical
+  unzip -p apk/Coopanion-v12.71.apk assets/payload.asset | tar -tz | wc -l → 5096
+  ls src/java2/classes | wc -l → 124
+  grep -h '^\.method' src/java2/classes/*.smali | wc -l → 544
+  time → 0.073 s / 0.055 s（随负载浮动，文档只写 ≈0.08 / ≈0.06 量级）
+
+四、文档回改（本轮）
+
+- src/patch_docs_round6.py：docs/04 工具链 v3 结果 12 处（已执行）
+- src/patch_docs_round7.py：docs/00 §4.5/§8.3/§11 + docs/03 §12.3 + docs/04 数字与索引
+  + README 边界，共 10 处；数字段（字节数 / 耗时 / 文档行数）运行时自算
+- 手工两处微调：docs/04 目录树「12 个工具」→「18 个脚本」；§13 补 dump_static_values 行并排序
+
+当前文档行数：00 301 / 01 216 / 02 856 / 03 1182 / 04 676（01..04 合计 2,930 行，README 87 行）
+脚本数：src/*.py = 18（功能 8 + 工具链补丁 3 + 文档回改 7）
+
+五、仍未做（唯一 TODO）
+
+重打包实证（改包 → 重签 → 冒烟）。本环境 java / apksigner / zipalign / keytool 全缺，
+需先解决签名链：
+  A. 装 JDK + build-tools（体积大，proot 内可行性低）
+  B. 用 Python 自写 v2 签名（APK Signing Block + SHA-256 摘要 + RSA 签名，cryptography 需自带）
+  C. 只做 v1（JAR 签名，META-INF 三个文件），现代 Android 仍接受（targetSdk 35 且 minSdk 24）
+     —— 但 v1 需要 RSA + SHA1/SHA256 的 DER 签名，仍需 RSA 实现

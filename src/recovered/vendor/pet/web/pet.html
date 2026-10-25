@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cortico 桌宠</title>
+<link rel="stylesheet" href="/web/pet.css">
+</head>
+<body>
+<div class="floor" aria-hidden="true"></div>
+<div class="stage" id="stage">
+  <svg id="stageSvg" aria-hidden="true">
+    <defs>
+      <!-- a soft light gray glow behind the body, for backdrops of the body's own color -->
+      <filter id="halo" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+        <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="grown"/>
+        <feGaussianBlur in="grown" stdDeviation="7" result="soft"/>
+        <feFlood id="haloFlood" flood-color="#B8B8B8" flood-opacity="0"/>
+        <feComposite in2="soft" operator="in" result="glow"/>
+        <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+    <ellipse id="shadow" class="shadow" cx="0" cy="0" rx="0" ry="0"/>
+    <g id="pet"></g>
+    <g id="fx"></g>
+  </svg>
+</div>
+<div class="trail" id="trail" hidden aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="bubble heard" id="heard" role="status" aria-live="polite" hidden></div>
+<div class="bubble" id="bubble" role="status" aria-live="polite" hidden></div>
+<div class="menu" id="menu" role="menu" hidden></div>
+<div class="tools" id="tools" hidden></div>
+<script type="module" src="/web/pet-app.js"></script>
+
+<script>
+/* __WATCHDOG__ 温柔兜底：检测渲染是否卡死 */
+(function () {
+  let last = 0, frozen = 0, hinted = false;
+  const tick = () => {
+    const now = performance.now();
+    if (last && now - last > 1500) { frozen += now - last; } else { frozen = 0; }
+    last = now;
+    if (frozen > 4000 && !hinted) {
+      hinted = true;
+      const d = document.createElement('div');
+      d.style.cssText = 'position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(77,107,254,.95);color:#fff;padding:18px 26px;border-radius:16px;font-size:16px;z-index:9999;text-align:center;box-shadow:0 10px 40px rgba(0,0,0,.4);';
+      d.innerHTML = '🐋<br>我打了个盹…<br><b>点一下叫我起来</b>';
+      d.onclick = () => { location.reload(); };
+      document.body.appendChild(d);
+      setTimeout(() => { if (d.parentNode) d.remove(); }, 8000);
+    }
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+
+  // 页面隐藏(切后台)时，WebGL 常被系统回收 → 回来时自动重建
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) { frozen = 0; hinted = false; }
+  });
+
+  // 捕获一切未处理错误，显示在角落而不是静默崩溃
+  window.addEventListener('error', (e) => {
+    console.warn('[watchdog] 捕获错误:', e.message);
+  });
+})();
+</script>
+
+<div id="repairpad" hidden>
+  <div class="rp-head"><span>反馈修复</span><button type="button" class="rp-x">×</button></div>
+  <div class="rp-body">
+    <p class="rp-note">遇到问题？描述一下（可贴截图），我会看日志帮你诊断。此功能会调用你配置的 AI，<b>会消耗你的 token</b>；未配置 API 不可用。</p>
+    <textarea class="rp-text" placeholder="例如：语音面板麦克风显示“出错”"></textarea>
+    <div class="rp-row"><input type="file" accept="image/*" class="rp-img"><button type="button" class="rp-go">开始诊断</button></div>
+    <div class="rp-out" hidden></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,184 @@
+# 第八轮：「改包 → 重签」本机实证（MT MCP）+ 文档回改
+
+日期基准：2026-10。样本：`apk/Coopanion-v12.71.apk`（137,205,527 B，md5 `ed319932e645eec9e080d86e409e00b1`）。
+
+---
+
+## 一、这轮解决了什么
+
+`docs/00 §11` 优先级第 3 项原本是「做一次『改包 → 重签 → 冒烟』实证」。
+上一轮结论是「本机缺 `java` / `apksigner` / `zipalign` / `keytool`，重打包实证做不了」，于是被挂起。
+
+本轮换了路线：**不装 JDK，改用本机已运行的 MT MCP**。
+`127.0.0.1:8786` 上跑着 **MT MCP v0.2.0**（JSON-RPC 2.0 over HTTP，57 个工具），
+其中 `mt_apk_build(sign=true)` **自带签名器**。结果是「改包 + 重签」在本机 2.1 s 完成，
+**不需要把 137 MB 上传到 GitHub / 任何云端**（原计划的 CI 路线因此降级为备选，未采用）。
+
+结论先写：**`docs/04 §2` 那句「无自校验、重签即可」从推断变成了实证**；「冒烟」这一步仍未做。
+
+---
+
+## 二、实证链（每一步都有返回值）
+
+| 步骤 | 动作 | 关键返回 |
+|---|---|---|
+| 1 | 原件复制进 MT Home 并校验 | `coopanion_repack/Coopanion-v12.71.apk`，md5 与 `apk/` 一致 |
+| 2 | `mt_apk_workspace_open(temporary=false)` | `workspaceId=x6ht6fur`；`counts` 29/2/2/124；`signature` V1+V2+V3 单证书 `2793fcff…0764` |
+| 3 | `mt_apk_session_create` | `editSessionId=7dd92a80` |
+| 4 | `mt_apk_read_text(axml:AndroidManifest.xml)` | `targetVersion=33b9dda672474b5c`，61 行解码文本 |
+| 5 | `mt_apk_edit_text`（`replace_match`：`versionName` `12.71`→`12.71-mcp`） | `newTargetVersion=dc5f8afa22cf24fe` |
+| 6 | `mt_apk_session_check(runBuildChecks=true)` | `buildCheckStatus=passed`、`changedZipEntries=["AndroidManifest.xml"]`、`changedClassCount=0` |
+| 7 | `mt_apk_build(sign=true)` | **2.1 s**，137,258,773 B，`signingPerformed=true`，`signSchemes=[V1,V2,V3]` |
+| 8 | 产物移回工程 `mcp_out/` | md5 `a238618717cd736a49e35d35bfb32502` |
+
+第 2 步顺带完成了一件事：**MT 独立复核了 `docs/00 §4.5 E1` 的结论**（29 条目 / 2 dex / 124 类 / v1+v2+v3 单证书），
+与自研 `axml.py` / `dexdump.py` 的输出完全吻合。
+
+---
+
+## 三、三重独立校验（判断「改对了、没改坏」）
+
+| # | 手段 | 结果 |
+|---|---|---|
+| 1 | 条目级对比（CRC32 + 压缩/原始大小 + 压缩方法，29 条） | **25 条完全一致**；变化仅 `AndroidManifest.xml` + `META-INF/MANIFEST.MF`；`assets/payload.asset` CRC 前后同为 `0x8eaf26c6` |
+| 2 | `MANIFEST.MF` 摘要跨包比对（26 段） | **25 段 SHA-256 相同**，唯一不同是 `AndroidManifest.xml` 段 |
+| 3 | 自研 `axml.py` v3 解码新旧 manifest 后 `diff` | 都是 63 行，**唯一差异就是 `versionName` 那一行** |
+
+附：`zipfile.testzip()` → `None`（29/29 CRC 实测通过，0.9 s）；
+v1 签名链纯标准库自校验 → `MANIFEST.MF` **26/26 摘要正确**、`.SF` 对 `MANIFEST.MF` 整包摘要 **MATCH**、`X-Android-APK-Signed: 2,3`；
+两包 APK Signing Block 同为 **4,088 B**，id-value 对 v2 `0x7109871a` + v3 `0xf05368c0` + padding `0x42726577`。
+
+> 第 3 项是关键：`AndroidManifest.xml` 从 **6,544 B 缩到 5,064 B**，单看体积像「丢了东西」。
+> 自研解码器证明这是 MT 重编码 AXML 时字符串池排得更紧，**语义完全等价**。
+
+---
+
+## 四、三个必须记住的副作用
+
+1. **签名密钥不是原厂的**。MT 配置的是 **AOSP 平台测试密钥**：
+   `C=US, ST=California, L=Mountain View, O=Android, OU=Android, CN=Android, emailAddress=android@android.com`，
+   有效期 `2008-02-29 → 2035-07-17`，证书 SHA-256 `a40da80a…f5dc`（原件 `2793fcff…0764`）。
+   ⇒ **同包名不同签名，不能覆盖安装**，必须先卸载原应用（丢数据）。
+2. **`META-INF` 文件名会变**：`COOPANIO.SF` / `COOPANIO.RSA` → `ANDROID.SF` / `ANDROID.RSA`（密钥别名 `ANDROID`）。
+3. **体积 +53,246 B**，全部来自重签；业务负载零增长。
+
+---
+
+## 五、MT MCP 的四个坑（已写进 `docs/04 §2`）
+
+1. `mt_apk_dex_read_class_outline` **必须传 `limit`**，否则 `INVALID_ARGUMENT: Missing limit`（`retrySameArguments=false`）。
+2. `mt_apk_read_text` 正文在 **`data.textWindow.text`**，不在 `data.text`。
+3. `mt_apk_build` 的 `outputName` **不接受子目录**（Home 文件名或绝对路径），`dir/x.apk` 报 `Invalid outputName`。
+4. 文件策略默认 `{"/": deny}` + Home `/storage/emulated/0/MT2/mcp`；包被 `mv` 出 Home 后 `mt_apk_workspace_open` 查不到（返回 `data=`）。
+
+---
+
+## 六、文档回改（12 处，全部唯一匹配断言）
+
+| 文件 | 改动 |
+|---|---|
+| `docs/04 §0` | 环境表 +1 行「签名 / 重签名 ✅（走本机 MT MCP）」 |
+| `docs/04 §1` | 目录树 +`mcp_out/`；脚本数 19 |
+| `docs/04 §2` | 追加「重签实证」小节（本轮主体，含三重校验表与四条坑） |
+| `docs/04 §12` | 能力边界 +1 行「重签后能否安装的真机冒烟：未做」 |
+| `docs/04 §13` | 索引 +`mt.py`(87) + `patch_docs_round8.py`(183) |
+| `docs/00 §2` | 产物表 +`mcp_out/`；脚本数 → 20（功能 9 + 补丁 3 + 文档回改 8） |
+| `docs/00 §11` | 优先级第 3 项划掉 →「已完成（改包 + 重签），冒烟未做」 |
+| `docs/00 §5` | 行数回填（04 = 744，合计 2,998） |
+| `README` | 目录树 +`mcp_out/`、脚本数 20、边界第 1 条补「已实测 + 不能覆盖安装」 |
+
+执行方式：`src/patch_docs_round8.py`（183 行，自包含）；中途 `/tmp/r8_sec2.md` 只作暂存，最终已内联进脚本。
+
+---
+
+## 七、终态与自检
+
+```
+docs/00 = 302 行   docs/01 = 216   docs/02 = 856   docs/03 = 1182   docs/04 = 744
+01–04 合计 = 2,998 行；全部文件合计 = 3,391 行；README = 91 行
+src/*.py = 20 个
+```
+
+三条自检（本轮重跑，全部通过）：
+
+```
+python3 src/dex2smali.py src/x/classes.dex  | diff -q - src/java2/classes.dex.smali   → identical
+python3 src/dex2smali.py src/x/classes2.dex | diff -q - src/java2/classes2.dex.smali  → identical
+unzip -p apk/Coopanion-v12.71.apk assets/payload.asset | tar -tz | wc -l             → 5096
+ls src/java2/classes | wc -l → 124 ；grep -h '^\.method' … | wc -l → 544
+```
+
+旧口径清零：`18 个脚本` / `676 行` / `2,930 行` 全库 grep 无命中。
+
+---
+
+## 八、仍未做 / 下一步选项
+
+1. ~~真机冒烟（唯一缺口）~~ **已补做并通过**（Android 16 / SDK 36）：见下方「九」。
+2. **换成自己的签名密钥**：若要让产物「可覆盖安装 / 可长期维护」，需要在 MT MCP 设置里换成自有 keystore
+   （或在 CI 里用 `apksigner` 重签）。当前 AOSP 测试密钥只适合验证流程。
+3. **端到端真改动**：本轮只改 `versionName`（零风险可观测）。下一步可改真正有业务含义的常量
+   （如桌宠端口 `7797`、`PET_URL`）来验证「改逻辑后仍能跑」——但这一步必须配合真机冒烟才有意义。
+
+---
+
+## 九、真机冒烟（补做，通过）
+
+环境：Android 16 / SDK 36，KernelSU（`ksu`），Android 侧 shell 走 `super_admin:shell`（proot 里看不到 `/system/bin`）。
+
+### 9.1 安装过程与两个坑
+
+| 步骤 | 命令 | 结果 |
+|---|---|---|
+| 落地 | `su -c cp` 到 `/data/local/tmp/coopanion.apk` + `chmod 644` | md5 `a2386187…2502` 与源文件一致 |
+| 首次安装 | `pm install -r` | **失败** `INSTALL_FAILED_UPDATE_INCOMPATIBLE`（原版已装） |
+| 卸载（保数据） | `pm uninstall -k` | `Success`，但包记录变 `installed=false` 且带旧签名 |
+| 再装 | `pm install -r` | **仍失败**（`-k` 的残留记录照样挡） |
+| 彻底卸载 | `pm uninstall`（不带 `-k`） | `Success`，`dumpsys` 已无该包 |
+| 安装 | `pm install -r` | **Success** |
+
+坑：**`pm uninstall -k` 不能用来绕签名冲突**。它保留的数据记录仍携带旧证书，安装器照样拒绝；必须先彻底卸载。
+另：用 root 也无法备份应用数据——`/data/data/com.palai.prootsmoke` 与 `/data/user/0/…` 在 ReSukiSU
+「应用数据隔离」下对本命名空间直接不存在（`ls` 报 No such file），`/data/misc/iopgp/<包名>` 里只有 perfetto trace（每个应用都约 5 MB，不是业务数据）。
+
+### 9.2 验证结果
+
+```
+dumpsys package com.palai.prootsmoke
+  versionName=12.71-mcp   versionCode=1271   primaryCpuAbi=arm64-v8a
+  signatures=PackageSignatures{... version:3, signatures:[d7f1f224]}
+  uid 10440
+
+am start -n com.palai.prootsmoke/.MainActivity   → Starting: Intent { cmp=... }
+pidof → 16652（存活）
+topResumedActivity=ActivityRecord{... u0 com.palai.prootsmoke/.MainActivity t389}
+logcat -d -b crash -t 60 → 空
+```
+
+应用自身日志 `/sdcard/Android/data/com.palai.prootsmoke/files/coop-run.log`：
+
+```
+[07:47:24] INFO console: web面板已启动 http://127.0.0.1:17788/
+[07:47:24] INFO core: World 已启动: terminal
+[07:47:24] INFO core: World 已启动: desktop-pet
+[07:47:24] INFO core/started: core已启动
+[07:47:25] INFO worlds.desktop-pet: 桌宠页面已连接
+[PET] 权限已授予，自动开启悬浮窗
+[PET] 桌宠悬浮窗已启动 -> http://127.0.0.1:7797/pet
+[WEB] onPageFinished: http://127.0.0.1:17788/#/home title=控制台 · Coo
+```
+
+结论：`libproot.so` 拉起 node、原样 TS 跑起来、WebView 控制台与桌宠悬浮窗均正常。
+**重签包不仅能装，还能跑**。`docs/00 §11` 的「改包 → 重签 → 冒烟」三项至此全部闭环。
+
+### 9.3 权限状态
+
+卸载重装后系统级授权（无障碍、通知使用权、悬浮窗）会丢，首次启动需重新给：
+`眼睛用不了：眼睛服务没在跑（无障碍可能没打开）` —— 属预期，不是包损坏。
+悬浮窗与 RECORD_AUDIO 在本次运行中已可用（`[PET] 权限已授予`）。
+
+### 9.4 产物位置
+
+- 装机用的重签包：`mcp_out/Coopanion-v12.71-mcp.apk`（137,258,773 B）
+- 临时副本：`/data/local/tmp/coopanion.apk`（137 MB，装机用；不需要时 `rm` 掉即可）
+- 原版 APK：`apk/Coopanion-v12.71.apk`（原厂签名，可随时卸掉重签版重装回去）

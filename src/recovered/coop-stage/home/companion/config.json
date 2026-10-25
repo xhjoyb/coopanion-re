@@ -1,0 +1,9 @@
+{
+  "displayName": "Coo",
+  "language": "zh",
+  "activeProvider": "deepseek",
+  "providerSchemaVersion": 3,
+  "web": {
+    "port": 17788
+  }
+}

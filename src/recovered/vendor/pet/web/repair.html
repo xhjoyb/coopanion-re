@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>修复助手</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh;
+    background: radial-gradient(1200px 600px at 50% -10%, #1c2433 0%, #0b0f14 60%);
+    color: #e8ecf3; font: 15px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif;
+    padding: env(safe-area-inset-top) 16px 32px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding-top: 28px; }
+  h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: .5px; }
+  .sub { color: #8f9bad; font-size: 13px; margin: 0 0 20px; }
+  .card {
+    background: #141a23; border: 1px solid #263041; border-radius: 14px;
+    padding: 18px; margin-bottom: 16px;
+  }
+  .note {
+    background: #1a1408; border: 1px solid #4a3a13; color: #ffcf7a;
+    border-radius: 12px; padding: 12px 14px; font-size: 13px; margin-bottom: 16px;
+  }
+  .note b { color: #ffb454; }
+  textarea {
+    width: 100%; min-height: 110px; resize: vertical;
+    background: #0b0f14; color: #e8ecf3; border: 1px solid #2c3646;
+    border-radius: 10px; padding: 12px; font: inherit;
+  }
+  textarea:focus { outline: none; border-color: #3b82f6; }
+  .row { display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+  label.file {
+    font-size: 13px; color: #9aa4b2; border: 1px dashed #3a4557; border-radius: 10px;
+    padding: 9px 14px; cursor: pointer;
+  }
+  label.file:hover { border-color: #3b82f6; color: #cfe3ff; }
+  input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; overflow: hidden; pointer-events: none; }
+  .thumb { max-height: 84px; max-width: 120px; object-fit: cover; border-radius: 8px; border: 1px solid #2c3646; display: none; vertical-align: middle; }
+  .fileinfo { display: none; font-size: 12.5px; color: #6ee7a8; align-items: center; gap: 8px; }
+  .fileinfo.on { display: inline-flex; }
+  .fileinfo .nm { max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .clr { cursor: pointer; color: #9aa4b2; border: 1px solid #3a4557; border-radius: 8px; padding: 2px 8px; font-size: 12px; background: transparent; }
+  .clr:hover { color: #ff9a9a; border-color: #4a2020; }
+  label.file.picked { border-color: #2ea043; color: #6ee7a8; border-style: solid; }
+  button.go {
+    margin-left: auto; background: #3b82f6; color: #fff; border: 0; border-radius: 10px;
+    padding: 11px 26px; font: inherit; font-weight: 600; cursor: pointer;
+  }
+  button.go:hover { background: #2f6fd6; }
+  button.go:disabled { background: #2a3546; color: #6b7686; cursor: default; }
+  .out {
+    margin-top: 16px; background: #0b0f14; border: 1px solid #2c3646; border-radius: 10px;
+    padding: 14px; white-space: pre-wrap; word-break: break-word; color: #cfe3ff;
+    display: none; font-size: 14px;
+  }
+  .out.err { color: #ff9a9a; border-color: #4a2020; background: #1a0e0e; }
+  .spin { display: inline-block; width: 14px; height: 14px; margin-right: 8px;
+    border: 2px solid #3b82f6; border-top-color: transparent; border-radius: 50%;
+    animation: r .8s linear infinite; vertical-align: -2px; }
+  @keyframes r { to { transform: rotate(360deg); } }
+  .foot { color: #6b7686; font-size: 12px; text-align: center; margin-top: 8px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>🛠 修复助手</h1>
+    <p class="sub">描述你遇到的问题（可附截图），我看日志帮你诊断。</p>
+
+    <div class="note">
+      ⚠️ 本功能会调用<b>你自己配置的 AI</b>，诊断过程会<b>消耗你的 token</b>。
+      未配置大模型 API 时不可用。诊断结果只给结论与建议，不涉及代码。
+    </div>
+
+    <div class="card">
+      <textarea id="text" placeholder="例如：语音面板里麦克风一直显示“出错”；或者：桌宠点了没反应……"></textarea>
+      <div class="row">
+        <label class="file" id="fileLbl" role="button">📷 选择截图（可选）</label>
+        <input type="file" id="img" accept="image/*">
+        <img id="thumb" class="thumb" alt="">
+        <span class="fileinfo" id="fileInfo">
+          <span class="nm" id="fileName"></span>
+          <button type="button" class="clr" id="fileClr">✕ 重选</button>
+        </span>
+        <button class="go" id="go">开始诊断</button>
+      </div>
+    </div>
+
+    <div class="out" id="out"></div>
+    <div class="foot">本页由宿主直接打开 · 只读诊断 · 不会修改任何文件</div>
+  </div>
+
+<script>
+(function () {
+  var text = document.getElementById('text');
+  var imgI = document.getElementById('img');
+  var thumb = document.getElementById('thumb');
+  var go = document.getElementById('go');
+  var out = document.getElementById('out');
+  var fileLbl = document.getElementById('fileLbl');
+  var fileInfo = document.getElementById('fileInfo');
+  var fileName = document.getElementById('fileName');
+  var fileClr = document.getElementById('fileClr');
+  var dataUrl = null;
+
+  function setPicked(on, name) {
+    if (on) {
+      fileLbl.className = 'file picked';
+      fileLbl.innerHTML = '已选择图片';
+      fileName.textContent = name || '已选图片';
+      fileInfo.className = 'fileinfo on';
+    } else {
+      fileLbl.className = 'file';
+      fileLbl.innerHTML = '选择截图（可选）';
+      fileInfo.className = 'fileinfo';
+      fileName.textContent = '';
+      thumb.style.display = 'none';
+      thumb.removeAttribute('src');
+      dataUrl = null;
+    }
+  }
+
+  function onPick() {
+    var f = imgI.files && imgI.files[0];
+    if (!f) { setPicked(false); return; }
+    setPicked(true, f.name);
+    try {
+      var fr = new FileReader();
+      fr.onload = function () { dataUrl = fr.result; thumb.src = dataUrl; thumb.style.display = 'inline-block'; };
+      fr.readAsDataURL(f);
+    } catch (e) {}
+  }
+
+  imgI.addEventListener('change', onPick);
+  imgI.addEventListener('input', onPick);
+  // v11.27：label 的 for 转发在部分 WebView 上不触发 file input，改为直接 .click()
+  if (fileLbl) fileLbl.addEventListener('click', function (e) {
+    e.preventDefault();
+    try { imgI.click(); } catch (_) {}
+  });
+  if (fileClr) fileClr.addEventListener('click', function () { imgI.value = ''; setPicked(false); });
+
+  function show(html, isErr) {
+    out.innerHTML = html;
+    out.className = 'out' + (isErr ? ' err' : '');
+    out.style.display = 'block';
+    try { out.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); } catch (_) {}
+  }
+
+  function diagnose() {
+    var t = (text.value || '').trim();
+    if (!t && !dataUrl) { show('请先描述问题，或附一张截图。', true); return; }
+    go.disabled = true;
+    show('诊断中……（正在读日志并调用你的 AI）');
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/repair', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState !== 4) return;
+      go.disabled = false;
+      if (xhr.status < 200 || xhr.status >= 300) {
+        var raw = (xhr.responseText || '').slice(0, 300);
+        show('诊断失败：HTTP ' + xhr.status + (raw ? '\n返回内容：' + raw : ''), true);
+        return;
+      }
+      var j;
+      try { j = JSON.parse(xhr.responseText); } catch (e) { show('诊断失败：返回不是 JSON', true); return; }
+      if (j.status === 'no_key') {
+        show('还没有配置大模型 API。\n\n请在桌宠/控制台里填好 API Key（与宿主同源），再回来使用本功能。', true);
+      } else if (j.status === 'failed') {
+        show('警告：' + (j.summary || '诊断失败'), true);
+      } else {
+        var steps = (j.steps || []).map(function (x) { return '· ' + x; }).join('\n');
+        var tok = j.tokens ? '\n\n（本次约消耗 ' + j.tokens + ' tokens）' : '';
+        show((j.summary || '') + (steps ? '\n\n' + steps : '') + tok);
+      }
+    };
+    xhr.onerror = function () { go.disabled = false; show('诊断失败：网络错误（连不上本地服务 /api/repair，桌宠服务可能没起来）', true); };
+    try {
+      xhr.send(JSON.stringify({ text: t, image: dataUrl || undefined }));
+    } catch (e) { go.disabled = false; show('诊断失败：' + e, true); }
+  }
+
+  // v11.27：click / touchend 双保险 + 400ms 去重（避免 WebView 上双重触发或漏触发）
+  var _lastFire = 0;
+  function diagnoseGuarded(ev) {
+    if (ev && ev.type === 'touchend' && ev.cancelable) { try { ev.preventDefault(); } catch (_) {} }
+    var now = Date.now();
+    if (now - _lastFire < 400) return;
+    _lastFire = now;
+    diagnose();
+  }
+  go.addEventListener('click', diagnoseGuarded);
+  go.addEventListener('touchend', diagnoseGuarded);
+})();
+</script>
+</body>
+</html>

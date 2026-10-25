@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>桌宠体检</title>
+<style>
+  body { background:#10151b; color:#dfe7f2; font-family:monospace; font-size:15px; padding:12px; line-height:1.6; }
+  h2 { color:#4d6bfe; font-size:16px; margin:14px 0 6px; }
+  .row { padding:3px 0; border-bottom:1px solid #223; }
+  .k { color:#8fa3bf; }
+  .v { color:#7fe3a0; font-weight:bold; }
+  .bad { color:#ff6b6b; }
+  canvas { position:fixed; left:-9999px; }
+  button { font-size:16px; padding:8px 14px; margin:6px 0; background:#4d6bfe; color:#fff; border:0; border-radius:8px; }
+</style>
+</head>
+<body>
+<h1 style="font-size:18px;color:#fff">🐋 桌宠体检报告</h1>
+<div id="out"></div>
+
+<canvas id="c" width="300" height="300"></canvas>
+<script>
+const out = document.getElementById('out');
+const log = [];
+function add(k, v, bad) {
+  log.push({k, v, bad});
+  const d = document.createElement('div');
+  d.className = 'row';
+  d.innerHTML = `<span class="k">${k}:</span> <span class="v ${bad?'bad':''}">${v}</span>`;
+  out.appendChild(d);
+}
+
+// 1. 屏幕 / 视口
+add('innerWidth', innerWidth);
+add('innerHeight', innerHeight);
+add('devicePixelRatio', devicePixelRatio);
+add('visualViewport.w', visualViewport ? visualViewport.width : 'n/a');
+add('documentElement.clientW', document.documentElement.clientWidth);
+add('documentElement.clientH', document.documentElement.clientHeight);
+
+// 2. 关键：S 值（0.42 * scale）
+const S = 0.42 * 1;
+add('S = 0.42*1', S.toFixed(4));
+add('minX = 104*S+8', (104*S+8).toFixed(1));
+add('maxX = W-104*S-8', (innerWidth - 104*S - 8).toFixed(1), (innerWidth - 104*S - 8) < 0);
+add('floorY = H-gap', (innerHeight - 48));
+
+// 3. WebGL 能力
+const c = document.getElementById('c');
+let gl = null, glMsg = '';
+try {
+  gl = c.getContext('webgl2');
+  if (!gl) { glMsg = 'webgl2 不可用'; }
+} catch(e) { glMsg = 'webgl2 异常: ' + e.message; }
+add('WebGL2', gl ? '✅ 可用' : '❌ ' + glMsg, !gl);
+if (gl) {
+  const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+  add('GPU', dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : '(未知)');
+  add('最大纹理尺寸', gl.getParameter(gl.MAX_TEXTURE_SIZE));
+  add('最大渲染缓冲', gl.getParameter(gl.MAX_RENDERBUFFER_SIZE));
+  add('MAX_VIEWPORT_DIMS', Array.from(gl.getParameter(gl.MAX_VIEWPORT_DIMS)).join('x'));
+}
+
+// 4. fetch 测试关键资源
+async function testFetch() {
+  const urls = ['/web/pet-core.js', '/web/pet-app.js', '/web/whale/model.json',
+                '/web/whale/schemes/qwen/tex/face.png', '/web/rig/rig.js'];
+  for (const u of urls) {
+    try {
+      const t0 = performance.now();
+      const r = await fetch(u);
+      const t = (performance.now() - t0).toFixed(0);
+      add('fetch ' + u.split('/').pop(), (r.ok ? '✅ ' + r.status : '❌ ' + r.status) + ` (${t}ms)`, !r.ok);
+    } catch(e) {
+      add('fetch ' + u.split('/').pop(), '❌ ' + e.message, true);
+    }
+  }
+  add('--- 体检结束 ---', new Date().toLocaleTimeString());
+}
+testFetch();
+
+// 5. 全局错误捕获
+window.addEventListener('error', (e) => {
+  add('⚠️ JS 错误', e.message + ' @ ' + (e.filename||'').split('/').pop() + ':' + e.lineno, true);
+});
+window.addEventListener('unhandledrejection', (e) => {
+  add('⚠️ Promise 拒绝', String(e.reason).slice(0,120), true);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "kind": "coo",
+  "baseUrl": "https://open.bigmodel.cn/api/v1",
+  "secret": "GLM_API_KEY",
+  "spec": {
+    "model": "glm-5.3-flash",
+    "thinking": true,
+    "reasoningEffort": "high",
+    "maxTokens": 8192
+  },
+  "multimodal": true,
+  "pricing": [],
+  "options": {}
+}

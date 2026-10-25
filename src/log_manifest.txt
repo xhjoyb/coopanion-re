@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/data/user/0/app.operit/files/workspaces/identities/identity-1792103375772-2c229dc7/dafeiyu/Coopanion_v12.71/src/axml.py", line 102, in <module>
+    print(parse(sys.argv[1]))
+          ~~~~~^^^^^^^^^^^^^
+  File "/data/user/0/app.operit/files/workspaces/identities/identity-1792103375772-2c229dc7/dafeiyu/Coopanion_v12.71/src/axml.py", line 71, in parse
+    aname = strs[u4(p + 4)]
+            ~~~~^^^^^^^^^^^
+IndexError: list index out of range

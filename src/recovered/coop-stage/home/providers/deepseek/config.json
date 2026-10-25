@@ -1,0 +1,14 @@
+{
+  "kind": "coo",
+  "baseUrl": "https://api.deepseek.com",
+  "secret": "DEEPSEEK_API_KEY",
+  "spec": {
+    "model": "deepseek-flash",
+    "thinking": true,
+    "reasoningEffort": "high",
+    "maxTokens": 8192
+  },
+  "multimodal": true,
+  "pricing": [],
+  "options": {}
+}

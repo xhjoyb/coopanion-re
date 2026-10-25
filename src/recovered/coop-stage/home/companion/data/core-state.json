@@ -1,0 +1,10 @@
+{
+  "lastTruncateAt": null,
+  "lastDeliveredCursor": 5,
+  "llmStall": {
+    "since": 0,
+    "at": []
+  },
+  "persona": {},
+  "worldVisibility": {}
+}

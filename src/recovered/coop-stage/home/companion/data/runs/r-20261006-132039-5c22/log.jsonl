@@ -1,0 +1,17 @@
+{"ts":"2026-10-06T13:20:39.841+08:00","run":"r-20261006-132039-5c22","seq":1,"level":"info","area":"core.bus","msg":"总线已暂停:事件照常落库,不投递","event":"paused","data":{"queued":0}}
+{"ts":"2026-10-06T13:20:39.861+08:00","run":"r-20261006-132039-5c22","seq":2,"level":"info","area":"console","msg":"web面板已启动 http://127.0.0.1:17788/"}
+{"ts":"2026-10-06T13:20:39.865+08:00","run":"r-20261006-132039-5c22","seq":3,"level":"info","area":"core","msg":"World 已启动: terminal"}
+{"ts":"2026-10-06T13:20:39.882+08:00","run":"r-20261006-132039-5c22","seq":4,"level":"warn","area":"worlds.desktop-pet","msg":"按键收音不可用,改为一直收音:按键收音只在 Windows 和 macOS 上可用"}
+{"ts":"2026-10-06T13:20:39.885+08:00","run":"r-20261006-132039-5c22","seq":5,"level":"info","area":"core","msg":"World 已启动: desktop-pet"}
+{"ts":"2026-10-06T13:20:39.891+08:00","run":"r-20261006-132039-5c22","seq":6,"level":"info","area":"core","msg":"core已启动","event":"started","data":{"run":"r-20261006-132039-5c22"}}
+{"ts":"2026-10-06T13:20:39.911+08:00","run":"r-20261006-132039-5c22","seq":7,"level":"info","area":"core.loop","msg":"bootstrap:全新session"}
+{"ts":"2026-10-06T13:21:17.851+08:00","run":"r-20261006-132039-5c22","seq":8,"level":"warn","area":"shutdown","msg":"开始关机(SIGTERM)"}
+{"ts":"2026-10-06T13:21:17.898+08:00","run":"r-20261006-132039-5c22","seq":9,"level":"info","area":"shutdown","msg":"关机 ✓ 暂停事件投递","data":{"elapsedMs":2}}
+{"ts":"2026-10-06T13:21:17.908+08:00","run":"r-20261006-132039-5c22","seq":10,"level":"info","area":"core","msg":"core已停止"}
+{"ts":"2026-10-06T13:21:17.909+08:00","run":"r-20261006-132039-5c22","seq":11,"level":"info","area":"shutdown","msg":"关机 ✓ 停止 World","data":{"elapsedMs":9}}
+{"ts":"2026-10-06T13:21:17.911+08:00","run":"r-20261006-132039-5c22","seq":12,"level":"info","area":"shutdown","msg":"关机 ✓ 停止 Persona","data":{"elapsedMs":1}}
+{"ts":"2026-10-06T13:21:17.913+08:00","run":"r-20261006-132039-5c22","seq":13,"level":"info","area":"shutdown","msg":"关机 ✓ 停止 Provider 实例","data":{"elapsedMs":0}}
+{"ts":"2026-10-06T13:21:17.916+08:00","run":"r-20261006-132039-5c22","seq":14,"level":"info","area":"shutdown","msg":"关机 ✓ 保存 Core 状态","data":{"elapsedMs":2}}
+{"ts":"2026-10-06T13:21:17.919+08:00","run":"r-20261006-132039-5c22","seq":15,"level":"error","area":"process","msg":"未捕获异常,正在关机","event":"uncaught-exception","err":{"name":"Error","message":"write EPIPE","stack":"Error: write EPIPE\n    at afterWriteDispatched (node:internal/stream_base_commons:159:15)\n    at writeGeneric (node:internal/stream_base_commons:150:3)\n    at Socket._writeGeneric (node:net:1262:11)\n    at Socket._write (node:net:1274:8)\n    at writeOrBuffer (node:internal/streams/writable:574:12)\n    at _write (node:internal/streams/writable:503:10)\n    at Writable.write (node:internal/streams/writable:512:10)\n    at [kWriteToConsole] (node:internal/console/constructor:314:16)\n    at console.log (node:internal/console/constructor:417:26)\n    at Runlog.commit (/root/coop-stage/build/cortico/src/core/util.ts:293:18)"}}
+{"ts":"2026-10-06T13:21:17.926+08:00","run":"r-20261006-132039-5c22","seq":17,"level":"info","area":"shutdown","msg":"关机 ✓ 关闭控制台","data":{"elapsedMs":9}}
+{"ts":"2026-10-06T13:21:17.928+08:00","run":"r-20261006-132039-5c22","seq":18,"level":"warn","area":"shutdown","msg":"本地关机步骤全部完成","event":"shutdown-summary","data":{"steps":["暂停事件投递=ok","停止 World=ok","停止 Persona=ok","停止 Provider 实例=ok","保存 Core 状态=ok","关闭控制台=ok"],"externalChecks":[]}}

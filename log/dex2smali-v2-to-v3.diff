@@ -1,0 +1,104 @@
+--- java2_v2/classes.dex.smali
++++ java2/classes.dex.smali
+@@ -3289,7 +3289,7 @@
+     add-int v3, v6, v7
+     if-ge v2, v3, :L36
+     aget-byte v3, v5, v2
+-    and-int/lit16 v51, #255
++    and-int/lit16 v3, v3, #255
+     if-eqz v3, :L36
+     const/16 v4, #32
+     if-ne v3, v4, :L18
+@@ -6391,7 +6391,7 @@
+     invoke-virtual {v2}, Ljava/lang/String;->length()I
+     move-result v10
+     sub-int/2addr v8, v10
+-    rsub-int/lit16 v136, #700
++    rsub-int/lit16 v8, v8, #700
+     goto :L149
+     :L130
+     invoke-virtual {v10, v2}, Ljava/lang/String;->contains(Ljava/lang/CharSequence;)Z
+@@ -6402,7 +6402,7 @@
+     invoke-virtual {v2}, Ljava/lang/String;->length()I
+     move-result v10
+     sub-int/2addr v8, v10
+-    rsub-int/lit16 v136, #500
++    rsub-int/lit16 v8, v8, #500
+     goto :L149
+     :L148
+     move v8, v5
+@@ -6800,7 +6800,7 @@
+     aget-object v4, v1, v3
+     invoke-interface {v5, v4}, Landroid/text/Editable;->getSpanFlags(Ljava/lang/Object;)I
+     move-result v4
+-    and-int/lit16 v68, #256
++    and-int/lit16 v4, v4, #256
+     if-eqz v4, :L27
+     const/4 v5, #1
+     return v5
+--- java2_v2/classes2.dex.smali
++++ java2/classes2.dex.smali
+@@ -929,7 +929,7 @@
+     goto :L168
+     :L119
+     iget v7, v6, Landroid/graphics/Rect;->bottom:I
+-    add-int/lit16 v24, #-200
++    add-int/lit16 v8, v1, #-200
+     if-ge v7, v8, :L131
+     invoke-virtual {v5}, Landroid/view/accessibility/AccessibilityWindowInfo;->recycle()V
+     goto :L31
+@@ -3495,7 +3495,7 @@
+ # direct access=0xa
+ .method private static Lcom/palai/prootsmoke/VoiceBridge;->errName(I)Ljava/lang/String;
+     # registers=3 ins=1 tries=0
+-    packed-switch v2, :L50
++    packed-switch v2, :pswitch_data_0
+     new-instance v0, Ljava/lang/StringBuilder;
+     invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+     const-string v1, "错误 "
+@@ -3506,24 +3506,45 @@
+     invoke-virtual {v2}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+     move-result-object v2
+     return-object v2
++    :pswitch_8
+     const-string v2, "没有麦克风权限"
+     return-object v2
++    :pswitch_7
+     const-string v2, "识别服务忙"
+     return-object v2
++    :pswitch_6
+     const-string v2, "没听清"
+     return-object v2
++    :pswitch_5
+     const-string v2, "没听到声音"
+     return-object v2
++    :pswitch_4
+     const-string v2, "客户端错误"
+     return-object v2
++    :pswitch_3
+     const-string v2, "识别服务出错"
+     return-object v2
++    :pswitch_2
+     const-string v2, "录音出错"
+     return-object v2
++    :pswitch_1
+     const-string v2, "网络错误"
+     return-object v2
++    :pswitch_0
+     const-string v2, "网络超时"
+     return-object v2
++    :pswitch_data_0
++    .packed-switch 0x1
++        :pswitch_0
++        :pswitch_1
++        :pswitch_2
++        :pswitch_3
++        :pswitch_4
++        :pswitch_5
++        :pswitch_6
++        :pswitch_7
++        :pswitch_8
++    .end packed-switch
+ .end method
+ 
+ # direct access=0xa

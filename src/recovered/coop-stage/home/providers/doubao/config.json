@@ -1,0 +1,14 @@
+{
+  "kind": "coo",
+  "baseUrl": "https://ark.cn-beijing.volces.com/api/v3",
+  "secret": "DOUBAO_API_KEY",
+  "spec": {
+    "model": "doubao-seed-2-1-lite-260915",
+    "thinking": true,
+    "reasoningEffort": "high",
+    "maxTokens": 8192
+  },
+  "multimodal": true,
+  "pricing": [],
+  "options": {}
+}

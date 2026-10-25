@@ -1,0 +1,11 @@
+{
+  "run": "r-20261011-002321-5bbb",
+  "startedAt": "2026-10-11T00:23:21.349+08:00",
+  "previousRun": "r-20261011-002306-06c6",
+  "bot": "Coo",
+  "worlds": [
+    "terminal",
+    "desktop-pet"
+  ],
+  "activeProvider": "deepseek"
+}

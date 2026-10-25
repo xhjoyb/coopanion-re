@@ -1,0 +1,34 @@
+Archive:  /data/user/0/app.operit/files/workspaces/identities/identity-1792103375772-2c229dc7/dafeiyu/Coopanion_v12.71/apk/Coopanion-v12.71.apk
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+     6544  1983-15-10 00:00   AndroidManifest.xml
+     6244  1983-15-10 00:00   lib/arm64-v8a/libprootloader32.so
+    18450  1983-15-10 00:00   res/mipmap-xhdpi-v4/ic_launcher.png
+    68924  1983-15-10 00:00   res/mipmap-xxxhdpi-v4/ic_launcher_round.png
+      636  1983-15-10 00:00   res/xml/eyes_service.xml
+       31  1983-15-10 00:00   assets/probe/L2.js
+    38525  1983-15-10 00:00   res/mipmap-xxhdpi-v4/ic_launcher.png
+     2440  1983-15-10 00:00   resources.arsc
+    33592  1983-15-10 00:00   lib/arm64-v8a/libtalloc.so
+    98744  1983-15-10 00:00   classes.dex
+      276  1983-15-10 00:00   assets/probe/L4.js
+    41976  1983-15-10 00:00   res/mipmap-xxhdpi-v4/ic_launcher_round.png
+     2677  1983-15-10 00:00   META-INF/MANIFEST.MF
+   264105  1983-15-10 00:00   lib/arm64-v8a/libproot.so
+    18136  1983-15-10 00:00   lib/arm64-v8a/libprootloader.so
+       56  1983-15-10 00:00   META-INF/com/android/build/gradle/app-metadata.properties
+    64580  1983-15-10 00:00   res/mipmap-xxxhdpi-v4/ic_launcher.png
+       46  1983-15-10 00:00   META-INF/version-control-info.textproto
+    20671  1983-15-10 00:00   res/mipmap-xhdpi-v4/ic_launcher_round.png
+137118068  1983-15-10 00:00   assets/payload.asset
+    10973  1983-15-10 00:00   res/mipmap-hdpi-v4/ic_launcher.png
+     6283  1983-15-10 00:00   res/mipmap-mdpi-v4/ic_launcher_round.png
+      137  1983-15-10 00:00   assets/probe/L3.js
+    37212  1983-15-10 00:00   classes2.dex
+     2804  1983-15-10 00:00   META-INF/COOPANIO.SF
+    12588  1983-15-10 00:00   res/mipmap-hdpi-v4/ic_launcher_round.png
+     5289  1983-15-10 00:00   res/mipmap-mdpi-v4/ic_launcher.png
+    66681  1983-15-10 00:00   lib/arm64-v8a/libandroid-shmem.so
+     1232  1983-15-10 00:00   META-INF/COOPANIO.RSA
+---------                     -------
+137947920                     29 files

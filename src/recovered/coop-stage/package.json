@@ -1,0 +1,16 @@
+{
+  "name": "coop-android",
+  "private": true,
+  "type": "module",
+  "version": "0.1.6",
+  "dependencies": {
+    "depd": "^2.0.0",
+    "express": "^4.22.3",
+    "fflate": "^0.8.3",
+    "jpeg-js": "^0.4.4",
+    "opencc-js": "^1.4.2",
+    "tar-stream": "^3.2.1",
+    "vec3": "^0.2.0",
+    "ws": "^8.22.0"
+  }
+}

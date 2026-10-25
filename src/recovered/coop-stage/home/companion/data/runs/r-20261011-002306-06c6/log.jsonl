@@ -1,0 +1,16 @@
+{"ts":"2026-10-11T00:23:06.755+08:00","run":"r-20261011-002306-06c6","seq":1,"level":"info","area":"core.bus","msg":"总线已暂停:事件照常落库,不投递","event":"paused","data":{"queued":0}}
+{"ts":"2026-10-11T00:23:06.770+08:00","run":"r-20261011-002306-06c6","seq":2,"level":"info","area":"console","msg":"web面板已启动 http://127.0.0.1:17788/"}
+{"ts":"2026-10-11T00:23:06.774+08:00","run":"r-20261011-002306-06c6","seq":3,"level":"info","area":"core","msg":"World 已启动: terminal"}
+{"ts":"2026-10-11T00:23:06.785+08:00","run":"r-20261011-002306-06c6","seq":4,"level":"warn","area":"worlds.desktop-pet","msg":"按键收音不可用,改为一直收音:按键收音只在 Windows 和 macOS 上可用"}
+{"ts":"2026-10-11T00:23:06.786+08:00","run":"r-20261011-002306-06c6","seq":5,"level":"info","area":"core","msg":"World 已启动: desktop-pet"}
+{"ts":"2026-10-11T00:23:06.791+08:00","run":"r-20261011-002306-06c6","seq":6,"level":"info","area":"core.loop","msg":"bootstrap:重启恢复"}
+{"ts":"2026-10-11T00:23:06.792+08:00","run":"r-20261011-002306-06c6","seq":7,"level":"info","area":"core","msg":"core已启动","event":"started","data":{"run":"r-20261011-002306-06c6"}}
+{"ts":"2026-10-11T00:23:20.564+08:00","run":"r-20261011-002306-06c6","seq":8,"level":"warn","area":"shutdown","msg":"开始关机(SIGTERM)"}
+{"ts":"2026-10-11T00:23:20.569+08:00","run":"r-20261011-002306-06c6","seq":9,"level":"info","area":"shutdown","msg":"关机 ✓ 暂停事件投递","data":{"elapsedMs":0}}
+{"ts":"2026-10-11T00:23:20.573+08:00","run":"r-20261011-002306-06c6","seq":10,"level":"info","area":"core","msg":"core已停止"}
+{"ts":"2026-10-11T00:23:20.573+08:00","run":"r-20261011-002306-06c6","seq":11,"level":"info","area":"shutdown","msg":"关机 ✓ 停止 World","data":{"elapsedMs":2}}
+{"ts":"2026-10-11T00:23:20.574+08:00","run":"r-20261011-002306-06c6","seq":12,"level":"info","area":"shutdown","msg":"关机 ✓ 停止 Persona","data":{"elapsedMs":0}}
+{"ts":"2026-10-11T00:23:20.575+08:00","run":"r-20261011-002306-06c6","seq":13,"level":"info","area":"shutdown","msg":"关机 ✓ 停止 Provider 实例","data":{"elapsedMs":0}}
+{"ts":"2026-10-11T00:23:20.576+08:00","run":"r-20261011-002306-06c6","seq":14,"level":"info","area":"shutdown","msg":"关机 ✓ 保存 Core 状态","data":{"elapsedMs":0}}
+{"ts":"2026-10-11T00:23:20.577+08:00","run":"r-20261011-002306-06c6","seq":15,"level":"info","area":"shutdown","msg":"关机 ✓ 关闭控制台","data":{"elapsedMs":1}}
+{"ts":"2026-10-11T00:23:20.577+08:00","run":"r-20261011-002306-06c6","seq":16,"level":"warn","area":"shutdown","msg":"本地关机步骤全部完成","event":"shutdown-summary","data":{"steps":["暂停事件投递=ok","停止 World=ok","停止 Persona=ok","停止 Provider 实例=ok","保存 Core 状态=ok","关闭控制台=ok"],"externalChecks":[]}}

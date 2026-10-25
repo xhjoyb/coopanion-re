@@ -1,0 +1,17 @@
+# 本仓库有意不纳入的产物（见 BASELINE.md §3）
+apk/
+mcp_out/
+src/rootfs/
+
+# 原始发行物 / 重签产物
+*.apk
+*.aab
+
+# 环境产物
+.backup/
+.operit/
+.git/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
