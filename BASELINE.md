@@ -503,7 +503,7 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 **APK 校验**：zip `testzip` OK、29 条目无缺失；内含 `assets/payload.asset` 的 sha256 与 `cut_bcde.asset` 完全一致；除 `META-INF/*`（重签产生）外仅 `assets/payload.asset` 变化。
 
-**boot.sh 补丁**：D 组删掉嵌套 sherpa 后，`boot.sh` 里 `PKG-ABS` 自检的硬编码路径会失效，已改指顶层副本（3,190 → 3,160 B）。该补丁只进裁包产物；基准解包树用 P4-A 重跑覆盖还原，**P4-A 双层校验复跑仍 PASS**（`be2293e6…` / `39899fa0…`），基准未被污染。
+**boot.sh 补丁**：D 组删掉嵌套 sherpa 后，`boot.sh` 里 `PKG-ABS` 自检的硬编码路径会失效，已改指顶层副本（3,190 → 3,160 B）。该补丁只进裁包产物；基准解包树用 P4-A 重跑覆盖还原，**P4-A 双层校验复跑仍 PASS**（`be2293e6…` / `39899fa0…`），基准未被污染。（**该补丁已被下面的软链方案取代**：D 组改软链后嵌套路径可直接解析，`boot.sh` 保持原厂 3,190 B，不再需要打补丁。）
 
 **签名**：本机无 JDK / keytool / apksigner（proot 里全 MISSING，且无 openssl），改走 MT MCP：`mt_apk_workspace_open` → `mt_apk_session_create` → `mt_apk_copy_entry(local_to_edit_session)` → `mt_apk_session_check(passed)` → `mt_apk_build(sign=true)`，结果 V1+V2+V3。证书是 MT 默认测试证书（`a40da80a…`），**与原厂不同** ⇒ 不能覆盖安装，装机前须先卸载原应用。
 
@@ -511,12 +511,41 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 **`boot.sh` 引用审计（装机前的静态兜底）**：从裁后 tar 取出 `boot.sh`（3,160 B）扫描全部路径引用，15 条未命中经逐条判定均无害：12 条是变量拼写（`$d`、`$_LIBDIR`）、纯库名或 `LD_LIBRARY_PATH` 文本（不存在的目录会被链接器忽略）；`/app/sherpa-native/{sherpa-onnx.node,librt.so}` 与嵌套 sherpa 目录是**运行时才生成/已按计划删除**；关键两处已逐行核实：native 拷贝循环第 28–31 行有 `[ -f "$d/sherpa-onnx.node" ]` 守卫，嵌套目录不在时会自动回落到顶层副本；第 52 行 `PKG-ABS` 已指向顶层的 `sherpa-onnx-linux-arm64/sherpa-onnx.node`（存在）。`librt.so.1` 自愈目标 `../../../lib/aarch64-linux-gnu/libc.so.6` 也在位。
 
+**事后订正：D 组不能真删 → 改软链（`[CHK]` 硬编码校验）**
+
+取证来源是原厂真机日志：`rev_tmp/20261025_coopanion_extdata.tar.gz` 内 `com.palai.prootsmoke/files/coop-run.log`（48,011 B / 665 行，vc1271 实际运行记录），开头就有 `[CHK] critical files: 5/5 OK`。顺此在 `src/java2/classes/com.palai.prootsmoke.MainActivity.smali` 找到一张**硬编码的「关键文件 + 期望字节数」清单**：
+
+| # | 路径（相对 rootfs） | 期望字节 |
+|---|---|---:|
+| 1 | `app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/sherpa-onnx.node` | 804,112 |
+| 2 | `…/libonnxruntime.so` | 34,606,912 |
+| 3 | `…/libsherpa-onnx-c-api.so` | 4,613,032 |
+| 4 | `…/libsherpa-onnx-cxx-api.so` | 281,200 |
+| 5 | `bin/node` | 123,024,744 |
+
+判定用 `File.exists()` + `File.length()`，不等则打 `[CHK] MISMATCH <path> got=<n> want=<n>`，汇总打 `[CHK] critical files: <n>/5 OK`，`n>0` 时再追加 `  <-- !!! 解压有问题，语音会失败`。**该检查不阻断启动**，但会留下假警报。而上表前 4 条正是 D 组真删掉的嵌套 native ⇒ **上一轮的真删版装机后会打 `1/5 OK` + 假警报，那份 APK 作废**。
+
+修正方式做成 `tools/p4_cut.py` 的正式开关 `--d-symlink`：4 个嵌套 native 不真删，改写为指向顶层副本的相对软链（层数用 `posixpath.relpath` 动态算，实际是 `../../../sherpa-onnx-linux-arm64/<名>`）。`File.length()` 跟随软链，拿到与顶层完全相同的字节数 ⇒ `[CHK] 5/5 OK`。软链在 tar 里不占数据块，只占 512 B 头。
+
+**副产品**：`boot.sh` 第 52 行的 `PKG-ABS` 自检原本指向嵌套路径，经软链可直接解析到顶层副本 ⇒ **不再需要给 `boot.sh` 打补丁，基准树保持原厂 3,190 B**，方案反而更干净。
+
+| 对象 | 字节 | sha256 | 对比真删版 |
+|---|---:|---|---|
+| `cut_bcde3.tar` | 247,079,424 | `1ece05d2…` | +6,144 B |
+| `cut_bcde3.asset` | 99,615,948 | `69312b45…` | +117 B |
+
+**结构**：2,585 条目 = 2,019 文件 + 469 目录 + 85 软链 + 12 长名头；裁剪共删 2,030 文件 / 71,570,469 B（`D/dedup-symlink` 4 条记 0 B），另丢弃 2 条因裁剪而悬空的 koffi 工作区软链。只多 117 B（asset）就换来零假警报 + 免打补丁，代价可忽略。
+
+**逐条核验**（`/tmp/p4work/vchk.py`）：4 条软链解析后的 size 与期望**完全相等**（804,112 / 34,606,912 / 4,613,032 / 281,200），`bin/node` 为实体文件 123,024,744 ⇒ **`CHK 5 /5`**；扫出的 2 条「悬空」均非真问题 —— `bin/pnpm` 是 `os.path.normpath` 吃掉前导 `./` 造成的误报（实际存在），`app/sherpa-native/librt.so.1` 是**原厂自带**且 `boot.sh` 有自愈。
+
+**踩坑**：第一版手写相对层级（`../../../../sherpa-onnx-linux-arm64/`）少算了 `node_modules` 一层，实测 `CHK 1/5`、`dangling 26`，改用 `posixpath.relpath` 动态算才正确。此类相对路径一律不要手写。
+
 **已入远端**：`main = 4864f111`（本地提交 `69f1c0e`，上传 5 个 blob，远端共 1,120 文件 / 19,574,956 B）；后续纯文档修订（行数同步 / `boot.sh` 引用审计）不改结论。`apk/` 按仓库纪律不入库，产物以 sha256 记录。
 
 ### 下一步
 
 P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 前置全部完成**（补1 `UPSTREAM.md` + `PREBUILT.md` 已推远端，补2 构建期依赖版本锚 28/28 补完，见上两节）。
 
-下一步 **真机冒烟**：产物已在 `apk/Coopanion-v12.71-cut-BCDE-signed.apk`（100,034,325 B）。证书与原厂不同，装机前须先卸载原应用；装上后重点看三件：App 能否起来、`boot.sh` 的 native 自检是否不再出 `PKG-ABS FAIL`、sherpa 语音链路是否可用。冒烟通过 → **P5** 等价性验证（sherpa native 真机加载 + `boot.sh` 自愈实验），并处理 `recon_upstream.py` 的 `STAGE_SUBSET` 遗留。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+下一步 **重签 + 真机冒烟**：D 组已改软链，需用 `cut_bcde3.asset`（99,615,948 / `69312b45…`）重走 MT MCP 出一个新的签名 APK（旧的 `cut-BCDE-signed.apk` 含真删版 payload，会打 `1/5 OK` 假警报，作废）。证书与原厂不同，装机前须先卸载原应用；装上后重点看四件：App 能否起来、`[CHK] critical files: 5/5 OK` 是否打出、`[B0] PKG-ABS OK` 是否打出、sherpa 语音链路是否可用。冒烟通过 → **P5** 等价性验证（sherpa native 真机加载 + `boot.sh` 自愈实验），并处理 `recon_upstream.py` 的 `STAGE_SUBSET` 遗留。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
 
 Gradle 工程仍挂起（用户「3 再说」）。

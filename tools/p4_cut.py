@@ -1,15 +1,22 @@
 #!/usr/bin/env python3
 """P4-B: 按 docs/05 \u00a74 的 B/C/D/E 四组裁剪 payload 条目，产出新 manifest。
 
-  python3 tools/p4_cut.py --manifest M --out OM --groups B,C,D,E [--patch-boot] [--report R]
+   python3 tools/p4_cut.py --manifest M --out OM --groups B,C,D,E [--patch-boot] [--report R] [--d-symlink]
 
 设计要点：
 1. 裁剪只改 manifest（决定哪些条目入 tar），不动磁盘上的解包树——树是 P4-A 的基准物，
    保持全量才能随时回退对比。只有当 --patch-boot 时才改树里的 boot.sh（需备份）。
 2. GNU 长名头（kind=L）必须与它修饰的条目同生共死，否则 tar 会多出一个空 L 头。
 3. 删空后的目录条目要连带删，但 FORCE_KEEP 里的目录即便空了也保留（运行时要往里写）。
+4. --d-symlink：嵌套 sherpa 的 4 个 native 不真删，改写成指向顶层副本的相对软链
+   （层数用 posixpath.relpath 动态算，实际是 ../../../sherpa-onnx-linux-arm64/<名>）。原因：
+   APK 内 MainActivity 有一张硬编码的「关键文件 + 期望字节数」清单（4 条嵌套 sherpa + bin/node），
+   File.length() 会跟随软链拿到与顶层相同的字节数，从而保持 [CHK] 5/5 OK；否则日志会打出
+   「解压有问题，语音会失败」的假警报（该检查不阻断启动）。软链在 tar 里不占数据块。
+   附带收益：`boot.sh` 的 PKG-ABS 自检原指嵌套路径，经软链可直接解析到顶层副本，
+   因此**不再需要给 boot.sh 打补丁**，基准树保持原厂字节。
 """
-import json, os, sys
+import json, os, posixpath, sys
 
 FORCE_KEEP_DIRS = {
     './app/coop-stage/home/companion/data/runs/',
@@ -61,6 +68,7 @@ def main():
     out_p = opt('--out', '/tmp/p4work/manifest.cut.json')
     groups = [g.strip() for g in opt('--groups', 'BCDE').split(',') if g.strip()]
     rep_p = opt('--report')
+    d_symlink = '--d-symlink' in a
 
     M = json.load(open(man_p, encoding='utf-8'))
     print('input entries =', len(M))
@@ -87,6 +95,19 @@ def main():
                 hit = (g, label)
                 break
         if hit and e['kind'] == 'f':
+            if d_symlink and hit == ('D', 'nested-sherpa'):
+                base = e['name'].rsplit('/', 1)[-1]
+                e['kind'] = 's'
+                e['linkname'] = posixpath.relpath(
+                    'app/coop-stage/node_modules/sherpa-onnx-linux-arm64/' + base,
+                    e['name'][2:].rsplit('/', 1)[0])
+                e['size'] = 0
+                e['mode'] = 0o777
+                stat[('D', 'dedup-symlink')] = stat.get(('D', 'dedup-symlink'), [0, 0])
+                stat[('D', 'dedup-symlink')][0] += 1
+                keep[i] = True
+                i += 1
+                continue
             stat[hit] = stat.get(hit, [0, 0])
             stat[hit][0] += 1
             stat[hit][1] += e['size']
