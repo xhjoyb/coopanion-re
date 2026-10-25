@@ -545,10 +545,50 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 **已入远端**：`main = 4864f111`（本地提交 `69f1c0e`，上传 5 个 blob，远端共 1,120 文件 / 19,574,956 B）；后续纯文档修订（行数同步 / `boot.sh` 引用审计）不改结论。`apk/` 按仓库纪律不入库，产物以 sha256 记录。
 
+**事后订正 2：装机失败 → 双真因（`esbuild` 是运行期依赖 + 被误删的 seed `.md`）**
+
+用户在真机装软链版（`380cdf4f…`）后回报「桌宠根本不出来」，日志为
+`Cannot find module '/app/coop-stage/build/cortico'` → `ERR_MODULE_NOT_FOUND` → `[4] core 进程结束 rc=1` → `[WEB-ERR] -6 net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:17788/`。
+即壳层与原生自检都过了，但 core 一启动就死、17788 永不监听，桌宠只剩 `7797/pet` 的报错壳。
+
+排错路径（关键：**不再让用户反复装机**，改用 tar 内自带的 `bin/node` 本地复现）：
+
+1. 先排「`build/cortico` 被删」→ 用 `tardiff` 比 `base.tar` 与 `cut_bcde3.tar`：该目录 base 278 条 / cut 261 条，缺的 17 条全是 README/LICENSE 与 koffi 软链 ⇒ **目录没被删**。
+2. 再排「入口解析」→ 两版 `build/cortico/package.json`（1,820 B）完全相同：`"type":"module"`、**无 `main` 无 `exports`**，`bin/cortico.mjs` 与 `index.js` 原厂就不存在 ⇒ 不是缺入口，截图那句是被错误堆栈截断带偏的。
+3. 读 `boot.sh` 末行 `exec /bin/node --import tsx run-core.mjs` → 读 `run-core.mjs`（2,874 B，末行 `await import('app/core/boot.ts')`）→ 读 `app/core/boot.ts`（24 行，`CORTICO` 默认指 `build/cortico`）。
+4. 本地复现：把 `cut_bcde3.tar` 解到 `tree3`，用 tar 自带 `bin/node`（配 `lib/ld-linux-aarch64.so.1 --library-path`）跑同一命令，**一次复现**：
+   `Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'esbuild' imported from …/node_modules/tsx/dist/index-DE3OBZuV.mjs`。
+
+**真因 1**：`tsx@4.23.15` 的 `dependencies` 明确写着 `esbuild: ~0.28.0` —— tsx 在**运行期**用 esbuild 做真实 TS→JS 转译，不是「构建期工具链」。B 组把 `esbuild`（10,427,275）+ `@esbuild/linux-arm64`（10,289,789）删了 ⇒ core 必死。**B 组作废**：`tools/p4_cut.py` 的 `rules('B')` 改为 `return []` 并把理由写进注释。
+
+**真因 2**（本地复现才暴露，恢复 B 组后又炸）：`E/docs` 原规则删**整棵树**的 `.md`，其中 `app/coop-stage/app/core/seed/CONSTITUTION.md` 被 `app/core/seed.ts:52` 在启动期 `copyFileSync` 到 `home/companion/workspace/`：
+`Error: ENOENT: no such file or directory, copyfile '…/app/core/seed/CONSTITUTION.md' -> '…/home/companion/workspace/CONSTITUTION.md'`。
+同样属运行期数据的还有 `persona/*.md`、`src/worlds/terminal/ENV_PROMPT.md`。规则已收紧为**只删 `node_modules/` 内的包文档**（`is_doc` 先判 `'/node_modules/' not in n` 直接返回 False）。
+
+**cut-sym5（现役）实测**：
+
+| 对象 | 字节 | sha256 |
+|---|---:|---|
+| `cut_sym5.tar` | 267,912,192 | `e3201b959849e3def714168ecc0e8084ee4e9848539eb140b15b89462382c4db` |
+| `cut_sym5.asset` | 108,089,925 | `f277c8f34f37676384ca0191fd8f636384150ab269b7f214f48826e480891034` |
+| **`Coopanion-v12.71-cut-BCDE-sym5-signed.apk`** | **108,488,469** | **`b746e83e8aabfa33c192df83d23bfa1b0bc67393330d40b168234c8e2da1abfa`** |
+
+裁剪账：`C/koffi` 92 文件 / 4,065,490 B、`D/dedup-symlink` 4 条 / 0 B、`D/lib-onnxruntime` 1 条 / 34,606,912 B、`E/docs` 267 / 1,366,491、`E/home-runs` 23 / 41,977、`E/npm` 1,614 / 10,685,798，合计删 1,997 文件 / 50,766,668 B；条目 5,118 → 2,625（2,026 文件 + 475 目录 + 85 软链 + 12 长名头）。相对基线 `payload.asset` −29,028,143 B（−21.2%）、APK −28,717,058 B（−20.9%）。
+
+**本地启动验收（先跑通再交付）**：解 `cut_sym5.tar` → `tree5`，用 tar 自带 `bin/node --import tsx run-core.mjs`：
+`[RUN] root=…` → `web面板已启动 http://127.0.0.1:17788/` → `World 已启动: terminal` / `desktop-pet` → `core已启动`，40 s 后 SIGTERM 正常关机（六步全 ok、rc=0）。
+另单独验软链方案下 `sherpa-onnx-node` 能否**真加载**：`require` 成功、导出 `OnlineRecognizer` / `OfflineRecognizer` / `OfflineTts` / `readWave` ⇒ 语音 addon 不只「字节数对」，是真能 dlopen。
+
+**签名与端到端**：MT MCP 同一条流水线（`workspace wa1fxtgu` / `session 6fda43a7` / `copy_entry` / `check passed` / `build sign=true`），V1+V2+V3；签名块自检 `lead == tail == 4,088`、pairs = v2 1,844 + v3 1,856 + verity padding 340、EOCD 尾 22 B 无注入。从成品 APK 解 `assets/payload.asset` → gunzip 得 tar 267,912,192 / `e3201b95…`（与 `cut_sym5.tar` **逐字节相同**）。顺带修了 `sigchk.py` 的老 bug：APK Sig Block 起点是 `m + 8 - sz`，写成 `m - 8 - sz` 会把 `lead` 读成 0、pairs 解析成空列表。
+
+**工具教训**：proot 里 heredoc 会把整段脚本回显进终端输出、撑爆上下文 ⇒ 探针一律落成文件（`.operit/*.py`）+ 重定向到 `.operit/o.txt` 后再小窗口读。另：Python 3.14 的 `tarfile` 默认 `data_filter` 会因原厂自带的绝对软链（`./usr/bin/env -> /bin/env`）抛 `AbsoluteLinkError`，解包一律用 `tar -xf`。
+
+**已入远端**：`main = c002f75e`（本轮三次提交 `3b87a16` → `286e391` → `680d8a3`）。`apk/` 按仓库纪律不入库，产物以 sha256 记录。
+
 ### 下一步
 
-P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 前置全部完成**（补1 `UPSTREAM.md` + `PREBUILT.md` 已推远端，补2 构建期依赖版本锚 28/28 补完，见上两节）。
+P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 前置全部完成**。P4-B 裁包在连续两次装机/复现反馈后定稿为 **cut-sym5**：B 组作废、D 组软链、E 组只删 `node_modules` 文档。
 
-下一步 **真机冒烟**：软链版已重签，产物在 `apk/Coopanion-v12.71-cut-BCDE-sym-signed.apk`（100,034,325 B / `380cdf4f…`，同时拷到 `/sdcard/Download/rev_tmp/`）。证书与原厂不同，装机前须先卸载原应用；装上后重点看四件：App 能否起来、`[CHK] critical files: 5/5 OK` 是否打出、`[B0] PKG-ABS OK` 是否打出、sherpa 语音链路是否可用。冒烟通过 → **P5** 等价性验证（sherpa native 真机加载 + `boot.sh` 自愈实验），并处理 `recon_upstream.py` 的 `STAGE_SUBSET` 遗留。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+下一步仍是 **真机冒烟**，产物换成 `apk/Coopanion-v12.71-cut-BCDE-sym5-signed.apk`（108,488,469 B / `b746e83e…`，已同步拷到 `/sdcard/Download/rev_tmp/`）。证书与原厂不同（MT 测试证书 `a40da80a…`），**装机前必须先卸载原应用**；装上后重点看五件：① App 能否起来；② `[CHK] critical files: 5/5 OK`；③ `[B0] PKG-ABS OK`；④ `[WEB]` 能否连上 `127.0.0.1:17788`（这条是上一版失败的判据）；⑤ sherpa 语音链路是否可用。冒烟通过 → **P5** 等价性验证，并处理 `recon_upstream.py` 的 `STAGE_SUBSET` 遗留。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
 
 Gradle 工程仍挂起（用户「3 再说」）。

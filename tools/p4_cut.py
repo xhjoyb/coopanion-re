@@ -30,7 +30,12 @@ DOC_NAMES = ('readme', 'license', 'licence', 'changelog', 'notice', 'copying', '
 
 def rules(group):
     if group == 'B':
-        return [('esbuild', lambda n: '/node_modules/esbuild/' in n or '/node_modules/@esbuild/' in n)]
+        # 已作废（自 cut-sym4 起）：boot.sh 用 `exec /bin/node --import tsx run-core.mjs` 跑 TS，
+        # 而 tsx@4.23.15 的 dependencies 里写着 esbuild ~0.28.0 —— tsx 在**运行期**用 esbuild
+        # 做真实转译，不是「构建期工具链」。真机删掉后 core 一启动就
+        # ERR_MODULE_NOT_FOUND: Cannot find package 'esbuild'，rc=1 → 17788 永不监听
+        # → 桌宠只剩 7797 的 ERR_CONNECTION_REFUSED 报错壳。故 B 组恒为空，保留 esbuild 全量。
+        return []
     if group == 'C':
         return [('koffi', lambda n: '/node_modules/koffi/' in n or '/node_modules/@koromix/' in n)]
     if group == 'D':
@@ -42,6 +47,12 @@ def rules(group):
         ]
     if group == 'E':
         def is_doc(n):
+            # 只删 node_modules 里的包文档（README/LICENSE/CHANGELOG…）。
+            # 不能全树删 .md：`app/core/seed/CONSTITUTION.md` 是 seed.ts 运行期 copyFile 的
+            # 种子模板，persona/*.md、src/worlds/terminal/ENV_PROMPT.md 也是运行期数据，
+            # 删了会在 core 启动阶段直接 ENOENT 崩掉（已实测）。
+            if '/node_modules/' not in n:
+                return False
             low = n.lower()
             if low.endswith(DOC_EXT):
                 return True
