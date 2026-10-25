@@ -26,7 +26,7 @@
 
 ## 2. 本仓库纳入了什么
 
-合计 **1,085 文件 / 19,184,047 B（18.30 MiB）**。
+合计 **1,085 文件 / 19,186,454 B（18.30 MiB）**。
 
 > 口径：`git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{print n, s}'`（见 §5）。
 > 旧版本此处写「1,072 文件 / 19,742,777 B」，与任何一次提交都对不上，已按实测重算，勘误说明见 §7。
@@ -109,7 +109,7 @@ python3 tools/check_res.py --json | python3 -c 'import json,sys; d=json.load(sys
 
 # 6) 仓库规模（§2 数字的口径）
 git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{printf "%d files, %d bytes\n", n, s}'
-# → 1085 files, 19184047 bytes
+# → 1085 files, 19186454 bytes
 
 # 7) 上游对账（入仓源码 ↔ APK 部署态，逐文件 sha256）
 python3 tools/recon_upstream.py                  # → 862/862 相同，exit 0
@@ -193,6 +193,23 @@ arsc：15 条配置 × 条目 / 7 个符号 / 11 个文件型条目
 - `--link2symlink` 把硬链接模拟成 `.l2s.<name>` 真文件 + 同名软链；**删悬空链必须用 `unlink`**（`rm` 报 `Operation not permitted`）。proot 里装出的 `node_modules` 只可用于等价性验证，**不能当交付物**。
 - `sherpa-onnx.node` 需要 glibc 加载器 `ld-linux-aarch64.so.1`，而本机 proot 是 Alpine/musl（`ldd` 显示 musl 装载 + 大量 `Error relocating`）→ **native 加载验证只能在 P5 的真 payload 运行时里做**。`boot.sh` 里 `librt.so.1 → libc.so.6` 的自愈软链，正是为 glibc ≥ 2.34 环境准备的。
 
+### 出包验收台账（每个逆向单元必出一个可安装包）
+
+**规则（用户 2026-10-25 定）**：每完成一个逆向单元 → 构建 APK → 装机 → 用户实测。本地无 JDK / Android SDK，出包一律走 **MT MCP 重打包**（axml / smali 级编辑 + 内置签名）。MT 的 Home 是 `/storage/emulated/0/MT2/mcp`，其余路径被策略拒绝；`outputName` 必须给**绝对路径**（带子目录的相对路径会报 `INVALID_ARGUMENT: outputName`）。
+
+| # | 版本名 | 改动 | 字节 | 签名证书 sha256 | 验收结论 |
+|---|---|---|---|---|---|
+| 1 | `12.71-p0` | **仅** `versionName` 标记（P0 无代码改动，本轮验证的是重打包链路本身） | 137,258,773 | `a40da80a…bf5dc` | 就地升级成功；冷启动 24 s+ 无崩溃、crash 缓冲空；`libproot.so` + `node` 均拉起；`coop-run.log` 到 `core已启动`、Web 面板 `127.0.0.1:17788` 与桌宠悬浮窗就绪 |
+
+产物：`/storage/emulated/0/MT2/mcp/Coopanion_v12.71/Coopanion-v12.71-p0-signed.apk`，sha256 `842cd2b76e60f60518e2c4775aa6f55e50dc050d940abd25553d7645c18e4c1a`（不入库，MT2/mcp 与 apk/ 均在 `.gitignore` 内）。
+
+首次出包踩到的四个坑，后续每个单元都会复用：
+
+1. **签名换了**：原包证书 `2793fcff…b0764`，MT 签名证书 `a40da80a…bf5dc`。设备上此前的 `12.71-mcp` 与本包同为 MT 证书，所以 `pm install -r` 是**就地升级、数据保留**；若要装回官方原包，必须先卸载。
+2. **`pm` 不能直连**：shell 是普通应用 uid（`u0_a409`），`pm list packages` 报 `Failed transaction (2147483646)`，一切包管理命令必须 `su -c`；安装前先 `cp` 到 `/data/local/tmp/` 再 `pm install`（SELinux 限制）。
+3. **`am start` 的重定向要放进 `su` 内部**：`su -c "am start … >/dev/null 2>&1 &"` 可行；写成 `(su -c … &)` 外层重定向会因 uid 无权限直接失败。`am force-stop` 要**单独一次**执行并确认 `pidof` 为空，否则新旧进程混在一起，冒烟结论失真（本轮就撞到过一次）。
+4. **覆盖安装会重置无障碍授权**：日志出现 `眼睛用不了：眼睛服务没在跑（无障碍可能没打开）`，属预期 —— 每次出包后需手动重开「Coopanion 眼睛」。
+
 ### 数字勘误
 
 旧版 §2 写的「1,072 文件 / 19,742,777 B（18.83 MiB）」与任何一次提交都对不上。以 `git ls-tree -r -l` 实测：
@@ -202,10 +219,10 @@ arsc：15 条配置 × 条目 / 7 个符号 / 11 个文件型条目
 | tag `v12.71-baseline` | 1,075 | 19,760,010 |
 | 移除 10 个构建产物（`cortico/dist/web` 8 + `vendor/pet/dist` 2，928,872 B）+ 新增 `DEPS.md` | 1,066 | 18,839,530 |
 | **+ P1（17 个文件：`src/android/` 15 + `tools/*.py` 2）** | **1,083** | **19,159,224** |
-| **+ P0（2 个工具：`tools/recon_upstream.py`、`tools/check_deps.py`）** | **1,085** | **19,184,047** |
+| **+ P0（2 个工具：`tools/recon_upstream.py`、`tools/check_deps.py`）** | **1,085** | **19,186,454** |
 
 同时修正两处子项计数：`src/recovered/` 863 → **853**（差值是那 10 个 `dist`）、`src/x/` 21 → **20**（实为 `lib` 5 + `META-INF` 5 + `assets/probe` 3 + dex 与清单与 arsc 与 `axml.py` 与 2 份 `.classes.txt`）。
 
 ### 下一步
 
-P0 运行时侧已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）→ **P2**：Java 层 124 类 smali → `.java`，分 4 批，核心是 proot 启动器、payload 解包、指纹算法 → P3 预编译清单 → **P4**：`build-payload.py` 确定性 gzip+tar，并复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`，否则 `dist/web` 重建不出来）→ **P5** 等价性验证。
+P0 运行时侧已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异），出包链路已用 `12.71-p0` 验证通过 → **P2**：Java 层 124 类 smali → `.java`，分 4 批，核心是 proot 启动器、payload 解包、指纹算法 → P3 预编译清单 → **P4**：`build-payload.py` 确定性 gzip+tar，并复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`，否则 `dist/web` 重建不出来）→ **P5** 等价性验证。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
