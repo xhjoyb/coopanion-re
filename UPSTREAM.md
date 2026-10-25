@@ -1,6 +1,6 @@
 # UPSTREAM — 上游锚点与「本份源码」身份
 
-> **一句话**：本仓库的 `src/recovered/` 是 **APK 部署态的逐字节副本**（862/862 对账通过），
+> **一句话**：本仓库的 `src/recovered/` 是 **APK 部署态的逐字节副本**（863/863 对账通过），
 > 不是逆向还原、也不是上游 git 快照。因此它 **等于原厂发出去的那份代码**，
 > 但 **不等于原厂 git 仓库** —— 构建必需件（`bin/`、`scripts/`、`tsconfig*`）**不在 APK 里**，只能从上游 clone。
 
@@ -103,7 +103,7 @@ PY
 [OK] vendor/coo   both=8    same=8    diff=0 only_rec=0 only_run=0
 [OK] vendor/cua   both=30   same=30   diff=0 only_rec=0 only_run=0
 [OK] vendor/pet   both=541  same=541  diff=0 only_rec=0 only_run=0
-合计 862/862 相同
+合计 863/863 相同
 ```
 
 部署态与入仓源码**零差异**，也就不存在「本地改动」需要打成 patch。
@@ -126,23 +126,48 @@ git clone --depth 1 --branch <tag> https://github.com/Pal-AI-Lab/Cortico.git /tm
 #    并在本文件补一行 tag + commit sha
 ```
 
-## 7. 已知未对账项（诚实披露）
+## 7. 对账覆盖：863/863（原遗留已修复）
 
-`coop-stage/` 实际有 **58** 个文件，但 `recon_upstream.py` 的 `STAGE_SUBSET` 只列了
-`package.json` / `package-lock.json` / `run-core.mjs` / `app` / `home` 五项 → 覆盖 **57** 个。
+历史遗留：`coop-stage/` 实际有 **58** 个文件，而 `STAGE_SUBSET` 只列了
+`package.json` / `package-lock.json` / `run-core.mjs` / `app` / `home` 五项 → 覆盖 57 个，
+`boot.sh`（3,190 B）内容在仓里、但从未参与 sha256 比对。这也是「全树 863」与「对账 862」差 1 的原因。
 
-| 文件 | 字节 | 状态 |
+本轮已修，但**不是**按原先的「把 `boot.sh` 加入 `STAGE_SUBSET`」——两侧的目录层级本来就不同：
+
+| 侧 | 路径 | 说明 |
 |---|---|---|
-| `coop-stage/boot.sh` | 3,190 | **未纳入对账**（内容存在且已入仓，只是没被 sha256 比对） |
+| 部署态 `src/rootfs/` | `app/boot.sh` | 运行时就是 `/app/boot.sh` |
+| 上游 `src/recovered/` | `coop-stage/boot.sh` | 整理时并进了 `coop-stage/` |
 
-这也是「全树 863 文件」与「对账 862」相差 1 的原因。
-`boot.sh` 恰是 P5 待办里提到 `:52 PKG-ABS` 硬编码的文件，**建议把 `boot.sh` 加入 `STAGE_SUBSET`**（一行改动），
-让对账覆盖 863/863。本轮未改工具，先在此登记。
+照字面把 `boot.sh` 塞进 `STAGE_SUBSET`，工具会去找 `coop-stage/app/boot.sh`，必然落空。
+正确修法是**单列一条 PAIR**（已在 `PAIRS` 末尾）：
+
+```python
+("boot-sh", "coop-stage/boot.sh", "app/boot.sh"),   # 两侧形态不同，故不入 STAGE_SUBSET
+```
+
+配套改了 `walk()`：`subset` 分支原先只处理「目录 + `STAGE_SUBSET` 名称」，
+单文件根会先 `os.path.dirname()` 落到 `coop-stage`，之后什么也拼不出来；
+现在补了 `os.path.isfile(root)` 分支，直接按 basename 取 sha256。
+
+修后对账 **863/863**，六组全 `[OK]`：
+
+| 组 | 同名文件 | 差异 |
+|---|---|---|
+| `stage-root` | 57 | 0 |
+| `cortico` | 226 | 0 |
+| `vendor/coo` | 8 | 0 |
+| `vendor/cua` | 30 | 0 |
+| `vendor/pet` | 541 | 0 |
+| `boot-sh` | 1 | 0 |
+
+两侧 `boot.sh` sha256 均为 `3896eb59bb4e4e9073454723dd0e85f342eb569930edaed7883eb0c44047c323`。
+**现已无未对账项。**
 
 ## 8. 快速自检
 
 ```bash
-python3 tools/recon_upstream.py            # → 862/862，exit 0
+python3 tools/recon_upstream.py            # → 863/863，exit 0
 python3 tools/recon_upstream.py --json     # 机器读
 ```
 

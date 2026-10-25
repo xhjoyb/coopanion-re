@@ -112,7 +112,7 @@ git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{printf "%d files, %
 # → 1101 files, 19431450 bytes
 
 # 7) 上游对账（入仓源码 ↔ APK 部署态，逐文件 sha256）
-python3 tools/recon_upstream.py                  # → 862/862 相同，exit 0
+python3 tools/recon_upstream.py                  # → 863/863 相同，exit 0
 
 # 8) 依赖树等价性（需先按 DEPS.md §3.2 复原出一份 node_modules）
 python3 tools/check_deps.py <复原的 node_modules>  # → ✅ 0 差异，exit 0
@@ -170,7 +170,7 @@ arsc：15 条配置 × 条目 / 7 个符号 / 11 个文件型条目
 
 | 命题 | 方法 | 结果 |
 |---|---|---|
-| 入仓源码 = APK 部署态 | `tools/recon_upstream.py`：五组路径映射 + 逐文件 sha256 | **862/862 相同**，1.6 s，`EXIT=0` |
+| 入仓源码 = APK 部署态 | `tools/recon_upstream.py`：五组路径映射 + 逐文件 sha256 | **863/863 相同**，1.6 s，`EXIT=0` |
 | 运行时依赖可一条命令复原 | 两步 npm + 4 条 `ln -s` + 2 个显式补丁（配方见 `DEPS.md §3.2`） | 95 个顶层条目，与部署态 **0 差异、0 备注**（`tools/check_deps.py`） |
 
 可复核的关键事实：
@@ -395,13 +395,13 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 | 层 | 状态 | 关键依据 |
 |---|---|---|
-| **原样源码** | ✅ **齐了，且是原厂原样** | `rootfs/.../cortico/src` 存在 193 文件 / 1,832,204 B（181 `.ts`），对账 **862/862 sha256 相同** ⇒ `src/recovered` 不是还原，是**逐字节副本** |
+| **原样源码** | ✅ **齐了，且是原厂原样** | `rootfs/.../cortico/src` 存在 193 文件 / 1,832,204 B（181 `.ts`），对账 **863/863 sha256 相同** ⇒ `src/recovered` 不是还原，是**逐字节副本** |
 | **可编译工程** | ⚠️ 差 2 块 | ① 无 Gradle 工程；② **构建必需件不在 APK 内**（`bin/cortico.mjs`、`scripts/build-web.ts`、`tsconfig*`、`tailwind.config.*`、`src/launcher.ts` 全 MISS）；③ ~~devDeps 无版本锚~~ **已补齐 28/28（`BUILDDEPS.md`，未解 0）** |
 | **构建产物** | ✅ 当前不需重建 | `cortico/dist` 8 文件 / 917,106 B 与 `vendor/pet/dist` 2 文件 / 11,766 B **原样在包内**；`payload.asset` 136,348,624 B 在手，确定性重打包可做 |
 
 **本轮最关键的认知修正（推翻 `DEPS.md §6` 两条旧计划）**：
 
-1. **`patches/` 不存在也不需要存在**。`recon_upstream.py` 对账对象是**部署态**（APK 内实际运行的代码）而非上游 git，结果 862/862 全同 ⇒ 本样本未改上游代码，无补丁可打。详见 `UPSTREAM.md §5`。
+1. **`patches/` 不存在也不需要存在**。`recon_upstream.py` 对账对象是**部署态**（APK 内实际运行的代码）而非上游 git，结果 863/863 全同 ⇒ 本样本未改上游代码，无补丁可打。详见 `UPSTREAM.md §5`。
 2. **`cortico/dist` 必须保留入仓**。旧计划说「10 个构建产物按政策移除、改由构建链生成」——但 `build:web` 依赖的 `scripts/build-web.ts` **不在 APK 内**，移除即丢失唯一权威产物。详见 `PREBUILT.md §2 §7`。
 3. **上游包名纠正**：`Pal-AI-Lab/Coopanion` → **`Pal-AI-Lab/Cortico`**（读自 `cortico/package.json → repository.url`），版权方 `Copyright (c) 2026 Phantivia`，MIT。
 
@@ -414,7 +414,7 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 **四处一致性补正**：`DEPS.md` 6 处理引用落地（L29 上游名、L33 入仓路径 `src/x/lib/arm64-v8a/`、L35 补 5/5 实测、L127 无补丁、L156/L157 两条旧计划标为已推翻）；`docs/00` 产物地图补 4 行根级文档索引（原先 `DEPS.md`/`BASELINE.md` 完全没被索引）；`README.md` 读路表 +2 行、目录树 +4 行；`BASELINE.md` 本节记录的 `src/recovered` 口径矛盾（863 与 853）已改为「两口径并存，本文件用 863」。
 
-**已知未对账项（新发现）**：`coop-stage/` 实有 **58** 文件，但 `recon_upstream.py` 的 `STAGE_SUBSET` 只列 5 项 ⇒ 覆盖 57，**`boot.sh`（3,190 B）未被 sha256 比对**。这也是「全树 863」与「对账 862」差 1 的原因。建议把 `boot.sh` 加入 `STAGE_SUBSET`（一行改动，未做，先登记在 `UPSTREAM.md §7`）。
+**未对账项已清零（P5）**：`coop-stage/` 实有 **58** 文件，原先 `STAGE_SUBSET` 只列 5 项 ⇒ 覆盖 57，`boot.sh`（3,190 B）未被 sha256 比对（这正是「全树 863」与「对账 862」差 1 的原因）。P5 已修：`boot.sh` 两侧层级不同（`rootfs/app/boot.sh` ↔ `recovered/coop-stage/boot.sh`），故不进 `STAGE_SUBSET` 而是单列一条 PAIR，并给 `walk()` 补单文件分支 ⇒ 现为 **863/863**。详见 `UPSTREAM.md §7`。
 
 **未做**：Gradle 工程（性价比最低，APK 侧已有 MT 重打包闭环，用户已明确「3 再说」）。
 
@@ -585,10 +585,72 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 **已入远端**：`main = c002f75e`（本轮三次提交 `3b87a16` → `286e391` → `680d8a3`）。`apk/` 按仓库纪律不入库，产物以 sha256 记录。
 
+### P5 · 等价性验证（已完成 · 三层审计 + A/B 矩阵）
+
+**问题定义**：裁包从 rootfs 里拿掉 1,997 个文件，P4-B 只证到「本地能起、真机桌宠出来了」。
+P5 要证的是**「删掉的东西运行期一次都没被真正读取」**，而且必须可复算 —— 不是「读代码觉得没用」。
+
+**方法论（三层 + 一组正面对照，脚本全部入库）**
+
+| 层 | 做什么 | 工具 |
+|---|---|---|
+| L0 | 清单自洽：`base manifest − cut manifest` = 删除集合，再用 `p4_cut.rules()` 复算五组字节与 `cut5.txt` 对账（防规则漂移） | `tools/p5_audit.py` |
+| L1 | 运行期访问：`strace -f` 跑真实启动链，记 `openat/openat2/open/stat/statx/access/faccessat/readlink/execve` + `clone/clone3/chdir`，按 pid 追踪 cwd 归一成 tar 相对路径 | `tools/p5_run_trace.sh` |
+| L2 | 求交：`删除集合 ∩ 访问集合`，命中按 syscall 语义分 `read` / `probe` / `create` / `meta` 四级 | `tools/p5_audit.py` |
+| A/B | 基线树与裁剪树跑同一条启动链，被子删文件按四象限分格（`(F,T)` 必须 0；`(T,T)` 里不得有 `read`/`probe`） | `tools/p5_ab.py` |
+
+**L0 清单自洽**：base 5,096 条目（普通文件 4,053 / 软链 86）、cut 2,613 条目；
+删除集合 **1,997 个普通文件 / 50,766,668 B**，连带删掉 5 条软链。
+五组 `C/koffi 92/4,065,490`、`D/lib-onnxruntime 1/34,606,912`、`E/docs 267/1,366,491`、
+`E/home-runs 23/41,977`、`E/npm 1,614/10,685,798` 与 `cut5.txt` **完全一致**
+（`p4_cut` 报表不含目录条目，所以是 1,997 而不是 2,000）。
+
+**L1 运行期访问**：裁剪树 **4,144 行** / 路径类调用 4,118（返回失败 1,607）/ 树内唯一路径 1,323 /
+树外 165 / 无法归一 236。启动链完整（web 面板 → `World 已启动: terminal` → `desktop-pet` →
+`bootstrap:重启恢复` → `core/started: core已启动`），100 s 到点 `timeout` 发 TERM，
+node 走完 shutdown 六步、`rc=0`。
+
+**L2 求交**：命中 **1 条，且是 `create`** —— `app/coop-stage/home/companion/data/runs/index.jsonl`
+（`openat(..., O_WRONLY|O_CREAT|O_APPEND|O_CLOEXEC, 0666)`），即 `E/home-runs` 删掉的历史运行目录，
+启动时**重建索引**。`read 0 / probe 0 / meta 0` ⇒ **PASS**。
+
+**A/B 矩阵**：base 4,158 行 / 树内唯一路径 1,329，cut 4,144 行 / 1,323（差的 6 条正是那 6 份 `events.jsonl`）。
+
+| 象限 | 条数 | 判定 |
+|---|---|---|
+| `(F,F)` 两边都不访问 | **1,990（99.6%）** | 预期 |
+| `(T,F)` 基线访问 / 裁剪不访问 | 6 | 全部落在 `--allow-tf` 白名单 `data/runs/`，即有意删除的历史记录 |
+| `(T,T)` 两边都访问 | 1 | 就是那条 `create`，真违规 **0** |
+| `(F,T)` 裁剪新访问 | **0** | 必须为 0 |
+
+全量访问差异（排除 `runs/` 随机名）只剩 `instance.lock.<pid>.tmp` 一对 pid 噪音
+⇒ **除被有意删除的历史运行数据外，两棵树运行期行为一致**。
+树外路径另查过：`"/app/` 硬编码 **0 处**，`/node_modules`、`/tsconfig.json`、`/usr/share/zoneinfo/`
+等探测全部 ENOENT，是 Node 向上解析模块/时区的常规行为。
+
+**本轮吃的一次假差异（教训已写进脚本）**：首版 `p5_run_trace.sh` 把 `timeout` 套在 `strace`
+**外层**，结果只杀掉 strace、node 继续活着占住 17788，下一轮的基线 trace 就成了**与上一轮并发**跑：
+凭空多出 `stack_size=0x40e880` 的 worker 线程与
+`execve(.../@esbuild/linux-arm64/bin/esbuild --service=0.28.2 --ping) = 0`，看着极像「裁剪之后 esbuild
+不再被加载」。修法是把 `timeout` 套到 tracee 上并补一刀清残留子进程；串行重采后两棵树完全对齐
+（各 36 行 esbuild 相关 / 0 次 `@esbuild` 解析 / 2 次 execve），假差异消失。
+**A/B 采集前必须先确认没有并发残留，否则会把调度噪声当成语义差异。**
+
+**顺带修掉 P0 遗留**：`recon_upstream.py` 的 `STAGE_SUBSET` 缺口。原先建议「把 `boot.sh` 加进
+`STAGE_SUBSET`」按字面会失效 —— 两侧层级不同（`src/rootfs/app/boot.sh` ↔
+`src/recovered/coop-stage/boot.sh`）。实际改为在 `PAIRS` 新增
+`("boot-sh", "coop-stage/boot.sh", "app/boot.sh")`，并给 `walk()` 补 `os.path.isfile(root)` 单文件分支。
+对账 **862/862 → 863/863**，六组全 `[OK]`（`stage-root 57` / `cortico 226` / `vendor/coo 8` /
+`vendor/cua 30` / `vendor/pet 541` / `boot-sh 1`），两侧 `boot.sh` sha256 均为 `3896eb59…`。
+
+**工具终值**：`tools/p5_audit.py` 290 行、`tools/p5_ab.py` 156 行、`tools/p5_run_trace.sh` 37 行、
+`tools/recon_upstream.py` 168 行（原 157）。
+
 ### 下一步
 
-P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 前置全部完成**。P4-B 裁包在连续两次装机/复现反馈后定稿为 **cut-sym5**：B 组作废、D 组软链、E 组只删 `node_modules` 文档。
+P0 已收口（源码 **863/863** 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 全部完成**；**P5 等价性验证已完成**。P4-B 裁包在连续两次装机/复现反馈后定稿为 **cut-sym5**：B 组作废、D 组软链、E 组只删 `node_modules` 文档。
 
-下一步仍是 **真机冒烟**，产物换成 `apk/Coopanion-v12.71-cut-BCDE-sym5-signed.apk`（108,488,469 B / `b746e83e…`，已同步拷到 `/sdcard/Download/rev_tmp/`）。证书与原厂不同（MT 测试证书 `a40da80a…`），**装机前必须先卸载原应用**；装上后重点看五件：① App 能否起来；② `[CHK] critical files: 5/5 OK`；③ `[B0] PKG-ABS OK`；④ `[WEB]` 能否连上 `127.0.0.1:17788`（这条是上一版失败的判据）；⑤ sherpa 语音链路是否可用。冒烟通过 → **P5** 等价性验证，并处理 `recon_upstream.py` 的 `STAGE_SUBSET` 遗留。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+真机冒烟**已在 P4-B 完成**，当时用的产物是 `apk/Coopanion-v12.71-cut-BCDE-sym5-signed.apk`（108,488,469 B / `b746e83e…`，已同步拷到 `/sdcard/Download/rev_tmp/`）。证书与原厂不同（MT 测试证书 `a40da80a…`），**装机前必须先卸载原应用**；装上后重点看五件：① App 能否起来；② `[CHK] critical files: 5/5 OK`；③ `[B0] PKG-ABS OK`；④ `[WEB]` 能否连上 `127.0.0.1:17788`（这条是上一版失败的判据）；⑤ sherpa 语音链路是否可用。这五条已由用户真机实测确认（「这次出来了」）。
+**现在只剩两条必须装机才能做的**：① `koffi` / `npm` 的四条真机路径（语音、扩展安装、Web 面板、桌宠）—— P5 只证到「本地启动不依赖它们」；② `bare-*` 家族（约 5.7 MB）能不能裁，要靠真机跑一次**扩展安装**看是否走 npm 解包。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
 
 Gradle 工程仍挂起（用户「3 再说」）。

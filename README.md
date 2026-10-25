@@ -50,7 +50,7 @@ Cortico 控制台 :17788 · 眼睛 :17898 · 感知 :17899 · 桌宠页 :7797
 ```text
 Coopanion_v12.71/
 ├── apk/          Coopanion-v12.71.apk        原件，只读
-│               Coopanion-v12.71-cut-BCDE-signed.apk  P4-B 裁包产物（待真机冒烟）
+│               Coopanion-v12.71-cut-BCDE-sym5-signed.apk  P4-B 裁包产物（108,488,469 B，已真机验证）
 ├── log/          ziplist.txt / rootfs_list.txt（原始清单，可复现）
 ├── src/
 │   ├── x/        APK 解包产物（20 文件 / 552,100 B，不含 payload.asset）

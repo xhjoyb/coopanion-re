@@ -129,7 +129,7 @@ cp -f node_modules/sherpa-onnx-linux-arm64/libonnxruntime.so \
 
 ```
 1. 取上游源码            git clone <upstream> --branch <tag>     ← 不进仓库，靠 UPSTREAM.md 锚点
-2. 应用本地改动          （无：实测 862/862 零差异，本样本未改上游代码 —— 见 UPSTREAM.md §5）
+2. 应用本地改动          （无：实测 863/863 零差异，本样本未改上游代码 —— 见 UPSTREAM.md §5）
 3. 装依赖                npm ci --ignore-scripts && npm i --no-save …   ← 运行时见 §3.2；devDeps 按 BUILDDEPS.md 锚点补装
 4. 建前端产物            npm --prefix vendor/pet run build   ← ✅ 已实测可逐字节复现
                         pnpm --filter cortico build:web    ← ❌ 缺 scripts/build-web.ts + tsconfig*，本地不可执行
@@ -160,5 +160,5 @@ cp -f node_modules/sherpa-onnx-linux-arm64/libonnxruntime.so \
 ## §6 与 `v12.71-baseline` 的关系
 
 1. ~~**已发布基线里混进了 10 个构建产物**（`cortico/dist/web` 8 + `vendor/pet/dist` 2，共 928,872 B），按本政策移除，改由构建链生成。~~ **已推翻（P4 前置实测）**：`cortico/dist` 的 `build:web` 依赖 `scripts/build-web.ts`，而该文件**不在 APK 内**（见 `UPSTREAM.md §4`）→ 移除即丢失唯一权威产物。**结论：10 个文件全部保留入仓**，sha256 见 `PREBUILT.md §2 §3`。
-2. ~~**`src/recovered/` 的 259 个 `.ts` 属上游代码**。P0 对账完成后按结果收缩：与上游 tag 逐字节相同的文件不再入库，只留 `patches/` + 自研文件清单。~~ **已推翻**：P0 对账的对象是**部署态**（APK 内实际运行的代码），结果 862/862 全同 —— 全树 863 个文件**都是部署态的一部分**，不存在「与上游相同故可删」的冗余。且 `UPSTREAM.md §4` 证明这棵树**缺构建必需件**（`bin/ scripts/ tsconfig*`），删掉 src 只会让仓库更不完整。**结论：不入 `patches/`，不做收缩，仓库体积维持 18.8 MiB 量级。**
+2. ~~**`src/recovered/` 的 259 个 `.ts` 属上游代码**。P0 对账完成后按结果收缩：与上游 tag 逐字节相同的文件不再入库，只留 `patches/` + 自研文件清单。~~ **已推翻**：P0 对账的对象是**部署态**（APK 内实际运行的代码），结果 863/863 全同 —— 全树 863 个文件**都是部署态的一部分**，不存在「与上游相同故可删」的冗余。且 `UPSTREAM.md §4` 证明这棵树**缺构建必需件**（`bin/ scripts/ tsconfig*`），删掉 src 只会让仓库更不完整。**结论：不入 `patches/`，不做收缩，仓库体积维持 18.8 MiB 量级。**
 3. 移除/收缩都是**可回退的**：`git checkout v12.71-baseline -- <path>` 即可取回。

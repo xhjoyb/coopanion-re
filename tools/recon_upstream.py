@@ -36,6 +36,7 @@ EXCLUDE_DIRS = {"node_modules", ".git", "__pycache__"}
 
 # rootfs 里 coop-stage 根目录还挂着 build/ vendor/ node_modules/，
 # 所以 stage-root 这一组只比这几个顶层项。
+# 注：boot.sh 不在这个列表里——rootfs 侧它在 app/boot.sh，见 PAIRS 的 boot-sh 项。
 STAGE_SUBSET = ["package.json", "package-lock.json", "run-core.mjs", "app", "home"]
 
 PAIRS = [
@@ -44,6 +45,10 @@ PAIRS = [
     ("vendor/coo", "vendor/coo", "app/coop-stage/vendor/coo"),
     ("vendor/cua", "vendor/cua", "app/coop-stage/vendor/cua"),
     ("vendor/pet", "vendor/pet", "app/coop-stage/vendor/pet"),
+    # boot.sh 在 rootfs 里挂在 app/ 下（运行时就是 /app/boot.sh），
+    # recovered 侧整理进了 coop-stage/，两侧形态不同，
+    # 所以单列一条 PAIR，而不是塞进 STAGE_SUBSET。
+    ("boot-sh", "coop-stage/boot.sh", "app/boot.sh"),
 ]
 
 
@@ -56,8 +61,14 @@ def sha256(path):
 
 
 def walk(root, subset=None):
-    """返回 {相对路径: sha256}；目录不存在返回 {}。"""
+    """返回 {相对路径: sha256}；目录不存在返回 {}。
+
+    root 也可以是单个文件（用于 boot.sh 这种两侧形态不同的对象），
+    此时返回 {basename: sha256}。
+    """
     out = {}
+    if os.path.isfile(root):
+        return {os.path.basename(root): sha256(root)}
     if not os.path.isdir(root):
         return out
 
