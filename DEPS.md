@@ -21,8 +21,8 @@
 | 对象 | 体量 | 类别 | 重现方式 | 校验 |
 |---|---|---|---|---|
 | `src/rootfs/…/coop-stage/node_modules/` | **119.2 MB / 95 包**（直接依赖 8 个） | 可下载依赖 | `npm ci`（现有 `package-lock.json` 37,020 B） | 见 §5 |
-| `src/recovered/cortico/dist/web/` | 9 文件 / **922.0 KB**（esbuild 打包产物） | 构建产物 | `pnpm --filter cortico build:web`（`tsx scripts/build-web.ts` + tailwindcli） | asset-manifest 对齐 |
-| `src/recovered/vendor/pet/dist/` | 2 文件 / **19.5 KB**（`console.js` 单行 9,793 字符，已压缩） | 构建产物 | `npm run build`（`node scripts/build-console.mjs`） | 同上 |
+| `src/recovered/cortico/dist/web/` | 8 文件 / **917,106 B**（esbuild 打包产物） | 构建产物 | `pnpm --filter cortico build:web`（`tsx scripts/build-web.ts` + tailwindcli） | asset-manifest 对齐 |
+| `src/recovered/vendor/pet/dist/` | 2 文件 / **11,766 B**（`console.js` 单行 9,793 字符，已压缩） | 构建产物 | `npm run build`（`node scripts/build-console.mjs`） | 同上 |
 | `sherpa-onnx-linux-arm64`（`sherpa-onnx.node` + `libonnxruntime.so`） | 随 npm 包安装 | 可下载依赖 | npm 安装 `sherpa-onnx-node` 时自带 | 版本号锁在 lock |
 | `assets/payload.asset` | **137,118,068 B** | 构建产物 | `python3 tools/build-payload.py`（确定性 gzip+tar） | 长度 + sha256 |
 | `apk/*.apk`、`mcp_out/*.apk` | 各 ~137 MB | 构建产物 / 发行物 | `./gradlew assembleRelease` 或原厂发行物 | md5 `ed319932…e00b1` |
@@ -84,6 +84,6 @@
 
 ## §6 与 `v12.71-baseline` 的关系
 
-1. **已发布基线里混进了 11 个构建产物**（`cortico/dist/web` 9 + `vendor/pet/dist` 2），按本政策移除，改由构建链生成。
+1. **已发布基线里混进了 10 个构建产物**（`cortico/dist/web` 8 + `vendor/pet/dist` 2，共 928,872 B），按本政策移除，改由构建链生成。
 2. **`src/recovered/` 的 259 个 `.ts` 属上游代码**。P0 对账完成后按结果收缩：与上游 tag 逐字节相同的文件不再入库，只留 `patches/` + 自研文件清单。预计仓库从 18.8 MiB 降到 2 MB 量级。
 3. 移除/收缩都是**可回退的**：`git checkout v12.71-baseline -- <path>` 即可取回。

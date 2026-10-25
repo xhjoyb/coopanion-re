@@ -53,8 +53,8 @@
 | `mcp_out/Coopanion-v12.71-mcp.apk` | 137 MB | 同上 | 见 `docs/04 §2`：MT MCP 改 `versionName` → 重签 |
 | `src/rootfs/` | 1,910 文件 / 137,479,592 B | 体积 | `unzip -p apk/Coopanion-v12.71.apk assets/payload.asset \| tar -xz -C src/rootfs` |
 | `src/rootfs/…/node_modules/` | 119.2 MB / 95 包 | 可下载依赖，非逆向产物 | `npm ci`（`package-lock.json` 已在仓库，37,020 B） |
-| `src/recovered/cortico/dist/web/` | 9 文件 / 922.0 KB | 构建产物（esbuild bundle） | `pnpm --filter cortico build:web` |
-| `src/recovered/vendor/pet/dist/` | 2 文件 / 19.5 KB | 构建产物（压缩 console） | `npm --prefix vendor/pet run build` |
+| `src/recovered/cortico/dist/web/` | 8 文件 / 917,106 B | 构建产物（esbuild bundle） | `pnpm --filter cortico build:web` |
+| `src/recovered/vendor/pet/dist/` | 2 文件 / 11,766 B | 构建产物（压缩 console） | `npm --prefix vendor/pet run build` |
 
 > 依赖与产物的取舍规则集中在 **`DEPS.md`**：**能 `rm` 掉、再用一条命令复原的，一律不入库**。
 >
