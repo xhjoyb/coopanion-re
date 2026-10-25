@@ -39,6 +39,7 @@ Cortico 控制台 :17788 · 眼睛 :17898 · 感知 :17899 · 桌宠页 :7797
 | **源码还差多少** / 上游是哪一版 / 缺哪些文件 | [`UPSTREAM.md`](UPSTREAM.md) |
 | 哪些二进制必须入仓、`dist` 能不能重建 | [`PREBUILT.md`](PREBUILT.md) |
 | 重建时 `node_modules` 该装哪个精确版本 | [`BUILDDEPS.md`](BUILDDEPS.md) |
+| payload 能不能逐字节重建出来 | `python3 tools/p4_verify.py`（四层 sha256 全 PASS），细节见 [`docs/05`](docs/05-预编译清单与裁包评估.md) §7 |
 | 结论索引 / 数字总表 / 边界清单 | [`docs/00-总目录与导读.md`](docs/00-总目录与导读.md) |
 
 ---

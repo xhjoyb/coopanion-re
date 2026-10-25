@@ -75,12 +75,16 @@ APK 内路径均为 `lib/arm64-v8a/<同名>`，`extractNativeLibs` 相关行为�
 | 字节 | **137,118,068** |
 | sha256 | `39899fa081234c92244fde4b9dffc0fadaf644bfa10bd765b389304c0010ea50` |
 | 内容 | 压缩的 proot rootfs（含 `/app/coop-stage/` 全部代码与 `node_modules`、`/bin/node` 等） |
-| 提取结果 | `src/rootfs/app/` = **1,910 文件 / 137,479,592 B** |
+| 提取结果 | `src/rootfs/app/` = **1,910 文件 / 137,479,592 B**（仅 `/app` 段） |
+| **可否逐字节重建** | **✅ 已实测**：解包树 → 重打 tar → gzip -6，与原件完全相同（`tools/p4_verify.py`） |
 
 **未入仓理由**：它是 APK 内的单文件压缩容器，`unzip apk` 即可取出，不入仓不丢东西。
 **注意**：`src/rootfs` 只提取了 **`/app` 段**（顶层只有 `app/`），**不含 `/bin`、`/lib`、`/usr`**。
 因此 `boot.sh` 末行 `exec /bin/node --import tsx run-core.mjs` 里的 `node` 二进制**不在本仓库**，
 需要时从 `payload.asset` 解包获得。这不是缺口，是提取范围的刻意选择。
+
+**P4-A 已证明它可逐字节重建**（见 `BASELINE.md · P4-A`）：全量解包出 5,118 条元数据，按原元数据重打 tar（`sha256 be2293e6…`）再 gzip -6 重压（`sha256 39899fa0…`），与 APK 内原件完全相同。
+关键细节三个：tar 是**混合格式**（5,107 GNU + 11 POSIX）、gzip 级别是 **6**、`mtime` 必须**逐条保留**。
 
 ---
 
@@ -146,7 +150,7 @@ APK 内路径均为 `lib/arm64-v8a/<同名>`，`extractNativeLibs` 相关行为�
 | 5 个 proot `.so` | ❌ 无（需 NDK + 源码） | **入仓** |
 | `cortico/dist` | ❌ `scripts/build-web.ts` 缺失（**非依赖问题**） | **入仓，不可重建** |
 | `vendor/pet/dist` | ✅ `node scripts/build-console.mjs` | 已入仓，**已实测逐字节复现**（`esbuild@0.28.2`，见 `BUILDDEPS.md §4.2`） |
-| `payload.asset` | ✅ `unzip apk assets/payload.asset` | 不入仓 |
+| `payload.asset` | ✅ `unzip apk assets/payload.asset` | 不入仓，**已实测可逐字节重建**（`tools/p4_verify.py`） |
 | `node_modules`（95 条目） | ✅ `npm ci` + 补 5 包 + 4 软链 | 不入仓 |
 | `sherpa` 嵌套 4 native | ⚠️ 半自动（需手工补嵌套那份） | 不入仓 |
 | `bin/node` | ✅ 从 `payload.asset` 解包 | 不入仓 |
