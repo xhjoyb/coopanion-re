@@ -497,7 +497,7 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 |---|---:|---|
 | `cut_bcde.tar` | 247,073,280 | `59e89556…` |
 | `cut_bcde.asset` | 99,615,831 | `c03fd392…` |
-| `Coopanion-v12.71-cut-BCDE-signed.apk` | 100,034,325 | `13fcc08e…` |
+| `Coopanion-v12.71-cut-BCDE-signed.apk` | 100,034,325 | `13fcc08e…`（**已作废**：payload 是真删版，会打 `[CHK] 1/5`） |
 
 **结构校验**：2,576 条目 = 2,019 文件 + 467 目录 + 83 软链 + 9 长名头；悬空软链只剩 1 条且是原厂自带的 `app/sherpa-native/librt.so.1`（boot.sh 自愈）；因裁剪断掉的 2 条 koffi 工作区软链已连带删除；运行期要件（`bin/node`、`pnpm`、`tsx`、顶层 sherpa 四 native 含 `libonnxruntime.so`、`opencc-js`、`express`、`boot.sh`、`run-core.mjs`）逐项在位。
 
@@ -533,10 +533,13 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 |---|---:|---|---|
 | `cut_bcde3.tar` | 247,079,424 | `1ece05d2…` | +6,144 B |
 | `cut_bcde3.asset` | 99,615,948 | `69312b45…` | +117 B |
+| `Coopanion-v12.71-cut-BCDE-sym-signed.apk` | 100,034,325 | `380cdf4f…` | — |
 
 **结构**：2,585 条目 = 2,019 文件 + 469 目录 + 85 软链 + 12 长名头；裁剪共删 2,030 文件 / 71,570,469 B（`D/dedup-symlink` 4 条记 0 B），另丢弃 2 条因裁剪而悬空的 koffi 工作区软链。只多 117 B（asset）就换来零假警报 + 免打补丁，代价可忽略。
 
 **逐条核验**（`/tmp/p4work/vchk.py`）：4 条软链解析后的 size 与期望**完全相等**（804,112 / 34,606,912 / 4,613,032 / 281,200），`bin/node` 为实体文件 123,024,744 ⇒ **`CHK 5 /5`**；扫出的 2 条「悬空」均非真问题 —— `bin/pnpm` 是 `os.path.normpath` 吃掉前导 `./` 造成的误报（实际存在），`app/sherpa-native/librt.so.1` 是**原厂自带**且 `boot.sh` 有自愈。
+
+**重签与校验**（MT MCP，同一条 `mt_apk_copy_entry` + `mt_apk_build sign=true` 流水线）：用 `cut_bcde3.asset` 重打得 `Coopanion-v12.71-cut-BCDE-sym-signed.apk`，100,034,325 B / `380cdf4f790d21ed12c94b109905b543842251e2440cc24471449c88f481d82`，V1+V2+V3（证书仍为 MT 测试证书 `a40da80a…`）。逐项核验：zip `testzip` OK、29 条目；包内 `assets/payload.asset` 的 sha256 = `69312b45…`（**与软链版一致，不是旧的真删版 `c03fd392…`**）；签名块结构自检 lead == tail == 4,088、pair ids = v2 1,844 B + v3 1,856 B + verity padding 340 B、EOCD 尾部 22 B 无注入。整包体积与真删版**同为 100,034,325 B** —— 多出的 117 B payload 被 zip 对齐填充吸收，所以**不能靠体积区分两版，只能看包内 payload 的 sha256**。旧的真删版 APK 已从 `apk/` 与 `rev_tmp/` 删除，避免误装。
 
 **踩坑**：第一版手写相对层级（`../../../../sherpa-onnx-linux-arm64/`）少算了 `node_modules` 一层，实测 `CHK 1/5`、`dangling 26`，改用 `posixpath.relpath` 动态算才正确。此类相对路径一律不要手写。
 
@@ -546,6 +549,6 @@ P4 复刻的八条硬约束见 `docs/05 §6`（软链原样重建 / 22 个 `L` �
 
 P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 前置全部完成**（补1 `UPSTREAM.md` + `PREBUILT.md` 已推远端，补2 构建期依赖版本锚 28/28 补完，见上两节）。
 
-下一步 **重签 + 真机冒烟**：D 组已改软链，需用 `cut_bcde3.asset`（99,615,948 / `69312b45…`）重走 MT MCP 出一个新的签名 APK（旧的 `cut-BCDE-signed.apk` 含真删版 payload，会打 `1/5 OK` 假警报，作废）。证书与原厂不同，装机前须先卸载原应用；装上后重点看四件：App 能否起来、`[CHK] critical files: 5/5 OK` 是否打出、`[B0] PKG-ABS OK` 是否打出、sherpa 语音链路是否可用。冒烟通过 → **P5** 等价性验证（sherpa native 真机加载 + `boot.sh` 自愈实验），并处理 `recon_upstream.py` 的 `STAGE_SUBSET` 遗留。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+下一步 **真机冒烟**：软链版已重签，产物在 `apk/Coopanion-v12.71-cut-BCDE-sym-signed.apk`（100,034,325 B / `380cdf4f…`，同时拷到 `/sdcard/Download/rev_tmp/`）。证书与原厂不同，装机前须先卸载原应用；装上后重点看四件：App 能否起来、`[CHK] critical files: 5/5 OK` 是否打出、`[B0] PKG-ABS OK` 是否打出、sherpa 语音链路是否可用。冒烟通过 → **P5** 等价性验证（sherpa native 真机加载 + `boot.sh` 自愈实验），并处理 `recon_upstream.py` 的 `STAGE_SUBSET` 遗留。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
 
 Gradle 工程仍挂起（用户「3 再说」）。
