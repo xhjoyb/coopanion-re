@@ -52,8 +52,12 @@
 | `apk/Coopanion-v12.71.apk` | 137 MB | 超 GitHub 单文件 100 MB 硬上限；且为原厂发行物 | 自行取得原包，`md5sum` 核对 `ed319932…e00b1` |
 | `mcp_out/Coopanion-v12.71-mcp.apk` | 137 MB | 同上 | 见 `docs/04 §2`：MT MCP 改 `versionName` → 重签 |
 | `src/rootfs/` | 1,910 文件 / 137,479,592 B | 体积 | `unzip -p apk/Coopanion-v12.71.apk assets/payload.asset \| tar -xz -C src/rootfs` |
-| `src/rootfs/…/node_modules/` | 随根 fs | 第三方依赖，非逆向产物 | 同上（随 rootfs 一起解出） |
+| `src/rootfs/…/node_modules/` | 119.2 MB / 95 包 | 可下载依赖，非逆向产物 | `npm ci`（`package-lock.json` 已在仓库，37,020 B） |
+| `src/recovered/cortico/dist/web/` | 9 文件 / 922.0 KB | 构建产物（esbuild bundle） | `pnpm --filter cortico build:web` |
+| `src/recovered/vendor/pet/dist/` | 2 文件 / 19.5 KB | 构建产物（压缩 console） | `npm --prefix vendor/pet run build` |
 
+> 依赖与产物的取舍规则集中在 **`DEPS.md`**：**能 `rm` 掉、再用一条命令复原的，一律不入库**。
+>
 > 因此 **本仓库是「可读 + 可复现文档 + 可复现工具」的完整集合，但不是「可一键编译」的工程**。
 
 ---

@@ -1,7 +1,14 @@
-# 本仓库有意不纳入的产物（见 BASELINE.md §3）
+# 本仓库有意不纳入的产物（见 BASELINE.md §3 / DEPS.md）
 apk/
 mcp_out/
 src/rootfs/
+
+# 可下载依赖（构建时安装，见 DEPS.md §2）
+node_modules/
+
+# 构建产物（构建时生成，见 DEPS.md §2）
+src/recovered/cortico/dist/
+src/recovered/vendor/pet/dist/
 
 # 原始发行物 / 重签产物
 *.apk
