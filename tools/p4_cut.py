@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""P4-B: 按 docs/05 \u00a74 的 B/C/D/E 四组裁剪 payload 条目，产出新 manifest。
+"""P4-B/P6: 按 docs/05 §4 的 B/C/D/E/F 五组裁剪 payload 条目，产出新 manifest。
 
    python3 tools/p4_cut.py --manifest M --out OM --groups B,C,D,E [--patch-boot] [--report R] [--d-symlink]
 
@@ -67,6 +67,41 @@ def rules(group):
                 ('./app/coop-stage/tests/', './app/coop-stage/scripts/',
                  './app/coop-stage/.claude/'))),
             ('docs', is_doc),
+        ]
+    if group == 'F':
+        # F 组：本地 strace 实证可裁的「声明但零引用」依赖子树（详见 docs/05 §10）。
+        #
+        # 1) dead-dep-subtree：`cortico/package.json` 声明了 `tar-stream: 3.2.1`，但
+        #    cortico/{src,dist,bots} 里 grep 零命中 —— 死依赖。tar-stream 又拖来一整棵子树：
+        #      tar-stream   -> b4a, bare-fs, fast-fifo, streamx
+        #      streamx      -> events-universal, teex, text-decoder
+        #      events-universal -> bare-events（仅 exports.bare 分支，Node 走 default -> require('events')）
+        #      bare-fs      -> bare-events, bare-stream, bare-url
+        #    这些包的 package.json 互相引用，形成闭合集合，全树无任何外部 require。
+        #    实证：12 个包同时 mv 走 -> rc=0，web面板 17788 已启动，core已启动，shutdown 六步全 ok。
+        # 2) esbuild-native：`@esbuild/linux-arm64/bin/esbuild`（10,289,264 B）。
+        #    esbuild@0.28.2 的 lib/main.js 里 build/transform 等导出全是
+        #    `() => ensureServiceIsRunning().xxx()`，require 时不 spawn；tsx@4.23.15 只在
+        #    fallback 时才需要它。包内 Node 是 v24.21.0（原生剥 TypeScript 类型），
+        #    app/ 下仅 5 个 .ts 且无 enum/namespace/装饰器，走不到 esbuild 二进制。
+        #    实证：单独 mv 走 -> rc=0，六步全 ok，模块错误 0。
+        #    注意：JS 包 `esbuild` 本身必须保留（static import 会加载 lib/main.js）。
+        dead = ('bare-path', 'bare-events', 'bare-stream', 'bare-fs', 'bare-url',
+                'tar-stream', 'streamx', 'b4a', 'events-universal', 'teex',
+                'fast-fifo', 'text-decoder')
+        NM = './app/coop-stage/node_modules/'
+
+        def is_dead_subtree(n):
+            if not n.startswith(NM):
+                return False
+            return n[len(NM):].split('/', 1)[0] in dead
+
+        def is_esbuild_native(n):
+            return n.startswith(NM + '@esbuild/linux-arm64/')
+
+        return [
+            ('dead-dep-subtree', is_dead_subtree),
+            ('esbuild-native', is_esbuild_native),
         ]
     raise SystemExit('unknown group ' + group)
 

@@ -119,7 +119,11 @@ class GhApi:
                     raw = resp.read()
                     return json.loads(raw.decode("utf-8")) if raw else None
             except urllib.error.HTTPError as e:
-                payload = e.read().decode("utf-8", "replace")[:300]
+                try:
+                    payload = e.read().decode("utf-8", "replace")[:400]
+                except Exception as e2:
+                    rid = e.headers.get("x-github-request-id", "") if e.headers else ""
+                    payload = f"<body unreadable: {type(e2).__name__}> request-id={rid}"
                 if e.code in allow:
                     return {"__status__": e.code, "__body__": payload}
                 # 403 多为 secondary rate limit（内容创建 ≤80/分钟），必须给足冷却
@@ -292,9 +296,17 @@ def main():
                     log(f"  上传进度 {done}/{len(todo)}")
 
     entries = []
+    skipped = 0
     for rel, data, mode in files:
         sha = shas.get(rel) or remote.get(rel) or blob_sha(data)
+        # 未变化的条目不必显式声明 —— base_tree 已经带着它们。
+        # GitHub 对 POST /git/trees 有体积上限：全量 entries（1,000+）会直接 422
+        # "input was too large to process"，只发变更/新增项即可。
+        if remote.get(rel) == sha:
+            skipped += 1
+            continue
         entries.append({"path": rel, "mode": mode, "type": "blob", "sha": sha})
+    log(f"增量 entries={len(entries)}，未变更继承 {skipped}")
 
     if args.prune and remote:
         local = {rel for rel, _, _ in files}

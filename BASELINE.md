@@ -646,11 +646,46 @@ node 走完 shutdown 六步、`rc=0`。
 **工具终值**：`tools/p5_audit.py` 290 行、`tools/p5_ab.py` 156 行、`tools/p5_run_trace.sh` 37 行、
 `tools/recon_upstream.py` 168 行（原 157）。
 
+### P6 · F 组裁包（静态与本地验证已完成 · 待真机冒烟）
+
+**目标**：P5 遗留的第二条 —— `bare-*` 家族能不能裁。P5 当时判「约 5.7 MB，收益不足以承担风险，保留」，P6 把它翻了过来。
+
+**做法**：不按「5 个包」裁，先求**闭包**。`cortico/package.json` 声明了 `tar-stream: 3.2.1`，但 `cortico/{src,dist,bots}` 里 grep 零命中 —— 是死依赖；而 `tar-stream` 又拖来 `b4a` / `bare-fs` / `fast-fifo` / `streamx`，`streamx` 再拖 `events-universal` / `teex` / `text-decoder`，`bare-fs` 再拖 `bare-events` / `bare-stream` / `bare-url`，`bare-url` 再拖 `bare-path`。12 个包互相引用成闭合集合，全树无任何外部 `require`（唯一命中是 `tar-stream/README.md:30/:152` 的示例代码）；`events-universal` 的 `exports` 里 `bare-events` 只在 `bare` 分支，Node 走 `default → require('events')` 不可达。
+
+`p4_cut.py` 新增 `F` 组两条规则：`dead-dep-subtree`（12 包前缀）+ `esbuild-native`（`@esbuild/linux-arm64`，10,289,789 B —— `esbuild` 的导出全是 `ensureServiceIsRunning()` 惰性包装，Node v24.21.0 原生剥类型走不到，但 **JS 包 `esbuild` 必须保留**，这是 cut-BCDE-sym 的教训）。
+
+**实证（两轮独立 trace，都全绿）**
+
+| 轮次 | 移走 | trace 行数 | rc | 关键结果 |
+|---|---|---:|---:|---|
+| traceG | 5 个 `bare-*` | 3,827 | 0 | `web面板已启动 http://127.0.0.1:17788/`、`core已启动`、`眼睛已开`、shutdown 六步全 ok |
+| traceH | 追加到 12 个 | 3,824 | 0 | `err:0 / js-errors:0 / web-panel:1 / core-started:1`、shutdown 六步全 ok |
+
+方法：树内 `mv` 成 `.off` → 跑 `tools/p5_run_trace.sh` → `mv` 回；**绝不用 `cp -al`**（proot 的 link2symlink 会毁源树）。对照项：`grep -c esbuild = 36`、`grep -c bare- = 0`、模块错误 0。注意 `traceX.log` 是 strace 输出、中文只在 `runX.txt`。
+
+**回归自证**：重打 `cut5` 得 267,912,192 B（sha 与原 tar 不同），`tardiff.py` 逐 512 字节块比对定位到唯一差异 —— `./app/coop-stage/home/companion/data/core-state.json`（size 均 148，内容不同）⇒ 旧 tar 里那份是**某次运行后的状态**，`treeC` 解出的是原厂字节，新产物更忠实。再验 gzip 口径：原厂是 **L6**，用 L6 重压 `cut_sym5.tar` 得 108,089,925 / `f277c8f3…`，与已装机 APK 内 `payload.asset` **逐字符相同** ⇒ 裁包规则 / tar 重打 / gzip 头手写三段都能逐字节复现历史产物。
+
+**产物**
+
+| 对象 | 字节 | sha256 |
+|---|---:|---|
+| `cut_sym6.tar` | 251,854,336 | `177cfcb024894280bc29d17ff698ce95748f0bcaae6007371c9082f5205323c1` |
+| `cut_sym6.asset`（gz9） | 101,603,174 | `62fd144c153d3c8d4f9b1fdf40404f8f88f69ce78dc0a7f60bce70162ec91769` |
+| **`Coopanion-v12.71-cut-BCDEF-sym6-signed.apk`** | **102,049,557** | **`3d96d8dba225f2262c2c29d2e1448ec2c359c138100a998aeda5563225856ea7`** |
+
+裁剪账：条目 5,118 → 2,429，删 2,129 文件 / 66,690,120 B（`C/koffi` 92 / 4,065,490、`D/dedup-symlink` 4 / 0、`D/lib-onnxruntime` 1 / 34,606,912、`E/docs` 267 / 1,366,491、`E/home-runs` 23 / 41,977、`E/npm` 1,614 / 10,685,798、**`F/dead-dep-subtree` 130 / 5,633,808**、**`F/esbuild-native` 2 / 10,289,644**），另连带删 2 条指向已删 `koffi` 的悬空软链。
+`payload.asset` 108,089,925 → **101,603,174**（−6,486,751），APK 108,488,469 → **102,049,557**（−6,438,912，−5.9%）；相对原厂 137,205,527 共 **−35,155,970（−25.6%）**。
+压缩口径要分开看：纯裁包收益（L6 对 L6）= 108,089,925 − 101,966,590 = 6,123,335，换 L9 再省 363,416。
+
+**端到端**：从成品 APK 抽 `assets/payload.asset` → `zlib.decompressobj(16+MAX_WBITS)` → 251,854,336 B → `177cfcb0…`，与 `cut_sym6.tar` **逐字节相同**；结构 29 条目无增无减，非 `META-INF` 差异**仅 `payload.asset`**（`MT session_check` 独立复核 `passed`）。签名同前（MT 测试证书 `a40da80a…`，装机须先卸载）。
+
+**基准树换代**：`treeB` 被历次 trace 写入（`core-state.json 148 → 149`），作废；改用 `base.tar` 重新解出的 **`treeC`**（4,053 文件 / 86 软链 / 顶层 15 项 / `core-state.json = 148`）。旧 `tree5` 已恶化到不可修复（2,052 个文件里 2,050 个是 `.l2s` 影子），整体放弃，**不要再试图修它**。
+
 ### 下一步
 
-P0 已收口（源码 **863/863** 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 全部完成**；**P5 等价性验证已完成**。P4-B 裁包在连续两次装机/复现反馈后定稿为 **cut-sym5**：B 组作废、D 组软链、E 组只删 `node_modules` 文档。
+P0 已收口（源码 **863/863** 零漂移 + 依赖树 95/95 零差异）；P2 全部完成（四批共校正 34 处）；P3 已完成（`docs/05`）；**P4 全部完成**；**P5 等价性验证已完成**；**P6 = F 组裁包，静态与本地验证已完成**（产物 `cut-BCDEF-sym6`，102,049,557 B）。P4-B 裁包在连续两次装机/复现反馈后定稿为 **cut-sym5**：B 组作废、D 组软链、E 组只删 `node_modules` 文档。
 
 真机冒烟**已在 P4-B 完成**，当时用的产物是 `apk/Coopanion-v12.71-cut-BCDE-sym5-signed.apk`（108,488,469 B / `b746e83e…`，已同步拷到 `/sdcard/Download/rev_tmp/`）。证书与原厂不同（MT 测试证书 `a40da80a…`），**装机前必须先卸载原应用**；装上后重点看五件：① App 能否起来；② `[CHK] critical files: 5/5 OK`；③ `[B0] PKG-ABS OK`；④ `[WEB]` 能否连上 `127.0.0.1:17788`（这条是上一版失败的判据）；⑤ sherpa 语音链路是否可用。这五条已由用户真机实测确认（「这次出来了」）。
-**现在只剩两条必须装机才能做的**：① `koffi` / `npm` 的四条真机路径（语音、扩展安装、Web 面板、桌宠）—— P5 只证到「本地启动不依赖它们」；② `bare-*` 家族（约 5.7 MB）能不能裁，要靠真机跑一次**扩展安装**看是否走 npm 解包。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**
+**现在只剩一件事**：把 `apk/Coopanion-v12.71-cut-BCDEF-sym6-signed.apk`（102,049,557 B / `3d96d8db…`，已同步 `/sdcard/Download/rev_tmp/Coopanion-12.71-cut-sym6-signed.apk`）装机冒烟，四条路径一次验完 —— ① **语音**（sherpa 加载 + ASR/TTS）；② **扩展安装**（验 `npm` 缺失后确实走 `corepack pnpm`，这也是唯一能正面证伪 F 组的路径）；③ **Web 面板** `127.0.0.1:17788`；④ **桌宠**。它同时覆盖 C 组 `koffi`、E 组 `npm` 与 F 组，一次装机可结清三个悬案。**装机前必须先卸载原应用**（签名证书不同）。
 
 Gradle 工程仍挂起（用户「3 再说」）。
