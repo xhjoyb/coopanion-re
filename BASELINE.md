@@ -26,7 +26,7 @@
 
 ## 2. 本仓库纳入了什么
 
-合计 **1,101 文件 / 19,417,222 B（18.52 MiB）**。
+合计 **1,101 文件 / 19,422,577 B（18.52 MiB）**。
 
 > 口径：`git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{print n, s}'`（见 §5）。
 > 旧版本此处写「1,072 文件 / 19,742,777 B」，与任何一次提交都对不上，已按实测重算，勘误说明见 §7。
@@ -109,7 +109,7 @@ python3 tools/check_res.py --json | python3 -c 'import json,sys; d=json.load(sys
 
 # 6) 仓库规模（§2 数字的口径）
 git ls-files -z | xargs -0 stat -c %s | awk '{s+=$1;n++} END{printf "%d files, %d bytes\n", n, s}'
-# → 1101 files, 19417222 bytes
+# → 1101 files, 19422577 bytes
 
 # 7) 上游对账（入仓源码 ↔ APK 部署态，逐文件 sha256）
 python3 tools/recon_upstream.py                  # → 862/862 相同，exit 0
@@ -262,6 +262,35 @@ GitHub Actions，工作流 20 秒跑完，`gh` token 的 `workflow` scope 足够
 3. 触摸层尺寸不由页面推，而是 `queryPetRect()` **主动问页面**（`evaluateJavascript`）→ `sizeTouchTo(x,y,w,h)` → `updateViewLayout`；Service 版**没有** `reportPetRect`（那是 `PetActivity` 的桥接才有）。
 
 
+
+#### 第三批：眼睛 / 语音 / 通知（`§5` / `§6` / `§7`）
+
+`§5 EyesService` 的常量与路由表**全对**（`PORT 17898`、`CAPTURE_ATTEMPTS 3`、`CAPTURE_WAIT_MS 9000`、
+`FRAME_CACHE_MS 700`、`MAX_STALE_MS 2500`、`MIN_CAPTURE_GAP_MS 1200`；`/health` `/screen.jpg` `/ui`
+`/open_settings` `/help` 五路由；四条错误串）——上一轮 `read_static.py` 的取证是准的。但语义层有 4 处错：
+
+| # | 原版 | 实际 |
+|---|---|---|
+| 1 | `/health` 里有 `routes` | **没有**，`routes` 只在 `/help`（4 条，不含 `/help` 自身） |
+| 2 | health 字段 6 个 | 还有 `frameBytes` / `error`；无帧时 `frameAgeMs = -1` |
+| 3 | `-1` = 无障碍不可用 | **`-1` = 检测到 IME 窗口但高度 ≥ 屏高 90%**；「无障碍不可用」是 `0` |
+| 4 | `==0` → 0.38 估算、`-1` → 三级 insets | **对调**：`<0` → `screenH*0.38`；`==0` → `RootWindowInsets` → 触摸 insets → `getWindowVisibleDisplayFrame` |
+
+`§6 VoiceBridge` 3 处：①注入名是 **`petVoiceNative`**（`PetWindowService:265`），四个方法带 `@JavascriptInterface`；
+②`cancel()` 的 `wanted=false` 在 post **内部**；③`start()` 有 `catch → deliver("error", …)`。
+`errName` 的 `1..9` 字面量与 `SpeechRecognizer.ERROR_*` 一一对应，原文按常量名还原**正确**。
+
+`§7 NotifListenerService` 2 处：①用 **`SenseBridge.peek()`** 不是 `get(this)`（桥未启动就丢弃，不创建实例）；
+②还判 `getNotification() == null`，且 **title 与 text 双空直接 return**。
+
+**本轮首次打通「实机功能级验证」**（前两批只能看日志）：root 把无障碍与通知监听打开后，
+`curl 127.0.0.1:17898/help` 返回 `"service":"coopanion-eyes-p2"`（我们改的字面量），
+`/health` 返回 `{"sdk":36,"canScreenshot":true,"frameAgeMs":-1,"frameBytes":0,"error":""}`（实证第 2 条校正）；
+`curl 127.0.0.1:17899/notifications?since=0` 抓到 5 条真实通知
+（`{"cursor":5,"items":[{"seq":1,"id":"n1","pkg":"com.luna.music","app":"汽水音乐",…}]}`）——
+**JSON 里没有 `when`**，反过来实证了 §2 校正第 6 条。
+
+
 ### 出包验收台账（每个逆向单元必出一个可安装包）
 
 **规则（用户 2026-10-25 定）**：每完成一个逆向单元 → 构建 APK → 装机 → 用户实测。本地无 JDK / Android SDK，出包一律走 **MT MCP 重打包**（axml / smali 级编辑 + 内置签名）。MT 的 Home 是 `/storage/emulated/0/MT2/mcp`，其余路径被策略拒绝；`outputName` 必须给**绝对路径**（带子目录的相对路径会报 `INVALID_ARGUMENT: outputName`）。
@@ -271,10 +300,12 @@ GitHub Actions，工作流 20 秒跑完，`gh` token 的 `workflow` scope 足够
 | 1 | `12.71-p0` | **仅** `versionName` 标记（P0 无代码改动，本轮验证的是重打包链路本身） | 137,258,773 | `a40da80a…bf5dc` | 就地升级成功；冷启动 24 s+ 无崩溃、crash 缓冲空；`libproot.so` + `node` 均拉起；`coop-run.log` 到 `core已启动`、Web 面板 `127.0.0.1:17788` 与桌宠悬浮窗就绪 |
 | 2 | `12.71-p2` | `doBoot()` 里 `[2] 启动 Coopanion Core ...` → 加 `[P2]` 标记（验证 Java 层可定位、可改写、可观测） | 137,258,773 | 同上 | 就地升级成功；冷启动 30 s、`pid` 稳定、`libproot.so` + `node` 起；`coop-run.log:279` 实测出现 `[2][P2] 启动 Coopanion Core ...`，控制台与桌宠均正常 |
 | 3 | `12.71-p3` | `PetWindowService.diag()` 的 `[DIAG] ` → `[DIAG][P2] `（本批核心类可定位、可改、可观测） | 137,258,773 | 同上 | 就地升级；冷启动 32 s、`pid` 稳定、`libproot.so`+`node` 活；**`logcat` 32 秒内命中 20 条 `[DIAG][P2] probe box=…`**；crash 缓冲空 |
+| 4 | `12.71-p4` | `EyesService.helpJson()` 的 `coopanion-eyes` → `coopanion-eyes-p2` | 137,258,773 | 同上 | `curl :17898/help` 返回 `coopanion-eyes-p2`；`/health` 实测 `frameAgeMs:-1/frameBytes:0/error:""`；`curl :17899/notifications` 抓到 5 条真实通知且**无 `when` 字段**；crash 缓冲 0 |
 
 产物：`/storage/emulated/0/MT2/mcp/Coopanion_v12.71/Coopanion-v12.71-p0-signed.apk`，sha256 `842cd2b76e60f60518e2c4775aa6f55e50dc050d940abd25553d7645c18e4c1a`（不入库，MT2/mcp 与 apk/ 均在 `.gitignore` 内）。
 `12.71-p2` 同目录 `Coopanion-v12.71-p2-signed.apk`，sha256 `1fe2dc52982dc27765e0dc75c23c6d4f65c44d31b79ced6a6f0ed3b89827218e`（两份包体字节数相同，靠 sha256 与 `versionName` 区分）。
 `12.71-p3` 同目录 `Coopanion-v12.71-p3-signed.apk`，sha256 `9f685e18fa52e630789f67d438ea5a5a1e5f5bedecfad8eb5aef2547e2bce530`。
+`12.71-p4` 同目录 `Coopanion-v12.71-p4-signed.apk`，sha256 `b6c9d5d3034968d507b8ec1f7cb27c0c97916ad72c1a803a4034a3b338cfa650`。
 
 首次出包踩到的四个坑，后续每个单元都会复用：
 
@@ -295,11 +326,12 @@ GitHub Actions，工作流 20 秒跑完，`gh` token 的 `workflow` scope 足够
 | **+ P0（2 个工具：`tools/recon_upstream.py`、`tools/check_deps.py`）** | **1,085** | **19,186,454** |
 | **+ P2（jadx 基线 14 文件 + `decompile.yml` + `src/java/PROVENANCE.md`）** | **1,101** | **19,410,855** |
 | **+ P2 第二批（`docs/02` §2 校正 10 处 + §3/§4 核对 + 台账新增 1 行）** | **1,101** | **19,417,222** |
+| **+ P2 第三批（`docs/02` §5/§6/§7 校正 9 处 + 台账新增 1 行）** | **1,101** | **19,422,577** |
 
 同时修正两处子项计数：`src/recovered/` 863 → **853**（差值是那 10 个 `dist`）、`src/x/` 21 → **20**（实为 `lib` 5 + `META-INF` 5 + `assets/probe` 3 + dex 与清单与 arsc 与 `axml.py` 与 2 份 `.classes.txt`）。
 
 ### 下一步
 
 P0 已收口（源码 862/862 零漂移 + 依赖树 95/95 零差异）；**P2 第一批完成**（jadx 基线 14 文件 + `docs/02 §1.3/§1.4` 校正 8 处，出包 `12.71-p2` 装机验证）。
-P2 第二批完成（`§2` 校正 10 处 / `§3` 零偏差 / `§4` 校正 1 处，出包 `12.71-p3`）；下一批：`§5 EyesService` + `§6 VoiceBridge` + `§7 NotifListenerService` → `§8` 三个小类（`PetActivity` / `PetWindow2` / `WebRetry` / `PetKeyboardGuard`）。
+P2 第三批完成（`§5` 校正 4 处 / `§6` 3 处 / `§7` 2 处，出包 `12.71-p4`，并首次打通 HTTP 功能级实测）；最后一批：`§8 PetActivity` / `PetWindow2` / `WebRetry` / `PetKeyboardGuard` + `§9 辅助类`（`AppLog` / `CrashApp` / `WebRetry`），收口整个 P2。
 之后 P3 预编译清单 → **P4**：`build-payload.py` 确定性 gzip+tar，复刻 `boot.sh` 的 `librt` 软链自愈与 native 拷贝；**P4 开工前需先闭合构建期依赖**（`cortico` 缺 20 个，见 `DEPS.md §3.3`）→ **P5** 等价性验证（含 sherpa native 真机加载与 `.ok` 自愈实验）。**每个单元收口后都按「出包验收台账」出包、装机、待用户实测。**

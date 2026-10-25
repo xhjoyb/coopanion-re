@@ -690,7 +690,7 @@ private static final long MIN_CAPTURE_GAP_MS = 1200L;  // 两次截屏最小间�
 
 | 路径 | 返回 |
 |---|---|
-| `/health` | `{"ok":true,"service":"coopanion-eyes","routes":[…]}`，附 `sdk` / `canScreenshot` / `pkg` / `frameWidth` / `frameHeight` / `frameAgeMs` |
+| `/health` | `{"ok":true,"service":"coopanion-eyes","sdk":..,"canScreenshot":..,"pkg":..,"frameWidth":..,"frameHeight":..,"frameAgeMs":..,"frameBytes":..,"error":..}`（**无 `routes` 字段**）；无帧时 `frameAgeMs = -1`、`frameBytes = 0` |
 | `/screen.jpg?max=720&q=62` | JPEG 字节流，响应头带 `x-width` / `x-height` / `x-pkg` / `x-age-ms` |
 | `/ui` | `{"ok":true,"pkg":"…","items":[{"t":文本,"c":类名,"b":"[l,t][r,b]"}]}` |
 | `/open_settings` | 打开无障碍设置页，`{"ok":true}` |
@@ -710,10 +710,18 @@ public  void   onAccessibilityEvent(AccessibilityEvent e);   // 只用来刷新 
 // IME 相关：imeHeight() / imeHeightSmart() / imeVisible() / imePackages() / notifyIme() / setImeListener()
 ```
 
-`imeHeightSmart()` 是给桌宠用的**三态**接口：`>0` = 键盘高度、`0` = 无障碍可用但键盘未弹出、`-1` = 无障碍不可用
-（`instance == null` 时直接返回 `0`，其余转给 `imeHeightOf`）。`PetKeyboardGuard.imeHeight()` 按这三态分流：
-`>0` 采信；`==0` 退化为 `screenH * 0.38` 估算；`-1` 才继续走 `RootWindowInsets` → 触控层 insets →
-`getWindowVisibleDisplayFrame` 三级。`setImeListener` 让 `PetKeyboardGuard` 能拿到实时高度回调。
+`imeHeightSmart()` 是给桌宠用的**三态**接口，但三态含义与直觉相反（`imeHeightOf()` 末尾就是 `return z ? -1 : 0;`）：
+
+| 返回值 | 真含义 |
+|---|---|
+| `> 0` | 量到了 IME 窗口高度（且 < 屏高 90%） |
+| `-1` | **看到了 IME 窗口但它高度 ≥ 屏高 90%**（判为不可信 / 全屏 IME），`z = true` 但没记高度 |
+| `0` | 无障碍**没跑**（`instance == null`）、`getWindows()` 为 null、抛异常，或压根没找到 IME 窗口 |
+
+`PetKeyboardGuard.imeHeight()` 的分流（实测第 106–143 行）：
+**`> 0` 采信**（`lastSource = "a11y=…"`）→ **`< 0` 用 `screenH * 0.38` 估算**（`"a11y~guess=…"`）→ **`== 0` 才继续走**
+`root.getRootWindowInsets()` → 触控层 insets → `getWindowVisibleDisplayFrame` 三级。
+另注：`imeHeight()`（不带 Smart）在 `instance == null` 或结果 `<= 0` 时**一律返回 0**，所以 `-1` 只可能从 `imeHeightSmart()` 出来。
 
 ---
 
@@ -740,7 +748,7 @@ final class VoiceBridge {
         });
     }
     void stop()   { ui.post(() -> { if (rec != null) rec.stopListening(); }); }  // $3：**不置** wanted
-    void cancel() { wanted = false; ui.post(() -> { if (rec != null) rec.cancel(); }); }  // $4
+    void cancel() { ui.post(() -> { wanted = false; if (rec != null) rec.cancel(); }); }  // $4：wanted 在 post 内
 
     /** 用系统识别器：中文、自由说、要中间结果。 */
     private Intent intent() {
@@ -796,14 +804,17 @@ window.__petVoiceResult = function (kind, text, detail) {
 ```java
 public class NotifListenerService extends NotificationListenerService {
     @Override public void onNotificationPosted(StatusBarNotification sbn) {
-        if (sbn == null) return;
+        if (sbn == null || sbn.getNotification() == null) return;
         Bundle ex = sbn.getNotification().extras;
         if (ex == null) return;
         CharSequence title = ex.getCharSequence(Notification.EXTRA_TITLE);      // android.title
         CharSequence text  = ex.getCharSequence(Notification.EXTRA_TEXT);       // android.text
         if (text == null) text = ex.getCharSequence(Notification.EXTRA_BIG_TEXT); // android.bigText
+        if (title.isEmpty() && text.isEmpty()) return;    // 双空不记（原文档漏）
         String pkg = sbn.getPackageName();
-        SenseBridge.get(this).addNotification(pkg, appLabel(pkg),
+        SenseBridge b = SenseBridge.peek();              // ⚠ 不是 get(this)
+        if (b == null) return;                            //   桥未启动就直接丢
+        b.addNotification(pkg, appLabel(pkg),
             title == null ? "" : title.toString(),
             text  == null ? "" : text.toString(),
             sbn.getPostTime());
@@ -820,6 +831,27 @@ public class NotifListenerService extends NotificationListenerService {
 只读三个 extra（`title` / `text` / `bigText`）——**不解析消息内容、不抓应用数据**。
 
 ---
+
+#### §5/§6/§7 校正记录（2026-10-25）
+
+| # | 章节 | 原版 | 实际 |
+|---|---|---|---|
+| 1 | §5 | `/health` 返回里有 `routes` | **没有**；`routes` 只在 `/help`，且只有 4 条（不含 `/help` 自身） |
+| 2 | §5 | health 字段 6 个 | 还有 `frameBytes`、`error`；无帧时 `frameAgeMs = -1`（**已实测** `{"frameAgeMs":-1,"frameBytes":0,"error":""}`） |
+| 3 | §5 | `-1` = 无障碍不可用 | **`-1` = 看到 IME 窗口但高度 ≥ 屏高 90%**；「无障碍不可用」是 `0` |
+| 4 | §5 | `==0` → 0.38 估算，`-1` → 走三级 insets | **正好对调**：`<0` → `screenH*0.38` 估算；`==0` → `RootWindowInsets` → 触摸层 insets → `getWindowVisibleDisplayFrame` |
+| 5 | §6 | 未提注入名 | 注入名是 **`petVoiceNative`**（`PetWindowService:265`），`start/stop/cancel/available` 四个方法带 `@JavascriptInterface` |
+| 6 | §6 | `cancel()` 里 `wanted=false` 在 post 外 | 在 **post 的 Runnable 内部** |
+| 7 | §6 | `start()` 无异常分支 | 有 `catch → deliver("error","",message)` |
+| 8 | §7 | `SenseBridge.get(this)` | **`SenseBridge.peek()`**：桥未启动直接丢弃，不创建实例 |
+| 9 | §7 | 只判 `sbn == null` | 还判 `getNotification() == null`，且 **title 与 text 双空直接 return** |
+
+> `errName` 确是 packed-switch 字面量 `1..9`，但数值与 `SpeechRecognizer.ERROR_*` 完全一一对应
+> （1=NETWORK_TIMEOUT、2=NETWORK、3=AUDIO、4=SERVER、5=CLIENT、6=SPEECH_TIMEOUT、7=NO_MATCH、
+> 8=RECOGNIZER_BUSY、9=INSUFFICIENT_PERMISSIONS），原文按常量名还原**是对的**。
+>
+> `/notifications` 实测返回 `{"cursor":5,"items":[{"seq":1,"id":"n1","pkg":…,"app":…,"title":…,"text":…}]}`
+> —— **没有 `when` 字段**，与 §2 校正第 6 条互证。
 
 ## 8. 桌宠另外两种形态
 
