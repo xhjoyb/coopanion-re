@@ -320,7 +320,7 @@ public class MainActivity extends android.app.Activity {
                     r2_1 = (p2 > r2 ? 1 : (p2 == r2 ? 0 : -1));
                     if (r2_1 <= 0) { _pc = 3; break; }
                     r2 = (long) r0;
-                    r2 = java.lang.Math.min(r2, r3, p2, p3);
+                    r2 = java.lang.Math.min(r2, p2);
                     r2_1 = (int) r2;
                     r3 = 0;
                     r2_1 = p0.read(r1, r3, r2_1);
@@ -445,9 +445,9 @@ public class MainActivity extends android.app.Activity {
         long r12 = 0L;
         int r12_1 = 0;
         java.lang.String[] r12_2 = null;
-        int r13 = 0;
-        java.lang.String[] r13_1 = null;
-        String r13_2 = null;
+        java.lang.String[] r13 = null;
+        String r13_1 = null;
+        int r13_2 = 0;
         java.lang.StringBuilder r13_3 = null;
         int r14 = 0;
         byte[] r14_1 = null;
@@ -591,17 +591,17 @@ public class MainActivity extends android.app.Activity {
                     r11_4 = this.getFilesDir();
                     r9 = new java.lang.StringBuilder();
                     r9 = r9.append(r2);
-                    r9 = r9.append(r14_2, r15);
+                    r9 = r9.append(r14_2);
                     r9 = r9.append(r3);
-                    r9 = r9.append(r12, r13);
+                    r9 = r9.append(r12);
                     r9_1 = r9.toString();
                     r8 = new java.io.File(r11_4, r9_1);
                     r10 = new java.lang.StringBuilder();
                     r11_5 = ".ok-v8-";
                     r10 = r10.append(r11_5);
-                    r10 = r10.append(r14_2, r15);
+                    r10 = r10.append(r14_2);
                     r10 = r10.append(r3);
-                    r10 = r10.append(r12, r13);
+                    r10 = r10.append(r12);
                     r10_1 = r10.toString();
                     r9_2 = new java.io.File(r8, r10_1);
                     r10_2 = r9_2.exists();
@@ -609,9 +609,9 @@ public class MainActivity extends android.app.Activity {
                     r10 = new java.lang.StringBuilder();
                     r11_5 = "[0] 检测到新指纹，解压到新目录 rootfs-v8-";
                     r10 = r10.append(r11_5);
-                    r10 = r10.append(r14_2, r15);
+                    r10 = r10.append(r14_2);
                     r3_1 = r10.append(r3);
-                    r3_1 = r3_1.append(r12, r13);
+                    r3_1 = r3_1.append(r12);
                     r10_3 = " ...";
                     r3_1 = r3_1.append(r10_3);
                     r3_2 = r3_1.toString();
@@ -619,7 +619,7 @@ public class MainActivity extends android.app.Activity {
                     r3_1 = new java.lang.StringBuilder();
                     r10_3 = "[1] 解压 rootfs (payload=";
                     r3_1 = r3_1.append(r10_3);
-                    r3_1 = r3_1.append(r12, r13);
+                    r3_1 = r3_1.append(r12);
                     r10_3 = "B, 耐心等 1-2 分钟) ...";
                     r3_1 = r3_1.append(r10_3);
                     r3_2 = r3_1.toString();
@@ -633,44 +633,44 @@ public class MainActivity extends android.app.Activity {
                     r3_5 = 5;
                     r4_1 = new java.lang.String[r3_5][];
                     r12_1 = 2;
-                    r13_1 = new java.lang.String[r12_1];
+                    r13 = new java.lang.String[r12_1];
                     r14_3 = "app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/sherpa-onnx.node";
-                    r13_1[r7_3] = r14_3;
+                    r13[r7_3] = r14_3;
                     r14_3 = "804112";
                     r15_1 = 1;
-                    r13_1[r15_1] = r14_3;
-                    r4_1[r7_3] = r13_1;
-                    r13_1 = new java.lang.String[r12_1];
+                    r13[r15_1] = r14_3;
+                    r4_1[r7_3] = r13;
+                    r13 = new java.lang.String[r12_1];
                     r14_3 = "app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/libonnxruntime.so";
-                    r13_1[r7_3] = r14_3;
+                    r13[r7_3] = r14_3;
                     r14_3 = "34606912";
                     r15_1 = 1;
-                    r13_1[r15_1] = r14_3;
-                    r4_1[r15_1] = r13_1;
-                    r13_1 = new java.lang.String[r12_1];
+                    r13[r15_1] = r14_3;
+                    r4_1[r15_1] = r13;
+                    r13 = new java.lang.String[r12_1];
                     r14_3 = "app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/libsherpa-onnx-c-api.so";
-                    r13_1[r7_3] = r14_3;
+                    r13[r7_3] = r14_3;
                     r14_3 = "4613032";
-                    r13_1[r15_1] = r14_3;
-                    r4_1[r12_1] = r13_1;
-                    r13_1 = new java.lang.String[r12_1];
+                    r13[r15_1] = r14_3;
+                    r4_1[r12_1] = r13;
+                    r13 = new java.lang.String[r12_1];
                     r14_3 = "app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/libsherpa-onnx-cxx-api.so";
-                    r13_1[r7_3] = r14_3;
+                    r13[r7_3] = r14_3;
                     r14_3 = "281200";
                     r15_1 = 1;
-                    r13_1[r15_1] = r14_3;
+                    r13[r15_1] = r14_3;
                     r14 = 3;
-                    r4_1[r14] = r13_1;
+                    r4_1[r14] = r13;
                     r12_2 = new java.lang.String[r12_1];
-                    r13_2 = "bin/node";
-                    r12_2[r7_3] = r13_2;
-                    r13_2 = "123024744";
+                    r13_1 = "bin/node";
+                    r12_2[r7_3] = r13_1;
+                    r13_1 = "123024744";
                     r14 = 1;
-                    r12_2[r14] = r13_2;
-                    r13 = 4;
-                    r4_1[r13] = r12_2;
+                    r12_2[r14] = r13_1;
+                    r13_2 = 4;
+                    r4_1[r13_2] = r12_2;
                     r12_1 = r7_3;
-                    r13 = r12_1;
+                    r13_2 = r12_1;
                     _pc = 7; break;
                     case 7:
                     if (r12_1 >= r3_5) { _pc = 12; break; }
@@ -694,8 +694,8 @@ public class MainActivity extends android.app.Activity {
                     case 9:
                     r19_1 = (r3_7 > r7_4 ? 1 : (r3_7 == r7_4 ? 0 : -1));
                     if (r19_1 == 0) { _pc = 10; break; }
-                    r13 = (r13 + 1);
-                    r19_1 = r13;
+                    r13_2 = (r13_2 + 1);
+                    r19_1 = r13_2;
                     r13_3 = new java.lang.StringBuilder();
                     r20 = r15_3;
                     r15_4 = "[CHK] MISMATCH ";
@@ -705,13 +705,13 @@ public class MainActivity extends android.app.Activity {
                     r13_3 = r13_3.append(r14_4);
                     r14_3 = " got=";
                     r13_3 = r13_3.append(r14_3);
-                    r3_1 = r13_3.append(r3_7, r4_1);
+                    r3_1 = r13_3.append(r3_7);
                     r4 = " want=";
                     r3_1 = r3_1.append(r4);
-                    r3_1 = r3_1.append(r7_4, r8);
+                    r3_1 = r3_1.append(r7_4);
                     r3_2 = r3_1.toString();
                     r1.log(r3_2);
-                    r13 = r19_1;
+                    r13_2 = r19_1;
                     _pc = 11; break;
                     case 10:
                     r20_1 = r15_2;
@@ -728,7 +728,7 @@ public class MainActivity extends android.app.Activity {
                     r3_1 = new java.lang.StringBuilder();
                     r4 = "[CHK] critical files: ";
                     r3_1 = r3_1.append(r4);
-                    r4_3 = 5 - r13;
+                    r4_3 = 5 - r13_2;
                     r3_1 = r3_1.append(r4_3);
                     r4 = "/";
                     r3_1 = r3_1.append(r4);
@@ -736,7 +736,7 @@ public class MainActivity extends android.app.Activity {
                     r3_1 = r3_1.append(r4_3);
                     r4 = " OK";
                     r3_1 = r3_1.append(r4);
-                    if (r13 <= 0) { _pc = 13; break; }
+                    if (r13_2 <= 0) { _pc = 13; break; }
                     r4 = "  <-- !!! 解压有问题，语音会失败";
                     _pc = 14; break;
                     case 13:
@@ -756,7 +756,7 @@ public class MainActivity extends android.app.Activity {
                     r3_1 = r3_1.append(r4);
                     r7_4 = java.lang.System.currentTimeMillis();
                     r7_4 = (r7_4 - r10_4);
-                    r3_1 = r3_1.append(r7_4, r8);
+                    r3_1 = r3_1.append(r7_4);
                     r4 = "ms";
                     r3_1 = r3_1.append(r4);
                     r3_2 = r3_1.toString();
@@ -953,7 +953,7 @@ public class MainActivity extends android.app.Activity {
                     r0_2 = 0;
                     ((MainActivity) r1).coreReady = (r0_2 != 0);
                     r2_4 = 1000L;
-                    java.lang.Thread.sleep(r2_4, r3_5);
+                    java.lang.Thread.sleep(r2_4);
                     r2_5 = new MainActivity_18(r1);
                     r0_3 = new java.lang.Thread(r2_5);
                     r0_3.start();
@@ -1101,7 +1101,7 @@ public class MainActivity extends android.app.Activity {
                     case 7:
                     r15 = r8_1.length();
                     if (r15 != 0) { _pc = 9; break; }
-                    MainActivity.skipExactly(r2, r9_1, r10);
+                    MainActivity.skipExactly(r2, r9_1);
                     _pc = 8; break;
                     case 8:
                     r3_1 = 512;
@@ -1154,7 +1154,7 @@ public class MainActivity extends android.app.Activity {
                     case 15:
                     r3_1 = r8_1.length();
                     if (r3_1 != 0) { _pc = 16; break; }
-                    MainActivity.skipExactly(r2, r9_1, r10);
+                    MainActivity.skipExactly(r2, r9_1);
                     _pc = 8; break;
                     case 16:
                     r3_3 = new java.io.File(r1, r8_1);
@@ -1229,7 +1229,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 26; break;
                     case 26:
                     r6_5 = new java.io.FileOutputStream(r3_5);
-                    MainActivity.copyN(r2, r6_5, r9_1, r10);
+                    MainActivity.copyN(r2, r6_5, r9_1);
                     r6_5.close();
                     r6_2 = false;
                     r3_5.setReadable((r4_1 != 0), r6_2);
@@ -1257,7 +1257,7 @@ public class MainActivity extends android.app.Activity {
                     r3_5.setExecutable((r4_1 != 0), r6_2);
                     _pc = 28; break;
                     case 28:
-                    MainActivity.skipPad(r2, r9_1, r10);
+                    MainActivity.skipPad(r2, r9_1);
                     _pc = 39; break;
                     case 29:
                     r6 = 0;
@@ -1300,7 +1300,7 @@ public class MainActivity extends android.app.Activity {
                     r6 = (r6 + 1);
                     _pc = 30; break;
                     case 34:
-                    MainActivity.skipPad(r2, r9_1, r10);
+                    MainActivity.skipPad(r2, r9_1);
                     _pc = 39; break;
                     case 35:
                     r14 = 65536;
@@ -1323,7 +1323,7 @@ public class MainActivity extends android.app.Activity {
                     ((MainActivity) r0).pendingLink = r3_4;
                     _pc = 38; break;
                     case 38:
-                    MainActivity.skipPad(r2, r9_1, r10);
+                    MainActivity.skipPad(r2, r9_1);
                     _pc = 39; break;
                     case 39:
                     r4_1 = r14;
@@ -1444,7 +1444,7 @@ public class MainActivity extends android.app.Activity {
         r0_4 = new android.os.Handler(r1_2);
         r1_3 = new MainActivity_20(this, p1);
         r2 = 2500L;
-        r0_4.postDelayed(r1_3, r2, r3);
+        r0_4.postDelayed(r1_3, r2);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -1980,7 +1980,7 @@ public class MainActivity extends android.app.Activity {
                     r2 = 0L;
                     r4 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1));
                     if (r4 <= 0) { _pc = 4; break; }
-                    r4_1 = p0.skip(r0, r1);
+                    r4_1 = p0.skip(r0);
                     r2_1 = (r4_1 > r2 ? 1 : (r4_1 == r2 ? 0 : -1));
                     if (r2_1 > 0) { _pc = 3; break; }
                     r2_1 = p0.read();
@@ -1993,7 +1993,7 @@ public class MainActivity extends android.app.Activity {
                     r0 = (r0 - r4_1);
                     _pc = 1; break;
                     case 4:
-                    MainActivity.skipPad(p0, p1, p2);
+                    MainActivity.skipPad(p0, p1);
                     return;
                             }
                         } catch (Throwable _e) {
@@ -2025,7 +2025,7 @@ public class MainActivity extends android.app.Activity {
                     r0 = 0L;
                     r2 = (p1 > r0 ? 1 : (p1 == r0 ? 0 : -1));
                     if (r2 <= 0) { _pc = 3; break; }
-                    r2_1 = p0.skip(p1, p2);
+                    r2_1 = p0.skip(p1);
                     r0_1 = (r2_1 > r0 ? 1 : (r2_1 == r0 ? 0 : -1));
                     if (r0_1 > 0) { _pc = 2; break; }
                     _pc = 3; break;
@@ -2451,7 +2451,7 @@ public class MainActivity extends android.app.Activity {
                     r0_4 = ((MainActivity) this).root;
                     r1_11 = new MainActivity_14(this);
                     r2_8 = 1200L;
-                    r0_4.postDelayed(r1_11, r2_8, r3_3);
+                    r0_4.postDelayed(r1_11, r2_8);
                     _pc = 4; break;
                     r2 = "[GUIDE] 自动引导失败: ";
                     r1_10 = new java.lang.StringBuilder(r2);
@@ -2468,7 +2468,7 @@ public class MainActivity extends android.app.Activity {
                     p1_2 = ((MainActivity) this).root;
                     r0_11 = new MainActivity_15(this);
                     r1_13 = 2500L;
-                    p1_2.postDelayed(r0_11, r1_13, r2);
+                    p1_2.postDelayed(r0_11, r1_13);
                     _pc = 5; break;
                     r1_12 = "[PET] 自动恢复悬浮窗失败: ";
                     r0_8 = new java.lang.StringBuilder(r1_12);

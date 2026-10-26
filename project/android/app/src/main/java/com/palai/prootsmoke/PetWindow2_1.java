@@ -23,7 +23,7 @@ public class PetWindow2_1 implements java.lang.Runnable {
             PetWindow2.access$000();
             r0 = PetWindow2.access$100();
             r1 = 120L;
-            r0.postDelayed(this, r1, r2);
+            r0.postDelayed(this, r1);
             return;
         } catch (java.lang.Throwable r0_1) {
             r1_1 = new java.lang.StringBuilder();
@@ -35,7 +35,7 @@ public class PetWindow2_1 implements java.lang.Runnable {
             android.util.Log.w(r1_2, r0_3);
             r0 = PetWindow2.access$100();
             r1 = 120L;
-            r0.postDelayed(this, r1, r2);
+            r0.postDelayed(this, r1);
             return;
         }
     }

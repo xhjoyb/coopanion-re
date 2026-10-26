@@ -42,7 +42,7 @@ public class RepairActivity_5 implements java.lang.Runnable {
             r0_1 = ((RepairActivity_5) this).this$0;
             r0_2 = RepairActivity._$$Nest$fgetimeHandler(r0_1);
             r1_1 = 400L;
-            r0_2.postDelayed(this, r1_1, r2);
+            r0_2.postDelayed(this, r1_1);
         }
         return;
         } catch (Throwable _e9) {

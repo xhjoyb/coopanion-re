@@ -36,7 +36,7 @@ public class PetWindowService_4 extends android.webkit.WebViewClient {
         p1_3 = PetWindowService._$$Nest$fgetui(p1_2);
         p2_2 = ((PetWindowService_4) this).val$finish;
         r0 = 400L;
-        p1_3.postDelayed(p2_2, r0, r1);
+        p1_3.postDelayed(p2_2, r0);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

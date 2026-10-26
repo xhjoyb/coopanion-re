@@ -142,7 +142,7 @@ public final class SenseBridge {
                     r3 = 3600000L;
                     r4 = (r6 - r3);
                     r3_1 = 0;
-                    r1_2 = ((android.app.usage.UsageStatsManager) r2_1).queryUsageStats(r3_1, r4, r5, r6, r7);
+                    r1_2 = ((android.app.usage.UsageStatsManager) r2_1).queryUsageStats(r3_1, r4, r6);
                     if (r1_2 == null) { _pc = 4; break; }
                     r1_3 = r1_2.iterator();
                     r2_2 = r0;
@@ -410,7 +410,7 @@ public final class SenseBridge {
                     r3_1 = r2_1.next();
                     r4 = "seq";
                     r5 = 0L;
-                    r4_1 = ((org.json.JSONObject) r3_1).optLong(r4, r5, r6);
+                    r4_1 = ((org.json.JSONObject) r3_1).optLong(r4, r5);
                     r4_2 = (r4_1 > p1 ? 1 : (r4_1 == p1 ? 0 : -1));
                     if (r4_2 < 0) { _pc = 1; break; }
                     r1.put(r3_1);
@@ -418,7 +418,7 @@ public final class SenseBridge {
                     case 2:
                     p1_1 = "cursor";
                     r2_2 = ((SenseBridge) this).notifSeq;
-                    r0.put(p1_1, r2_2, r3_1);
+                    r0.put(p1_1, r2_2);
                     p1_1 = "items";
                     r0.put(p1_1, r1);
                     p1_2 = r0.toString();
@@ -653,11 +653,11 @@ public final class SenseBridge {
                     p6 = new org.json.JSONObject();
                     r0_1 = "seq";
                     r1 = ((SenseBridge) this).notifSeq;
-                    p6.put(r0_1, r1, r2);
+                    p6.put(r0_1, r1);
                     r0_1 = "id";
                     r1_1 = new java.lang.StringBuilder(p5_1);
                     r2 = ((SenseBridge) this).notifSeq;
-                    p5_2 = r1_1.append(r2, r3);
+                    p5_2 = r1_1.append(r2);
                     p5_3 = p5_2.toString();
                     p6.put(r0_1, p5_3);
                     p5_1 = "pkg";

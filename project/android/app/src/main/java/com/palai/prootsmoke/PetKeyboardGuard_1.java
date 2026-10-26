@@ -33,7 +33,7 @@ public class PetKeyboardGuard_1 implements java.lang.Runnable {
             r0 = ((PetKeyboardGuard_1) this).this$0;
             r0_1 = PetKeyboardGuard.access$100(r0);
             r1 = 150L;
-            r0_1.postDelayed(this, r1, r2);
+            r0_1.postDelayed(this, r1);
             return;
         } catch (java.lang.Throwable r0_2) {
             r1_1 = new java.lang.StringBuilder();
@@ -46,7 +46,7 @@ public class PetKeyboardGuard_1 implements java.lang.Runnable {
             r0 = ((PetKeyboardGuard_1) this).this$0;
             r0_1 = PetKeyboardGuard.access$100(r0);
             r1 = 150L;
-            r0_1.postDelayed(this, r1, r2);
+            r0_1.postDelayed(this, r1);
             return;
         }
     }

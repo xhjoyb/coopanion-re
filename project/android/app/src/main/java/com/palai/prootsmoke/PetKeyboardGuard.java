@@ -458,7 +458,7 @@ public final class PetKeyboardGuard {
             r2_2 = ",";
             p1_2 = p1_2.append(r2_2);
             r2 = ((PetKeyboardGuard) this).seq;
-            p1_2 = p1_2.append(r2, r3);
+            p1_2 = p1_2.append(r2);
             r2_2 = ")";
             p1_2 = p1_2.append(r2_2);
             p1_3 = p1_2.toString();

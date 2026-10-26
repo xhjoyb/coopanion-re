@@ -106,12 +106,12 @@ public class PetWindowService_16 implements java.lang.Runnable {
             r0_5 = PetWindowService._$$Nest$fgetui(r0);
             r1_3 = new PetWindowService_16_1(this);
             r2_2 = 120L;
-            r0_5.postDelayed(r1_3, r2_2, r3);
+            r0_5.postDelayed(r1_3, r2_2);
             r0 = ((PetWindowService_16) this).this$0;
             r0_5 = PetWindowService._$$Nest$fgetui(r0);
             r1_4 = new PetWindowService_16_2(this);
             r2_2 = 450L;
-            r0_5.postDelayed(r1_4, r2_2, r3);
+            r0_5.postDelayed(r1_4, r2_2);
         }
         return;
         } catch (Throwable _e9) {

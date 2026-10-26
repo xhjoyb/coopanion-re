@@ -27,7 +27,7 @@ public class PetWindowService_14 implements java.lang.Runnable {
         r0 = ((PetWindowService_14) this).this$0;
         r0_1 = PetWindowService._$$Nest$fgetui(r0);
         r1 = 80L;
-        r0_1.postDelayed(this, r1, r2);
+        r0_1.postDelayed(this, r1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

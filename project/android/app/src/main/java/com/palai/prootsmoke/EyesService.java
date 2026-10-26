@@ -190,7 +190,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
             EyesService_Api30.capture(r0_1, r1, r2, r3, r4, r5, r6);
             p1_1 = java.util.concurrent.TimeUnit.MILLISECONDS;
             r0_2 = 9000L;
-            r9.await(r0_2, r1, p1_1);
+            r9.await(r0_2, p1_1);
             p1_2 = r7.get();
             if (p1_2 != null) {
                 p2 = java.lang.reflect.Array.getLength(p1_2);
@@ -486,7 +486,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r2_4 = (r2_4 - r6);
                     _pc = 6; break;
                     case 6:
-                    r0.put(r1, r2_4, r3_1);
+                    r0.put(r1, r2_4);
                     r1 = "frameBytes";
                     r2_3 = ((EyesService) this).lastJpeg;
                     if (r2_3 != null) { _pc = 8; break; }
@@ -1053,8 +1053,8 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r3 = ((EyesService) this).lastJpegAt;
                     r1_3 = (r1_3 - r3);
                     r3 = 0L;
-                    r1_3 = java.lang.Math.max(r3, r4, r1_3, r2);
-                    r0_2 = r0_2.append(r1_3, r2);
+                    r1_3 = java.lang.Math.max(r3, r1_3);
+                    r0_2 = r0_2.append(r1_3);
                     r1_1 = "\nCache-Control: no-store\nConnection: close\n";
                     r0_2 = r0_2.append(r1_1);
                     r0_3 = r0_2.toString();

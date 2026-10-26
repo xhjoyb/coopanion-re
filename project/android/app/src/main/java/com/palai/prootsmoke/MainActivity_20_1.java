@@ -105,7 +105,7 @@ public class MainActivity_20_1 {
             p1_6 = new android.os.Handler(r0_4);
             r0_5 = new MainActivity_20_1_1(this);
             r1_1 = 1500L;
-            p1_6.postDelayed(r0_5, r1_1, r2_3);
+            p1_6.postDelayed(r0_5, r1_1);
         }
         return;
         } catch (Throwable _e9) {

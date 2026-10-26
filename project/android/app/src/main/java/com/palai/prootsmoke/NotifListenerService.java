@@ -167,7 +167,7 @@ public class NotifListenerService extends android.service.notification.Notificat
                 if (r1_3 != null) {
                     r3 = this.appLabel(r2);
                     r6 = p1.getPostTime();
-                    r1_3.addNotification(r2, r3, r4_1, r5, r6, r7);
+                    r1_3.addNotification(r2, r3, r4_1, r5, r6);
                 }
             } else {
             }

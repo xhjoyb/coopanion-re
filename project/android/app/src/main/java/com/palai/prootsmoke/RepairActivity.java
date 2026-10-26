@@ -137,7 +137,7 @@ public class RepairActivity extends android.app.Activity {
         r0_1 = new RepairActivity_5(this, p1);
         p1_1 = ((RepairActivity) this).imeHandler;
         r1_1 = 600L;
-        p1_1.postDelayed(r0_1, r1_1, r2);
+        p1_1.postDelayed(r0_1, r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

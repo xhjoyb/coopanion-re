@@ -600,11 +600,11 @@ public class PetWindowService extends android.app.Service {
                     p1_10 = ((PetWindowService) this).ui;
                     r0_2 = new PetWindowService_12(this);
                     r1_10 = 1000L;
-                    p1_10.postDelayed(r0_2, r1_10, r2_9);
+                    p1_10.postDelayed(r0_2, r1_10);
                     p1_10 = ((PetWindowService) this).ui;
                     r0_3 = ((PetWindowService) this).followTick;
                     r1_10 = 300L;
-                    p1_10.postDelayed(r0_3, r1_10, r2_9);
+                    p1_10.postDelayed(r0_3, r1_10);
                     return;
                             }
                         } catch (Throwable _e) {
@@ -644,7 +644,7 @@ public class PetWindowService extends android.app.Service {
         r1_3 = new java.io.FileOutputStream(r2, (r3_1 != 0));
         r2_1 = new java.lang.StringBuilder(r0);
         r3_2 = java.lang.System.currentTimeMillis();
-        r0_1 = r2_1.append(r3_2, r4);
+        r0_1 = r2_1.append(r3_2);
         r2 = "] ";
         r0_1 = r0_1.append(r2);
         p1_1 = r0_1.append(p1);
@@ -1048,7 +1048,7 @@ public class PetWindowService extends android.app.Service {
                     r3 = (long) r0;
                     r5 = 200L;
                     r3 = (r3 * r5);
-                    r1_1.postDelayed(r2, r3, r4);
+                    r1_1.postDelayed(r2, r3);
                     _pc = 1; break;
                     case 2:
                     return;
@@ -1165,7 +1165,7 @@ public class PetWindowService extends android.app.Service {
                     r0.loadUrl(r1_2);
                     r0_1 = ((PetWindowService) r8).ui;
                     r1_8 = 2500L;
-                    r0_1.postDelayed(r13_1, r1_8, r2_1);
+                    r0_1.postDelayed(r13_1, r1_8);
                     _pc = 3; break;
                     r1_9 = r0_1;
                     r0_2 = new java.lang.StringBuilder(r10);
