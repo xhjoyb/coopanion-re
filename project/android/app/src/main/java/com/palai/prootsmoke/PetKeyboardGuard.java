@@ -28,6 +28,7 @@ public final class PetKeyboardGuard {
     public android.webkit.WebView web;
     // ---- constructors ----
     public PetKeyboardGuard(android.content.Context p1, android.view.View p2, android.view.View p3) {
+        super();
         android.content.res.Resources p1_1 = null;
         android.util.DisplayMetrics p1_2 = null;
         int p1_3 = 0;
@@ -38,7 +39,6 @@ public final class PetKeyboardGuard {
         android.content.Context r0_4 = null;
         PetKeyboardGuard_1 r0_5 = null;
         android.os.Looper r1 = null;
-        super();
         r1 = android.os.Looper.getMainLooper();
         r0 = new android.os.Handler(r1);
         this.ui = r0;

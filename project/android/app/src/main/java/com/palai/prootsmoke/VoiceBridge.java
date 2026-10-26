@@ -20,9 +20,9 @@ public class VoiceBridge {
     public /*final*/ android.webkit.WebView web;
     // ---- constructors ----
     public VoiceBridge(android.content.Context p1, android.webkit.WebView p2) {
+        super();
         android.os.Handler r0 = null;
         android.os.Looper r1 = null;
-        super();
         r1 = android.os.Looper.getMainLooper();
         r0 = new android.os.Handler(r1);
         this.ui = r0;

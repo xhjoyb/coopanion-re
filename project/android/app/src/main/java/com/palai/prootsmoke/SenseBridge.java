@@ -22,9 +22,9 @@ public final class SenseBridge {
     public java.lang.Thread thread;
     // ---- constructors ----
     public SenseBridge(android.content.Context p1) {
+        super();
         java.util.ArrayList r0 = null;
         long r0_1 = 0L;
-        super();
         r0 = new java.util.ArrayList();
         this.notifs = r0;
         r0_1 = 0L;
