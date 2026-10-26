@@ -12,9 +12,10 @@ public class PetWindowService_11 implements android.view.View.OnLayoutChangeList
     // ---- constructors ----
     public PetWindowService_11(PetWindowService p1) {
         super();
+        boolean p1_1 = false;
         ((PetWindowService_11) this).this$0 = p1;
-        p1 = null;
-        ((PetWindowService_11) this).loaded = p1;
+        p1_1 = false;
+        ((PetWindowService_11) this).loaded = p1_1;
         return;
     }
     public PetWindowService_11() {

@@ -22,12 +22,13 @@ public class VoiceBridge {
     public VoiceBridge(android.content.Context p1, android.webkit.WebView p2) {
         super();
         android.os.Handler r0 = null;
+        boolean r0_1 = false;
         android.os.Looper r1 = null;
         r1 = android.os.Looper.getMainLooper();
         r0 = new android.os.Handler(r1);
         ((VoiceBridge) this).ui = r0;
-        r0 = null;
-        ((VoiceBridge) this).wanted = r0;
+        r0_1 = false;
+        ((VoiceBridge) this).wanted = r0_1;
         ((VoiceBridge) this).ctx = p1;
         ((VoiceBridge) this).web = p2;
         return;

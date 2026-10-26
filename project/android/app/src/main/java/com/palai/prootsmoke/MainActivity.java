@@ -47,15 +47,15 @@ public class MainActivity extends android.app.Activity {
     }
     public MainActivity() {
         super();
-        int r0 = 0;
-        int r1 = 0;
-        r0 = 0;
-        ((MainActivity) this).coreReady = (r0 != 0);
-        ((MainActivity) this).booting = (r0 != 0);
-        r1 = 0;
+        boolean r0 = false;
+        java.lang.String r1 = null;
+        r0 = false;
+        ((MainActivity) this).coreReady = r0;
+        ((MainActivity) this).booting = r0;
+        r1 = null;
         ((MainActivity) this).pendingName = r1;
         ((MainActivity) this).pendingLink = r1;
-        ((MainActivity) this).petRetry = r0;
+        ((MainActivity) this).petRetry = (r0 ? 1 : 0);
         return;
     }
     // ---- methods ----
@@ -281,12 +281,12 @@ public class MainActivity extends android.app.Activity {
             }
             r0_2 = 1;
             ((MainActivity) this).booting = (r0_2 != 0);
-            r0_2 = 0;
+            r0 = false;
             this.doBoot();
-            ((MainActivity) this).booting = (r0_2 != 0);
+            ((MainActivity) this).booting = r0;
             return;
         } catch (java.lang.Throwable r1) {
-            ((MainActivity) this).booting = (r0_2 != 0);
+            ((MainActivity) this).booting = r0;
             throw r1;
         }
     }
@@ -427,8 +427,9 @@ public class MainActivity extends android.app.Activity {
         String r0 = null;
         java.lang.Process r0_1 = null;
         int r0_2 = 0;
-        java.lang.Thread r0_3 = null;
-        java.lang.Throwable r0_4 = null;
+        boolean r0_3 = false;
+        java.lang.Thread r0_4 = null;
+        java.lang.Throwable r0_5 = null;
         MainActivity r1 = null;
         java.lang.StringBuilder r10 = null;
         java.lang.String r10_1 = null;
@@ -950,17 +951,17 @@ public class MainActivity extends android.app.Activity {
                     r1.log(r0);
                     r0 = "[!] 重启中，请稍等 10~30 秒，控制台页面会自动刷新。";
                     r1.log(r0);
-                    r0_2 = 0;
-                    ((MainActivity) r1).coreReady = (r0_2 != 0);
+                    r0_3 = false;
+                    ((MainActivity) r1).coreReady = r0_3;
                     r2_4 = 1000L;
                     java.lang.Thread.sleep(r2_4);
                     r2_5 = new MainActivity_18(r1);
-                    r0_3 = new java.lang.Thread(r2_5);
-                    r0_3.start();
+                    r0_4 = new java.lang.Thread(r2_5);
+                    r0_4.start();
                     return;
                             }
                         } catch (Throwable _e) {
-                                r0_4 = _e;
+                                r0_5 = _e;
                                 _pc = 28;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
                             }
@@ -989,6 +990,7 @@ public class MainActivity extends android.app.Activity {
         java.lang.StringBuilder r15_1 = null;
         boolean r15_2 = false;
         String r15_3 = null;
+        java.lang.String r15_4 = null;
         java.io.BufferedInputStream r2 = null;
         java.util.zip.GZIPInputStream r3 = null;
         int r3_1 = 0;
@@ -1122,12 +1124,12 @@ public class MainActivity extends android.app.Activity {
                     _pc = 29; break;
                     case 11:
                     r6_1 = ((MainActivity) r0).pendingName;
-                    r15_3 = null;
+                    r15_4 = null;
                     if (r6_1 == null) { _pc = 12; break; }
                     r6 = r6_1.length();
                     if (r6 <= 0) { _pc = 12; break; }
                     r8_1 = ((MainActivity) r0).pendingName;
-                    ((MainActivity) r0).pendingName = r15_3;
+                    ((MainActivity) r0).pendingName = r15_4;
                     _pc = 12; break;
                     case 12:
                     r6_1 = ((MainActivity) r0).pendingLink;
@@ -1135,7 +1137,7 @@ public class MainActivity extends android.app.Activity {
                     r6 = r6_1.length();
                     if (r6 <= 0) { _pc = 13; break; }
                     r7_1 = ((MainActivity) r0).pendingLink;
-                    ((MainActivity) r0).pendingLink = r15_3;
+                    ((MainActivity) r0).pendingLink = r15_4;
                     _pc = 13; break;
                     case 13:
                     r6_2 = r8_1.startsWith(r14_3);
@@ -1265,7 +1267,7 @@ public class MainActivity extends android.app.Activity {
                     r3_1 = (int) r9_1;
                     r4_2 = new byte[r3_1];
                     MainActivity.readFull(r2, r4_2, r3_1);
-                    r7_1 = new java.lang.String(r4_2, r6, r3_1, r15_3);
+                    r7_1 = new java.lang.String(r4_2, r6, r3_1, r15_4);
                     r3_2 = "\n";
                     r3_6 = r7_1.split(r3_2);
                     r4_1 = java.lang.reflect.Array.getLength(r3_6);
@@ -1308,7 +1310,7 @@ public class MainActivity extends android.app.Activity {
                     r4_2 = new byte[r3_1];
                     MainActivity.readFull(r2, r4_2, r3_1);
                     r8_3 = 0;
-                    r6_1 = new java.lang.String(r4_2, r8_3, r3_1, r15_3);
+                    r6_1 = new java.lang.String(r4_2, r8_3, r3_1, r15_4);
                     r3_1 = r6_1.indexOf(r8_3);
                     if (r3_1 < 0) { _pc = 36; break; }
                     r6_1 = r6_1.substring(r8_3, r3_1);

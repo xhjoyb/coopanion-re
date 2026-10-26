@@ -36,8 +36,9 @@ public final class PetKeyboardGuard {
         long r0_1 = 0L;
         int r0_2 = 0;
         String r0_3 = null;
-        android.content.Context r0_4 = null;
+        boolean r0_4 = false;
         PetKeyboardGuard_1 r0_5 = null;
+        android.content.Context r0_6 = null;
         android.os.Looper r1 = null;
         r1 = android.os.Looper.getMainLooper();
         r0 = new android.os.Handler(r1);
@@ -48,12 +49,12 @@ public final class PetKeyboardGuard {
         ((PetKeyboardGuard) this).lastHeight = r0_2;
         r0_3 = "";
         ((PetKeyboardGuard) this).lastSource = r0_3;
-        r0_4 = null;
+        r0_4 = false;
         ((PetKeyboardGuard) this).reportedOnce = r0_4;
         r0_5 = new PetKeyboardGuard_1(this);
         ((PetKeyboardGuard) this).tick = r0_5;
-        r0_4 = p1.getApplicationContext();
-        ((PetKeyboardGuard) this).app = r0_4;
+        r0_6 = p1.getApplicationContext();
+        ((PetKeyboardGuard) this).app = r0_6;
         ((PetKeyboardGuard) this).root = p2;
         ((PetKeyboardGuard) this).target = p3;
         p1_1 = p1.getResources();
@@ -476,11 +477,12 @@ public final class PetKeyboardGuard {
         }
     }
     public void retarget(android.view.View p1, android.view.View p2) {
+        android.webkit.WebView p1_1 = null;
         try {
         ((PetKeyboardGuard) this).root = p1;
         ((PetKeyboardGuard) this).target = p2;
-        p1 = null;
-        ((PetKeyboardGuard) this).web = p1;
+        p1_1 = null;
+        ((PetKeyboardGuard) this).web = p1_1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

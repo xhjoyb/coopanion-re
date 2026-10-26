@@ -88,10 +88,10 @@ public class NotifListenerService extends android.service.notification.Notificat
         }
     }
     public void onListenerDisconnected() {
-        int r0 = 0;
+        boolean r0 = false;
         try {
-        r0 = 0;
-        NotifListenerService.connected = (r0 != 0);
+        r0 = false;
+        NotifListenerService.connected = r0;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

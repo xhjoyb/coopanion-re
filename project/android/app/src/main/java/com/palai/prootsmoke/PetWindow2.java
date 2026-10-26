@@ -32,8 +32,9 @@ public final class PetWindow2 {
     // ---- constructors ----
     static {
         int r0 = 0;
-        android.os.Handler r0_1 = null;
-        PetWindow2_1 r0_2 = null;
+        boolean r0_1 = false;
+        android.os.Handler r0_2 = null;
+        PetWindow2_1 r0_3 = null;
         android.os.Looper r1 = null;
         try {
         r0 = -1;
@@ -41,13 +42,13 @@ public final class PetWindow2 {
         PetWindow2.petT = r0;
         PetWindow2.petR = r0;
         PetWindow2.petB = r0;
-        r0 = 0;
-        PetWindow2.started = (r0 != 0);
+        r0_1 = false;
+        PetWindow2.started = r0_1;
         r1 = android.os.Looper.getMainLooper();
-        r0_1 = new android.os.Handler(r1);
-        PetWindow2.ui = r0_1;
-        r0_2 = new PetWindow2_1();
-        PetWindow2.tick = r0_2;
+        r0_2 = new android.os.Handler(r1);
+        PetWindow2.ui = r0_2;
+        r0_3 = new PetWindow2_1();
+        PetWindow2.tick = r0_3;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -276,6 +277,7 @@ public final class PetWindow2 {
         java.lang.Throwable p0_1 = null;
         java.lang.StringBuilder p0_2 = null;
         java.lang.String p0_3 = null;
+        boolean p0_4 = false;
         boolean r0 = false;
         int r0_1 = 0;
         java.lang.StringBuilder r0_2 = null;
@@ -299,16 +301,17 @@ public final class PetWindow2 {
             p0_3 = p0_2.toString();
             r0_3 = "PetWin2";
             android.util.Log.e(r0_3, p0_3);
-            p0_3 = null;
-            PetWindow2.started = p0_3;
+            p0_4 = false;
+            PetWindow2.started = p0_4;
             return;
         }
     }
     public static void stop() {
-        android.view.View r0 = null;
+        boolean r0 = false;
         android.os.Handler r0_1 = null;
         android.webkit.WebView r0_2 = null;
-        java.lang.Throwable r0_3 = null;
+        android.view.View r0_3 = null;
+        java.lang.Throwable r0_4 = null;
         java.lang.Runnable r1 = null;
         android.view.WindowManager r1_1 = null;
         try {
@@ -318,7 +321,7 @@ public final class PetWindow2 {
                 try {
                         switch (_pc) {
                     case 0:
-                    r0 = null;
+                    r0 = false;
                     PetWindow2.started = r0;
                     r0_1 = PetWindow2.ui;
                     r1 = PetWindow2.tick;
@@ -333,10 +336,10 @@ public final class PetWindow2 {
                     _pc = 2; break;
                     _pc = 2; break;
                     case 2:
-                    r0 = PetWindow2.touch;
-                    if (r0 == null) { _pc = 3; break; }
+                    r0_3 = PetWindow2.touch;
+                    if (r0_3 == null) { _pc = 3; break; }
                     r1_1 = PetWindow2.wm;
-                    r1_1.removeView(r0);
+                    r1_1.removeView(r0_3);
                     _pc = 3; break;
                     _pc = 3; break;
                     case 3:
@@ -346,7 +349,7 @@ public final class PetWindow2 {
                     return;
                             }
                         } catch (Throwable _e) {
-                                r0_3 = _e;
+                                r0_4 = _e;
                                 _pc = 1;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
                             }

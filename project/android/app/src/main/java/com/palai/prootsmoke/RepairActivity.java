@@ -20,9 +20,9 @@ public class RepairActivity extends android.app.Activity {
     // ---- constructors ----
     public RepairActivity() {
         super();
-        int r0 = 0;
-        r0 = 0;
-        ((RepairActivity) this).imeShown = (r0 != 0);
+        boolean r0 = false;
+        r0 = false;
+        ((RepairActivity) this).imeShown = r0;
         return;
     }
     // ---- methods ----
@@ -155,9 +155,9 @@ public class RepairActivity extends android.app.Activity {
         int r0 = 0;
         android.net.Uri r0_1 = null;
         android.net.Uri[] r0_2 = null;
-        java.lang.String r0_3 = null;
+        android.webkit.ValueCallback r0_3 = null;
         int r1 = 0;
-        java.lang.String r2 = null;
+        android.webkit.ValueCallback r2 = null;
         String r2_1 = null;
         int r3 = 0;
         try {

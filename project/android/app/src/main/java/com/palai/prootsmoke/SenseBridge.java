@@ -363,8 +363,8 @@ public final class SenseBridge {
                     r1_2 = new java.lang.Thread(r2_1, r0_3);
                     r1_2.start();
                     _pc = 1; break;
-                    r0_2 = null;
-                    ((SenseBridge) this).running = r0_2;
+                    r0_1 = false;
+                    ((SenseBridge) this).running = r0_1;
                     _pc = 2; break;
                     case 2:
                     return;
@@ -736,16 +736,17 @@ public final class SenseBridge {
         }
     }
     public void stop() {
-        java.net.ServerSocket r0 = null;
+        boolean r0 = false;
+        java.net.ServerSocket r0_1 = null;
         try {
-        r0 = null;
+        r0 = false;
         ((SenseBridge) this).running = r0;
-        r0 = ((SenseBridge) this).server;
-        if (r0 != null) {
-            r0.close();
+        r0_1 = ((SenseBridge) this).server;
+        if (r0_1 != null) {
+            r0_1.close();
         }
-        r0 = null;
-        ((SenseBridge) this).server = r0;
+        r0_1 = null;
+        ((SenseBridge) this).server = r0_1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

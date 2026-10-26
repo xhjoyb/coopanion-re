@@ -50,15 +50,16 @@ public class PetWindowService extends android.app.Service {
     public PetWindowService() {
         super();
         int r0 = 0;
-        long r0_1 = 0L;
+        boolean r0_1 = false;
+        long r0_2 = 0L;
         int r1 = 0;
         android.os.Handler r1_1 = null;
         PetWindowService_14 r1_2 = null;
         android.os.Looper r2 = null;
         r0 = 1065353216;
         ((PetWindowService) this).petAlpha = r0;
-        r0 = 0;
-        ((PetWindowService) this).firstLoadReloaded = (r0 != 0);
+        r0_1 = false;
+        ((PetWindowService) this).firstLoadReloaded = r0_1;
         r1 = -1082130432;
         ((PetWindowService) this).petX = r1;
         ((PetWindowService) this).petY = r1;
@@ -72,10 +73,10 @@ public class PetWindowService extends android.app.Service {
         ((PetWindowService) this).ui = r1_1;
         r1_2 = new PetWindowService_14(this);
         ((PetWindowService) this).followTick = r1_2;
-        ((PetWindowService) this).inputFocusOn = (r0 != 0);
-        r0_1 = 0L;
-        ((PetWindowService) this).lastFocusLog = r0_1;
-        ((PetWindowService) this).lastProbeLog = r0_1;
+        ((PetWindowService) this).inputFocusOn = r0_1;
+        r0_2 = 0L;
+        ((PetWindowService) this).lastFocusLog = r0_2;
+        ((PetWindowService) this).lastProbeLog = r0_2;
         return;
     }
     // ---- methods ----
@@ -428,7 +429,7 @@ public class PetWindowService extends android.app.Service {
         int r3_4 = 0;
         android.widget.FrameLayout.LayoutParams r4 = null;
         String r4_1 = null;
-        android.view.View r4_2 = null;
+        float r4_2 = 0f;
         android.widget.FrameLayout r4_3 = null;
         java.lang.StringBuilder r4_4 = null;
         PetWindowService_7 r4_5 = null;
@@ -486,7 +487,7 @@ public class PetWindowService extends android.app.Service {
                     r3_3 = r3_2.getFloat(r4_1, r1_5);
                     ((PetWindowService) this).petAlpha = r3_3;
                     r3_3 = ((PetWindowService) this).petAlpha;
-                    r4_2 = null;
+                    r4_2 = 0f;
                     r3_4 = (r3_3 > r4_2 ? 1 : (r3_3 == r4_2 ? 0 : -1));
                     if (r3_4 >= 0) { _pc = 1; break; }
                     ((PetWindowService) this).petAlpha = r4_2;

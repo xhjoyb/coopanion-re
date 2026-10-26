@@ -10,9 +10,10 @@ public class PetWindowService_12 implements java.lang.Runnable {
     // ---- constructors ----
     public PetWindowService_12(PetWindowService p1) {
         super();
+        boolean p1_1 = false;
         ((PetWindowService_12) this).this$0 = p1;
-        p1 = null;
-        ((PetWindowService_12) this).fired = p1;
+        p1_1 = false;
+        ((PetWindowService_12) this).fired = p1_1;
         return;
     }
     public PetWindowService_12() {

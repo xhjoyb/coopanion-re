@@ -42,15 +42,16 @@ public class PetActivity extends android.app.Activity {
     protected void onActivityResult(int p1, int p2, android.content.Intent p3) {
         android.net.Uri p1_1 = null;
         android.net.Uri[] p1_2 = null;
-        java.lang.StringBuilder p1_3 = null;
-        java.lang.String p1_4 = null;
+        android.webkit.ValueCallback p1_3 = null;
+        java.lang.StringBuilder p1_4 = null;
+        java.lang.String p1_5 = null;
         android.net.Uri p2_1 = null;
         android.webkit.ValueCallback p2_2 = null;
         java.lang.StringBuilder p2_3 = null;
         String p3_1 = null;
         int r0 = 0;
         int r1 = 0;
-        int r2 = 0;
+        android.webkit.ValueCallback r2 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -63,7 +64,7 @@ public class PetActivity extends android.app.Activity {
                     p1 = -1;
                     r0 = 1;
                     r1 = 0;
-                    r2 = 0;
+                    r2 = null;
                     if (p2 != p1) { _pc = 1; break; }
                     if (p3 == null) { _pc = 1; break; }
                     p1_1 = p3.getData();
@@ -73,29 +74,29 @@ public class PetActivity extends android.app.Activity {
                     p1_2[r1] = p2_1;
                     _pc = 2; break;
                     case 1:
-                    p1 = r2;
+                    p1_3 = r2;
                     _pc = 2; break;
                     case 2:
                     p2_2 = ((PetActivity) this).filePathCallback;
                     if (p2_2 == null) { _pc = 3; break; }
-                    p2_2.onReceiveValue(p1);
+                    p2_2.onReceiveValue(p1_3);
                     ((PetActivity) this).filePathCallback = r2;
                     _pc = 3; break;
                     case 3:
                     p3_1 = "[PETACT][FILE] onActivityResult ok=";
                     p2_3 = new java.lang.StringBuilder(p3_1);
-                    if (p1 == 0) { _pc = 4; break; }
+                    if (p1_3 == null) { _pc = 4; break; }
                     _pc = 5; break;
                     case 4:
                     r0 = r1;
                     _pc = 5; break;
                     case 5:
-                    p1_3 = p2_3.append((r0 != 0));
-                    p1_4 = p1_3.toString();
-                    AppLog.i(p1_4);
+                    p1_4 = p2_3.append((r0 != 0));
+                    p1_5 = p1_4.toString();
+                    AppLog.i(p1_5);
                     _pc = 7; break;
                     case 6:
-                    super.onActivityResult(p1_4, p2_3, p3_1);
+                    super.onActivityResult(p1_5, p2_3, p3_1);
                     _pc = 7; break;
                     case 7:
                     return;

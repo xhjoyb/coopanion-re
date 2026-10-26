@@ -48,6 +48,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
     public void acceptLoop() {
         java.net.ServerSocket r0 = null;
         java.lang.String r0_1 = null;
+        boolean r0_2 = false;
         String r1 = null;
         java.net.InetAddress r1_1 = null;
         boolean r1_2 = false;
@@ -98,8 +99,8 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     ((EyesService) this).lastError = r0_1;
                     _pc = 6; break;
                     case 6:
-                    r0_1 = null;
-                    ((EyesService) this).running = r0_1;
+                    r0_2 = false;
+                    ((EyesService) this).running = r0_2;
                     _pc = 7; break;
                     case 7:
                     return;
@@ -1125,10 +1126,10 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
     }
     public void stopServer() {
-        java.util.concurrent.ExecutorService r0 = null;
+        boolean r0 = false;
         java.net.ServerSocket r0_1 = null;
         {
-            r0 = null;
+            r0 = false;
             ((EyesService) this).running = r0;
             r0_1 = ((EyesService) this).server;
             if (r0_1 != null) {
@@ -1265,10 +1266,10 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
     }
     public void onDestroy() {
-        int r0 = 0;
+        EyesService r0 = null;
         try {
         this.stopServer();
-        r0 = 0;
+        r0 = null;
         EyesService.instance = r0;
         super.onDestroy();
         return;
@@ -1295,10 +1296,10 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
     }
     public boolean onUnbind(android.content.Intent p1) {
         boolean p1_1 = false;
-        int r0 = 0;
+        EyesService r0 = null;
         try {
         this.stopServer();
-        r0 = 0;
+        r0 = null;
         EyesService.instance = r0;
         p1_1 = super.onUnbind(p1);
         return p1_1;
