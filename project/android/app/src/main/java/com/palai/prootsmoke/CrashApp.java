@@ -95,17 +95,17 @@ public class CrashApp extends android.app.Application {
                     r0_1 = new java.lang.String[p2_2];
                     r1_1 = "/sdcard/Download/coop-crash.txt";
                     r2_1 = null;
-                    r0_1[r2_1] = r1_1;
+                    r0[r2_3] = r1_1;
                     r1_1 = "/storage/emulated/0/Download/coop-crash.txt";
                     r3_3 = 1;
-                    r0_1[r3_3] = r1_1;
+                    r0[r3_3] = r1_1;
                     r1_2 = 2;
                     r4 = "/storage/emulated/10/Download/coop-crash.txt";
-                    r0_1[r1_2] = r4;
+                    r0[r1_2] = r4;
                     _pc = 1; break;
                     case 1:
-                    if (r2_1 == null) { _pc = 2; break; }
-                    r1_3 = r0_1[r2_1];
+                    if (r2_3 >= p2_2) { _pc = 2; break; }
+                    r1_3 = r0[r2_3];
                     r4_2 = new java.io.File(r1_3);
                     r1_4 = new java.io.FileOutputStream(r4_2, (r3_3 != 0));
                     r4_3 = new java.lang.StringBuilder();
@@ -118,7 +118,7 @@ public class CrashApp extends android.app.Application {
                     r1_4.write(r4_5);
                     r1_4.flush();
                     r1_4.close();
-                    r2_3 = (r2_1 + 1);
+                    r2_3 = (r2_3 + 1);
                     _pc = 1; break;
                     case 2:
                     return;

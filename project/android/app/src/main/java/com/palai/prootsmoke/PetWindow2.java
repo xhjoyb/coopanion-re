@@ -410,7 +410,7 @@ public final class PetWindow2 {
                     _pc = 3; break;
                     case 3:
                     r2_4 = 1140981760;
-                    r1_1 = (r1_1 * r2_4);
+                    r1_1 = (r1_1 * r2_3);
                     r1 = java.lang.Math.round(r1_1);
                     r2_4 = 160;
                     r1 = java.lang.Math.max(r2_4, r1);

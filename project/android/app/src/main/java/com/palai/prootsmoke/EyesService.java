@@ -723,14 +723,14 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     _pc = 2; break;
                     case 2:
                     r2 = java.lang.reflect.Array.getLength(p0_1);
-                    if (r1 == null) { _pc = 4; break; }
+                    if (r1 >= r2) { _pc = 4; break; }
                     r2_1 = p0_1[r1];
                     r3 = "=";
                     r2_2 = ((java.lang.String) r2_1).split(r3);
                     r3_1 = java.lang.reflect.Array.getLength(r2_2);
                     r4 = 2;
                     if (r3_1 != r4) { _pc = 3; break; }
-                    r3_2 = r2_2[r0_1];
+                    r3_2 = r2_2[r0];
                     r3_3 = r3_2.equals(p1);
                     if (r3_3 == false) { _pc = 3; break; }
                     p0_2 = 1;

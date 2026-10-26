@@ -258,7 +258,7 @@ public class MainActivity extends android.app.Activity {
         r0_1 = r2_3.putBoolean(r0, (r4_1 != 0));
         r0_1.apply();
         r0_2 = new java.lang.String[r4_1];
-        r0_2[r3] = r1;
+        r0_1[r3] = r1;
         r1_1 = 10087;
         this.requestPermissions(r0_2, r1_1);
         return;
@@ -662,10 +662,10 @@ public class MainActivity extends android.app.Activity {
                     r4_1[r14] = r13;
                     r12_2 = new java.lang.String[r12_1];
                     r13_1 = "bin/node";
-                    r12_2[r7_3] = r13_1;
+                    r12_1[r7_3] = r13_1;
                     r13_1 = "123024744";
                     r14 = 1;
-                    r12_2[r14] = r13_1;
+                    r12_1[r14] = r13_1;
                     r13_2 = 4;
                     r4_1[r13_2] = r12_2;
                     r12_1 = r7_3;
@@ -674,10 +674,10 @@ public class MainActivity extends android.app.Activity {
                     case 7:
                     if (r12_1 >= r3_5) { _pc = 12; break; }
                     r14_4 = r4_1[r12_1];
-                    r3_6 = r14_4[r7_3];
+                    r3_6 = r14_3[r7_3];
                     r15_2 = new java.io.File(r8, r3_2);
                     r3_5 = 1;
-                    r17 = r14_4[r3_5];
+                    r17 = r14_3[r3_5];
                     r18 = r8;
                     r7_4 = java.lang.Long.parseLong(r17);
                     r17_1 = r15_2.exists();
@@ -700,7 +700,7 @@ public class MainActivity extends android.app.Activity {
                     r15_4 = "[CHK] MISMATCH ";
                     r13_3 = r13_3.append(r15_4);
                     r15_2 = null;
-                    r14_4 = r14_4[r15_2];
+                    r14_4 = r14_3[r15_1];
                     r13_3 = r13_3.append(r14_4);
                     r14_3 = " got=";
                     r13_3 = r13_3.append(r14_3);
@@ -775,8 +775,8 @@ public class MainActivity extends android.app.Activity {
                     r8 = null;
                     _pc = 18; break;
                     case 18:
-                    if (r8 == null) { _pc = 20; break; }
-                    r9_3 = r3_9[r8];
+                    if (r8_3 >= r7_3) { _pc = 20; break; }
+                    r9_3 = r3_8[r8_3];
                     r10_1 = r9_2.getName();
                     r11_6 = r9_2.isDirectory();
                     if (r11_6 == false) { _pc = 19; break; }
@@ -793,7 +793,7 @@ public class MainActivity extends android.app.Activity {
                     r1.log(r9_1);
                     _pc = 19; break;
                     case 19:
-                    r8_3 = (r8 + 1);
+                    r8_3 = (r8_3 + 1);
                     _pc = 18; break;
                     case 20:
                     r3_8 = this.getFilesDir();
@@ -1178,14 +1178,14 @@ public class MainActivity extends android.app.Activity {
                     r8_4 = new java.lang.String[r8_3];
                     r11_2 = "ln";
                     r12 = 0;
-                    r8_4[r12] = r11_2;
+                    r8_1[r12] = r11_2;
                     r11_2 = "-sf";
-                    r8_4[r4_1] = r11_2;
+                    r8_1[r4_1] = r11_2;
                     r4_1 = 2;
-                    r8_4[r4_1] = r7_1;
+                    r8_1[r4_1] = r7_1;
                     r3_4 = r3_3.getAbsolutePath();
                     r4_1 = 3;
-                    r8_4[r4_1] = r3_4;
+                    r8_1[r4_1] = r3_4;
                     r3_5 = r6_3.exec(r8_4);
                     r3_5.waitFor();
                     _pc = 17; break;
@@ -1235,7 +1235,7 @@ public class MainActivity extends android.app.Activity {
                     r3_3.setReadable((r4_1 != 0), r6_2);
                     r3_3.setWritable((r4_1 != 0), r6_2);
                     r6_6 = 73L;
-                    r6_6 = (r6_6 & r11);
+                    r6_6 = (r6_6 & r11_1);
                     r11_1 = 0L;
                     r6 = (r6_6 > r11_1 ? 1 : (r6_6 == r11_1 ? 0 : -1));
                     if (r6 != 0) { _pc = 27; break; }
@@ -1273,7 +1273,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 30; break;
                     case 30:
                     if (r6 >= r4_1) { _pc = 34; break; }
-                    r7_5 = r3_6[r6];
+                    r7_5 = r3_4[r6];
                     r8_3 = 32;
                     r8_3 = r7_1.indexOf(r8_3);
                     if (r8_3 > 0) { _pc = 31; break; }
@@ -1332,7 +1332,7 @@ public class MainActivity extends android.app.Activity {
                     case 40:
                     r14 = r4_1;
                     r8_1 = r6_1;
-                    r7 = (r7_1 + 1);
+                    r7 = (r7 + 1);
                     r3_1 = 512;
                     _pc = 3; break;
                     case 41:
@@ -1575,7 +1575,7 @@ public class MainActivity extends android.app.Activity {
                     r3 = (p1 + p2);
                     if (r2 >= r3) { _pc = 5; break; }
                     r3_1 = p0[r2];
-                    r3 = (r3_1 & 255);
+                    r3 = (r3 & 255);
                     if (r3 == 0) { _pc = 5; break; }
                     r4 = 32;
                     if (r3 != r4) { _pc = 2; break; }
@@ -1735,8 +1735,8 @@ public class MainActivity extends android.app.Activity {
         r3_4 = java.lang.String.valueOf(r3_3);
         r4_2 = 2;
         r4_3 = new java.lang.String[r4_2];
-        r4_3[r2] = r0_3;
-        r4_3[r1] = r3_4;
+        r4[r2] = r0_3;
+        r4[r1] = r3_4;
         return r4_3;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -1884,7 +1884,7 @@ public class MainActivity extends android.app.Activity {
                     case 1:
                     r2_1 = 1;
                     r3 = "下一步";
-                    if (p1_1 != null) { _pc = 2; break; }
+                    if (p1 != r2_1) { _pc = 2; break; }
                     p1_1 = "第 1 步：启动内核（2/5）";
                     r0.setTitle(p1_1);
                     p1_1 = "App 会自动在后台启动内核（Coopanion 的大脑）。\n· 屏幕下方会滚动显示日志\n· 看到「core已启动」就算好了\n· 如果卡住了，点顶部「重试启动」\n注意：内核在后台跑，请保持 App 不要被系统杀掉\n（建议在最近任务里把本 App 加锁 / 允许后台运行）。";
@@ -1897,7 +1897,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 5; break;
                     case 2:
                     r4 = 2;
-                    if (p1_4 != null) { _pc = 3; break; }
+                    if (p1 != r4) { _pc = 3; break; }
                     p1_1 = "第 2 步：把桌宠召唤到桌面（3/5）";
                     r0.setTitle(p1_1);
                     p1_1 = "桌宠有两种样子：\n【App 内】点顶部「看桌宠」，就在这个页面里显示。\n【悬浮在桌面上】点顶部「桌宠悬浮窗」——\n它就会飘在所有 App 上面，像一个小生命趴在桌面。\n· 第一次点会跳去系统设置，请打开「显示在其他应用上层 / 悬浮窗」权限\n· 打开后回到 App，再点一次「桌宠悬浮窗」即可\n· 再点一次是关闭";
@@ -1910,14 +1910,14 @@ public class MainActivity extends android.app.Activity {
                     _pc = 5; break;
                     case 3:
                     r4 = 3;
-                    if (p1_6 != null) { _pc = 4; break; }
+                    if (p1 != r4) { _pc = 4; break; }
                     p1_7 = this.senseStatus();
                     r1_1 = "第 3 步：让桌宠感知手机（4/5）";
                     r0.setTitle(r1_1);
                     r4_1 = "桌宠想知道「你在用哪个 App」「谁给你发消息了」，\n需要你在系统里打开两个开关（都跟无障碍无关，可以放心开）：\n① 使用情况访问 —— 当前：";
                     r1_2 = new java.lang.StringBuilder(r4_1);
                     r4_2 = null;
-                    r4_3 = p1_7[r4_2];
+                    r4_3 = p1_7[r4];
                     r1_2 = r1_2.append(r4_2);
                     r4_1 = "\n作用：知道你在用微信 / 在看视频 / 在打游戏\n② 通知使用权 —— 当前：";
                     r1_2 = r1_2.append(r4_2);

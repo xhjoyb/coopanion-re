@@ -49,7 +49,7 @@ public class MainActivity_31 {
         r0_1 = ((MainActivity_31) this).val$label;
         r2 = "桌宠透明度：";
         r1_1 = new java.lang.StringBuilder(r2);
-        p2_1 = (p2_1 * p1_2);
+        p2_1 = (p2_1 * p1_1);
         p2 = java.lang.Math.round(p2_1);
         p2_2 = r1_1.append(p2);
         r1_2 = "%";
