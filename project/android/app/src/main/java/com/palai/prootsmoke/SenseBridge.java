@@ -180,7 +180,6 @@ public final class SenseBridge {
         Class r0 = null;
         SenseBridge r1 = null;
         try {
-        try {
             r0 = SenseBridge.class;
             r1 = SenseBridge.instance;
             if (r1 == null) {
@@ -192,9 +191,6 @@ public final class SenseBridge {
             return p0_1;
         } catch (java.lang.Throwable p0_2) {
             throw p0_2;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public void handle(java.net.Socket p1) {

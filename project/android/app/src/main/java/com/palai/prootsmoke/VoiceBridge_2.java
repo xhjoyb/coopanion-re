@@ -32,7 +32,6 @@ public class VoiceBridge_2 {
         java.lang.String r2_6 = null;
         String r3 = null;
         try {
-        try {
             r0 = "";
             r1 = this.this$0;
             r1_1 = VoiceBridge.access$100(r1);
@@ -70,9 +69,6 @@ public class VoiceBridge_2 {
             r3 = "error";
             VoiceBridge.access$500(r2_2, r3, r0, r1_3);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }

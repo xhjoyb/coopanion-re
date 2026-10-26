@@ -12,7 +12,7 @@ public class PetWindowService_PetHostBridge {
         this.this$0 = p1;
         return;
     }
-    public PetWindowService_PetHostBridge(PetWindowService p1, PetWindowService_PetHostBridge-IA p2) {
+    public PetWindowService_PetHostBridge(PetWindowService p1, PetWindowService_PetHostBridge_IA p2) {
         this(p1);
         return;
     }

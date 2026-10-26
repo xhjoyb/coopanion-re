@@ -29,7 +29,7 @@ public class PetWindowService_13 {
         r0 = this.val$wv;
         r0.invalidate();
         r0 = this.val$wv;
-        r1 = "(function(){try{if(window.__repaintHack)return 0;window.__repaintHack=1;var els=document.querySelectorAll('#pet,#bubble,#menu,.pet,.whale,svg,canvas');for(var i=0;i<els.length;i++){var e=els[i];var t=e.style.transform;e.style.transform=(t||'')+' translateZ(0)';void e.offsetHeight;e.style.transform=t||'';}window.dispatchEvent(new Event('resize'));window.__repaintHack=0;return 1;}catch(e){return 0;}})()";
+        r1 = "(function(){try{if(window.__repaintHack)return 0;window.__repaintHack=1;var els=document.querySelectorAll('#pet,#bubble,#menu,.pet,.whale,svg,canvas');for(var i=0;i<els.length;i++){var e=els[i];var t=e.style.transform;e.style.transform=(t||'')+' translateZ(0)';void e.offsetHeight;e.style.transform=t||'';}window.dispatchEvent(new Event('resize'));window.__repaintHack=0;return 1;}{return 0;}})()";
         r2 = 0;
         r0.evaluateJavascript(r1, r2);
         return;

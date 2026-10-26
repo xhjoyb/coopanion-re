@@ -73,8 +73,7 @@ public final class PetKeyboardGuard {
         java.lang.StringBuilder r1 = null;
         java.lang.String r1_1 = null;
         String r2 = null;
-        try {
-        try {
+        {
             r0 = EyesService.imeHeight();
             if (r0 > 0) {
                 r1 = new java.lang.StringBuilder();
@@ -85,13 +84,10 @@ public final class PetKeyboardGuard {
                 this.lastSource = r1_1;
                 r0 = this.clampH(r0);
                 return r0;
-            } catch (java.lang.Throwable r0_1) {
+            }  {
             }
             r0 = this.imeHeight();
             return r0;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public static void access$000(PetKeyboardGuard p0) {
@@ -381,7 +377,6 @@ public final class PetKeyboardGuard {
         java.lang.StringBuilder r1_1 = null;
         String r2 = null;
         try {
-        try {
             r0 = this.web;
             if (r0 == null) {
                 r0_1 = this.root;
@@ -419,9 +414,6 @@ public final class PetKeyboardGuard {
         } catch (java.lang.Throwable p1_4) {
             return;
         }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
-        }
     }
     public void reportKeyboard(int p1) {
         String p1_1 = null;
@@ -437,7 +429,6 @@ public final class PetKeyboardGuard {
         String r2_2 = null;
         String r3 = null;
         long r4 = 0L;
-        try {
         try {
             r0 = "PetKb";
             r1 = this.web;
@@ -478,9 +469,6 @@ public final class PetKeyboardGuard {
             p1_3 = p1_2.toString();
             android.util.Log.w(r0, p1_3);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public void retarget(android.view.View p1, android.view.View p2) {

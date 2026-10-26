@@ -28,7 +28,6 @@ public class WebRetry_1 {
         String r1_1 = null;
         String r2 = null;
         try {
-        try {
             r0 = this.val$web;
             r0.reload();
             return;
@@ -41,9 +40,6 @@ public class WebRetry_1 {
             r1_1 = "PetWebRetry";
             android.util.Log.w(r1_1, r0_3);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }

@@ -20,7 +20,6 @@ public class PetWindow2_1 {
         String r1_2 = null;
         String r2 = null;
         try {
-        try {
             PetWindow2.access$000();
             r0 = PetWindow2.access$100();
             r1 = 120L;
@@ -38,9 +37,6 @@ public class PetWindow2_1 {
             r1 = 120L;
             r0.postDelayed(this, r1, r2);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }

@@ -32,7 +32,7 @@ public class PetActivity_2 {
         p2 = p2_1.toString();
         AppLog.i(p2);
         p2_2 = new PetActivity_2_1(this);
-        r0_1 = "(function(){try{var e=document.getElementById('pet');var g=(function tick(){window.__rc=(window.__rc||0)+1;requestAnimationFrame(tick);})();return 'petEl='+(e?'yes':'NO')+' raf='+(typeof requestAnimationFrame)+' vp='+innerWidth+'x'+innerHeight;}catch(err){return 'err '+err;}})()";
+        r0_1 = "(function(){try{var e=document.getElementById('pet');var g=(function tick(){window.__rc=(window.__rc||0)+1;requestAnimationFrame(tick);})();return 'petEl='+(e?'yes':'NO')+' raf='+(typeof requestAnimationFrame)+' vp='+innerWidth+'x'+innerHeight;}{return 'err '+err;}})()";
         p1.evaluateJavascript(r0_1, p2_2);
         return;
         } catch (Throwable _e9) {

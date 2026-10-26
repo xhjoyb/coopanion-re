@@ -175,7 +175,6 @@ public final class EyesService {
         java.util.concurrent.atomic.AtomicReference r8 = null;
         java.util.concurrent.CountDownLatch r9 = null;
         try {
-        try {
             r7 = new java.util.concurrent.atomic.AtomicReference();
             r8 = new java.util.concurrent.atomic.AtomicReference();
             r0 = 1;
@@ -214,21 +213,14 @@ public final class EyesService {
                 return r10;
             }
         }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
-        }
     }
     public void close(java.net.Socket p1) {
         java.lang.Throwable p1_1 = null;
-        try {
         try {
             p1.close();
             return;
         } catch (java.lang.Throwable p1_1) {
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public static void collect(android.view.accessibility.AccessibilityNodeInfo p0, org.json.JSONArray p1, int p2) {
@@ -835,7 +827,6 @@ public final class EyesService {
         int r3_1 = 0;
         long r5 = 0L;
         try {
-        try {
             r0 = EyesService.imeListener;
             if (r0 == null) {
                 return;
@@ -853,9 +844,6 @@ public final class EyesService {
             return;
         } catch (java.lang.Throwable p0_1) {
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public java.lang.String openSettings() {
@@ -948,7 +936,6 @@ public final class EyesService {
         String r1 = null;
         int r1_1 = 0;
         try {
-        try {
             r0 = java.nio.charset.StandardCharsets.UTF_8;
             p3_1 = p3.getBytes(r0);
             p1_1 = p1.getOutputStream();
@@ -978,9 +965,6 @@ public final class EyesService {
             return;
         } catch (java.lang.Throwable p1_2) {
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public void sendScreen(java.net.Socket p1, java.lang.String p2) {
@@ -1101,7 +1085,6 @@ public final class EyesService {
         java.lang.Throwable p0_1 = null;
         int r0 = 0;
         try {
-        try {
             EyesService.imeListener = p0;
             if (p0 != null) {
                 r0 = 0;
@@ -1110,9 +1093,6 @@ public final class EyesService {
             return;
         } catch (java.lang.Throwable p0_1) {
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public void startServer() {
@@ -1124,7 +1104,6 @@ public final class EyesService {
         java.lang.Thread r1_1 = null;
         EyesService_1 r2 = null;
         String r3 = null;
-        try {
         try {
             r0 = this.running;
             if (r0 != false) {
@@ -1147,15 +1126,11 @@ public final class EyesService {
         } catch (java.lang.Throwable r0_3) {
             throw r0_3;
         }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
-        }
     }
     public void stopServer() {
         java.util.concurrent.ExecutorService r0 = null;
         java.net.ServerSocket r0_1 = null;
-        try {
-        try {
+        {
             r0 = null;
             this.running = r0;
             r0_1 = this.server;
@@ -1165,9 +1140,6 @@ public final class EyesService {
             while (false) {
                 throw r0_1;
             }
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public static java.lang.String trim(java.lang.String p0, int p1) {
@@ -1278,7 +1250,6 @@ public final class EyesService {
         java.lang.Throwable r0_2 = null;
         int r1 = 0;
         try {
-        try {
             if (p1 == null) {
                 return;
             }
@@ -1290,16 +1261,10 @@ public final class EyesService {
                     this.foregroundPkg = r0_1;
                 }
             }
+        } catch (java.lang.Throwable r0_2) {
             while (false) {
                 return;
-            } catch (java.lang.Throwable r0_2) {
-                while (false) {
-                    return;
-                }
             }
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public void onDestroy() {

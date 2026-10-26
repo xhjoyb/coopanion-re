@@ -33,7 +33,7 @@ public class MainActivity_20 {
         r0 = this.this$0;
         r0_1 = MainActivity._$$Nest$fgetweb(r0);
         r1 = new MainActivity_20_1(this);
-        r2 = "(function(){try{if(!document||!document.body)return 'empty';var b=document.body;var t=b.innerText||'';if(t.indexOf('ERR_CONNECTION')>=0||t.indexOf('无法')>=0)return 'err';if(b.querySelector('canvas')||b.children.length>0)return 'ok';return 'empty';}catch(e){return 'err';}})()";
+        r2 = "(function(){try{if(!document||!document.body)return 'empty';var b=document.body;var t=b.innerText||'';if(t.indexOf('ERR_CONNECTION')>=0||t.indexOf('无法')>=0)return 'err';if(b.querySelector('canvas')||b.children.length>0)return 'ok';return 'empty';}{return 'err';}})()";
         r0_1.evaluateJavascript(r2, r1);
         return;
         } catch (Throwable _e9) {

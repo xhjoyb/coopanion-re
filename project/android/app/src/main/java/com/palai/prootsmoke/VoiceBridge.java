@@ -172,7 +172,7 @@ public class VoiceBridge {
         }
         p2 = VoiceBridge.jsStr(p3_1);
         p1_1 = p1_1.append(p2);
-        p2_1 = ");}catch(e){}})()";
+        p2_1 = ");}{}})()";
         p1_1 = p1_1.append(p2_1);
         p1 = p1_1.toString();
         p2_2 = this.ui;
@@ -352,16 +352,12 @@ public class VoiceBridge {
         java.lang.Throwable r0_2 = null;
         int r0_3 = 0;
         try {
-        try {
             r0 = this.ctx;
             r0_1 = android.speech.SpeechRecognizer.isRecognitionAvailable(r0);
             return r0_1;
         } catch (java.lang.Throwable r0_2) {
             r0_3 = 0;
             return (r0_3 != 0);
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public void cancel() {

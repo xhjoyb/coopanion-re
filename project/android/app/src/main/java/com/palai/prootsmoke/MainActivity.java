@@ -273,7 +273,6 @@ public class MainActivity {
         int r0_2 = 0;
         java.lang.Throwable r1 = null;
         try {
-        try {
             r0 = this.booting;
             if (r0 != false) {
                 r0_1 = "[BOOT] 已在启动中，忽略重复调用";
@@ -289,9 +288,6 @@ public class MainActivity {
         } catch (java.lang.Throwable r1) {
             this.booting = (r0_2 != 0);
             throw r1;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public boolean canDrawOverlays() {
@@ -636,7 +632,7 @@ public class MainActivity {
                     r1.extractTarGz(r3_4, r8);
                     r1.fixPerms(r8);
                     r3_5 = 5;
-                    r4_1 = new java.lang.String[][r3_5];
+                    r4_1 = new java.lang.String[r3_5][];
                     r12_1 = 2;
                     r13_1 = new java.lang.String[r12_1];
                     r14_3 = "app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/sherpa-onnx.node";
@@ -1681,7 +1677,6 @@ public class MainActivity {
         String r2 = null;
         java.lang.StringBuilder r3 = null;
         try {
-        try {
             r0 = "package:";
             r2 = "android.settings.action.MANAGE_OVERLAY_PERMISSION";
             r3 = new java.lang.StringBuilder(r0);
@@ -1702,9 +1697,6 @@ public class MainActivity {
             r0_1 = r0_2.toString();
             this.log(r0_1);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public java.lang.String[] senseStatus() {
@@ -2061,7 +2053,6 @@ public class MainActivity {
         int r2 = 0;
         String r2_1 = null;
         try {
-        try {
             r1 = PetWindowService.class;
             r0 = new android.content.Intent(this, r1);
             r1_1 = android.os.Build.VERSION.SDK_INT;
@@ -2094,9 +2085,6 @@ public class MainActivity {
             r0_7 = r0_6.toString();
             this.log(r0_7);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public void startPetWindowWhenReady() {

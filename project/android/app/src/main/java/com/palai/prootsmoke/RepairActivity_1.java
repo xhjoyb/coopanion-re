@@ -36,7 +36,6 @@ public class RepairActivity_1 {
         String r0 = null;
         int r0_1 = 0;
         try {
-        try {
             p1_1 = "[REPAIRACT][FILE] onShowFileChooser";
             AppLog.i(p1_1);
             p1_2 = this.this$0;
@@ -79,9 +78,6 @@ public class RepairActivity_1 {
             }
             p1_2 = null;
             return p1_2;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }

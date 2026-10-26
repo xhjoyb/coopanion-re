@@ -30,7 +30,6 @@ public class MainActivity_33 {
         java.lang.StringBuilder r0_1 = null;
         String r1 = null;
         try {
-        try {
             p1_1 = this.this$0;
             r0 = "android.settings.USAGE_ACCESS_SETTINGS";
             p2_1 = new android.content.Intent(r0);
@@ -44,9 +43,6 @@ public class MainActivity_33 {
             p1_4 = p1_3.toString();
             MainActivity._$$Nest$mlog(p2_2, p1_4);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }

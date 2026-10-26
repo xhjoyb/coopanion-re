@@ -28,7 +28,6 @@ public class PetKeyboardGuard_1 {
         String r1_2 = null;
         String r2 = null;
         try {
-        try {
             r0 = this.this$0;
             PetKeyboardGuard.access$000(r0);
             r0 = this.this$0;
@@ -49,9 +48,6 @@ public class PetKeyboardGuard_1 {
             r1 = 150L;
             r0_1.postDelayed(this, r1, r2);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }

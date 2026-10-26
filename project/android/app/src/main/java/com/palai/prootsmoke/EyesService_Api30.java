@@ -65,8 +65,7 @@ public final class EyesService_Api30 {
         int r1_1 = 0;
         float r1_2 = 0f;
         float r2 = 0f;
-        try {
-        try {
+        {
             r0 = p0.getHardwareBuffer();
             p0_1 = p0.getColorSpace();
             p0_2 = android.graphics.Bitmap.wrapHardwareBuffer(r0, p0_1);
@@ -116,9 +115,6 @@ public final class EyesService_Api30 {
             p1_3 = "拿不到画面";
             p0_6 = new java.lang.IllegalStateException(p1_3);
             throw p0_6;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }

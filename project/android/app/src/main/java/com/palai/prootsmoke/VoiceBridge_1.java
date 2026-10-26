@@ -30,7 +30,6 @@ public class VoiceBridge_1 {
         String r1_2 = null;
         String r2 = null;
         try {
-        try {
             r0 = this.this$0;
             r0_1 = VoiceBridge.access$000(r0);
             r1 = this.val$js;
@@ -46,9 +45,6 @@ public class VoiceBridge_1 {
             r1_2 = "PetVoice";
             android.util.Log.w(r1_2, r0_4);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }

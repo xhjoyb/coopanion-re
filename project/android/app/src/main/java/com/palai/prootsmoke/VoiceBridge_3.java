@@ -27,7 +27,6 @@ public class VoiceBridge_3 {
         String r1_1 = null;
         String r2 = null;
         try {
-        try {
             r0 = this.this$0;
             r0_1 = VoiceBridge.access$100(r0);
             if (r0_1 != null) {
@@ -45,9 +44,6 @@ public class VoiceBridge_3 {
             r1_1 = "PetVoice";
             android.util.Log.w(r1_1, r0_4);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }

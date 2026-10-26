@@ -241,7 +241,6 @@ public final class PetWindow2 {
         int r4_1 = 0;
         float r4_2 = 0f;
         try {
-        try {
             r0 = 0;
             r1 = PetWindow2.web;
             if (r1 == null) {
@@ -272,9 +271,6 @@ public final class PetWindow2 {
         } catch (java.lang.Throwable p0_4) {
             return (r0 != 0);
         }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
-        }
     }
     public static void start(android.content.Context p0) {
         java.lang.Throwable p0_1 = null;
@@ -285,7 +281,6 @@ public final class PetWindow2 {
         java.lang.StringBuilder r0_2 = null;
         String r0_3 = null;
         String r1 = null;
-        try {
         try {
             r0 = PetWindow2.started;
             if (r0 != false) {
@@ -307,9 +302,6 @@ public final class PetWindow2 {
             p0_3 = null;
             PetWindow2.started = p0_3;
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public static void stop() {

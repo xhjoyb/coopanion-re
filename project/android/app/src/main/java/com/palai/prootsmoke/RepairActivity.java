@@ -97,7 +97,6 @@ public class RepairActivity {
         int r2 = 0;
         String r2_1 = null;
         try {
-        try {
             r0 = this.web;
             if (r0 == null) {
                 return;
@@ -120,9 +119,6 @@ public class RepairActivity {
             r0_5 = r0_4.toString();
             AppLog.i(r0_5);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
     public void startImeWatchdog(android.webkit.WebView p1) {

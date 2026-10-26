@@ -32,7 +32,6 @@ public class MainActivity_6 {
         Class r2 = null;
         String r2_1 = null;
         try {
-        try {
             p1_1 = this.this$0;
             r1 = this.this$0;
             r2 = PetActivity.class;
@@ -50,9 +49,6 @@ public class MainActivity_6 {
             p1_4 = p1_3.toString();
             MainActivity._$$Nest$mlog(r0_2, p1_4);
             return;
-        }
-        } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
         }
     }
 }
