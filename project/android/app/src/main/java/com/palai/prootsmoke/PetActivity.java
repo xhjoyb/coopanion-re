@@ -25,7 +25,7 @@ public class PetActivity extends android.app.Activity {
     public static android.webkit.ValueCallback _$$Nest$fgetfilePathCallback(PetActivity p0) {
         android.webkit.ValueCallback p0_1 = null;
         try {
-        p0_1 = ((PetActivity) p0_1).filePathCallback;
+        p0_1 = ((PetActivity) p0).filePathCallback;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -158,7 +158,7 @@ public class PetActivity extends android.app.Activity {
                         switch (_pc) {
                     case 0:
                     r0 = "android.permission.RECORD_AUDIO";
-                    super.onCreate(p1);
+                    super.onCreate(p1_4);
                     AppLog.init(this);
                     p1_1 = "[PETACT] ===== PetActivity onCreate =====";
                     AppLog.i(p1_1);

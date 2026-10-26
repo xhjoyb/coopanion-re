@@ -41,30 +41,30 @@ public class PetWindowService_PetHostBridge_1 implements java.lang.Runnable {
         try {
         r0 = "[PET] setAlpha=";
         r1 = ((PetWindowService_PetHostBridge_1) this).this$1;
-        r1_1 = ((PetWindowService_PetHostBridge) r1_1).this$0;
+        r1_1 = ((PetWindowService_PetHostBridge) r1).this$0;
         r2 = ((PetWindowService_PetHostBridge_1) this).val$a;
         PetWindowService._$$Nest$fputpetAlpha(r1_1, r2);
         r1 = ((PetWindowService_PetHostBridge_1) this).this$1;
-        r1_1 = ((PetWindowService_PetHostBridge) r1_1).this$0;
+        r1_1 = ((PetWindowService_PetHostBridge) r1).this$0;
         r1_2 = PetWindowService._$$Nest$fgetshowLp(r1_1);
         if (r1_2 != null) {
             r1 = ((PetWindowService_PetHostBridge_1) this).this$1;
-            r1_1 = ((PetWindowService_PetHostBridge) r1_1).this$0;
+            r1_1 = ((PetWindowService_PetHostBridge) r1).this$0;
             r1_3 = PetWindowService._$$Nest$fgetshowBox(r1_1);
             if (r1_3 != null) {
                 r1 = ((PetWindowService_PetHostBridge_1) this).this$1;
-                r1_1 = ((PetWindowService_PetHostBridge) r1_1).this$0;
+                r1_1 = ((PetWindowService_PetHostBridge) r1).this$0;
                 r1_2 = PetWindowService._$$Nest$fgetshowLp(r1_1);
                 r2 = ((PetWindowService_PetHostBridge_1) this).val$a;
                 ((android.view.WindowManager.LayoutParams) r1_2).alpha = r2;
                 r1 = ((PetWindowService_PetHostBridge_1) this).this$1;
-                r1_1 = ((PetWindowService_PetHostBridge) r1_1).this$0;
+                r1_1 = ((PetWindowService_PetHostBridge) r1).this$0;
                 r1_4 = PetWindowService._$$Nest$fgetwm(r1_1);
                 r2_1 = ((PetWindowService_PetHostBridge_1) this).this$1;
-                r2_2 = ((PetWindowService_PetHostBridge) r2_2).this$0;
+                r2_2 = ((PetWindowService_PetHostBridge) r2_1).this$0;
                 r2_3 = PetWindowService._$$Nest$fgetshowBox(r2_2);
                 r3 = ((PetWindowService_PetHostBridge_1) this).this$1;
-                r3_1 = ((PetWindowService_PetHostBridge) r3_1).this$0;
+                r3_1 = ((PetWindowService_PetHostBridge) r3).this$0;
                 r3_2 = PetWindowService._$$Nest$fgetshowLp(r3_1);
                 r1_4.updateViewLayout(r2_3, r3_2);
             }

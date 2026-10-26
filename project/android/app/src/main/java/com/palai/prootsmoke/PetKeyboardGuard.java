@@ -58,7 +58,7 @@ public final class PetKeyboardGuard {
         ((PetKeyboardGuard) this).target = p3;
         p1_1 = p1.getResources();
         p1_2 = p1_1.getDisplayMetrics();
-        p1_3 = ((android.util.DisplayMetrics) p1_3).heightPixels;
+        p1_3 = ((android.util.DisplayMetrics) p1_2).heightPixels;
         ((PetKeyboardGuard) this).screenH = p1_3;
         return;
     }
@@ -101,7 +101,7 @@ public final class PetKeyboardGuard {
     public static android.os.Handler access$100(PetKeyboardGuard p0) {
         android.os.Handler p0_1 = null;
         try {
-        p0_1 = ((PetKeyboardGuard) p0_1).ui;
+        p0_1 = ((PetKeyboardGuard) p0).ui;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -125,10 +125,10 @@ public final class PetKeyboardGuard {
             return p1;
         }
         r0 = ((PetKeyboardGuard) this).screenH;
-        r0_1 = (double) r0_1;
+        r0_1 = (double) r0;
         r2 = 0.0d;
         r0_1 = (r0_1 * r2);
-        r0 = (int) r0;
+        r0 = (int) r0_1;
         p1 = java.lang.Math.min(p1, r0);
         return p1;
         } catch (Throwable _e9) {

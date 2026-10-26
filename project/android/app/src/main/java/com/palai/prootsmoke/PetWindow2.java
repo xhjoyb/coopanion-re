@@ -248,18 +248,18 @@ public final class PetWindow2 {
             }
             r1_1 = r1.getResources();
             r1_2 = r1_1.getDisplayMetrics();
-            r1_3 = ((android.util.DisplayMetrics) r1_3).density;
+            r1_3 = ((android.util.DisplayMetrics) r1_2).density;
             r2 = android.view.MotionEvent.obtain(p0);
             r3 = p0.getX();
             r4 = PetWindow2.touchLp;
-            r4_1 = ((android.view.WindowManager.LayoutParams) r4_1).x;
-            r4_2 = (float) r4_2;
+            r4_1 = ((android.view.WindowManager.LayoutParams) r4).x;
+            r4_2 = (float) r4_1;
             r3 = (r3 + r4_2);
             r3 = (r3 / r1_3);
             p0_1 = p0.getY();
             r4 = PetWindow2.touchLp;
-            r4_1 = ((android.view.WindowManager.LayoutParams) r4_1).y;
-            r4_2 = (float) r4_2;
+            r4_1 = ((android.view.WindowManager.LayoutParams) r4).y;
+            r4_2 = (float) r4_1;
             p0_1 = (p0_1 + r4_2);
             p0_1 = (p0_1 / r1_3);
             r2.setLocation(r3, p0_1);

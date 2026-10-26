@@ -22,7 +22,7 @@ public class MainActivity_23_1 implements java.lang.Runnable {
         MainActivity r0_1 = null;
         try {
         r0 = ((MainActivity_23_1) this).this$1;
-        r0_1 = ((MainActivity_23) r0_1).this$0;
+        r0_1 = ((MainActivity_23) r0).this$0;
         MainActivity._$$Nest$mboot(r0_1);
         return;
         } catch (Throwable _e9) {

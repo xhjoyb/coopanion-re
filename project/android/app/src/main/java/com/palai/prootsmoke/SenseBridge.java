@@ -514,7 +514,7 @@ public final class SenseBridge {
                     r4_1 = (float) r5_1;
                     r5_1 = 1120403456;
                     r4_1 = (r4_1 * r5_1);
-                    r1_3 = (float) r1_3;
+                    r1_3 = (float) r1_2;
                     r4_1 = (r4_1 / r1_3);
                     r4 = java.lang.Math.round(r4_1);
                     _pc = 3; break;
@@ -534,10 +534,10 @@ public final class SenseBridge {
     }
     public org.json.JSONObject screenJson() {
         org.json.JSONObject r0 = null;
-        android.content.Context r1 = null;
-        java.lang.Object r1_1 = null;
-        boolean r1_2 = false;
-        String r1_3 = null;
+        android.content.Context r1_1 = null;
+        java.lang.Object r1_2 = null;
+        boolean r1_3 = false;
+        String r1_4 = null;
         String r2 = null;
         int r2_1 = 0;
         String r3 = null;
@@ -553,18 +553,18 @@ public final class SenseBridge {
                         switch (_pc) {
                     case 0:
                     r0 = new org.json.JSONObject();
-                    r1 = ((SenseBridge) this).ctx;
+                    r1_1 = ((SenseBridge) this).ctx;
                     r2 = "power";
-                    r1_1 = r1.getSystemService(r2);
+                    r1_2 = r1_1.getSystemService(r2);
                     r2_1 = 1;
                     r3 = null;
-                    if (r1_1 == null) { _pc = 1; break; }
-                    r1_2 = ((android.os.PowerManager) r1_1).isInteractive();
-                    if (r1_2 == false) { _pc = 1; break; }
-                    r1_3 = r2_1;
+                    if (r1_2 == null) { _pc = 1; break; }
+                    r1_3 = ((android.os.PowerManager) r1_2).isInteractive();
+                    if (r1_3 == false) { _pc = 1; break; }
+                    r1_4 = r2_1;
                     _pc = 2; break;
                     case 1:
-                    r1_3 = r3;
+                    r1_4 = r3;
                     _pc = 2; break;
                     case 2:
                     r4 = ((SenseBridge) this).ctx;
@@ -579,9 +579,9 @@ public final class SenseBridge {
                     _pc = 4; break;
                     case 4:
                     r3 = "on";
-                    r0.put(r3, r1_3);
-                    r1_3 = "locked";
-                    r0.put(r1_3, r2);
+                    r0.put(r3, r1_4);
+                    r1_4 = "locked";
+                    r0.put(r1_4, r2);
                     return r0;
                             }
                         } catch (Throwable _e) {

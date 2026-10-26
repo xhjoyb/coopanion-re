@@ -40,7 +40,7 @@ public class VoiceBridge {
     public static android.webkit.WebView access$000(VoiceBridge p0) {
         android.webkit.WebView p0_1 = null;
         try {
-        p0_1 = ((VoiceBridge) p0_1).web;
+        p0_1 = ((VoiceBridge) p0).web;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -49,7 +49,7 @@ public class VoiceBridge {
     public static android.speech.SpeechRecognizer access$100(VoiceBridge p0) {
         android.speech.SpeechRecognizer p0_1 = null;
         try {
-        p0_1 = ((VoiceBridge) p0_1).rec;
+        p0_1 = ((VoiceBridge) p0).rec;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -75,7 +75,7 @@ public class VoiceBridge {
     public static boolean access$300(VoiceBridge p0) {
         boolean p0_1 = false;
         try {
-        p0_1 = ((VoiceBridge) p0_1).wanted;
+        p0_1 = ((VoiceBridge) p0).wanted;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -331,7 +331,7 @@ public class VoiceBridge {
                     r3_1.append(r2_2);
                     _pc = 6; break;
                     case 6:
-                    r1_1 = (r1_1 + 1);
+                    r1_1 = (r1 + 1);
                     _pc = 1; break;
                     case 7:
                     p0_1 = r0.append(r3_1);

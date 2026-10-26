@@ -24,7 +24,7 @@ public class MainActivity_2_1 implements java.lang.Runnable {
         int r1 = 0;
         try {
         r0 = ((MainActivity_2_1) this).this$1;
-        r0_1 = ((MainActivity_2) r0_1).this$0;
+        r0_1 = ((MainActivity_2) r0).this$0;
         r0_2 = MainActivity._$$Nest$fgetlogScroll(r0_1);
         r1 = 130;
         r0_2.fullScroll(r1);

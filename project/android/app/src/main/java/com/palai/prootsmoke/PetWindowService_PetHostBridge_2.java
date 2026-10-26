@@ -25,20 +25,20 @@ public class PetWindowService_PetHostBridge_2 implements java.lang.Runnable {
         try {
         r0 = 8;
         r1 = ((PetWindowService_PetHostBridge_2) this).this$1;
-        r1_1 = ((PetWindowService_PetHostBridge) r1_1).this$0;
+        r1_1 = ((PetWindowService_PetHostBridge) r1).this$0;
         r1_2 = PetWindowService._$$Nest$fgetshowBox(r1_1);
         if (r1_2 != null) {
             r1 = ((PetWindowService_PetHostBridge_2) this).this$1;
-            r1_1 = ((PetWindowService_PetHostBridge) r1_1).this$0;
+            r1_1 = ((PetWindowService_PetHostBridge) r1).this$0;
             r1_2 = PetWindowService._$$Nest$fgetshowBox(r1_1);
             r1_2.setVisibility(r0);
         }
         r1 = ((PetWindowService_PetHostBridge_2) this).this$1;
-        r1_1 = ((PetWindowService_PetHostBridge) r1_1).this$0;
+        r1_1 = ((PetWindowService_PetHostBridge) r1).this$0;
         r1_2 = PetWindowService._$$Nest$fgettouchBox(r1_1);
         if (r1_2 != null) {
             r1 = ((PetWindowService_PetHostBridge_2) this).this$1;
-            r1_1 = ((PetWindowService_PetHostBridge) r1_1).this$0;
+            r1_1 = ((PetWindowService_PetHostBridge) r1).this$0;
             r1_2 = PetWindowService._$$Nest$fgettouchBox(r1_1);
             r1_2.setVisibility(r0);
         }

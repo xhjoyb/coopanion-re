@@ -24,14 +24,14 @@ public class MainActivity_38_1 implements java.lang.Runnable {
         java.util.concurrent.atomic.AtomicBoolean r0_3 = null;
         try {
         r0 = ((MainActivity_38_1) this).this$1;
-        r0_1 = ((MainActivity_38) r0_1).this$0;
+        r0_1 = ((MainActivity_38) r0).this$0;
         r0_2 = MainActivity._$$Nest$mcanDrawOverlays(r0_1);
         if (r0_2 != false) {
             r0_3 = MainActivity._$$Nest$sfgetpetWinOn();
             r0_2 = r0_3.get();
             if (r0_2 == false) {
                 r0 = ((MainActivity_38_1) this).this$1;
-                r0_1 = ((MainActivity_38) r0_1).this$0;
+                r0_1 = ((MainActivity_38) r0).this$0;
                 MainActivity._$$Nest$mstartPetWindow(r0_1);
             }
         }

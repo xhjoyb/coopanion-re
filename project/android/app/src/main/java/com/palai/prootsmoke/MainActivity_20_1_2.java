@@ -30,15 +30,15 @@ public class MainActivity_20_1_2 implements java.lang.Runnable {
         int r6 = 0;
         try {
         r0 = ((MainActivity_20_1_2) this).this$2;
-        r0_1 = ((MainActivity_20_1) r0_1).this$1;
-        r0_2 = ((MainActivity_20) r0_2).this$0;
+        r0_1 = ((MainActivity_20_1) r0).this$1;
+        r0_2 = ((MainActivity_20) r0_1).this$0;
         r0_3 = MainActivity._$$Nest$fgetweb(r0_2);
         if (r0_3 == null) {
             return;
         }
         r0 = ((MainActivity_20_1_2) this).this$2;
-        r0_1 = ((MainActivity_20_1) r0_1).this$1;
-        r0_2 = ((MainActivity_20) r0_2).this$0;
+        r0_1 = ((MainActivity_20_1) r0).this$1;
+        r0_2 = ((MainActivity_20) r0_1).this$0;
         r1 = MainActivity._$$Nest$fgetweb(r0_2);
         r5 = "UTF-8";
         r6 = 0;

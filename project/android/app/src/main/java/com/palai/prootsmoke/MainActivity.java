@@ -62,7 +62,7 @@ public class MainActivity extends android.app.Activity {
     public static android.widget.ScrollView _$$Nest$fgetlogScroll(MainActivity p0) {
         android.widget.ScrollView p0_1 = null;
         try {
-        p0_1 = ((MainActivity) p0_1).logScroll;
+        p0_1 = ((MainActivity) p0).logScroll;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -71,7 +71,7 @@ public class MainActivity extends android.app.Activity {
     public static android.widget.LinearLayout _$$Nest$fgetroot(MainActivity p0) {
         android.widget.LinearLayout p0_1 = null;
         try {
-        p0_1 = ((MainActivity) p0_1).root;
+        p0_1 = ((MainActivity) p0).root;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -80,7 +80,7 @@ public class MainActivity extends android.app.Activity {
     public static android.widget.TextView _$$Nest$fgetstatusTv(MainActivity p0) {
         android.widget.TextView p0_1 = null;
         try {
-        p0_1 = ((MainActivity) p0_1).statusTv;
+        p0_1 = ((MainActivity) p0).statusTv;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -89,7 +89,7 @@ public class MainActivity extends android.app.Activity {
     public static android.widget.TextView _$$Nest$fgettv(MainActivity p0) {
         android.widget.TextView p0_1 = null;
         try {
-        p0_1 = ((MainActivity) p0_1).tv;
+        p0_1 = ((MainActivity) p0).tv;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -98,7 +98,7 @@ public class MainActivity extends android.app.Activity {
     public static android.webkit.WebView _$$Nest$fgetweb(MainActivity p0) {
         android.webkit.WebView p0_1 = null;
         try {
-        p0_1 = ((MainActivity) p0_1).web;
+        p0_1 = ((MainActivity) p0).web;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -321,14 +321,14 @@ public class MainActivity extends android.app.Activity {
                     if (r2_1 <= 0) { _pc = 3; break; }
                     r2 = (long) r0;
                     r2 = java.lang.Math.min(r2, r3, p2, p3);
-                    r2_1 = (int) r2_1;
+                    r2_1 = (int) r2;
                     r3 = 0;
                     r2_1 = p0.read(r1, r3, r2_1);
                     if (r2_1 >= 0) { _pc = 2; break; }
                     _pc = 3; break;
                     case 2:
                     p1.write(r1, r3, r2_1);
-                    r2 = (long) r2;
+                    r2 = (long) r2_1;
                     p2 = (p2 - r2);
                     _pc = 1; break;
                     case 3:
@@ -555,7 +555,7 @@ public class MainActivity extends android.app.Activity {
                     r6_1 = r6.toString();
                     r1.log(r6_1);
                     r6_2 = this.getApplicationInfo();
-                    r6_1 = ((android.content.pm.ApplicationInfo) r6_1).nativeLibraryDir;
+                    r6_1 = ((android.content.pm.ApplicationInfo) r6_2).nativeLibraryDir;
                     r11 = this.getAssets();
                     r11_1 = r11.openFd(r4);
                     r12 = r11_1.getLength();
@@ -565,13 +565,13 @@ public class MainActivity extends android.app.Activity {
                     r11 = this.getAssets();
                     r11_2 = r11.open(r4);
                     r14 = 65536;
-                    r14_1 = new byte[r14_1];
+                    r14_1 = new byte[r14];
                     r15 = 0L;
                     _pc = 3; break;
                     case 3:
                     r7_4 = r11_2.read(r14_1);
                     if (r7_4 <= 0) { _pc = 4; break; }
-                    r7_5 = (long) r7_5;
+                    r7_5 = (long) r7_4;
                     r15 = (r15 + r7_5);
                     _pc = 3; break;
                     case 4:
@@ -583,7 +583,7 @@ public class MainActivity extends android.app.Activity {
                     r8_1 = this.getPackageManager();
                     r11_3 = this.getPackageName();
                     r8_2 = r8_1.getPackageInfo(r11_3, r7_4);
-                    r8_3 = ((android.content.pm.PackageInfo) r8_3).versionCode;
+                    r8_3 = ((android.content.pm.PackageInfo) r8_2).versionCode;
                     r14_2 = (long) r8_3;
                     _pc = 6; break;
                     r14_2 = 0L;
@@ -662,7 +662,7 @@ public class MainActivity extends android.app.Activity {
                     r13_1[r15_1] = r14_3;
                     r14 = 3;
                     r4_1[r14] = r13_1;
-                    r12_2 = new java.lang.String[r12_2];
+                    r12_2 = new java.lang.String[r12_1];
                     r13_2 = "bin/node";
                     r12_2[r7_4] = r13_2;
                     r13_2 = "123024744";
@@ -718,7 +718,7 @@ public class MainActivity extends android.app.Activity {
                     r20 = r15_2;
                     _pc = 11; break;
                     case 11:
-                    r12_1 = (r12_1 + 1);
+                    r12_1 = (r12_3 + 1);
                     r8 = r18;
                     r4_2 = r20;
                     r3_5 = 5;
@@ -795,7 +795,7 @@ public class MainActivity extends android.app.Activity {
                     r1.log(r9_1);
                     _pc = 19; break;
                     case 19:
-                    r8_3 = (r8_3 + 1);
+                    r8_3 = (r8 + 1);
                     _pc = 18; break;
                     case 20:
                     r3_8 = this.getFilesDir();
@@ -1063,8 +1063,8 @@ public class MainActivity extends android.app.Activity {
                     r11 = 8;
                     r11_1 = MainActivity.parseOct(r5, r7_1, r11);
                     r13 = 156;
-                    r13_1 = ((byte[]) r5)[r13_1];
-                    r13_2 = (char) r13_2;
+                    r13_1 = ((byte[]) r5)[r13];
+                    r13_2 = (char) r13_1;
                     r14 = 157;
                     r7 = MainActivity.cstr(r5, r14, r7_1);
                     r14 = 345;
@@ -1177,7 +1177,7 @@ public class MainActivity extends android.app.Activity {
                     case 19:
                     r6_3 = java.lang.Runtime.getRuntime();
                     r8_3 = 4;
-                    r8_4 = new java.lang.String[r8_4];
+                    r8_4 = new java.lang.String[r8_3];
                     r11_2 = "ln";
                     r12 = 0;
                     r8_4[r12] = r11_2;
@@ -1334,7 +1334,7 @@ public class MainActivity extends android.app.Activity {
                     case 40:
                     r14_4 = r4_3;
                     r8_1 = r6_1;
-                    r7_1 = (r7_1 + 1);
+                    r7_1 = (r7 + 1);
                     r3_1 = 512;
                     _pc = 3; break;
                     case 41:
@@ -1513,7 +1513,7 @@ public class MainActivity extends android.app.Activity {
         try {
         r0 = this.senseStatus();
         r1 = null;
-        r1_1 = r0[r1_1];
+        r1_1 = r0[r1];
         r2 = 1;
         r0_1 = r0[r2];
         r3 = "[SENSE] usage=";
@@ -1574,7 +1574,7 @@ public class MainActivity extends android.app.Activity {
                     r3 = (p1 + p2);
                     if (r2 >= r3) { _pc = 5; break; }
                     r3_1 = p0[r2];
-                    r3 = (r3 & 255);
+                    r3 = (r3_1 & 255);
                     if (r3 == 0) { _pc = 5; break; }
                     r4 = 32;
                     if (r3 != r4) { _pc = 2; break; }
@@ -1589,7 +1589,7 @@ public class MainActivity extends android.app.Activity {
                     r4 = 3;
                     r0 = (r0 << r4);
                     r3 = (r3 + -48);
-                    r3_2 = (long) r3_2;
+                    r3_2 = (long) r3;
                     r0 = (r0 + r3_2);
                     _pc = 4; break;
                     case 4:
@@ -1733,7 +1733,7 @@ public class MainActivity extends android.app.Activity {
         r3_3 = NotifListenerService.isEnabled(r3_2);
         r3_4 = java.lang.String.valueOf(r3_3);
         r4_2 = 2;
-        r4_3 = new java.lang.String[r4_3];
+        r4_3 = new java.lang.String[r4_2];
         r4_3[r2] = r0_3;
         r4_3[r1] = r3_4;
         return r4_3;
@@ -1913,7 +1913,7 @@ public class MainActivity extends android.app.Activity {
                     r4_1 = "桌宠想知道「你在用哪个 App」「谁给你发消息了」，\n需要你在系统里打开两个开关（都跟无障碍无关，可以放心开）：\n① 使用情况访问 —— 当前：";
                     r1 = new java.lang.StringBuilder(r4_1);
                     r4_1 = null;
-                    r4_2 = p1_7[r4_2];
+                    r4_2 = p1_7[r4_1];
                     r1 = r1.append(r4_2);
                     r4_1 = "\n作用：知道你在用微信 / 在看视频 / 在打游戏\n② 通知使用权 —— 当前：";
                     r1 = r1.append(r4_1);

@@ -80,9 +80,9 @@ public final class EyesService_Api30 {
                     if (p0_3 <= p1) {
                         p0_2 = r0_2;
                     } else {
-                        r1_2 = (float) r1_2;
+                        r1_2 = (float) r1_1;
                         r2 = (float) p1;
-                        p0_4 = (float) p0_4;
+                        p0_4 = (float) p0_3;
                         r2 = (r2 / p0_4);
                         r1_2 = (r1_2 * r2);
                         p0_3 = java.lang.Math.round(r1_2);

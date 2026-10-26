@@ -22,7 +22,7 @@ public class PetWindowService_16_2 implements java.lang.Runnable {
         PetWindowService r0_1 = null;
         try {
         r0 = ((PetWindowService_16_2) this).this$1;
-        r0_1 = ((PetWindowService_16) r0_1).this$0;
+        r0_1 = ((PetWindowService_16) r0).this$0;
         PetWindowService._$$Nest$mfocusImeAndShow(r0_1);
         return;
         } catch (Throwable _e9) {

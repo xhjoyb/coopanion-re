@@ -25,7 +25,7 @@ public class PetWindowService_11_1 implements java.lang.Runnable {
         String r1 = null;
         try {
         r0 = ((PetWindowService_11_1) this).this$1;
-        r0_1 = ((PetWindowService_11) r0_1).this$0;
+        r0_1 = ((PetWindowService_11) r0).this$0;
         r0_2 = PetWindowService._$$Nest$fgetweb(r0_1);
         r1 = "http://127.0.0.1:7797/pet";
         r0_2.loadUrl(r1);

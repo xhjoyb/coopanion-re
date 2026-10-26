@@ -24,7 +24,7 @@ public class PetWindowService_8_1 {
         String r1 = null;
         try {
         r0 = ((PetWindowService_8_1) this).this$1;
-        r0_1 = ((PetWindowService_8) r0_1).this$0;
+        r0_1 = ((PetWindowService_8) r0).this$0;
         r0_2 = PetWindowService._$$Nest$fgetimeProxy(r0_1);
         r1 = "";
         r0_2.setText(r1);
@@ -38,7 +38,7 @@ public class PetWindowService_8_1 {
         PetWindowService r0_1 = null;
         try {
         r0 = ((PetWindowService_8_1) this).this$1;
-        r0_1 = ((PetWindowService_8) r0_1).this$0;
+        r0_1 = ((PetWindowService_8) r0).this$0;
         PetWindowService._$$Nest$mpushTextToPage(r0_1, p1);
         return;
         } catch (Throwable _e9) {
@@ -51,7 +51,7 @@ public class PetWindowService_8_1 {
         String r1 = null;
         try {
         r0 = ((PetWindowService_8_1) this).this$1;
-        r0_1 = ((PetWindowService_8) r0_1).this$0;
+        r0_1 = ((PetWindowService_8) r0).this$0;
         r1 = "Backspace";
         PetWindowService._$$Nest$mpushKeyToPage(r0_1, r1);
         return;

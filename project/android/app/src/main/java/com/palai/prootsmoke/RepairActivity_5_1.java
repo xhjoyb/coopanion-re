@@ -45,9 +45,9 @@ public class RepairActivity_5_1 {
                     case 0:
                     r0 = 1;
                     r1 = 0;
-                    if (p1 == null) { _pc = 1; break; }
+                    if (p1_2 == 0) { _pc = 1; break; }
                     r2 = "1";
-                    p1_1 = p1.contains(r2);
+                    p1_1 = p1_2.contains(r2);
                     if (p1_1 == false) { _pc = 1; break; }
                     p1_2 = r0;
                     _pc = 2; break;
@@ -57,20 +57,20 @@ public class RepairActivity_5_1 {
                     case 2:
                     if (p1_2 == 0) { _pc = 3; break; }
                     r2_1 = ((RepairActivity_5_1) this).this$1;
-                    r2_2 = ((RepairActivity_5) r2_2).this$0;
+                    r2_2 = ((RepairActivity_5) r2_1).this$0;
                     r2_3 = RepairActivity._$$Nest$fgetimeShown(r2_2);
                     if (r2_3 != false) { _pc = 3; break; }
                     p1_3 = ((RepairActivity_5_1) this).this$1;
-                    p1_4 = ((RepairActivity_5) p1_4).this$0;
+                    p1_4 = ((RepairActivity_5) p1_3).this$0;
                     RepairActivity._$$Nest$fputimeShown(p1_4, (r0 != 0));
                     p1_3 = ((RepairActivity_5_1) this).this$1;
-                    p1_4 = ((RepairActivity_5) p1_4).this$0;
+                    p1_4 = ((RepairActivity_5) p1_3).this$0;
                     RepairActivity._$$Nest$mshowImeNow(p1_4);
                     _pc = 4; break;
                     case 3:
                     if (p1_4 != null) { _pc = 4; break; }
                     p1_3 = ((RepairActivity_5_1) this).this$1;
-                    p1_4 = ((RepairActivity_5) p1_4).this$0;
+                    p1_4 = ((RepairActivity_5) p1_3).this$0;
                     RepairActivity._$$Nest$fputimeShown(p1_4, (r1 != 0));
                     _pc = 4; break;
                     case 4:

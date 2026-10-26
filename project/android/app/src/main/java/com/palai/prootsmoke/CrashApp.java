@@ -118,7 +118,7 @@ public class CrashApp extends android.app.Application {
                     r1_4.write(r4_5);
                     r1_4.flush();
                     r1_4.close();
-                    r2_3 = (r2_3 + 1);
+                    r2_3 = (r2_1 + 1);
                     _pc = 1; break;
                     case 2:
                     return;

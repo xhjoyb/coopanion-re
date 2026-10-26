@@ -29,7 +29,7 @@ public class RepairActivity extends android.app.Activity {
     public static android.webkit.ValueCallback _$$Nest$fgetfilePathCallback(RepairActivity p0) {
         android.webkit.ValueCallback p0_1 = null;
         try {
-        p0_1 = ((RepairActivity) p0_1).filePathCallback;
+        p0_1 = ((RepairActivity) p0).filePathCallback;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -38,7 +38,7 @@ public class RepairActivity extends android.app.Activity {
     public static android.os.Handler _$$Nest$fgetimeHandler(RepairActivity p0) {
         android.os.Handler p0_1 = null;
         try {
-        p0_1 = ((RepairActivity) p0_1).imeHandler;
+        p0_1 = ((RepairActivity) p0).imeHandler;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -47,7 +47,7 @@ public class RepairActivity extends android.app.Activity {
     public static boolean _$$Nest$fgetimeShown(RepairActivity p0) {
         boolean p0_1 = false;
         try {
-        p0_1 = ((RepairActivity) p0_1).imeShown;
+        p0_1 = ((RepairActivity) p0).imeShown;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
