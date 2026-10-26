@@ -77,22 +77,22 @@ public class PetWindowService_16 implements java.lang.Runnable {
                 r0 = ((PetWindowService_16) this).this$0;
                 r1_5 = "input_method";
                 r0_7 = r0.getSystemService(r1_5);
-                r1_4 = null;
+                r1 = 0;
                 if (r0_7 != null) {
                     r2 = ((PetWindowService_16) this).this$0;
                     r2_3 = PetWindowService._$$Nest$fgetimeProxy(r2);
                     r2_4 = r2_3.getWindowToken();
-                    ((android.view.inputmethod.InputMethodManager) r0_7).hideSoftInputFromWindow(r2_4, r1_4);
+                    ((android.view.inputmethod.InputMethodManager) r0_7).hideSoftInputFromWindow(r2_4, r1);
                 }
                 r0 = ((PetWindowService_16) this).this$0;
                 r0_6 = PetWindowService._$$Nest$fgetimeProxy(r0);
                 r0_6.clearFocus();
                 r0 = ((PetWindowService_16) this).this$0;
                 r0_6 = PetWindowService._$$Nest$fgetimeProxy(r0);
-                r0_6.setFocusable(r1_4);
+                r0_6.setFocusable((r1 != 0));
                 r0 = ((PetWindowService_16) this).this$0;
                 r0_6 = PetWindowService._$$Nest$fgetimeProxy(r0);
-                r0_6.setFocusableInTouchMode(r1_4);
+                r0_6.setFocusableInTouchMode((r1 != 0));
             }
             r0 = ((PetWindowService_16) this).this$0;
             r0_1 = PetWindowService._$$Nest$fgettouchBox(r0);

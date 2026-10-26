@@ -26,7 +26,6 @@ public final class EyesService_Api30 {
         }
     }
     public static void capture(android.accessibilityservice.AccessibilityService p0, java.util.concurrent.ExecutorService p1, int p2, int p3, java.util.concurrent.atomic.AtomicReference p4, java.util.concurrent.atomic.AtomicReference p5, java.util.concurrent.CountDownLatch p6) {
-        java.util.concurrent.Executor p2_1 = null;
         EyesService_Api30_1 r0 = null;
         java.util.concurrent.atomic.AtomicReference r1 = null;
         int r2 = 0;
@@ -42,8 +41,8 @@ public final class EyesService_Api30 {
         r4 = p5;
         r5 = p6;
         r0 = new EyesService_Api30_1(r1, r2, r3, r4, r5);
-        p2_1 = null;
-        p0.takeScreenshot(p2_1, p1, r6);
+        p2 = 0;
+        p0.takeScreenshot(p2, p1, r6);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -62,9 +61,10 @@ public final class EyesService_Api30 {
         android.hardware.HardwareBuffer r0 = null;
         android.graphics.Bitmap.Config r0_1 = null;
         android.graphics.Bitmap r0_2 = null;
-        float r1 = 0f;
+        boolean r1 = false;
         int r1_1 = 0;
-        android.graphics.Bitmap.CompressFormat r1_2 = null;
+        float r1_2 = 0f;
+        android.graphics.Bitmap.CompressFormat r1_3 = null;
         float r2 = 0f;
         {
             r0 = p0.getHardwareBuffer();
@@ -72,7 +72,7 @@ public final class EyesService_Api30 {
             p0_2 = android.graphics.Bitmap.wrapHardwareBuffer(r0, p0_1);
             if (p0_2 != null) {
                 r0_1 = android.graphics.Bitmap.Config.ARGB_8888;
-                r1 = 0f;
+                r1 = false;
                 r0_2 = p0_2.copy(r0_1, r1);
                 p0_2.recycle();
                 if (r0_2 != null) {
@@ -81,12 +81,12 @@ public final class EyesService_Api30 {
                     if (p0_3 <= p1) {
                         p0_2 = r0_2;
                     } else {
-                        r1 = (float) r1_1;
+                        r1_2 = (float) r1_1;
                         r2 = (float) p1;
                         p0_4 = (float) p0_3;
                         r2 = (r2 / p0_4);
-                        r1 = (r1 * r2);
-                        p0_3 = java.lang.Math.round(r1);
+                        r1_2 = (r1_2 * r2);
+                        p0_3 = java.lang.Math.round(r1_2);
                         r1_1 = 1;
                         p0_3 = java.lang.Math.max(r1_1, p0_3);
                         p0_2 = android.graphics.Bitmap.createScaledBitmap(r0_2, p1, p0_3, (r1_1 != 0));
@@ -100,8 +100,8 @@ public final class EyesService_Api30 {
                     }
                     r1_1 = 262144;
                     p1_2 = new java.io.ByteArrayOutputStream(r1_1);
-                    r1_2 = android.graphics.Bitmap.CompressFormat.JPEG;
-                    p0_2.compress(r1_2, p2, p1_2);
+                    r1_3 = android.graphics.Bitmap.CompressFormat.JPEG;
+                    p0_2.compress(r1_3, p2, p1_2);
                     if (p0_2 != r0_2) {
                         p0_2.recycle();
                     }

@@ -155,9 +155,10 @@ public class RepairActivity extends android.app.Activity {
         int r0 = 0;
         android.net.Uri r0_1 = null;
         android.net.Uri[] r0_2 = null;
-        String r0_3 = null;
+        java.lang.String r0_3 = null;
         int r1 = 0;
-        String r2 = null;
+        java.lang.String r2 = null;
+        String r2_1 = null;
         int r3 = 0;
         try {
         int _pc = 0;
@@ -190,8 +191,8 @@ public class RepairActivity extends android.app.Activity {
                     ((RepairActivity) this).filePathCallback = r2;
                     _pc = 3; break;
                     case 3:
-                    r2 = "[REPAIRACT][FILE] onActivityResult req=";
-                    p3_3 = new java.lang.StringBuilder(r2);
+                    r2_1 = "[REPAIRACT][FILE] onActivityResult req=";
+                    p3_3 = new java.lang.StringBuilder(r2_1);
                     p1_1 = p3_3.append(p1);
                     p3_4 = " res=";
                     p1_1 = p1_1.append(p3_4);
@@ -249,9 +250,9 @@ public class RepairActivity extends android.app.Activity {
         android.widget.FrameLayout.LayoutParams r1_5 = null;
         int r2 = 0;
         android.widget.Button r2_1 = null;
-        RepairActivity_4 r3 = null;
+        int r3 = 0;
         String r3_1 = null;
-        int r3_2 = 0;
+        RepairActivity_4 r3_2 = null;
         try {
         super.onCreate(p1);
         AppLog.init(this);
@@ -272,13 +273,13 @@ public class RepairActivity extends android.app.Activity {
         r2 = 1;
         r1_1.setJavaScriptEnabled((r2 != 0));
         r1_1.setDomStorageEnabled((r2 != 0));
-        r3 = null;
+        r3 = 0;
         r1_1.setMixedContentMode(r3);
         r1_1.setAllowFileAccess((r2 != 0));
-        r1_1.setMediaPlaybackRequiresUserGesture(r3);
+        r1_1.setMediaPlaybackRequiresUserGesture((r3 != 0));
         r1_1.setDatabaseEnabled((r2 != 0));
         r1_1.setSupportZoom((r2 != 0));
-        r1_1.setBuiltInZoomControls(r3);
+        r1_1.setBuiltInZoomControls((r3 != 0));
         r1_1.setAllowContentAccess((r2 != 0));
         r1_1.setJavaScriptCanOpenWindowsAutomatically((r2 != 0));
         r1 = ((RepairActivity) this).web;
@@ -317,10 +318,10 @@ public class RepairActivity extends android.app.Activity {
         r2_1 = new android.widget.Button(this);
         r3_1 = "‹ 返回";
         r2_1.setText(r3_1);
-        r3_2 = 1058642330;
-        r2_1.setAlpha(r3_2);
-        r3 = new RepairActivity_4(this);
-        r2_1.setOnClickListener(r3);
+        r3 = 1058642330;
+        r2_1.setAlpha(r3);
+        r3_2 = new RepairActivity_4(this);
+        r2_1.setOnClickListener(r3_2);
         r0_2.addView(r2_1);
         p1_3.addView(r0_2, r1_5);
         this.setContentView(p1_3);
@@ -335,12 +336,12 @@ public class RepairActivity extends android.app.Activity {
         }
     }
     protected void onDestroy() {
-        int r0 = 0;
+        java.lang.Object r0 = null;
         android.os.Handler r1 = null;
         android.webkit.WebView r1_1 = null;
         String r2 = null;
         try {
-        r0 = 0;
+        r0 = null;
         r1 = ((RepairActivity) this).imeHandler;
         if (r1 != null) {
             r1.removeCallbacksAndMessages(r0);

@@ -15,10 +15,10 @@ public class PetWindow2_2 extends android.webkit.WebViewClient {
     public void onPageFinished(android.webkit.WebView p1, java.lang.String p2) {
         java.lang.Throwable p1_1 = null;
         String p2_1 = null;
-        int r0 = 0;
+        android.webkit.ValueCallback r0 = null;
         try {
             p2_1 = "(function(){ if (typeof petHostNative === 'undefined') return 'no-bridge'; if (window.petHost) return 'already'; window.petHost = { setInteractive:function(o){}, focus:function(){}, grabFocus:function(){}, releaseFocus:function(){}, hide:function(){}, openDress:function(){}, setAlpha:function(f){}, getAlpha:function(){return 1;}, openApp:function(n){return false;}, onCursor:function(cb){}, sampleBackdrop:function(){return null;} }; document.body.classList.remove('tab'); document.body.classList.add('desk'); return 'ok';})()";
-            r0 = 0;
+            r0 = null;
             p1.evaluateJavascript(p2_1, r0);
             return;
         } catch (java.lang.Throwable p1_1) {

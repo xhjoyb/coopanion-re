@@ -36,9 +36,8 @@ public final class PetKeyboardGuard {
         long r0_1 = 0L;
         int r0_2 = 0;
         String r0_3 = null;
-        PetKeyboardGuard r0_4 = null;
+        android.content.Context r0_4 = null;
         PetKeyboardGuard_1 r0_5 = null;
-        android.content.Context r0_6 = null;
         android.os.Looper r1 = null;
         r1 = android.os.Looper.getMainLooper();
         r0 = new android.os.Handler(r1);
@@ -53,8 +52,8 @@ public final class PetKeyboardGuard {
         ((PetKeyboardGuard) this).reportedOnce = r0_4;
         r0_5 = new PetKeyboardGuard_1(this);
         ((PetKeyboardGuard) this).tick = r0_5;
-        r0_6 = p1.getApplicationContext();
-        ((PetKeyboardGuard) this).app = r0_6;
+        r0_4 = p1.getApplicationContext();
+        ((PetKeyboardGuard) this).app = r0_4;
         ((PetKeyboardGuard) this).root = p2;
         ((PetKeyboardGuard) this).target = p3;
         p1_1 = p1.getResources();
@@ -146,7 +145,7 @@ public final class PetKeyboardGuard {
         boolean r2 = false;
         String r2_1 = null;
         java.lang.String r2_2 = null;
-        java.lang.String r3 = null;
+        boolean r3 = false;
         int r3_1 = 0;
         String r4 = null;
         int r5 = 0;
@@ -158,7 +157,7 @@ public final class PetKeyboardGuard {
             r1 = this.a11yOrInsets();
         }
         r2 = ((PetKeyboardGuard) this).reportedOnce;
-        r3 = null;
+        r3 = false;
         r4 = "PetKb";
         r5 = 1;
         if (r2 == false) {
@@ -338,27 +337,26 @@ public final class PetKeyboardGuard {
         }
     }
     public void onImeFromA11y(int p1) {
-        java.lang.String p1_1 = null;
         String r0 = null;
         try {
         if (p1 < 0) {
-            p1_1 = null;
+            p1 = 0;
         }
         r0 = "a11y";
-        this.publish(p1_1, r0);
+        this.publish(p1, r0);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }
     }
     public void publish(int p1, java.lang.String p2) {
-        java.lang.String p1_1 = null;
+        boolean p1_1 = false;
         try {
         ((PetKeyboardGuard) this).lastSource = p2;
         ((PetKeyboardGuard) this).lastHeight = p1;
         this.reportKeyboard(p1);
         if (p1 <= 0) {
-            p1_1 = null;
+            p1_1 = false;
         } else {
             p1 = 1;
         }
@@ -374,6 +372,7 @@ public final class PetKeyboardGuard {
         java.lang.String p1_3 = null;
         java.lang.Throwable p1_4 = null;
         String p2_1 = null;
+        android.webkit.ValueCallback p2_2 = null;
         android.webkit.WebView r0 = null;
         android.view.View r0_1 = null;
         String r0_2 = null;
@@ -412,8 +411,8 @@ public final class PetKeyboardGuard {
             p2_1 = "')";
             p1_2 = p1_2.append(p2_1);
             p1_3 = p1_2.toString();
-            p2 = null;
-            r0.evaluateJavascript(p1_3, p2);
+            p2_2 = null;
+            r0.evaluateJavascript(p1_3, p2_2);
             return;
         } catch (java.lang.Throwable p1_4) {
             return;
@@ -431,6 +430,7 @@ public final class PetKeyboardGuard {
         long r2 = 0L;
         java.lang.StringBuilder r2_1 = null;
         String r2_2 = null;
+        android.webkit.ValueCallback r2_3 = null;
         String r3 = null;
         long r4 = 0L;
         try {
@@ -462,8 +462,8 @@ public final class PetKeyboardGuard {
             r2_2 = ")";
             p1_2 = p1_2.append(r2_2);
             p1_3 = p1_2.toString();
-            r2_2 = null;
-            r1.evaluateJavascript(p1_3, r2_2);
+            r2_3 = null;
+            r1.evaluateJavascript(p1_3, r2_3);
             return;
         } catch (java.lang.Throwable p1_4) {
             r1_2 = new java.lang.StringBuilder();
@@ -488,8 +488,9 @@ public final class PetKeyboardGuard {
     }
     public static void setTouchLayer(android.view.View p0) {
         int p0_1 = 0;
-        java.lang.String p0_2 = null;
+        boolean p0_2 = false;
         java.lang.StringBuilder p0_3 = null;
+        java.lang.String p0_4 = null;
         java.lang.StringBuilder r0 = null;
         String r0_1 = null;
         String r1 = null;
@@ -499,14 +500,14 @@ public final class PetKeyboardGuard {
         r1 = "touch layer attached=";
         r0 = r0.append(r1);
         if (p0 == null) {
-            p0_2 = null;
+            p0_2 = false;
         } else {
             p0_1 = 1;
         }
         p0_3 = r0.append(p0_2);
-        p0_2 = p0_3.toString();
+        p0_4 = p0_3.toString();
         r0_1 = "PetKb";
-        android.util.Log.i(r0_1, p0_2);
+        android.util.Log.i(r0_1, p0_4);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

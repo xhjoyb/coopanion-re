@@ -45,9 +45,9 @@ public class RepairActivity_5_1 {
                     case 0:
                     r0 = 1;
                     r1 = 0;
-                    if (p1_1 == false) { _pc = 1; break; }
+                    if (p1 == null) { _pc = 1; break; }
                     r2 = "1";
-                    p1_1 = p1_1.contains(r2);
+                    p1_1 = p1.contains(r2);
                     if (p1_1 == false) { _pc = 1; break; }
                     p1_2 = r0;
                     _pc = 2; break;

@@ -19,17 +19,16 @@ public class PetWindowService_8 extends android.widget.EditText {
     // ---- methods ----
     public android.view.inputmethod.InputConnection onCreateInputConnection(android.view.inputmethod.EditorInfo p1) {
         android.view.inputmethod.InputConnection p1_1 = null;
-        PetWindowService_ImeCommitConnection_Sink p1_2 = null;
         PetWindowService_ImeCommitConnection r0 = null;
         PetWindowService_8_1 r1 = null;
         try {
         p1_1 = super.onCreateInputConnection(p1);
         if (p1_1 == null) {
-            p1_2 = null;
-            return p1_2;
+            p1_1 = null;
+            return p1_1;
         }
         r1 = new PetWindowService_8_1(this);
-        r0 = new PetWindowService_ImeCommitConnection(p1_2, r1);
+        r0 = new PetWindowService_ImeCommitConnection(p1_1, r1);
         return r0;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

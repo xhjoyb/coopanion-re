@@ -100,6 +100,7 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
         String p2_1 = null;
         PetActivity p2_2 = null;
         java.lang.StringBuilder p2_3 = null;
+        java.lang.Object p3_1 = null;
         String r0 = null;
         int r0_1 = 0;
         try {
@@ -107,11 +108,11 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
             AppLog.i(p1_1);
             p1_2 = ((PetActivity_1) this).this$0;
             p1_3 = PetActivity._$$Nest$fgetfilePathCallback(p1_2);
-            p3 = null;
+            p3_1 = null;
             if (p1_3 != null) {
                 p1_2 = ((PetActivity_1) this).this$0;
                 p1_3 = PetActivity._$$Nest$fgetfilePathCallback(p1_2);
-                p1_3.onReceiveValue(p3);
+                p1_3.onReceiveValue(p3_1);
             }
             p1_2 = ((PetActivity_1) this).this$0;
             PetActivity._$$Nest$fputfilePathCallback(p1_2, p2);
@@ -139,9 +140,9 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
             if (p1_3 != null) {
                 p1_2 = ((PetActivity_1) this).this$0;
                 p1_3 = PetActivity._$$Nest$fgetfilePathCallback(p1_2);
-                p1_3.onReceiveValue(p3);
+                p1_3.onReceiveValue(p3_1);
                 p1_2 = ((PetActivity_1) this).this$0;
-                PetActivity._$$Nest$fputfilePathCallback(p1_2, p3);
+                PetActivity._$$Nest$fputfilePathCallback(p1_2, p3_1);
             }
             p1_2 = null;
             return p1_2;

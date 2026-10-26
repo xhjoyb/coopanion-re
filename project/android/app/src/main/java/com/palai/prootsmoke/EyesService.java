@@ -329,11 +329,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     _pc = 7; break;
                     case 7:
                     r0_4 = p0.getChildCount();
-                    r1_3 = null;
+                    r1 = 0;
                     _pc = 8; break;
                     case 8:
-                    if (r1_3 >= r0_4) { _pc = 12; break; }
-                    r2_4 = p0.getChild(r1_3);
+                    if (r1 >= r0_4) { _pc = 12; break; }
+                    r2_4 = p0.getChild(r1);
                     if (r2_4 != null) { _pc = 9; break; }
                     _pc = 10; break;
                     case 9:
@@ -343,7 +343,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     _pc = 10; break;
                     _pc = 10; break;
                     case 10:
-                    r1 = (r1_3 + 1);
+                    r1 = (r1 + 1);
                     _pc = 8; break;
                     r2_4.recycle();
                     _pc = 11; break;
@@ -751,9 +751,9 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
     }
     public static boolean isRunning() {
-        EyesService r0_1 = null;
-        boolean r0_2 = false;
-        int r0_3 = 0;
+        EyesService r0 = null;
+        boolean r0_1 = false;
+        int r0_2 = 0;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -761,17 +761,17 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                 try {
                         switch (_pc) {
                     case 0:
-                    r0_1 = EyesService.instance;
-                    if (r0_1 == null) { _pc = 1; break; }
-                    r0_2 = ((EyesService) r0_1).running;
-                    if (r0_2 == false) { _pc = 1; break; }
-                    r0_3 = 1;
+                    r0 = EyesService.instance;
+                    if (r0 == null) { _pc = 1; break; }
+                    r0_1 = ((EyesService) r0).running;
+                    if (r0_1 == false) { _pc = 1; break; }
+                    r0_2 = 1;
                     _pc = 2; break;
                     case 1:
-                    r0_3 = 0;
+                    r0_2 = 0;
                     _pc = 2; break;
                     case 2:
-                    return (r0_3 != 0);
+                    return (r0_2 != 0);
                             }
                         } catch (Throwable _e) {
                                 throw new RuntimeException(_e);
@@ -855,6 +855,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         java.lang.Throwable r2_4 = null;
         String r3 = null;
         int r3_1 = 0;
+        boolean r3_2 = false;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -875,8 +876,8 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r3 = "accessibility";
                     r1.put(r2_2, r3);
                     _pc = 1; break;
-                    r3 = null;
-                    r1.put(r0, r3);
+                    r3_2 = false;
+                    r1.put(r0, r3_2);
                     r0 = "error";
                     r2_3 = java.lang.String.valueOf(r2_2);
                     r1.put(r0, r2_3);

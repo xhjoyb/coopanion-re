@@ -57,13 +57,14 @@ public final class SenseBridge {
         android.content.Context r0 = null;
         android.content.pm.PackageManager r0_1 = null;
         java.lang.CharSequence r0_2 = null;
-        android.content.pm.ApplicationInfo r1 = null;
+        int r1 = 0;
+        android.content.pm.ApplicationInfo r1_1 = null;
         try {
         r0 = ((SenseBridge) this).ctx;
         r0_1 = r0.getPackageManager();
-        r1 = null;
-        r1 = r0_1.getApplicationInfo(p1, r1);
-        r0_2 = r0_1.getApplicationLabel(r1);
+        r1 = 0;
+        r1_1 = r0_1.getApplicationInfo(p1, r1);
+        r0_2 = r0_1.getApplicationLabel(r1_1);
         if (r0_2 != null) {
             p1 = r0_2.toString();
         } else {
@@ -469,7 +470,7 @@ public final class SenseBridge {
         android.content.IntentFilter r2 = null;
         String r2_1 = null;
         String r3 = null;
-        android.content.IntentFilter r3_1 = null;
+        android.content.BroadcastReceiver r3_1 = null;
         int r3_2 = 0;
         int r4 = 0;
         float r4_1 = 0f;
@@ -535,15 +536,16 @@ public final class SenseBridge {
     }
     public org.json.JSONObject screenJson() {
         org.json.JSONObject r0 = null;
-        android.content.Context r1_1 = null;
-        java.lang.Object r1_2 = null;
-        boolean r1_3 = false;
-        int r1_4 = 0;
+        android.content.Context r1 = null;
+        java.lang.Object r1_1 = null;
+        boolean r1_2 = false;
+        int r1_3 = 0;
+        java.lang.String r1_4 = null;
         String r1_5 = null;
         String r2 = null;
         int r2_1 = 0;
-        boolean r2_2 = false;
-        boolean r3 = false;
+        java.lang.String r2_2 = null;
+        java.lang.String r3 = null;
         String r3_1 = null;
         android.content.Context r4 = null;
         java.lang.Object r4_1 = null;
@@ -557,18 +559,18 @@ public final class SenseBridge {
                         switch (_pc) {
                     case 0:
                     r0 = new org.json.JSONObject();
-                    r1_1 = ((SenseBridge) this).ctx;
+                    r1 = ((SenseBridge) this).ctx;
                     r2 = "power";
-                    r1_2 = r1_1.getSystemService(r2);
+                    r1_1 = r1.getSystemService(r2);
                     r2_1 = 1;
-                    r3 = false;
-                    if (r1_2 == null) { _pc = 1; break; }
-                    r1_3 = ((android.os.PowerManager) r1_2).isInteractive();
-                    if (r1_3 == false) { _pc = 1; break; }
-                    r1_4 = r2_1;
+                    r3 = null;
+                    if (r1_1 == null) { _pc = 1; break; }
+                    r1_2 = ((android.os.PowerManager) r1_1).isInteractive();
+                    if (r1_2 == false) { _pc = 1; break; }
+                    r1_3 = r2_1;
                     _pc = 2; break;
                     case 1:
-                    r1_3 = r3;
+                    r1_4 = r3;
                     _pc = 2; break;
                     case 2:
                     r4 = ((SenseBridge) this).ctx;
@@ -583,7 +585,7 @@ public final class SenseBridge {
                     _pc = 4; break;
                     case 4:
                     r3_1 = "on";
-                    r0.put(r3_1, r1_3);
+                    r0.put(r3_1, r1_4);
                     r1_5 = "locked";
                     r0.put(r1_5, r2_2);
                     return r0;

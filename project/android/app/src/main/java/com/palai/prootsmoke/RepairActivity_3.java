@@ -24,6 +24,7 @@ public class RepairActivity_3 extends android.webkit.WebViewClient {
         String p2_2 = null;
         RepairActivity p2_3 = null;
         java.lang.StringBuilder r0 = null;
+        android.webkit.ValueCallback r0_1 = null;
         String r1 = null;
         try {
         r1 = "[REPAIRACT] onPageFinished: ";
@@ -32,8 +33,8 @@ public class RepairActivity_3 extends android.webkit.WebViewClient {
         p2 = p2_1.toString();
         AppLog.i(p2);
         p2_2 = "(function(){ if(window.__imeHack) return; window.__imeHack=1;document.addEventListener('focusin',function(ev){  var t=ev.target; if(!t) return;  var tag=(t.tagName||'').toUpperCase();  if(tag==='INPUT'||tag==='TEXTAREA'||t.isContentEditable){    try{ window.__wantIme=1; }{}  }},true);window.__imeProbe=function(){var a=document.activeElement;  return (a&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA'||a.isContentEditable))?1:0;};})()";
-        r0 = null;
-        p1.evaluateJavascript(p2_2, r0);
+        r0_1 = null;
+        p1.evaluateJavascript(p2_2, r0_1);
         p2_3 = ((RepairActivity_3) this).this$0;
         RepairActivity._$$Nest$mstartImeWatchdog(p2_3, p1);
         return;

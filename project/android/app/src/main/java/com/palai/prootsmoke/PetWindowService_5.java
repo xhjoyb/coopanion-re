@@ -26,6 +26,7 @@ public class PetWindowService_5 extends android.webkit.WebViewClient {
         PetWindowService p2_3 = null;
         java.lang.StringBuilder r0 = null;
         String r0_1 = null;
+        android.webkit.ValueCallback r0_2 = null;
         String r1 = null;
         try {
         r1 = "[PET] onPageFinished ";
@@ -35,8 +36,8 @@ public class PetWindowService_5 extends android.webkit.WebViewClient {
         r0_1 = "PetWindow";
         android.util.Log.i(r0_1, p2);
         p2_2 = "(function(){ if (window.petHost) return 'already'; if (typeof petHostNative === 'undefined') return 'no-bridge'; window.petHost = {   setInteractive: function(on){ try{ petHostNative.setInteractive(!!on); }{} },   focus: function(){ try{ petHostNative.focus(); }{} },   grabFocus: function(){ try{ petHostNative.grabFocus(); }{} },   releaseFocus: function(){ try{ petHostNative.releaseFocus(); }{} },   hide: function(){ try{ petHostNative.hide(); }{} },   openDress: function(){ try{ petHostNative.openDress(); }{} },   setAlpha: function(f){ try{ petHostNative.setAlpha(f); }{} },   getAlpha: function(){ try{ return petHostNative.getAlpha(); }{ return 1; } },   openApp: function(n){ try{ return !!petHostNative.openApp(String(n)); }{ return false; } },   onCursor: function(cb){ (window.__petCursorSubs=window.__petCursorSubs||[]).push(cb); },   sampleBackdrop: function(){ return null; } }; document.body.classList.remove('tab'); document.body.classList.add('desk'); return 'ok';})()";
-        r0 = null;
-        p1.evaluateJavascript(p2_2, r0);
+        r0_2 = null;
+        p1.evaluateJavascript(p2_2, r0_2);
         p2_3 = ((PetWindowService_5) this).this$0;
         PetWindowService._$$Nest$mstartRepaintWatchdog(p2_3, p1);
         return;
@@ -46,10 +47,11 @@ public class PetWindowService_5 extends android.webkit.WebViewClient {
     }
     public void onPageStarted(android.webkit.WebView p1, java.lang.String p2, android.graphics.Bitmap p3) {
         String p2_1 = null;
+        android.webkit.ValueCallback p3_1 = null;
         try {
         p2_1 = "(function(){ if (window.petHost) return 'already'; if (typeof petHostNative === 'undefined') return 'no-bridge'; window.petHost = {   setInteractive: function(on){ try{ petHostNative.setInteractive(!!on); }{} },   focus: function(){ try{ petHostNative.focus(); }{} },   grabFocus: function(){ try{ petHostNative.grabFocus(); }{} },   releaseFocus: function(){ try{ petHostNative.releaseFocus(); }{} },   hide: function(){ try{ petHostNative.hide(); }{} },   openDress: function(){ try{ petHostNative.openDress(); }{} },   setAlpha: function(f){ try{ petHostNative.setAlpha(f); }{} },   getAlpha: function(){ try{ return petHostNative.getAlpha(); }{ return 1; } },   openApp: function(n){ try{ return !!petHostNative.openApp(String(n)); }{ return false; } },   onCursor: function(cb){ (window.__petCursorSubs=window.__petCursorSubs||[]).push(cb); },   sampleBackdrop: function(){ return null; } }; document.body.classList.remove('tab'); document.body.classList.add('desk'); return 'ok';})()";
-        p3 = null;
-        p1.evaluateJavascript(p2_1, p3);
+        p3_1 = null;
+        p1.evaluateJavascript(p2_1, p3_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

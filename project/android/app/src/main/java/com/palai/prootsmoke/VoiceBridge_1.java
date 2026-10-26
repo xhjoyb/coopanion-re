@@ -28,7 +28,8 @@ public class VoiceBridge_1 implements java.lang.Runnable {
         java.lang.String r1 = null;
         java.lang.StringBuilder r1_1 = null;
         String r1_2 = null;
-        String r2 = null;
+        android.webkit.ValueCallback r2 = null;
+        String r2_1 = null;
         try {
             r0 = ((VoiceBridge_1) this).this$0;
             r0_1 = VoiceBridge.access$000(r0);
@@ -38,8 +39,8 @@ public class VoiceBridge_1 implements java.lang.Runnable {
             return;
         } catch (java.lang.Throwable r0_2) {
             r1_1 = new java.lang.StringBuilder();
-            r2 = "deliver: ";
-            r1_1 = r1_1.append(r2);
+            r2_1 = "deliver: ";
+            r1_1 = r1_1.append(r2_1);
             r0_3 = r1_1.append(r0_2);
             r0_4 = r0_3.toString();
             r1_2 = "PetVoice";

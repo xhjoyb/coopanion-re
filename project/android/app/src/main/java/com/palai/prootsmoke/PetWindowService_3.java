@@ -37,7 +37,7 @@ public class PetWindowService_3 implements java.lang.Runnable {
         android.webkit.WebView r0_2 = null;
         String r0_3 = null;
         java.lang.Runnable r0_4 = null;
-        java.lang.String r1 = null;
+        android.view.View r1 = null;
         android.widget.FrameLayout r1_1 = null;
         String r1_2 = null;
         boolean r2 = false;

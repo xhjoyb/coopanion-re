@@ -63,9 +63,9 @@ public class VoiceBridge_5 {
         java.lang.StringBuilder r0 = null;
         java.lang.String r0_1 = null;
         VoiceBridge r0_2 = null;
-        String r1_1 = null;
-        boolean r1_2 = false;
-        int r1_3 = 0;
+        String r1 = null;
+        boolean r1_1 = false;
+        int r1_2 = 0;
         String r2 = null;
         try {
         int _pc = 0;
@@ -75,26 +75,26 @@ public class VoiceBridge_5 {
                         switch (_pc) {
                     case 0:
                     r0 = new java.lang.StringBuilder();
-                    r1_1 = "onError ";
-                    r0 = r0.append(r1_1);
+                    r1 = "onError ";
+                    r0 = r0.append(r1);
                     r0 = r0.append(p1);
                     r0_1 = r0.toString();
-                    r1_1 = "PetVoice";
-                    android.util.Log.w(r1_1, r0_1);
+                    r1 = "PetVoice";
+                    android.util.Log.w(r1, r0_1);
                     r0_2 = ((VoiceBridge_5) this).this$0;
-                    r1_2 = VoiceBridge.access$300(r0_2);
-                    if (r1_2 == false) { _pc = 1; break; }
-                    r1_3 = 7;
-                    if (p1 != r1_3) { _pc = 1; break; }
-                    r1_1 = "empty";
+                    r1_1 = VoiceBridge.access$300(r0_2);
+                    if (r1_1 == false) { _pc = 1; break; }
+                    r1_2 = 7;
+                    if (p1 != r1_2) { _pc = 1; break; }
+                    r1 = "empty";
                     _pc = 2; break;
                     case 1:
-                    r1_1 = "error";
+                    r1 = "error";
                     _pc = 2; break;
                     case 2:
                     r2 = "";
                     p1_1 = VoiceBridge.access$600(p1);
-                    VoiceBridge.access$500(r0_2, r1_1, r2, p1_1);
+                    VoiceBridge.access$500(r0_2, r1, r2, p1_1);
                     return;
                             }
                         } catch (Throwable _e) {

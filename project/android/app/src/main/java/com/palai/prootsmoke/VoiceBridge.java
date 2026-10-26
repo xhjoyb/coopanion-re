@@ -227,6 +227,7 @@ public class VoiceBridge {
         java.util.ArrayList p0_1 = null;
         java.lang.Object p0_2 = null;
         String r0 = null;
+        int r0_1 = 0;
         String r1 = null;
         boolean r1_1 = false;
         try {
@@ -239,13 +240,13 @@ public class VoiceBridge {
         if (p0_1 != null) {
             r1_1 = p0_1.isEmpty();
             if (r1_1 == false) {
-                r0 = null;
-                p0_2 = p0_1.get(r0);
+                r0_1 = 0;
+                p0_2 = p0_1.get(r0_1);
                 return p0_2;
             } else {
             }
         }
-        return r0;
+        return r0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }
@@ -300,13 +301,13 @@ public class VoiceBridge {
                     case 0:
                     r1 = "'";
                     r0 = new java.lang.StringBuilder(r1);
-                    r1 = null;
+                    r1_1 = 0;
                     _pc = 1; break;
                     case 1:
                     r2 = p0.length();
                     r3 = 39;
-                    if (r1 >= r2) { _pc = 7; break; }
-                    r2_1 = p0.charAt(r1);
+                    if (r1_1 >= r2) { _pc = 7; break; }
+                    r2_1 = p0.charAt(r1_1);
                     r4 = 92;
                     if (r2_1 == r3) { _pc = 5; break; }
                     if (r2_1 != r4) { _pc = 2; break; }
@@ -331,7 +332,7 @@ public class VoiceBridge {
                     r3_1.append(r2_2);
                     _pc = 6; break;
                     case 6:
-                    r1_1 = (r1 + 1);
+                    r1_1 = (r1_1 + 1);
                     _pc = 1; break;
                     case 7:
                     p0_1 = r0.append(r3_1);
