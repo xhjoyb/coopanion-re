@@ -777,7 +777,7 @@ public class MainActivity extends android.app.Activity {
                     r8 = null;
                     _pc = 18; break;
                     case 18:
-                    if (r8 >= r7_3) { _pc = 20; break; }
+                    if (r8 == null) { _pc = 20; break; }
                     r9_3 = r3_9[r8];
                     r10_1 = ((java.io.File) r9_3).getName();
                     r11_6 = ((java.io.File) r9_3).isDirectory();
@@ -1887,7 +1887,7 @@ public class MainActivity extends android.app.Activity {
                     case 1:
                     r2_1 = 1;
                     r3 = "下一步";
-                    if (p1_1 != r2_1) { _pc = 2; break; }
+                    if (p1_1 != null) { _pc = 2; break; }
                     p1_1 = "第 1 步：启动内核（2/5）";
                     r0.setTitle(p1_1);
                     p1_1 = "App 会自动在后台启动内核（Coopanion 的大脑）。\n· 屏幕下方会滚动显示日志\n· 看到「core已启动」就算好了\n· 如果卡住了，点顶部「重试启动」\n注意：内核在后台跑，请保持 App 不要被系统杀掉\n（建议在最近任务里把本 App 加锁 / 允许后台运行）。";
@@ -1900,7 +1900,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 5; break;
                     case 2:
                     r4 = 2;
-                    if (p1_4 != r4) { _pc = 3; break; }
+                    if (p1_4 != null) { _pc = 3; break; }
                     p1_1 = "第 2 步：把桌宠召唤到桌面（3/5）";
                     r0.setTitle(p1_1);
                     p1_1 = "桌宠有两种样子：\n【App 内】点顶部「看桌宠」，就在这个页面里显示。\n【悬浮在桌面上】点顶部「桌宠悬浮窗」——\n它就会飘在所有 App 上面，像一个小生命趴在桌面。\n· 第一次点会跳去系统设置，请打开「显示在其他应用上层 / 悬浮窗」权限\n· 打开后回到 App，再点一次「桌宠悬浮窗」即可\n· 再点一次是关闭";
@@ -1913,7 +1913,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 5; break;
                     case 3:
                     r4 = 3;
-                    if (p1_6 != r4) { _pc = 4; break; }
+                    if (p1_6 != null) { _pc = 4; break; }
                     p1_7 = this.senseStatus();
                     r1_1 = "第 3 步：让桌宠感知手机（4/5）";
                     r0.setTitle(r1_1);

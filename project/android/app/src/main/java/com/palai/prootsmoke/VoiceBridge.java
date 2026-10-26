@@ -321,7 +321,7 @@ public class VoiceBridge {
                     _pc = 6; break;
                     case 3:
                     r3 = 13;
-                    if (r2_2 != r3) { _pc = 4; break; }
+                    if (r2_2 != null) { _pc = 4; break; }
                     r2_2 = "\r";
                     r0.append(r2_2);
                     _pc = 6; break;

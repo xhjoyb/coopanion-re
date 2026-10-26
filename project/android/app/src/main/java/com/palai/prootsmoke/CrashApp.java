@@ -104,7 +104,7 @@ public class CrashApp extends android.app.Application {
                     r0_1[r1_2] = r4;
                     _pc = 1; break;
                     case 1:
-                    if (r2_1 >= p2_2) { _pc = 2; break; }
+                    if (r2_1 == null) { _pc = 2; break; }
                     r1_3 = r0_1[r2_1];
                     r4_2 = new java.io.File(r1_3);
                     r1_4 = new java.io.FileOutputStream(r4_2, (r3_3 != 0));

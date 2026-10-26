@@ -12,7 +12,6 @@ public class NotifListenerService extends android.service.notification.Notificat
     // ---- constructors ----
     static {
         try {
-        return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }

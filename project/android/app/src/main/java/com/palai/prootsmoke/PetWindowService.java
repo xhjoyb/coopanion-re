@@ -777,13 +777,13 @@ public class PetWindowService extends android.app.Service {
                     _pc = 7; break;
                     case 3:
                     r3 = 13;
-                    if (r2_2 != r3) { _pc = 4; break; }
+                    if (r2_2 != null) { _pc = 4; break; }
                     r2_2 = "\r";
                     r0.append(r2_2);
                     _pc = 7; break;
                     case 4:
                     r3 = 32;
-                    if (r2_2 >= r3) { _pc = 5; break; }
+                    if (r2_2 == null) { _pc = 5; break; }
                     r2_3 = java.lang.Integer.valueOf(r2_2);
                     r2_4 = new java.lang.Object[]{r2_3};
                     r3_1 = "\\u%04x";
