@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 条目来源：resources.arsc → type 0x03 string
+     0x7f030000 eyes_description
+     0x7f030001 eyes_summary
+     原文含中文，逐字保留（未做转义/换行改动）。 -->
+<resources>
+    <string name="eyes_description">Coopanion 自己的桌宠，让它在刷视频、看东西的时候能看见并吐槽。只在手机本地使用，不往外传。</string>
+    <string name="eyes_summary">让桌宠看得见屏幕</string>
+</resources>
