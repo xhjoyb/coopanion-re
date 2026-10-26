@@ -106,16 +106,14 @@ public class NotifListenerService extends android.service.notification.Notificat
         SenseBridge r1 = null;
         String r1_1 = null;
         java.lang.CharSequence r1_2 = null;
-        int r1_3 = 0;
         java.lang.String r2 = null;
         SenseBridge r3 = null;
         String r3_1 = null;
         java.lang.CharSequence r3_2 = null;
         java.lang.String r3_3 = null;
         String r4 = null;
-        int r4_1 = 0;
-        java.lang.String r4_2 = null;
-        int r5 = 0;
+        java.lang.String r4_1 = null;
+        java.lang.String r5 = null;
         long r6 = 0L;
         try {
         if (p1 != null) {
@@ -141,23 +139,23 @@ public class NotifListenerService extends android.service.notification.Notificat
                         r4 = "android.bigText";
                         r0_2 = r0_1.getCharSequence(r4);
                         if (r0_2 != null) {
-                            r1_3 = r0_2;
+                            r1_2 = r0_2;
                         }
                     }
                 }
                 r0_3 = "";
                 if (r3_2 != null) {
                     r3_3 = r3_2.toString();
-                    r4_2 = r3_3;
+                    r4_1 = r3_3;
                 } else {
-                    r4_1 = r0_3;
+                    r4 = r0_3;
                 }
-                if (r1_3 != 0) {
-                    r0_4 = r1_3.toString();
+                if (r1_2 != null) {
+                    r0_4 = r1_2.toString();
                 } else {
                 }
                 r5 = r0_4;
-                r0_5 = r4_2.isEmpty();
+                r0_5 = r4_1.isEmpty();
                 if (r0_5 != false) {
                     r0_5 = r5.isEmpty();
                     if (r0_5 != false) {
@@ -168,7 +166,7 @@ public class NotifListenerService extends android.service.notification.Notificat
                 if (r1 != null) {
                     r3_3 = this.appLabel(r2);
                     r6 = p1.getPostTime();
-                    r1.addNotification(r2, r3_3, r4_2, r5, r6, r7);
+                    r1.addNotification(r2, r3_3, r4_1, r5, r6, r7);
                 }
             } else {
             }

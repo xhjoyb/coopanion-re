@@ -58,16 +58,17 @@ public final class AppLog {
     }
     public static void init(android.content.Context p0) {
         java.io.File p0_1 = null;
-        java.io.File r0 = null;
+        java.lang.String r0 = null;
+        java.io.File r0_1 = null;
         String r1 = null;
         try {
         r0 = null;
-        r0 = p0.getExternalFilesDir(r0);
-        if (r0 == null) {
-            r0 = p0.getFilesDir();
+        r0_1 = p0.getExternalFilesDir(r0);
+        if (r0_1 == null) {
+            r0_1 = p0.getFilesDir();
         }
         r1 = "coop-run.log";
-        p0_1 = new java.io.File(r0, r1);
+        p0_1 = new java.io.File(r0_1, r1);
         AppLog.LOG_FILE = p0_1;
         return;
         } catch (Throwable _e9) {

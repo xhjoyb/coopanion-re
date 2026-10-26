@@ -147,9 +147,8 @@ public class PetActivity extends android.app.Activity {
         android.widget.Button r4_4 = null;
         android.widget.FrameLayout r4_5 = null;
         int r5 = 0;
-        android.widget.FrameLayout r5_1 = null;
-        String r5_2 = null;
-        PetActivity_3 r5_3 = null;
+        String r5_1 = null;
+        PetActivity_3 r5_2 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -203,10 +202,10 @@ public class PetActivity extends android.app.Activity {
                     r5 = r2;
                     _pc = 6; break;
                     case 5:
-                    r5_1 = r4_1;
+                    r5 = r4_1;
                     _pc = 6; break;
                     case 6:
-                    r3_4.setBackgroundColor(r5_1);
+                    r3_4.setBackgroundColor(r5);
                     r3_5 = new android.webkit.WebView(this);
                     ((PetActivity) this).web = r3_5;
                     r3_6 = r3_5.getSettings();
@@ -256,12 +255,12 @@ public class PetActivity extends android.app.Activity {
                     r4_1 = 24;
                     ((android.widget.FrameLayout.LayoutParams) r3_10).rightMargin = r4_1;
                     r4_4 = new android.widget.Button(this);
-                    r5_2 = "✕ 退出";
-                    r4_4.setText(r5_2);
+                    r5_1 = "✕ 退出";
+                    r4_4.setText(r5_1);
                     r5 = 1057803469;
                     r4_4.setAlpha(r5);
-                    r5_3 = new PetActivity_3(this);
-                    r4_4.setOnClickListener(r5_3);
+                    r5_2 = new PetActivity_3(this);
+                    r4_4.setOnClickListener(r5_2);
                     p1_7.addView(r4_4);
                     r4_5 = ((PetActivity) this).root;
                     r4_5.addView(p1_7, r3_10);

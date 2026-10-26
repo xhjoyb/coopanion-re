@@ -81,18 +81,19 @@ public final class SenseBridge {
         java.lang.String r2_1 = null;
         String r3 = null;
         java.lang.String r3_1 = null;
-        java.lang.String r4 = null;
+        String r4 = null;
+        java.lang.String r4_1 = null;
         try {
         r0 = new org.json.JSONObject();
         r1 = this.foregroundPackage();
         r2 = "pkg";
         r3 = "";
         if (r1 != null) {
-            r4 = r1;
+            r4_1 = r1;
         } else {
             r4 = r3;
         }
-        r0.put(r2, r4);
+        r0.put(r2, r4_1);
         r2 = "label";
         if (r1 != null) {
             r3_1 = this.appLabel(r1);
@@ -114,9 +115,8 @@ public final class SenseBridge {
         java.util.List r1_2 = null;
         java.util.Iterator r1_3 = null;
         String r2 = null;
-        java.util.Iterator r2_1 = null;
+        java.lang.Object r2_1 = null;
         java.lang.String r2_2 = null;
-        java.lang.Object r2_3 = null;
         long r3 = 0L;
         int r3_1 = 0;
         boolean r3_2 = false;
@@ -141,7 +141,7 @@ public final class SenseBridge {
                     r3 = 3600000L;
                     r4 = (r6 - r3);
                     r3_1 = 0;
-                    r1_2 = r2_1.queryUsageStats(r3_1, r4, r5, r6, r7);
+                    r1_2 = ((android.app.usage.UsageStatsManager) r2_1).queryUsageStats(r3_1, r4, r5, r6, r7);
                     if (r1_2 == null) { _pc = 4; break; }
                     r1_3 = r1_2.iterator();
                     r2_2 = r0;
@@ -157,11 +157,11 @@ public final class SenseBridge {
                     if (r4_1 <= 0) { _pc = 1; break; }
                     _pc = 2; break;
                     case 2:
-                    r2_3 = r3_3;
+                    r2_1 = r3_3;
                     _pc = 1; break;
                     case 3:
-                    if (r2_3 == null) { _pc = 4; break; }
-                    r0 = ((android.app.usage.UsageStats) r2_3).getPackageName();
+                    if (r2_1 == null) { _pc = 4; break; }
+                    r0 = ((android.app.usage.UsageStats) r2_1).getPackageName();
                     _pc = 4; break;
                     case 4:
                     return r0;
@@ -469,7 +469,8 @@ public final class SenseBridge {
         android.content.IntentFilter r2 = null;
         String r2_1 = null;
         String r3 = null;
-        int r3_1 = 0;
+        android.content.IntentFilter r3_1 = null;
+        int r3_2 = 0;
         int r4 = 0;
         float r4_1 = 0f;
         String r5 = null;
@@ -488,8 +489,8 @@ public final class SenseBridge {
                     r1 = ((SenseBridge) this).ctx;
                     r3 = "android.intent.action.BATTERY_CHANGED";
                     r2 = new android.content.IntentFilter(r3);
-                    r3 = null;
-                    r1_1 = r1.registerReceiver(r3, r2);
+                    r3_1 = null;
+                    r1_1 = r1.registerReceiver(r3_1, r2);
                     r2_1 = "level";
                     r3 = null;
                     r4 = -1;
@@ -502,7 +503,7 @@ public final class SenseBridge {
                     if (r5_1 != r6) { _pc = 2; break; }
                     _pc = 1; break;
                     case 1:
-                    r3_1 = 1;
+                    r3_2 = 1;
                     _pc = 2; break;
                     case 2:
                     r5_1 = r1_1.getIntExtra(r2_1, r4);
@@ -520,7 +521,7 @@ public final class SenseBridge {
                     _pc = 3; break;
                     case 3:
                     r1_4 = "charging";
-                    r0.put(r1_4, (r3_1 != 0));
+                    r0.put(r1_4, (r3_2 != 0));
                     r0.put(r2_1, r4);
                     return r0;
                             }
@@ -537,10 +538,13 @@ public final class SenseBridge {
         android.content.Context r1_1 = null;
         java.lang.Object r1_2 = null;
         boolean r1_3 = false;
-        String r1_4 = null;
+        int r1_4 = 0;
+        String r1_5 = null;
         String r2 = null;
         int r2_1 = 0;
-        String r3 = null;
+        boolean r2_2 = false;
+        boolean r3 = false;
+        String r3_1 = null;
         android.content.Context r4 = null;
         java.lang.Object r4_1 = null;
         boolean r4_2 = false;
@@ -557,14 +561,14 @@ public final class SenseBridge {
                     r2 = "power";
                     r1_2 = r1_1.getSystemService(r2);
                     r2_1 = 1;
-                    r3 = null;
+                    r3 = false;
                     if (r1_2 == null) { _pc = 1; break; }
                     r1_3 = ((android.os.PowerManager) r1_2).isInteractive();
                     if (r1_3 == false) { _pc = 1; break; }
                     r1_4 = r2_1;
                     _pc = 2; break;
                     case 1:
-                    r1_4 = r3;
+                    r1_3 = r3;
                     _pc = 2; break;
                     case 2:
                     r4 = ((SenseBridge) this).ctx;
@@ -575,13 +579,13 @@ public final class SenseBridge {
                     if (r4_2 == false) { _pc = 3; break; }
                     _pc = 4; break;
                     case 3:
-                    r2 = r3;
+                    r2_2 = r3;
                     _pc = 4; break;
                     case 4:
-                    r3 = "on";
-                    r0.put(r3, r1_4);
-                    r1_4 = "locked";
-                    r0.put(r1_4, r2);
+                    r3_1 = "on";
+                    r0.put(r3_1, r1_3);
+                    r1_5 = "locked";
+                    r0.put(r1_5, r2_2);
                     return r0;
                             }
                         } catch (Throwable _e) {

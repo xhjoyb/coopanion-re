@@ -24,7 +24,7 @@ public class MainActivity_31 {
     // ---- methods ----
     public void onProgressChanged(android.widget.SeekBar p1, int p2, boolean p3) {
         float p1_1 = 0f;
-        android.widget.TextView p1_2 = null;
+        int p1_2 = 0;
         float p2_1 = 0f;
         java.lang.StringBuilder p2_2 = null;
         java.lang.String p2_3 = null;

@@ -108,12 +108,14 @@ public class PetWindowService_PetHostBridge {
         }
     }
     public void setAlpha(float p1) {
-        android.os.Handler p1_1 = null;
-        android.os.Handler r0 = null;
+        java.lang.String p1_1 = null;
+        int p1_2 = 0;
+        java.lang.String r0 = null;
         int r0_1 = 0;
         PetWindowService r0_2 = null;
         android.content.SharedPreferences r0_3 = null;
         android.content.SharedPreferences.Editor r0_4 = null;
+        android.os.Handler r0_5 = null;
         int r1 = 0;
         String r1_1 = null;
         PetWindowService_PetHostBridge_1 r1_2 = null;
@@ -127,7 +129,7 @@ public class PetWindowService_PetHostBridge {
         r0_1 = 1065353216;
         r1 = (p1_1 < r0_1 ? -1 : (p1_1 == r0_1 ? 0 : 1));
         if (r1 > 0) {
-            p1_1 = r0_1;
+            p1_2 = r0_1;
         }
         r0_2 = ((PetWindowService_PetHostBridge) this).this$0;
         r1_1 = "coopanion";
@@ -135,12 +137,12 @@ public class PetWindowService_PetHostBridge {
         r0_3 = r0_2.getSharedPreferences(r1_1, r2);
         r0_4 = r0_3.edit();
         r1_1 = "pet_alpha";
-        r0_4 = r0_4.putFloat(r1_1, p1_1);
+        r0_4 = r0_4.putFloat(r1_1, p1_2);
         r0_4.apply();
         r0_2 = ((PetWindowService_PetHostBridge) this).this$0;
-        r0 = PetWindowService._$$Nest$fgetui(r0_2);
-        r1_2 = new PetWindowService_PetHostBridge_1(this, p1_1);
-        r0.post(r1_2);
+        r0_5 = PetWindowService._$$Nest$fgetui(r0_2);
+        r1_2 = new PetWindowService_PetHostBridge_1(this, p1_2);
+        r0_5.post(r1_2);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

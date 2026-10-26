@@ -37,8 +37,9 @@ public class PetWindowService_3 implements java.lang.Runnable {
         android.webkit.WebView r0_2 = null;
         String r0_3 = null;
         java.lang.Runnable r0_4 = null;
-        android.widget.FrameLayout r1 = null;
-        String r1_1 = null;
+        java.lang.String r1 = null;
+        android.widget.FrameLayout r1_1 = null;
+        String r1_2 = null;
         boolean r2 = false;
         int r2_1 = 0;
         try {
@@ -51,15 +52,15 @@ public class PetWindowService_3 implements java.lang.Runnable {
         r2_1 = 1;
         r0[r1] = r2_1;
         r0_1 = ((PetWindowService_3) this).val$wm0;
-        r1 = ((PetWindowService_3) this).val$holder;
-        r0_1.removeView(r1);
+        r1_1 = ((PetWindowService_3) this).val$holder;
+        r0_1.removeView(r1_1);
         r0_2 = ((PetWindowService_3) this).val$warm;
         r0_2.stopLoading();
         r0_2 = ((PetWindowService_3) this).val$warm;
         r0_2.destroy();
         r0_3 = "PetWindow";
-        r1_1 = "[PET] 渲染器预热完成 → 开始正式挂载";
-        android.util.Log.i(r0_3, r1_1);
+        r1_2 = "[PET] 渲染器预热完成 → 开始正式挂载";
+        android.util.Log.i(r0_3, r1_2);
         r0_4 = ((PetWindowService_3) this).val$done;
         r0_4.run();
         return;

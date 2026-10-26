@@ -52,7 +52,8 @@ public final class WebRetry {
         WebRetry_1 r1_3 = null;
         long r2 = 0L;
         int r2_1 = 0;
-        String r2_2 = null;
+        java.lang.String r2_2 = null;
+        String r2_3 = null;
         String r3 = null;
         long r4 = 0L;
         try {
@@ -65,13 +66,13 @@ public final class WebRetry {
         r4 = 30000L;
         r2_1 = (r2 > r4 ? 1 : (r2 == r4 ? 0 : -1));
         if (r2_1 > 0) {
-            r2_1 = 0;
-            WebRetry.tries = r2_1;
+            r2_2 = null;
+            WebRetry.tries = r2_2;
         }
         WebRetry.lastAt = r0;
         r0_1 = WebRetry.tries;
         r1 = 40;
-        r2_2 = "PetWebRetry";
+        r2_3 = "PetWebRetry";
         if (r0_1 >= r1) {
             p0_1 = new java.lang.StringBuilder();
             p1_1 = "give up after ";
@@ -79,7 +80,7 @@ public final class WebRetry {
             p1_2 = WebRetry.tries;
             p0_1 = p0_1.append(p1_2);
             p0_2 = p0_1.toString();
-            android.util.Log.w(r2_2, p0_2);
+            android.util.Log.w(r2_3, p0_2);
             return;
         }
         r0_1 = (r0_1 + 1);
@@ -94,7 +95,7 @@ public final class WebRetry {
         r1_2 = "ms";
         r0_2 = r0_2.append(r1_2);
         r0_3 = r0_2.toString();
-        android.util.Log.i(r2_2, r0_3);
+        android.util.Log.i(r2_3, r0_3);
         r0_4 = WebRetry.UI;
         r1_3 = new WebRetry_1(p0_2);
         r2 = 300L;
