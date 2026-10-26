@@ -1,7 +1,7 @@
 name: android-build
 
 # 用途：把 project/android 逆向还原工程真编译一次（assembleDebug），
-# 用编译器报错驱动收尾。产物 APK + 完整构建日志都以 artifact 形式留存。
+# 用编译器报错驱动收尾。APK 与完整构建日志都以 artifact 形式留存。
 # 本地 proot 无 JDK/SDK，编译只能放 Actions 跑。
 
 on:
@@ -34,40 +34,51 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install platform + build-tools
+      # 不用 android-actions/setup-android：它装 cmdline-tools 时会撞上
+      # 「Review licenses (y/N)」交互提示导致 step 直接失败（首轮实测）。
+      - name: Prepare Android SDK
         run: |
-          set -euo pipefail
-          yes | sdkmanager --licenses >/dev/null 2>&1 || true
-          sdkmanager --install "platforms;android-35" "build-tools;35.0.0" "platform-tools"
+          set -uo pipefail
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "SDK=$SDK"
+          SDKM="$SDK/cmdline-tools/latest/bin/sdkmanager"
+          if [ ! -x "$SDKM" ]; then
+            SDKM="$(find "$SDK" -name sdkmanager -type f 2>/dev/null | head -n 1)"
+          fi
+          echo "sdkmanager=$SDKM"
+          if [ -z "$SDKM" ] || [ ! -x "$SDKM" ]; then
+            echo "ERROR: sdkmanager not found"; exit 1
+          fi
+          yes | "$SDKM" --licenses > /dev/null 2>&1 || true
+          "$SDKM" --install "platforms;android-35" "build-tools;35.0.0" "platform-tools" > /dev/null 2>&1 || true
+          echo "--- platforms ---"; ls "$SDK/platforms" 2>/dev/null || true
+          echo "--- build-tools ---"; ls "$SDK/build-tools" 2>/dev/null || true
+          {
+            echo "ANDROID_HOME=$SDK"
+            echo "ANDROID_SDK_ROOT=$SDK"
+          } >> "$GITHUB_ENV"
 
-      - name: chmod gradlew
-        run: chmod +x gradlew || true
-
-      - name: Build debug APK
-        id: build
+      - name: Gradle assembleDebug
         run: |
           set -o pipefail
-          ./gradlew :app:assembleDebug --no-daemon --stacktrace --continue \
-            -Dorg.gradle.jvmargs=-Xmx3g 2>&1 | tee build.log
-          echo "exit=$?" >> "$GITHUB_OUTPUT"
+          chmod +x gradlew
+          ./gradlew --no-daemon --console=plain --stacktrace :app:assembleDebug 2>&1 | tee build.log
 
-      - name: Summarize javac errors
+      - name: Error summary
         if: always()
         run: |
-          echo '### Build tail' >> "$GITHUB_STEP_SUMMARY"
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
-          tail -n 60 build.log >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
-          echo >> "$GITHUB_STEP_SUMMARY"
-          echo '### error lines' >> "$GITHUB_STEP_SUMMARY"
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
-          grep -E '^(e: |.*error: )' build.log | head -n 300 >> "$GITHUB_STEP_SUMMARY" 2>/dev/null || true
-          echo '```' >> "$GITHUB_STEP_SUMMARY"
-          echo '### error count' >> "$GITHUB_STEP_SUMMARY"
-          printf 'total_errors=%s\n' "$(grep -cE 'error: ' build.log || true)" >> "$GITHUB_STEP_SUMMARY"
+          echo "### 编译结果" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f build.log ]; then
+            ERRS=$(grep -cE 'error: |^e: ' build.log || true)
+            echo "- error 行数：**$ERRS**" >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            grep -E 'error: |^e: ' build.log | head -150 >> "$GITHUB_STEP_SUMMARY" || true
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            echo "--- error lines (console) ---"
+            grep -E 'error: |^e: ' build.log | head -200 || true
+          else
+            echo "- build.log 未生成（Gradle 未启动）" >> "$GITHUB_STEP_SUMMARY"
+          fi
 
       - name: Upload build log
         if: always()
