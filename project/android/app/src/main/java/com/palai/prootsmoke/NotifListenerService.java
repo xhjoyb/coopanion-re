@@ -103,14 +103,14 @@ public class NotifListenerService extends android.service.notification.Notificat
         String r0_3 = null;
         java.lang.String r0_4 = null;
         boolean r0_5 = false;
-        java.lang.String r1 = null;
+        SenseBridge r1 = null;
         String r1_1 = null;
         java.lang.CharSequence r1_2 = null;
-        SenseBridge r1_3 = null;
         java.lang.String r2 = null;
-        java.lang.String r3 = null;
+        SenseBridge r3 = null;
         String r3_1 = null;
         java.lang.CharSequence r3_2 = null;
+        java.lang.String r3_3 = null;
         String r4 = null;
         java.lang.String r4_1 = null;
         java.lang.String r5 = null;
@@ -145,8 +145,8 @@ public class NotifListenerService extends android.service.notification.Notificat
                 }
                 r0_3 = "";
                 if (r3_2 != null) {
-                    r3 = r3_2.toString();
-                    r4_1 = r3;
+                    r3_3 = r3_2.toString();
+                    r4_1 = r3_3;
                 } else {
                     r4 = r0_3;
                 }
@@ -162,11 +162,11 @@ public class NotifListenerService extends android.service.notification.Notificat
                         return;
                     }
                 }
-                r1_3 = SenseBridge.peek();
-                if (r1_3 != null) {
-                    r3 = this.appLabel(r2);
+                r1 = SenseBridge.peek();
+                if (r1 != null) {
+                    r3_3 = this.appLabel(r2);
                     r6 = p1.getPostTime();
-                    r1_3.addNotification(r2, r3, r4_1, r5, r6);
+                    r1.addNotification(r2, r3_3, r4_1, r5, r6);
                 }
             } else {
             }

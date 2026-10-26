@@ -539,13 +539,10 @@ public final class SenseBridge {
         java.lang.Object r1_1 = null;
         boolean r1_2 = false;
         int r1_3 = 0;
-        java.lang.String r1_4 = null;
-        String r1_5 = null;
+        String r1_4 = null;
         String r2 = null;
         int r2_1 = 0;
-        java.lang.String r2_2 = null;
-        java.lang.String r3 = null;
-        String r3_1 = null;
+        String r3 = null;
         android.content.Context r4 = null;
         java.lang.Object r4_1 = null;
         boolean r4_2 = false;
@@ -580,13 +577,13 @@ public final class SenseBridge {
                     if (r4_2 == false) { _pc = 3; break; }
                     _pc = 4; break;
                     case 3:
-                    r2_2 = r3;
+                    r2 = r3;
                     _pc = 4; break;
                     case 4:
-                    r3_1 = "on";
-                    r0.put(r3_1, r1_4);
-                    r1_5 = "locked";
-                    r0.put(r1_5, r2_2);
+                    r3 = "on";
+                    r0.put(r3, r1_4);
+                    r1_4 = "locked";
+                    r0.put(r1_4, r2);
                     return r0;
                             }
                         } catch (Throwable _e) {

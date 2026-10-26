@@ -2174,8 +2174,7 @@ public class MainActivity extends android.app.Activity {
     }
     public static boolean waitPortOpen(java.lang.String p0, int p1, int p2) {
         int p0_1 = 0;
-        java.net.SocketAddress p2_1 = null;
-        java.net.InetSocketAddress p2_2 = null;
+        java.net.InetSocketAddress p2_1 = null;
         long r0 = 0L;
         long r2 = 0L;
         java.net.Socket r2_1 = null;
@@ -2187,11 +2186,11 @@ public class MainActivity extends android.app.Activity {
         r2 = java.lang.System.currentTimeMillis();
         p2 = (r2 > r0 ? 1 : (r2 == r0 ? 0 : -1));
         if (p2 < 0) {
-            p2_1 = null;
+            p2 = 0;
             r2_1 = new java.net.Socket();
-            p2_2 = new java.net.InetSocketAddress(p0, p1);
+            p2_1 = new java.net.InetSocketAddress(p0, p1);
             r3 = 1200;
-            r2_1.connect(p2_2, r3);
+            r2_1.connect(p2_1, r3);
             r2_1.close();
             p0_1 = 1;
             return (p0_1 != 0);
