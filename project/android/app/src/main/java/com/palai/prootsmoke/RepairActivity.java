@@ -89,7 +89,6 @@ public class RepairActivity extends android.app.Activity {
         android.webkit.WebView r0 = null;
         String r0_1 = null;
         java.lang.Object r0_2 = null;
-        java.lang.Throwable r0_3 = null;
         java.lang.StringBuilder r0_4 = null;
         java.lang.String r0_5 = null;
         android.webkit.WebView r1 = null;

@@ -13,7 +13,6 @@ public class PetWindow2_2 extends android.webkit.WebViewClient {
     }
     // ---- methods ----
     public void onPageFinished(android.webkit.WebView p1, java.lang.String p2) {
-        java.lang.Throwable p1_1 = null;
         String p2_1 = null;
         android.webkit.ValueCallback r0 = null;
         try {

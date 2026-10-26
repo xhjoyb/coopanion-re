@@ -271,7 +271,6 @@ public class MainActivity extends android.app.Activity {
         boolean r0 = false;
         String r0_1 = null;
         int r0_2 = 0;
-        java.lang.Throwable r1 = null;
         try {
             r0 = ((MainActivity) this).booting;
             if (r0 != false) {
@@ -1675,7 +1674,6 @@ public class MainActivity extends android.app.Activity {
         java.lang.StringBuilder r0_2 = null;
         android.net.Uri r0_3 = null;
         int r0_4 = 0;
-        java.lang.Throwable r0_5 = null;
         android.content.Intent r1 = null;
         java.lang.StringBuilder r1_1 = null;
         String r2 = null;
@@ -2051,7 +2049,6 @@ public class MainActivity extends android.app.Activity {
         String r0_2 = null;
         android.content.SharedPreferences r0_3 = null;
         android.content.SharedPreferences.Editor r0_4 = null;
-        java.lang.Throwable r0_5 = null;
         java.lang.StringBuilder r0_6 = null;
         java.lang.String r0_7 = null;
         Class r1 = null;

@@ -230,7 +230,6 @@ public final class PetWindow2 {
         float p0_1 = 0f;
         android.webkit.WebView p0_2 = null;
         int p0_3 = 0;
-        java.lang.Throwable p0_4 = null;
         int r0 = 0;
         android.webkit.WebView r1 = null;
         android.content.res.Resources r1_1 = null;
@@ -274,7 +273,6 @@ public final class PetWindow2 {
         }
     }
     public static void start(android.content.Context p0) {
-        java.lang.Throwable p0_1 = null;
         java.lang.StringBuilder p0_2 = null;
         java.lang.String p0_3 = null;
         boolean p0_4 = false;

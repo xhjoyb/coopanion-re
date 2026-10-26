@@ -177,7 +177,6 @@ public final class SenseBridge {
     }
     public static SenseBridge get(android.content.Context p0) {
         SenseBridge p0_1 = null;
-        java.lang.Throwable p0_2 = null;
         Class r0 = null;
         SenseBridge r1 = null;
         try {

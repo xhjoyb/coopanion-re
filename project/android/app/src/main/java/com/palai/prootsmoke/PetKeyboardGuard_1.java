@@ -20,7 +20,6 @@ public class PetKeyboardGuard_1 implements java.lang.Runnable {
     public void run() {
         PetKeyboardGuard r0 = null;
         android.os.Handler r0_1 = null;
-        java.lang.Throwable r0_2 = null;
         java.lang.StringBuilder r0_3 = null;
         java.lang.String r0_4 = null;
         long r1 = 0L;

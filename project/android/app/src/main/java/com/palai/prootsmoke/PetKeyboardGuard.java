@@ -371,7 +371,6 @@ public final class PetKeyboardGuard {
         String p1_1 = null;
         java.lang.StringBuilder p1_2 = null;
         java.lang.String p1_3 = null;
-        java.lang.Throwable p1_4 = null;
         String p2_1 = null;
         android.webkit.ValueCallback p2_2 = null;
         android.webkit.WebView r0 = null;
@@ -423,7 +422,6 @@ public final class PetKeyboardGuard {
         String p1_1 = null;
         java.lang.StringBuilder p1_2 = null;
         java.lang.String p1_3 = null;
-        java.lang.Throwable p1_4 = null;
         String r0 = null;
         android.webkit.WebView r1 = null;
         android.view.View r1_1 = null;

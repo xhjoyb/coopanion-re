@@ -21,7 +21,6 @@ public class MainActivity_11 implements android.view.View.OnClickListener {
     // ---- methods ----
     public void onClick(android.view.View p1) {
         MainActivity p1_1 = null;
-        java.lang.Throwable p1_2 = null;
         java.lang.StringBuilder p1_3 = null;
         java.lang.String p1_4 = null;
         android.content.Intent r0 = null;

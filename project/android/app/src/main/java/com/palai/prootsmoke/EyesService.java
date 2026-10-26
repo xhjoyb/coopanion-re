@@ -160,7 +160,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         java.util.concurrent.TimeUnit p1_1 = null;
         java.lang.Object p1_2 = null;
         String p1_3 = null;
-        java.lang.Throwable p1_4 = null;
         java.lang.String p1_5 = null;
         int r0 = 0;
         EyesService r0_1 = null;
@@ -216,7 +215,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
     }
     public void close(java.net.Socket p1) {
-        java.lang.Throwable p1_1 = null;
         try {
             p1.close();
             return;
@@ -819,7 +817,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
     }
     public static void notifyIme(int p0) {
-        java.lang.Throwable p0_1 = null;
         EyesService_ImeListener r0 = null;
         long r1 = 0L;
         long r3 = 0L;
@@ -923,7 +920,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
     }
     public void sendJson(java.net.Socket p1, int p2, java.lang.String p3) {
         java.io.OutputStream p1_1 = null;
-        java.lang.Throwable p1_2 = null;
         String p2_1 = null;
         java.lang.StringBuilder p2_2 = null;
         java.lang.String p2_3 = null;
@@ -1080,7 +1076,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
     }
     public static void setImeListener(EyesService_ImeListener p0) {
-        java.lang.Throwable p0_1 = null;
         int r0 = 0;
         try {
             EyesService.imeListener = p0;
@@ -1097,7 +1092,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         boolean r0 = false;
         int r0_1 = 0;
         java.lang.Thread r0_2 = null;
-        java.lang.Throwable r0_3 = null;
         java.util.concurrent.ExecutorService r1 = null;
         java.lang.Thread r1_1 = null;
         EyesService_1 r2 = null;
@@ -1245,7 +1239,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
     public void onAccessibilityEvent(android.view.accessibility.AccessibilityEvent p1) {
         java.lang.CharSequence r0 = null;
         java.lang.String r0_1 = null;
-        java.lang.Throwable r0_2 = null;
         int r1 = 0;
         try {
             if (p1 == null) {

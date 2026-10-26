@@ -20,7 +20,6 @@ public class VoiceBridge_3 implements java.lang.Runnable {
     public void run() {
         VoiceBridge r0 = null;
         android.speech.SpeechRecognizer r0_1 = null;
-        java.lang.Throwable r0_2 = null;
         java.lang.StringBuilder r0_3 = null;
         java.lang.String r0_4 = null;
         java.lang.StringBuilder r1 = null;

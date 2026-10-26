@@ -21,7 +21,6 @@ public class VoiceBridge_2 implements java.lang.Runnable {
         String r0 = null;
         VoiceBridge r1 = null;
         android.speech.SpeechRecognizer r1_1 = null;
-        java.lang.Throwable r1_2 = null;
         java.lang.String r1_3 = null;
         android.speech.SpeechRecognizer r2 = null;
         int r2_1 = 0;

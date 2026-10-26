@@ -351,7 +351,6 @@ public class VoiceBridge {
     public boolean available() {
         android.content.Context r0 = null;
         boolean r0_1 = false;
-        java.lang.Throwable r0_2 = null;
         int r0_3 = 0;
         try {
             r0 = ((VoiceBridge) this).ctx;

@@ -27,7 +27,6 @@ public class RepairActivity_1 extends android.webkit.WebChromeClient {
         android.webkit.ValueCallback p1_3 = null;
         android.content.Intent p1_4 = null;
         int p1_5 = 0;
-        java.lang.Throwable p1_6 = null;
         java.lang.StringBuilder p1_7 = null;
         java.lang.String p1_8 = null;
         String p2_1 = null;

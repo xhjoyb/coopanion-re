@@ -12,7 +12,6 @@ public class PetWindow2_1 implements java.lang.Runnable {
     // ---- methods ----
     public void run() {
         android.os.Handler r0 = null;
-        java.lang.Throwable r0_1 = null;
         java.lang.StringBuilder r0_2 = null;
         java.lang.String r0_3 = null;
         long r1 = 0L;

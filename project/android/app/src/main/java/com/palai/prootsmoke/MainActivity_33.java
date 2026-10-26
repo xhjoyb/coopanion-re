@@ -21,7 +21,6 @@ public class MainActivity_33 {
     // ---- methods ----
     public void onClick(android.content.DialogInterface p1, int p2) {
         MainActivity p1_1 = null;
-        java.lang.Throwable p1_2 = null;
         java.lang.StringBuilder p1_3 = null;
         java.lang.String p1_4 = null;
         android.content.Intent p2_1 = null;
