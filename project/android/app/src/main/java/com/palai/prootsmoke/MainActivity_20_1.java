@@ -57,7 +57,7 @@ public class MainActivity_20_1 {
         } else {
         }
         p1_1 = "ok";
-        p1_2 = p1_1.equals(r0_1);
+        p1_2 = p1.equals(r0_1);
         r1 = ")";
         if (p1_2 != false) {
             p1_3 = ((MainActivity_20_1) this).this$1;
@@ -95,7 +95,7 @@ public class MainActivity_20_1 {
             p1_3 = ((MainActivity_20_1) this).this$1;
             p1_4 = ((MainActivity_20) p1_3).this$0;
             r0 = "[PET] retry limit reached, stop";
-            MainActivity._$$Nest$mlog(p1_4, r0);
+            MainActivity._$$Nest$mlog(p1_4, r0_1);
             p1_3 = ((MainActivity_20_1) this).this$1;
             p1_4 = ((MainActivity_20) p1_3).this$0;
             r0_6 = new MainActivity_20_1_2(this);

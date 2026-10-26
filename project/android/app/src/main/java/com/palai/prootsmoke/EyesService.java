@@ -208,7 +208,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
             return r10;
         } catch (java.lang.Throwable p1_4) {
             while (false) {
-                p1_5 = java.lang.String.valueOf(p1_4);
+                p1_5 = java.lang.String.valueOf(p1_2);
                 ((EyesService) this).lastError = p1_5;
                 return r10;
             }
@@ -289,7 +289,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r1_3 = "d";
                     r3 = 80;
                     r2_2 = EyesService.trim(r2_2, r3);
-                    r4_1.put(r1_3, r2_2);
+                    r4_1.put(r1_2, r2_2);
                     _pc = 4; break;
                     case 4:
                     r1_4 = new android.graphics.Rect();
@@ -308,7 +308,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r1 = ((android.graphics.Rect) r1_4).bottom;
                     r0_1 = r0_1.append(r1);
                     r0_2 = r0_1.toString();
-                    r4_1.put(r2_3, r0_2);
+                    r4_1.put(r2_2, r0_2);
                     r0_3 = p0.getClassName();
                     r0_2 = EyesService.safe(r0_3);
                     r1 = 46;
@@ -321,7 +321,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r1 = r0_2.length();
                     if (r1 <= 0) { _pc = 6; break; }
                     r1_3 = "c";
-                    r4_1.put(r1_3, r0_2);
+                    r4_1.put(r1_2, r0_2);
                     _pc = 6; break;
                     case 6:
                     p1.put(r4_1);
@@ -629,7 +629,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r3 = ((android.view.inputmethod.InputMethodInfo) r2_1).getPackageName();
                     if (r3 == null) { _pc = 2; break; }
                     r2_2 = ((android.view.inputmethod.InputMethodInfo) r2_1).getPackageName();
-                    r0.add(r2_2);
+                    r0.add(r2_1);
                     _pc = 2; break;
                     case 2:
                     _pc = 1; break;
@@ -645,7 +645,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r2_2 = ((android.view.inputmethod.InputMethodInfo) r1_4).getPackageName();
                     if (r2_2 == null) { _pc = 5; break; }
                     r1_5 = ((android.view.inputmethod.InputMethodInfo) r1_4).getPackageName();
-                    r0.add(r1_5);
+                    r0.add(r1_4);
                     _pc = 5; break;
                     case 5:
                     _pc = 4; break;
@@ -909,7 +909,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         java.lang.String p0_2 = null;
         try {
         if (p0 != null) {
-            p0_2 = p0_1.toString();
+            p0_2 = p0.toString();
         } else {
             p0_1 = "";
         }
@@ -1045,7 +1045,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r1_2 = EyesService.escape(r1_2);
                     r0_2 = r0_2.append(r1_2);
                     r1_1 = "\nX-Age-Ms: ";
-                    r0_2 = r0_2.append(r1_1);
+                    r0_2 = r0_2.append(r1_2);
                     r1_3 = java.lang.System.currentTimeMillis();
                     r3 = ((EyesService) this).lastJpegAt;
                     r1_3 = (r1_3 - r3);
@@ -1053,12 +1053,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r1_3 = java.lang.Math.max(r3, r1_3);
                     r0_2 = r0_2.append(r1_3);
                     r1_1 = "\nCache-Control: no-store\nConnection: close\n";
-                    r0_2 = r0_2.append(r1_1);
+                    r0_2 = r0_2.append(r1_2);
                     r0_3 = r0_2.toString();
                     r1_4 = java.nio.charset.StandardCharsets.UTF_8;
                     r0_4 = r0_3.getBytes(r1_4);
                     p1_1.write(r0_4);
-                    p1_1.write(p2);
+                    p1_1.write(p2_2);
                     p1_1.flush();
                     _pc = 7; break;
                     _pc = 7; break;
@@ -1148,7 +1148,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
         r0 = 10;
         r1 = 32;
-        p0 = p0_1.replace(r0, r1);
+        p0 = p0.replace(r0, r1);
         r0 = 13;
         p0 = p0.replace(r0, r1);
         p0 = p0.trim();
@@ -1205,7 +1205,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     case 2:
                     r2.put(r0, r5);
                     r5_1 = "screenOn";
-                    r2.put(r5_1, (r4 != 0));
+                    r2.put(r5, (r4 != 0));
                     r4_1 = this.getRootInActiveWindow();
                     r5_2 = new org.json.JSONArray();
                     if (r4_1 == null) { _pc = 5; break; }

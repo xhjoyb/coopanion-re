@@ -60,7 +60,7 @@ public class MainActivity_12 extends android.webkit.WebViewClient {
         p2_1 = p2_1.append(r0_1);
         p2_1 = p2_1.append(p3);
         p3_1 = " @ ";
-        p2_1 = p2_1.append(p3_1);
+        p2_1 = p2_1.append(p3);
         p2_1 = p2_1.append(p4);
         p2_2 = p2_1.toString();
         MainActivity._$$Nest$mlog(p1_1, p2_2);

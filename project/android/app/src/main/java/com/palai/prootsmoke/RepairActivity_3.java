@@ -34,7 +34,7 @@ public class RepairActivity_3 extends android.webkit.WebViewClient {
         AppLog.i(p2);
         p2_2 = "(function(){ if(window.__imeHack) return; window.__imeHack=1;document.addEventListener('focusin',function(ev){  var t=ev.target; if(!t) return;  var tag=(t.tagName||'').toUpperCase();  if(tag==='INPUT'||tag==='TEXTAREA'||t.isContentEditable){    try{ window.__wantIme=1; }{}  }},true);window.__imeProbe=function(){var a=document.activeElement;  return (a&&(a.tagName==='INPUT'||a.tagName==='TEXTAREA'||a.isContentEditable))?1:0;};})()";
         r0_1 = null;
-        p1.evaluateJavascript(p2_2, r0_1);
+        p1.evaluateJavascript(p2, r0_1);
         p2_3 = ((RepairActivity_3) this).this$0;
         RepairActivity._$$Nest$mstartImeWatchdog(p2_3, p1);
         return;

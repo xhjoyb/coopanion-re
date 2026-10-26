@@ -165,16 +165,16 @@ public class VoiceBridge {
         if (p2 == null) {
             p2_1 = r1;
         }
-        p2 = VoiceBridge.jsStr(p2_1);
+        p2 = VoiceBridge.jsStr(p2);
         p1_1 = p1_1.append(p2);
         p1_1 = p1_1.append(r0_2);
         if (p3 == null) {
             p3_1 = r1;
         }
-        p2 = VoiceBridge.jsStr(p3_1);
+        p2 = VoiceBridge.jsStr(p3);
         p1_1 = p1_1.append(p2);
         p2_1 = ");}{}})()";
-        p1_1 = p1_1.append(p2_1);
+        p1_1 = p1_1.append(p2);
         p1 = p1_1.toString();
         p2_2 = ((VoiceBridge) this).ui;
         p3_2 = new VoiceBridge_1(this, p1);

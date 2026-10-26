@@ -38,7 +38,7 @@ public class PetWindowService_12 implements java.lang.Runnable {
             r0_1.loadUrl(r1);
             r0_3 = "PetWindow";
             r1 = "[PET] loadUrl(兜底超时) -> http://127.0.0.1:7797/pet";
-            android.util.Log.i(r0_3, r1);
+            android.util.Log.i(r0_2, r1);
         }
         return;
         } catch (Throwable _e9) {

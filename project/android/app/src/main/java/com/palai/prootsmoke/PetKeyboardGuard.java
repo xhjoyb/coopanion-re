@@ -182,7 +182,7 @@ public final class PetKeyboardGuard {
             r2_2 = ((PetKeyboardGuard) this).lastSource;
             r0_3 = r0_3.append(r2_2);
             r2_1 = ")";
-            r0_3 = r0_3.append(r2_1);
+            r0_3 = r0_3.append(r2_2);
             r0_4 = r0_3.toString();
             android.util.Log.i(r4, r0_4);
         }
@@ -300,7 +300,7 @@ public final class PetKeyboardGuard {
                     p2_1 = p1_1;
                     _pc = 4; break;
                     case 4:
-                    r1.retarget(p1_1, p2_1);
+                    r1.retarget(p1, p2);
                     _pc = 5; break;
                     case 5:
                     p0_2 = new PetKeyboardGuard_2(r1);
@@ -390,13 +390,13 @@ public final class PetKeyboardGuard {
             if (r0 == null) {
                 p1_1 = "PetKb";
                 p2_1 = "no webview for ime report";
-                android.util.Log.w(p1_1, p2_1);
+                android.util.Log.w(p1_1, p2);
                 return;
             }
             if (p2_1 != null) {
                 r0_2 = "'";
                 r1 = " ";
-                p2 = p2_1.replace(r0_2, r1);
+                p2 = p2.replace(r0_2, r1);
             } else {
                 p2_1 = "";
             }
@@ -409,7 +409,7 @@ public final class PetKeyboardGuard {
             p1_2 = p1_2.append(r1);
             p1_2 = p1_2.append(p2);
             p2_1 = "')";
-            p1_2 = p1_2.append(p2_1);
+            p1_2 = p1_2.append(p2);
             p1_3 = p1_2.toString();
             p2_2 = null;
             r0.evaluateJavascript(p1_3, p2_2);

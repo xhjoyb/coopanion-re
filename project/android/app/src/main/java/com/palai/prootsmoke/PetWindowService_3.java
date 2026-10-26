@@ -53,7 +53,7 @@ public class PetWindowService_3 implements java.lang.Runnable {
         r0[r1] = r2_1;
         r0_1 = ((PetWindowService_3) this).val$wm0;
         r1_1 = ((PetWindowService_3) this).val$holder;
-        r0_1.removeView(r1_1);
+        r0_1.removeView(r1);
         r0_2 = ((PetWindowService_3) this).val$warm;
         r0_2.stopLoading();
         r0_2 = ((PetWindowService_3) this).val$warm;

@@ -114,7 +114,7 @@ public class RepairActivity extends android.app.Activity {
         } catch (java.lang.Throwable r0_3) {
             r2_1 = "[REPAIRACT][IME] err: ";
             r1_1 = new java.lang.StringBuilder(r2_1);
-            r0_4 = r1_1.append(r0_3);
+            r0_4 = r1_1.append(r0_2);
             r0_5 = r0_4.toString();
             AppLog.i(r0_5);
             return;
@@ -219,7 +219,7 @@ public class RepairActivity extends android.app.Activity {
                     AppLog.i(p1_2);
                     _pc = 9; break;
                     case 8:
-                    super.onActivityResult(p1_2, p2_1, p3_4);
+                    super.onActivityResult(p1_2, p2_1, p3);
                     _pc = 9; break;
                     case 9:
                     return;

@@ -107,7 +107,7 @@ public final class AppLog {
         p0_1 = p0_1.append(r0);
         p0_1 = p0_1.append(p1);
         p1_1 = "\n";
-        p0_1 = p0_1.append(p1_1);
+        p0_1 = p0_1.append(p1);
         p0 = p0_1.toString();
         r0_1 = 1;
         p1_2 = new java.io.FileOutputStream(r2, (r0_1 != 0));

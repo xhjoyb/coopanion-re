@@ -18,7 +18,7 @@ public class PetWindow2_2 extends android.webkit.WebViewClient {
         try {
             p2_1 = "(function(){ if (typeof petHostNative === 'undefined') return 'no-bridge'; if (window.petHost) return 'already'; window.petHost = { setInteractive:function(o){}, focus:function(){}, grabFocus:function(){}, releaseFocus:function(){}, hide:function(){}, openDress:function(){}, setAlpha:function(f){}, getAlpha:function(){return 1;}, openApp:function(n){return false;}, onCursor:function(cb){}, sampleBackdrop:function(){return null;} }; document.body.classList.remove('tab'); document.body.classList.add('desk'); return 'ok';})()";
             r0 = null;
-            p1.evaluateJavascript(p2_1, r0);
+            p1.evaluateJavascript(p2, r0);
             return;
         } catch (java.lang.Throwable p1_1) {
             return;

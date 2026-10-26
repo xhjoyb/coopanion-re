@@ -43,7 +43,7 @@ public class VoiceBridge_1 implements java.lang.Runnable {
             r0_3 = r1_1.append(r0_2);
             r0_4 = r0_3.toString();
             r1_2 = "PetVoice";
-            android.util.Log.w(r1_2, r0_4);
+            android.util.Log.w(r1, r0_4);
             return;
         }
     }

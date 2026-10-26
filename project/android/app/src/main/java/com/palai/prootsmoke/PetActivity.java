@@ -96,7 +96,7 @@ public class PetActivity extends android.app.Activity {
                     AppLog.i(p1_5);
                     _pc = 7; break;
                     case 6:
-                    super.onActivityResult(p1_5, p2_3, p3_1);
+                    super.onActivityResult(p1_5, p2_3, p3);
                     _pc = 7; break;
                     case 7:
                     return;

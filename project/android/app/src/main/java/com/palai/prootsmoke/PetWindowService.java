@@ -1170,7 +1170,7 @@ public class PetWindowService extends android.app.Service {
                     _pc = 3; break;
                     r1_9 = r0_1;
                     r0_2 = new java.lang.StringBuilder(r10);
-                    r0_2 = r0_2.append(r1_9);
+                    r0_2 = r0_2.append(r1_3);
                     r0_3 = r0_2.toString();
                     android.util.Log.w(r9, r0_3);
                     r13_1.run();

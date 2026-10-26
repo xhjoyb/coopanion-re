@@ -83,7 +83,7 @@ public class EyesService_Api30_1 {
                     r1_2 = ((EyesService_Api30_1) this).val$fail;
                     r0_1 = java.lang.String.valueOf(r0);
                     r1_2.set(r0_1);
-                    p1_1 = p1_1.getHardwareBuffer();
+                    p1_1 = p1.getHardwareBuffer();
                     p1_1.close();
                     _pc = 1; break;
                     case 1:

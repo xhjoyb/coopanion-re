@@ -103,7 +103,7 @@ public final class SenseBridge {
         r0.put(r2, r3_1);
         r1_1 = "ts";
         r2_1 = this.nowIso();
-        r0.put(r1_1, r2_1);
+        r0.put(r1, r2_1);
         return r0;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -661,25 +661,25 @@ public final class SenseBridge {
                     p1_1 = "";
                     _pc = 1; break;
                     case 1:
-                    p6.put(p5_1, p1_1);
+                    p6.put(p5_3, p1_1);
                     p1_1 = "app";
                     if (p2 != null) { _pc = 2; break; }
                     p2_1 = "";
                     _pc = 2; break;
                     case 2:
-                    p6.put(p1_1, p2_1);
+                    p6.put(p1, p2_1);
                     p1_1 = "title";
                     if (p3 != null) { _pc = 3; break; }
                     p3_1 = "";
                     _pc = 3; break;
                     case 3:
-                    p6.put(p1_1, p3_1);
+                    p6.put(p1, p3_1);
                     p1_1 = "text";
                     if (p4 != null) { _pc = 4; break; }
                     p4_1 = "";
                     _pc = 4; break;
                     case 4:
-                    p6.put(p1_1, p4_1);
+                    p6.put(p1, p4_1);
                     p1_2 = ((SenseBridge) this).notifs;
                     p1_2.add(p6);
                     _pc = 5; break;

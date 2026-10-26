@@ -37,7 +37,7 @@ public class PetWindowService_5 extends android.webkit.WebViewClient {
         android.util.Log.i(r0_1, p2);
         p2_2 = "(function(){ if (window.petHost) return 'already'; if (typeof petHostNative === 'undefined') return 'no-bridge'; window.petHost = {   setInteractive: function(on){ try{ petHostNative.setInteractive(!!on); }{} },   focus: function(){ try{ petHostNative.focus(); }{} },   grabFocus: function(){ try{ petHostNative.grabFocus(); }{} },   releaseFocus: function(){ try{ petHostNative.releaseFocus(); }{} },   hide: function(){ try{ petHostNative.hide(); }{} },   openDress: function(){ try{ petHostNative.openDress(); }{} },   setAlpha: function(f){ try{ petHostNative.setAlpha(f); }{} },   getAlpha: function(){ try{ return petHostNative.getAlpha(); }{ return 1; } },   openApp: function(n){ try{ return !!petHostNative.openApp(String(n)); }{ return false; } },   onCursor: function(cb){ (window.__petCursorSubs=window.__petCursorSubs||[]).push(cb); },   sampleBackdrop: function(){ return null; } }; document.body.classList.remove('tab'); document.body.classList.add('desk'); return 'ok';})()";
         r0_2 = null;
-        p1.evaluateJavascript(p2_2, r0_2);
+        p1.evaluateJavascript(p2, r0_2);
         p2_3 = ((PetWindowService_5) this).this$0;
         PetWindowService._$$Nest$mstartRepaintWatchdog(p2_3, p1);
         return;
@@ -51,7 +51,7 @@ public class PetWindowService_5 extends android.webkit.WebViewClient {
         try {
         p2_1 = "(function(){ if (window.petHost) return 'already'; if (typeof petHostNative === 'undefined') return 'no-bridge'; window.petHost = {   setInteractive: function(on){ try{ petHostNative.setInteractive(!!on); }{} },   focus: function(){ try{ petHostNative.focus(); }{} },   grabFocus: function(){ try{ petHostNative.grabFocus(); }{} },   releaseFocus: function(){ try{ petHostNative.releaseFocus(); }{} },   hide: function(){ try{ petHostNative.hide(); }{} },   openDress: function(){ try{ petHostNative.openDress(); }{} },   setAlpha: function(f){ try{ petHostNative.setAlpha(f); }{} },   getAlpha: function(){ try{ return petHostNative.getAlpha(); }{ return 1; } },   openApp: function(n){ try{ return !!petHostNative.openApp(String(n)); }{ return false; } },   onCursor: function(cb){ (window.__petCursorSubs=window.__petCursorSubs||[]).push(cb); },   sampleBackdrop: function(){ return null; } }; document.body.classList.remove('tab'); document.body.classList.add('desk'); return 'ok';})()";
         p3_1 = null;
-        p1.evaluateJavascript(p2_1, p3_1);
+        p1.evaluateJavascript(p2, p3_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

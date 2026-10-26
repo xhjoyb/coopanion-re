@@ -547,9 +547,9 @@ public class MainActivity extends android.app.Activity {
                     r7 = "?";
                     _pc = 2; break;
                     case 2:
-                    r6 = r6.append(r7);
+                    r6 = r6.append(r7_1);
                     r7 = "/coop-run.log";
-                    r6 = r6.append(r7);
+                    r6 = r6.append(r7_1);
                     r6_1 = r6.toString();
                     r1.log(r6_1);
                     r6_2 = this.getApplicationInfo();
@@ -597,7 +597,7 @@ public class MainActivity extends android.app.Activity {
                     r8 = new java.io.File(r11_4, r9_1);
                     r10 = new java.lang.StringBuilder();
                     r11_5 = ".ok-v8-";
-                    r10 = r10.append(r11_5);
+                    r10 = r10.append(r11_3);
                     r10 = r10.append(r14_2);
                     r10 = r10.append(r3);
                     r10 = r10.append(r12);
@@ -607,20 +607,20 @@ public class MainActivity extends android.app.Activity {
                     if (r10_2 != false) { _pc = 16; break; }
                     r10 = new java.lang.StringBuilder();
                     r11_5 = "[0] 检测到新指纹，解压到新目录 rootfs-v8-";
-                    r10 = r10.append(r11_5);
+                    r10 = r10.append(r11_3);
                     r10 = r10.append(r14_2);
                     r3_1 = r10.append(r3);
                     r3_1 = r3_1.append(r12);
                     r10_3 = " ...";
-                    r3_1 = r3_1.append(r10_3);
+                    r3_1 = r3_1.append(r10_1);
                     r3_2 = r3_1.toString();
                     r1.log(r3_2);
                     r3_1 = new java.lang.StringBuilder();
                     r10_3 = "[1] 解压 rootfs (payload=";
-                    r3_1 = r3_1.append(r10_3);
+                    r3_1 = r3_1.append(r10_1);
                     r3_1 = r3_1.append(r12);
                     r10_3 = "B, 耐心等 1-2 分钟) ...";
-                    r3_1 = r3_1.append(r10_3);
+                    r3_1 = r3_1.append(r10_1);
                     r3_2 = r3_1.toString();
                     r1.log(r3_2);
                     r10_4 = java.lang.System.currentTimeMillis();
@@ -675,7 +675,7 @@ public class MainActivity extends android.app.Activity {
                     if (r12_1 >= r3_5) { _pc = 12; break; }
                     r14_4 = r4_1[r12_1];
                     r3_6 = r14_4[r7_3];
-                    r15_2 = new java.io.File(r8, r3_6);
+                    r15_2 = new java.io.File(r8, r3_2);
                     r3_5 = 1;
                     r17 = r14_4[r3_5];
                     r18 = r8;
@@ -764,7 +764,7 @@ public class MainActivity extends android.app.Activity {
                     case 16:
                     r18 = r8;
                     r3 = "[1] rootfs 已解压（指纹一致）";
-                    r1.log(r3);
+                    r1.log(r3_2);
                     _pc = 17; break;
                     case 17:
                     r3_8 = this.getFilesDir();
@@ -777,17 +777,17 @@ public class MainActivity extends android.app.Activity {
                     case 18:
                     if (r8 == null) { _pc = 20; break; }
                     r9_3 = r3_9[r8];
-                    r10_1 = ((java.io.File) r9_3).getName();
-                    r11_6 = ((java.io.File) r9_3).isDirectory();
+                    r10_1 = r9_2.getName();
+                    r11_6 = r9_2.isDirectory();
                     if (r11_6 == false) { _pc = 19; break; }
                     r11_6 = r10_1.startsWith(r2);
                     if (r11_6 == false) { _pc = 19; break; }
                     r11_6 = r10_1.equals(r4_4);
                     if (r11_6 != false) { _pc = 19; break; }
-                    r1.deleteRec(r9_3);
+                    r1.deleteRec(r9_2);
                     r9 = new java.lang.StringBuilder();
                     r11_5 = "[0b] 清理旧 rootfs 目录: ";
-                    r9 = r9.append(r11_5);
+                    r9 = r9.append(r11_3);
                     r9 = r9.append(r10_1);
                     r9_1 = r9.toString();
                     r1.log(r9_1);
@@ -798,7 +798,7 @@ public class MainActivity extends android.app.Activity {
                     case 20:
                     r3_8 = this.getFilesDir();
                     r4 = "ptmp";
-                    r2_1 = new java.io.File(r3_8, r4);
+                    r2_1 = new java.io.File(r3_8, r4_4);
                     r2_1.mkdirs();
                     r3_5 = 1;
                     r4_5 = false;
@@ -806,7 +806,7 @@ public class MainActivity extends android.app.Activity {
                     r2_1.setWritable((r3_5 != 0), r4_5);
                     r2_1.setExecutable((r3_5 != 0), r4_5);
                     r4 = "[2] 启动 Coopanion Core ...";
-                    r1.log(r4);
+                    r1.log(r4_4);
                     r4_6 = new java.util.ArrayList();
                     r7_5 = new java.lang.StringBuilder();
                     r7_5 = r7_5.append(r6_1);
@@ -835,7 +835,7 @@ public class MainActivity extends android.app.Activity {
                     r5_1 = new java.lang.StringBuilder();
                     r5_1 = r5_1.append(r6_1);
                     r7 = ":/hostlib";
-                    r5_1 = r5_1.append(r7);
+                    r5_1 = r5_1.append(r7_1);
                     r5_2 = r5_1.toString();
                     r4_6.add(r5_2);
                     r5 = "-w";
@@ -844,7 +844,7 @@ public class MainActivity extends android.app.Activity {
                     r4_6.add(r5);
                     r7 = "app/boot.sh";
                     r8 = r18;
-                    r5_3 = new java.io.File(r8, r7);
+                    r5_3 = new java.io.File(r8, r7_1);
                     r5_4 = r5_3.exists();
                     if (r5_4 == false) { _pc = 21; break; }
                     r5 = "/bin/sh";
@@ -854,7 +854,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 22; break;
                     case 21:
                     r5 = "[1b] 未找到 boot.sh，直接用 run-core.mjs 兜底启动 ...";
-                    r1.log(r5);
+                    r1.log(r5_2);
                     r5 = "/bin/node";
                     r4_6.add(r5);
                     r5 = "--experimental-transform-types";
@@ -881,14 +881,14 @@ public class MainActivity extends android.app.Activity {
                     r7_5 = new java.lang.StringBuilder();
                     r7_5 = r7_5.append(r6_1);
                     r9_4 = "/libprootloader.so";
-                    r7_5 = r7_5.append(r9_4);
+                    r7_5 = r7_5.append(r9_1);
                     r7_1 = r7_5.toString();
                     r4_7.put(r2, r7_1);
                     r2 = "PROOT_LOADER_32";
                     r7_5 = new java.lang.StringBuilder();
                     r6 = r7_5.append(r6_1);
                     r7 = "/libprootloader32.so";
-                    r6 = r6.append(r7);
+                    r6 = r6.append(r7_1);
                     r6_1 = r6.toString();
                     r4_7.put(r2, r6_1);
                     r2 = "PROOT_NO_SECCOMP";
@@ -941,7 +941,7 @@ public class MainActivity extends android.app.Activity {
                     case 27:
                     r0_2 = r0_1.waitFor();
                     r4 = "app/coop-stage/home/companion/data/.restart-request";
-                    r2_1 = new java.io.File(r8, r4);
+                    r2_1 = new java.io.File(r8, r4_4);
                     r4_5 = r2_1.exists();
                     if (r4_5 == false) { _pc = 28; break; }
                     r2_1.delete();
@@ -1083,7 +1083,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 5; break;
                     case 5:
                     r14_3 = "./";
-                    r15_2 = r8_1.startsWith(r14_3);
+                    r15_2 = r8_1.startsWith(r14_1);
                     r4_1 = 2;
                     if (r15_2 == false) { _pc = 6; break; }
                     r8_1 = r8_1.substring(r4_1);
@@ -1138,7 +1138,7 @@ public class MainActivity extends android.app.Activity {
                     ((MainActivity) r0).pendingLink = r15_4;
                     _pc = 13; break;
                     case 13:
-                    r6_2 = r8_1.startsWith(r14_3);
+                    r6_2 = r8_1.startsWith(r14_1);
                     if (r6_2 == false) { _pc = 14; break; }
                     r6 = 2;
                     r8_1 = r8_1.substring(r6);
@@ -1193,18 +1193,18 @@ public class MainActivity extends android.app.Activity {
                     r6 = 49;
                     if (r13_2 != r6) { _pc = 25; break; }
                     r6_4 = new java.io.File(r1, r7_1);
-                    r7_2 = r3_5.getParentFile();
+                    r7_2 = r3_3.getParentFile();
                     if (r7_2 == null) { _pc = 21; break; }
                     r7_2.mkdirs();
                     _pc = 21; break;
                     case 21:
-                    r7_3 = r3_5.exists();
+                    r7_3 = r3_3.exists();
                     if (r7_3 == false) { _pc = 22; break; }
-                    r3_5.delete();
+                    r3_3.delete();
                     _pc = 22; break;
                     case 22:
                     r7_4 = new java.io.FileInputStream(r6_4);
-                    r6_5 = new java.io.FileOutputStream(r3_5);
+                    r6_5 = new java.io.FileOutputStream(r3_3);
                     r14 = 65536;
                     r8_5 = new byte[r14];
                     _pc = 23; break;
@@ -1218,43 +1218,43 @@ public class MainActivity extends android.app.Activity {
                     r12_1 = false;
                     r7_4.close();
                     r6_5.close();
-                    r3_5.setReadable((r4_1 != 0), r12_1);
-                    r3_5.setExecutable((r4_1 != 0), r12_1);
+                    r3_3.setReadable((r4_1 != 0), r12_1);
+                    r3_3.setExecutable((r4_1 != 0), r12_1);
                     _pc = 28; break;
                     case 25:
                     r14 = 65536;
-                    r6_4 = r3_5.getParentFile();
+                    r6_4 = r3_3.getParentFile();
                     if (r6_4 == null) { _pc = 26; break; }
                     r6_4.mkdirs();
                     _pc = 26; break;
                     case 26:
-                    r6_5 = new java.io.FileOutputStream(r3_5);
+                    r6_5 = new java.io.FileOutputStream(r3_3);
                     MainActivity.copyN(r2, r6_5, r9_1);
                     r6_5.close();
                     r6_2 = false;
-                    r3_5.setReadable((r4_1 != 0), r6_2);
-                    r3_5.setWritable((r4_1 != 0), r6_2);
+                    r3_3.setReadable((r4_1 != 0), r6_2);
+                    r3_3.setWritable((r4_1 != 0), r6_2);
                     r6_6 = 73L;
                     r6_6 = (r6_6 & r11);
                     r11_1 = 0L;
                     r6 = (r6_6 > r11_1 ? 1 : (r6_6 == r11_1 ? 0 : -1));
                     if (r6 != 0) { _pc = 27; break; }
                     r6_7 = "bin/";
-                    r6_2 = r8_5.startsWith(r6_7);
+                    r6_2 = r8_1.startsWith(r6_1);
                     if (r6_2 != false) { _pc = 27; break; }
                     r6_7 = ".so";
-                    r6_2 = r8_5.endsWith(r6_7);
+                    r6_2 = r8_1.endsWith(r6_1);
                     if (r6_2 != false) { _pc = 27; break; }
                     r6_7 = ".so.6";
-                    r6_2 = r8_5.endsWith(r6_7);
+                    r6_2 = r8_1.endsWith(r6_1);
                     if (r6_2 != false) { _pc = 27; break; }
                     r6_7 = "app/";
-                    r6_2 = r8_5.startsWith(r6_7);
+                    r6_2 = r8_1.startsWith(r6_1);
                     if (r6_2 == false) { _pc = 28; break; }
                     _pc = 27; break;
                     case 27:
                     r6_2 = false;
-                    r3_5.setExecutable((r4_1 != 0), r6_2);
+                    r3_3.setExecutable((r4_1 != 0), r6_2);
                     _pc = 28; break;
                     case 28:
                     MainActivity.skipPad(r2, r9_1);
@@ -1267,7 +1267,7 @@ public class MainActivity extends android.app.Activity {
                     MainActivity.readFull(r2, r4_2, r3_1);
                     r7_1 = new java.lang.String(r4_2, r6, r3_1, r15_4);
                     r3_2 = "\n";
-                    r3_6 = r7_1.split(r3_2);
+                    r3_6 = r7_1.split(r3_4);
                     r4_1 = java.lang.reflect.Array.getLength(r3_6);
                     r6 = 0;
                     _pc = 30; break;
@@ -1275,14 +1275,14 @@ public class MainActivity extends android.app.Activity {
                     if (r6 >= r4_1) { _pc = 34; break; }
                     r7_5 = r3_6[r6];
                     r8_3 = 32;
-                    r8_3 = ((java.lang.String) r7_5).indexOf(r8_3);
+                    r8_3 = r7_1.indexOf(r8_3);
                     if (r8_3 > 0) { _pc = 31; break; }
                     _pc = 33; break;
                     case 31:
                     r8_3 = (r8_3 + 1);
-                    r7_1 = ((java.lang.String) r7_5).substring(r8_3);
+                    r7_1 = r7_1.substring(r8_3);
                     r8_6 = "path=";
-                    r8_7 = r7_1.startsWith(r8_6);
+                    r8_7 = r7_1.startsWith(r8_1);
                     if (r8_7 == false) { _pc = 32; break; }
                     r8_3 = 5;
                     r7_1 = r7_1.substring(r8_3);
@@ -1290,7 +1290,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 33; break;
                     case 32:
                     r8_6 = "linkpath=";
-                    r8_7 = r7_1.startsWith(r8_6);
+                    r8_7 = r7_1.startsWith(r8_1);
                     if (r8_7 == false) { _pc = 33; break; }
                     r8_3 = 9;
                     r7_1 = r7_1.substring(r8_3);
@@ -1377,7 +1377,7 @@ public class MainActivity extends android.app.Activity {
                     r1 = (r1 + 1);
                     _pc = 1; break;
                     case 2:
-                    r0_2 = p1_1.getName();
+                    r0_2 = p1.getName();
                     r2_1 = "node";
                     r2_2 = r0_2.equals(r2_1);
                     if (r2_2 != false) { _pc = 3; break; }
@@ -1399,8 +1399,8 @@ public class MainActivity extends android.app.Activity {
                     _pc = 3; break;
                     case 3:
                     r0_1 = 1;
-                    p1_1.setExecutable((r0_1 != 0), (r1 != 0));
-                    p1_1.setReadable((r0_1 != 0), (r1 != 0));
+                    p1.setExecutable((r0_1 != 0), (r1 != 0));
+                    p1.setReadable((r0_1 != 0), (r1 != 0));
                     _pc = 4; break;
                     case 4:
                     return;
@@ -1519,7 +1519,7 @@ public class MainActivity extends android.app.Activity {
         r0_1 = r0[r2];
         r3 = "[SENSE] usage=";
         r2_1 = new java.lang.StringBuilder(r3);
-        r2_1 = r2_1.append(r1_1);
+        r2_1 = r2_1.append(r1);
         r3 = " notif=";
         r2_1 = r2_1.append(r3);
         r2_1 = r2_1.append(r0_1);
@@ -1530,12 +1530,12 @@ public class MainActivity extends android.app.Activity {
         r2_3.setTitle(r3);
         r4 = "桌宠要「感知手机」，需要两个独立开关（都不涉及无障碍）：\n① 使用情况访问：";
         r3_1 = new java.lang.StringBuilder(r4);
-        r1_2 = r3_1.append(r1_1);
+        r1_2 = r3_1.append(r1);
         r3 = "\n→ 让桌宠知道你在用哪个 App\n② 通知使用权：";
         r1_2 = r1_2.append(r3);
         r0_2 = r1_2.append(r0_1);
         r1_3 = "\n→ 让桌宠知道你收到了什么通知\n点下面按钮逐个打开，在系统设置里找到本应用（Coopanion）打开开关，然后返回。";
-        r0_2 = r0_2.append(r1_3);
+        r0_2 = r0_2.append(r1);
         r0_3 = r0_2.toString();
         r2_3.setMessage(r0_3);
         r0_4 = new MainActivity_33(this);
@@ -1689,7 +1689,7 @@ public class MainActivity extends android.app.Activity {
             r0_4 = 10086;
             this.startActivityForResult(r1, r0_4);
             r0 = "状态: 请先允许「显示在其他应用上层」，回来再点一次";
-            this.setStatus(r0);
+            this.setStatus(r0_1);
             return;
         } catch (java.lang.Throwable r0_5) {
             r2 = "[PET] 权限页打不开: ";
@@ -1918,9 +1918,9 @@ public class MainActivity extends android.app.Activity {
                     r1_2 = new java.lang.StringBuilder(r4_1);
                     r4_2 = null;
                     r4_3 = p1_7[r4_2];
-                    r1_2 = r1_2.append(r4_3);
+                    r1_2 = r1_2.append(r4_2);
                     r4_1 = "\n作用：知道你在用微信 / 在看视频 / 在打游戏\n② 通知使用权 —— 当前：";
-                    r1_2 = r1_2.append(r4_1);
+                    r1_2 = r1_2.append(r4_2);
                     p1_8 = p1_7[r2_1];
                     p1_9 = r1_2.append(p1_8);
                     r1_1 = "\n作用：知道谁给你发了消息\n点下面按钮会跳到系统设置，找到「Coopanion」打开开关，再返回本页。";
@@ -1945,7 +1945,7 @@ public class MainActivity extends android.app.Activity {
                     r2 = "打开控制台";
                     r0.setPositiveButton(r2, p1_14);
                     p1_1 = "完成";
-                    r0.setNegativeButton(p1_1, r1_1);
+                    r0.setNegativeButton(p1_1, r1);
                     _pc = 5; break;
                     case 5:
                     p1_15 = new MainActivity_30(this, r0);
@@ -2458,7 +2458,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 4; break;
                     case 4:
                     r0_7 = "coopanion";
-                    r0_10 = this.getSharedPreferences(r0_7, p1_3);
+                    r0_10 = this.getSharedPreferences(r0_9, p1_3);
                     r1_12 = "pet_window_wanted";
                     p1_4 = r0_10.getBoolean(r1_12, (p1_3 != 0));
                     if (p1_4 == false) { _pc = 5; break; }

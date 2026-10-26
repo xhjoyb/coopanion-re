@@ -38,7 +38,7 @@ public class MainActivity_2 implements java.lang.Runnable {
             r2 = ((MainActivity_2) this).val$s;
             r1 = r1.append(r2);
             r2_1 = "\n";
-            r1 = r1.append(r2_1);
+            r1 = r1.append(r2);
             r1_1 = r1.toString();
             r0_1.append(r1_1);
             r0 = ((MainActivity_2) this).this$0;
