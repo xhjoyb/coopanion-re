@@ -49,7 +49,6 @@ public final class PetWindow2 {
         PetWindow2.ui = r0_2;
         r0_3 = new PetWindow2_1();
         PetWindow2.tick = r0_3;
-        return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }

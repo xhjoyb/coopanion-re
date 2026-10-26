@@ -22,7 +22,6 @@ public final class AppLog {
         r2 = java.util.Locale.US;
         r0 = new java.text.SimpleDateFormat(r1, r2);
         AppLog.FMT = r0;
-        return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }

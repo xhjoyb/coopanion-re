@@ -26,7 +26,6 @@ public final class WebRetry {
         WebRetry.tries = r0_1;
         r0_2 = 0L;
         WebRetry.lastAt = r0_2;
-        return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }

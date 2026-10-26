@@ -40,7 +40,6 @@ public class MainActivity extends android.app.Activity {
         r1 = false;
         r0 = new java.util.concurrent.atomic.AtomicBoolean(r1);
         MainActivity.petWinOn = r0;
-        return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }
