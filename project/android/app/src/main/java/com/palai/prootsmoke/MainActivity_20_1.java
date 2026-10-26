@@ -9,7 +9,7 @@ public class MainActivity_20_1 {
     // ---- constructors ----
     public MainActivity_20_1(MainActivity_20 p1) {
         super();
-        this.this$1 = p1;
+        ((MainActivity_20_1) this).this$1 = p1;
         return;
     }
     public MainActivity_20_1() {
@@ -60,12 +60,12 @@ public class MainActivity_20_1 {
         p1_2 = p1_1.equals(r0_1);
         r1 = ")";
         if (p1_2 != false) {
-            p1_3 = this.this$1;
-            p1_4 = p1_4.this$0;
+            p1_3 = ((MainActivity_20_1) this).this$1;
+            p1_4 = ((MainActivity_20) p1_4).this$0;
             r2 = "[PET] OK rendered (attempt ";
             r0_2 = new java.lang.StringBuilder(r2);
-            r2_1 = this.this$1;
-            r2_2 = r2_2.val$attempt;
+            r2_1 = ((MainActivity_20_1) this).this$1;
+            r2_2 = ((MainActivity_20) r2_2).val$attempt;
             r2_2 = (r2_2 + 1);
             r0_2 = r0_2.append(r2_2);
             r0_2 = r0_2.append(r1);
@@ -73,12 +73,12 @@ public class MainActivity_20_1 {
             MainActivity._$$Nest$mlog(p1_4, r0_1);
             return;
         }
-        p1_3 = this.this$1;
-        p1_4 = p1_4.this$0;
+        p1_3 = ((MainActivity_20_1) this).this$1;
+        p1_4 = ((MainActivity_20) p1_4).this$0;
         r3 = "[PET] FAIL attempt ";
         r2_3 = new java.lang.StringBuilder(r3);
-        r3_1 = this.this$1;
-        r3_2 = r3_2.val$attempt;
+        r3_1 = ((MainActivity_20_1) this).this$1;
+        r3_2 = ((MainActivity_20) r3_2).val$attempt;
         r3_2 = (r3_2 + 1);
         r2_3 = r2_3.append(r3_2);
         r3 = " (";
@@ -87,17 +87,17 @@ public class MainActivity_20_1 {
         r0_2 = r0_2.append(r1);
         r0_1 = r0_2.toString();
         MainActivity._$$Nest$mlog(p1_4, r0_1);
-        p1_3 = this.this$1;
-        p1_5 = p1_5.val$attempt;
+        p1_3 = ((MainActivity_20_1) this).this$1;
+        p1_5 = ((MainActivity_20) p1_5).val$attempt;
         p1_5 = (p1_5 + 1);
         r0_3 = 20;
         if (p1_5 >= r0_3) {
-            p1_3 = this.this$1;
-            p1_4 = p1_4.this$0;
+            p1_3 = ((MainActivity_20_1) this).this$1;
+            p1_4 = ((MainActivity_20) p1_4).this$0;
             r0 = "[PET] retry limit reached, stop";
             MainActivity._$$Nest$mlog(p1_4, r0);
-            p1_3 = this.this$1;
-            p1_4 = p1_4.this$0;
+            p1_3 = ((MainActivity_20_1) this).this$1;
+            p1_4 = ((MainActivity_20) p1_4).this$0;
             r0_6 = new MainActivity_20_1_2(this);
             p1_4.runOnUiThread(r0_6);
         } else {

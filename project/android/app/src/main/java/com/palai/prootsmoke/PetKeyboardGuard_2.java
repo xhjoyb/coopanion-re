@@ -9,7 +9,7 @@ public class PetKeyboardGuard_2 {
     // ---- constructors ----
     public PetKeyboardGuard_2(PetKeyboardGuard p1) {
         super();
-        this.val$self = p1;
+        ((PetKeyboardGuard_2) this).val$self = p1;
         return;
     }
     public PetKeyboardGuard_2() {
@@ -20,7 +20,7 @@ public class PetKeyboardGuard_2 {
     public void onImeHeight(int p1) {
         PetKeyboardGuard r0 = null;
         try {
-        r0 = this.val$self;
+        r0 = ((PetKeyboardGuard_2) this).val$self;
         PetKeyboardGuard.access$200(r0, p1);
         return;
         } catch (Throwable _e9) {

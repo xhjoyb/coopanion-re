@@ -11,7 +11,7 @@ public class PetWindowService_9 {
     // ---- constructors ----
     public PetWindowService_9(PetWindowService p1) {
         super();
-        this.this$0 = p1;
+        ((PetWindowService_9) this).this$0 = p1;
         return;
     }
     public PetWindowService_9() {

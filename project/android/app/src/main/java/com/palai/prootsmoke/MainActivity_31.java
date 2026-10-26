@@ -13,8 +13,8 @@ public class MainActivity_31 {
     // ---- constructors ----
     public MainActivity_31(MainActivity p1, android.widget.TextView p2) {
         super();
-        this.this$0 = p1;
-        this.val$label = p2;
+        ((MainActivity_31) this).this$0 = p1;
+        ((MainActivity_31) this).val$label = p2;
         return;
     }
     public MainActivity_31() {
@@ -46,7 +46,7 @@ public class MainActivity_31 {
         if (r1 > 0) {
             p1_2 = r0;
         }
-        r0_1 = this.val$label;
+        r0_1 = ((MainActivity_31) this).val$label;
         r2 = "桌宠透明度：";
         r1_1 = new java.lang.StringBuilder(r2);
         p2_1 = (p2_1 * p1_2);
@@ -57,7 +57,7 @@ public class MainActivity_31 {
         p2_3 = p2_2.toString();
         r0_1.setText(p2_3);
         if (p3 != false) {
-            p2_4 = this.this$0;
+            p2_4 = ((MainActivity_31) this).this$0;
             MainActivity._$$Nest$mpushAlphaToService(p2_4, p1_2);
         }
         return;

@@ -9,7 +9,7 @@ public class PetActivity_2_1 {
     // ---- constructors ----
     public PetActivity_2_1(PetActivity_2 p1) {
         super();
-        this.this$1 = p1;
+        ((PetActivity_2_1) this).this$1 = p1;
         return;
     }
     public PetActivity_2_1() {

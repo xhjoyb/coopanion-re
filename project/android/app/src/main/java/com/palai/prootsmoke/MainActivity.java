@@ -50,19 +50,19 @@ public class MainActivity extends android.app.Activity {
         int r0 = 0;
         int r1 = 0;
         r0 = 0;
-        this.coreReady = (r0 != 0);
-        this.booting = (r0 != 0);
+        ((MainActivity) this).coreReady = (r0 != 0);
+        ((MainActivity) this).booting = (r0 != 0);
         r1 = 0;
-        this.pendingName = r1;
-        this.pendingLink = r1;
-        this.petRetry = r0;
+        ((MainActivity) this).pendingName = r1;
+        ((MainActivity) this).pendingLink = r1;
+        ((MainActivity) this).petRetry = r0;
         return;
     }
     // ---- methods ----
     public static android.widget.ScrollView _$$Nest$fgetlogScroll(MainActivity p0) {
         android.widget.ScrollView p0_1 = null;
         try {
-        p0_1 = p0_1.logScroll;
+        p0_1 = ((MainActivity) p0_1).logScroll;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -71,7 +71,7 @@ public class MainActivity extends android.app.Activity {
     public static android.widget.LinearLayout _$$Nest$fgetroot(MainActivity p0) {
         android.widget.LinearLayout p0_1 = null;
         try {
-        p0_1 = p0_1.root;
+        p0_1 = ((MainActivity) p0_1).root;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -80,7 +80,7 @@ public class MainActivity extends android.app.Activity {
     public static android.widget.TextView _$$Nest$fgetstatusTv(MainActivity p0) {
         android.widget.TextView p0_1 = null;
         try {
-        p0_1 = p0_1.statusTv;
+        p0_1 = ((MainActivity) p0_1).statusTv;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -89,7 +89,7 @@ public class MainActivity extends android.app.Activity {
     public static android.widget.TextView _$$Nest$fgettv(MainActivity p0) {
         android.widget.TextView p0_1 = null;
         try {
-        p0_1 = p0_1.tv;
+        p0_1 = ((MainActivity) p0_1).tv;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -98,7 +98,7 @@ public class MainActivity extends android.app.Activity {
     public static android.webkit.WebView _$$Nest$fgetweb(MainActivity p0) {
         android.webkit.WebView p0_1 = null;
         try {
-        p0_1 = p0_1.web;
+        p0_1 = ((MainActivity) p0_1).web;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -106,7 +106,7 @@ public class MainActivity extends android.app.Activity {
     }
     public static void _$$Nest$fputpetRetry(MainActivity p0, int p1) {
         try {
-        p0.petRetry = p1;
+        ((MainActivity) p0).petRetry = p1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -273,20 +273,20 @@ public class MainActivity extends android.app.Activity {
         int r0_2 = 0;
         java.lang.Throwable r1 = null;
         try {
-            r0 = this.booting;
+            r0 = ((MainActivity) this).booting;
             if (r0 != false) {
                 r0_1 = "[BOOT] 已在启动中，忽略重复调用";
                 this.log(r0_1);
                 return;
             }
             r0_2 = 1;
-            this.booting = (r0_2 != 0);
+            ((MainActivity) this).booting = (r0_2 != 0);
             r0_2 = 0;
             this.doBoot();
-            this.booting = (r0_2 != 0);
+            ((MainActivity) this).booting = (r0_2 != 0);
             return;
         } catch (java.lang.Throwable r1) {
-            this.booting = (r0_2 != 0);
+            ((MainActivity) this).booting = (r0_2 != 0);
             throw r1;
         }
     }
@@ -555,7 +555,7 @@ public class MainActivity extends android.app.Activity {
                     r6_1 = r6.toString();
                     r1.log(r6_1);
                     r6_2 = this.getApplicationInfo();
-                    r6_1 = r6_1.nativeLibraryDir;
+                    r6_1 = ((android.content.pm.ApplicationInfo) r6_1).nativeLibraryDir;
                     r11 = this.getAssets();
                     r11_1 = r11.openFd(r4);
                     r12 = r11_1.getLength();
@@ -583,7 +583,7 @@ public class MainActivity extends android.app.Activity {
                     r8_1 = this.getPackageManager();
                     r11_3 = this.getPackageName();
                     r8_2 = r8_1.getPackageInfo(r11_3, r7_4);
-                    r8_3 = r8_3.versionCode;
+                    r8_3 = ((android.content.pm.PackageInfo) r8_3).versionCode;
                     r14_2 = (long) r8_3;
                     _pc = 6; break;
                     r14_2 = 0L;
@@ -923,10 +923,10 @@ public class MainActivity extends android.app.Activity {
                     r5 = "core已启动";
                     r4_8 = r4_4.contains(r5);
                     if (r4_8 == false) { _pc = 25; break; }
-                    r4_8 = r1.coreReady;
+                    r4_8 = ((MainActivity) r1).coreReady;
                     if (r4_8 != false) { _pc = 25; break; }
                     r4_3 = 1;
-                    r1.coreReady = (r4_3 != 0);
+                    ((MainActivity) r1).coreReady = (r4_3 != 0);
                     r5_7 = new MainActivity_17(r1);
                     r4_9 = new java.lang.Thread(r5_7);
                     r4_9.start();
@@ -952,7 +952,7 @@ public class MainActivity extends android.app.Activity {
                     r0 = "[!] 重启中，请稍等 10~30 秒，控制台页面会自动刷新。";
                     r1.log(r0);
                     r0_3 = null;
-                    r1.coreReady = r0_3;
+                    ((MainActivity) r1).coreReady = r0_3;
                     r2_4 = 1000L;
                     java.lang.Thread.sleep(r2_4, r3_5);
                     r2_5 = new MainActivity_18(r1);
@@ -1123,21 +1123,21 @@ public class MainActivity extends android.app.Activity {
                     if (r13_2 != r6) { _pc = 11; break; }
                     _pc = 29; break;
                     case 11:
-                    r6_1 = r0.pendingName;
+                    r6_1 = ((MainActivity) r0).pendingName;
                     r15_3 = null;
                     if (r6_1 == null) { _pc = 12; break; }
                     r6 = r6_1.length();
                     if (r6 <= 0) { _pc = 12; break; }
-                    r8_1 = r0.pendingName;
-                    r0.pendingName = r15_3;
+                    r8_1 = ((MainActivity) r0).pendingName;
+                    ((MainActivity) r0).pendingName = r15_3;
                     _pc = 12; break;
                     case 12:
-                    r6_1 = r0.pendingLink;
+                    r6_1 = ((MainActivity) r0).pendingLink;
                     if (r6_1 == null) { _pc = 13; break; }
                     r6 = r6_1.length();
                     if (r6 <= 0) { _pc = 13; break; }
-                    r7 = r0.pendingLink;
-                    r0.pendingLink = r15_3;
+                    r7 = ((MainActivity) r0).pendingLink;
+                    ((MainActivity) r0).pendingLink = r15_3;
                     _pc = 13; break;
                     case 13:
                     r6_2 = r8_1.startsWith(r14_3);
@@ -1288,7 +1288,7 @@ public class MainActivity extends android.app.Activity {
                     if (r8_7 == false) { _pc = 32; break; }
                     r8_3 = 5;
                     r7 = r7.substring(r8_3);
-                    r0.pendingName = r7;
+                    ((MainActivity) r0).pendingName = r7;
                     _pc = 33; break;
                     case 32:
                     r8_6 = "linkpath=";
@@ -1296,7 +1296,7 @@ public class MainActivity extends android.app.Activity {
                     if (r8_7 == false) { _pc = 33; break; }
                     r8_3 = 9;
                     r7 = r7.substring(r8_3);
-                    r0.pendingLink = r7;
+                    ((MainActivity) r0).pendingLink = r7;
                     _pc = 33; break;
                     case 33:
                     r6 = (r6 + 1);
@@ -1319,10 +1319,10 @@ public class MainActivity extends android.app.Activity {
                     r3_4 = r6_1.trim();
                     r4_1 = 76;
                     if (r13_2 != r4_1) { _pc = 37; break; }
-                    r0.pendingName = r3_4;
+                    ((MainActivity) r0).pendingName = r3_4;
                     _pc = 38; break;
                     case 37:
-                    r0.pendingLink = r3_4;
+                    ((MainActivity) r0).pendingLink = r3_4;
                     _pc = 38; break;
                     case 38:
                     MainActivity.skipPad(r2, r9_1, r10);
@@ -1427,11 +1427,11 @@ public class MainActivity extends android.app.Activity {
         MainActivity_20 r1_3 = null;
         long r2 = 0L;
         try {
-        r0 = this.web;
+        r0 = ((MainActivity) this).web;
         if (r0 == null) {
             return;
         }
-        this.petRetry = p1;
+        ((MainActivity) this).petRetry = p1;
         r1 = "[PET] load pet page (attempt ";
         r0_1 = new java.lang.StringBuilder(r1);
         r1_1 = (p1 + 1);
@@ -2288,7 +2288,7 @@ public class MainActivity extends android.app.Activity {
                     p1_1 = "[BOOT] ===== MainActivity onCreate =====";
                     AppLog.i(p1_1);
                     p1_2 = new android.widget.LinearLayout(this);
-                    this.root = p1_2;
+                    ((MainActivity) this).root = p1_2;
                     r0 = 1;
                     p1_2.setOrientation(r0);
                     p1_3 = null;
@@ -2305,7 +2305,7 @@ public class MainActivity extends android.app.Activity {
                     r1_2 = p1_3;
                     _pc = 2; break;
                     case 2:
-                    r2_2 = this.root;
+                    r2_2 = ((MainActivity) this).root;
                     r2_2.setPadding(p1_3, r1_2, p1_3, p1_3);
                     r1_3 = new android.widget.HorizontalScrollView(this);
                     r1_3.setHorizontalScrollBarEnabled(p1_3);
@@ -2366,65 +2366,65 @@ public class MainActivity extends android.app.Activity {
                     r4_9.setOnClickListener(r5_1);
                     r2_2.addView(r4_9);
                     r2_2.addView(r3_1);
-                    r2_2 = this.root;
+                    r2_2 = ((MainActivity) this).root;
                     r2_2.addView(r1_3);
                     r1_4 = new android.widget.TextView(this);
-                    this.statusTv = r1_4;
+                    ((MainActivity) this).statusTv = r1_4;
                     r2_3 = 1098907648;
                     r1_4.setTextSize(r2_3);
-                    r1_4 = this.statusTv;
+                    r1_4 = ((MainActivity) this).statusTv;
                     r2_3 = 20;
                     r1_4.setPadding(r2_3, r2_3, r2_3, r2_3);
-                    r1_4 = this.statusTv;
+                    r1_4 = ((MainActivity) this).statusTv;
                     r2 = "状态: 准备中...";
                     r1_4.setText(r2);
-                    r1_5 = this.root;
-                    r2_4 = this.statusTv;
+                    r1_5 = ((MainActivity) this).root;
+                    r2_4 = ((MainActivity) this).statusTv;
                     r1_5.addView(r2_4);
                     r1_4 = new android.widget.TextView(this);
-                    this.tv = r1_4;
+                    ((MainActivity) this).tv = r1_4;
                     r2_3 = 1091567616;
                     r1_4.setTextSize(r2_3);
-                    r1_4 = this.tv;
+                    r1_4 = ((MainActivity) this).tv;
                     r2 = "=== Coopanion Android 宿主 ===\n";
                     r1_4.setText(r2);
                     r1_6 = new android.widget.ScrollView(this);
-                    this.logScroll = r1_6;
-                    r2_4 = this.tv;
+                    ((MainActivity) this).logScroll = r1_6;
+                    r2_4 = ((MainActivity) this).tv;
                     r1_6.addView(r2_4);
                     r2_3 = 8;
                     r1_6.setVisibility(r2_3);
                     r3_2 = 1065353216;
                     r4_10 = -1;
                     r2_5 = new android.widget.LinearLayout.LayoutParams(r4_10, p1_3, r3_2);
-                    r3_3 = this.root;
+                    r3_3 = ((MainActivity) this).root;
                     r3_3.addView(r1_6, r2_5);
                     r1_7 = new android.webkit.WebView(this);
-                    this.web = r1_7;
+                    ((MainActivity) this).web = r1_7;
                     r1_8 = r1_7.getSettings();
                     r1_8.setJavaScriptEnabled((r0 != 0));
-                    r1_7 = this.web;
+                    r1_7 = ((MainActivity) this).web;
                     r1_8 = r1_7.getSettings();
                     r1_8.setDomStorageEnabled((r0 != 0));
-                    r0_1 = this.web;
+                    r0_1 = ((MainActivity) this).web;
                     r0_2 = r0_1.getSettings();
                     r0_2.setMixedContentMode(p1_3);
-                    r0_1 = this.web;
+                    r0_1 = ((MainActivity) this).web;
                     r1_1 = 2;
                     r2_6 = null;
                     r0_1.setLayerType(r1_1, r2_6);
-                    r0_1 = this.web;
+                    r0_1 = ((MainActivity) this).web;
                     r1_9 = new MainActivity_12(this);
                     r0_1.setWebViewClient(r1_9);
-                    r0_1 = this.web;
+                    r0_1 = ((MainActivity) this).web;
                     r1_10 = new MainActivity_13(this);
                     r0_1.setWebChromeClient(r1_10);
                     r1_1 = 1073741824;
                     r0_3 = new android.widget.LinearLayout.LayoutParams(r4_10, p1_3, r1_1);
-                    r1_5 = this.root;
-                    r2_6 = this.web;
+                    r1_5 = ((MainActivity) this).root;
+                    r2_6 = ((MainActivity) this).web;
                     r1_5.addView(r2_6, r0_3);
-                    r0_4 = this.root;
+                    r0_4 = ((MainActivity) this).root;
                     this.setContentView(r0_4);
                     this.askMicOnce();
                     r0_5 = this.getApplicationContext();
@@ -2440,7 +2440,7 @@ public class MainActivity extends android.app.Activity {
                     this.log(r0_9);
                     _pc = 3; break;
                     case 3:
-                    r0_4 = this.root;
+                    r0_4 = ((MainActivity) this).root;
                     r1_12 = new MainActivity_14(this);
                     r2_7 = 1200L;
                     r0_4.postDelayed(r1_12, r2_7, r3_3);
@@ -2457,7 +2457,7 @@ public class MainActivity extends android.app.Activity {
                     r1_13 = "pet_window_wanted";
                     p1_4 = r0_10.getBoolean(r1_13, p1_3);
                     if (p1_4 == false) { _pc = 5; break; }
-                    p1_2 = this.root;
+                    p1_2 = ((MainActivity) this).root;
                     r0_11 = new MainActivity_15(this);
                     r1_14 = 2500L;
                     p1_2.postDelayed(r0_11, r1_14, r2);

@@ -17,11 +17,11 @@ public class EyesService_Api30_1 {
     // ---- constructors ----
     public EyesService_Api30_1(java.util.concurrent.atomic.AtomicReference p1, int p2, int p3, java.util.concurrent.atomic.AtomicReference p4, java.util.concurrent.CountDownLatch p5) {
         super();
-        this.val$out = p1;
-        this.val$maxW = p2;
-        this.val$quality = p3;
-        this.val$fail = p4;
-        this.val$latch = p5;
+        ((EyesService_Api30_1) this).val$out = p1;
+        ((EyesService_Api30_1) this).val$maxW = p2;
+        ((EyesService_Api30_1) this).val$quality = p3;
+        ((EyesService_Api30_1) this).val$fail = p4;
+        ((EyesService_Api30_1) this).val$latch = p5;
         return;
     }
     public EyesService_Api30_1() {
@@ -38,7 +38,7 @@ public class EyesService_Api30_1 {
         String r1_1 = null;
         String r2 = null;
         try {
-        r0 = this.val$fail;
+        r0 = ((EyesService_Api30_1) this).val$fail;
         r1 = new java.lang.StringBuilder();
         r2 = "截屏失败(code=";
         r1 = r1.append(r2);
@@ -47,7 +47,7 @@ public class EyesService_Api30_1 {
         p1_1 = p1_1.append(r1_1);
         p1_2 = p1_1.toString();
         r0.set(p1_2);
-        p1_3 = this.val$latch;
+        p1_3 = ((EyesService_Api30_1) this).val$latch;
         p1_3.countDown();
         return;
         } catch (Throwable _e9) {
@@ -71,16 +71,16 @@ public class EyesService_Api30_1 {
                 try {
                         switch (_pc) {
                     case 0:
-                    r0 = this.val$out;
-                    r1 = this.val$maxW;
-                    r2 = this.val$quality;
+                    r0 = ((EyesService_Api30_1) this).val$out;
+                    r1 = ((EyesService_Api30_1) this).val$maxW;
+                    r2 = ((EyesService_Api30_1) this).val$quality;
                     r1_1 = EyesService_Api30.access$200(p1, r1, r2);
                     r0.set(r1_1);
                     p1_1 = p1.getHardwareBuffer();
                     p1_1.close();
                     _pc = 1; break;
                     _pc = 2; break;
-                    r1_2 = this.val$fail;
+                    r1_2 = ((EyesService_Api30_1) this).val$fail;
                     r0_1 = java.lang.String.valueOf(r0);
                     r1_2.set(r0_1);
                     p1_1 = p1_1.getHardwareBuffer();
@@ -90,7 +90,7 @@ public class EyesService_Api30_1 {
                     _pc = 2; break;
                     _pc = 2; break;
                     case 2:
-                    p1_2 = this.val$latch;
+                    p1_2 = ((EyesService_Api30_1) this).val$latch;
                     p1_2.countDown();
                     return;
                             }

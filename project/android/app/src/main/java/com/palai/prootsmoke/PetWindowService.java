@@ -56,33 +56,33 @@ public class PetWindowService extends android.app.Service {
         PetWindowService_14 r1_2 = null;
         android.os.Looper r2 = null;
         r0 = 1065353216;
-        this.petAlpha = r0;
+        ((PetWindowService) this).petAlpha = r0;
         r0 = 0;
-        this.firstLoadReloaded = (r0 != 0);
+        ((PetWindowService) this).firstLoadReloaded = (r0 != 0);
         r1 = -1082130432;
-        this.petX = r1;
-        this.petY = r1;
+        ((PetWindowService) this).petX = r1;
+        ((PetWindowService) this).petY = r1;
         r1 = -2147483648;
-        this.lastTouchX = r1;
-        this.lastTouchY = r1;
-        this.lastTouchW = r1;
-        this.lastTouchH = r1;
+        ((PetWindowService) this).lastTouchX = r1;
+        ((PetWindowService) this).lastTouchY = r1;
+        ((PetWindowService) this).lastTouchW = r1;
+        ((PetWindowService) this).lastTouchH = r1;
         r2 = android.os.Looper.getMainLooper();
         r1_1 = new android.os.Handler(r2);
-        this.ui = r1_1;
+        ((PetWindowService) this).ui = r1_1;
         r1_2 = new PetWindowService_14(this);
-        this.followTick = r1_2;
-        this.inputFocusOn = (r0 != 0);
+        ((PetWindowService) this).followTick = r1_2;
+        ((PetWindowService) this).inputFocusOn = (r0 != 0);
         r0_1 = 0L;
-        this.lastFocusLog = r0_1;
-        this.lastProbeLog = r0_1;
+        ((PetWindowService) this).lastFocusLog = r0_1;
+        ((PetWindowService) this).lastProbeLog = r0_1;
         return;
     }
     // ---- methods ----
     public static android.widget.EditText _$$Nest$fgetimeProxy(PetWindowService p0) {
         android.widget.EditText p0_1 = null;
         try {
-        p0_1 = p0_1.imeProxy;
+        p0_1 = ((PetWindowService) p0_1).imeProxy;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -91,7 +91,7 @@ public class PetWindowService extends android.app.Service {
     public static long _$$Nest$fgetlastProbeLog(PetWindowService p0) {
         long r0 = 0L;
         try {
-        r0 = p0.lastProbeLog;
+        r0 = ((PetWindowService) p0).lastProbeLog;
         return r0;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -100,7 +100,7 @@ public class PetWindowService extends android.app.Service {
     public static float _$$Nest$fgetpetAlpha(PetWindowService p0) {
         float p0_1 = 0f;
         try {
-        p0_1 = p0_1.petAlpha;
+        p0_1 = ((PetWindowService) p0_1).petAlpha;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -109,7 +109,7 @@ public class PetWindowService extends android.app.Service {
     public static android.widget.FrameLayout _$$Nest$fgetshowBox(PetWindowService p0) {
         android.widget.FrameLayout p0_1 = null;
         try {
-        p0_1 = p0_1.showBox;
+        p0_1 = ((PetWindowService) p0_1).showBox;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -118,7 +118,7 @@ public class PetWindowService extends android.app.Service {
     public static android.view.WindowManager.LayoutParams _$$Nest$fgetshowLp(PetWindowService p0) {
         android.view.WindowManager.LayoutParams p0_1 = null;
         try {
-        p0_1 = p0_1.showLp;
+        p0_1 = ((PetWindowService) p0_1).showLp;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -127,7 +127,7 @@ public class PetWindowService extends android.app.Service {
     public static android.widget.FrameLayout _$$Nest$fgettouchBox(PetWindowService p0) {
         android.widget.FrameLayout p0_1 = null;
         try {
-        p0_1 = p0_1.touchBox;
+        p0_1 = ((PetWindowService) p0_1).touchBox;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -136,7 +136,7 @@ public class PetWindowService extends android.app.Service {
     public static android.view.WindowManager.LayoutParams _$$Nest$fgettouchLp(PetWindowService p0) {
         android.view.WindowManager.LayoutParams p0_1 = null;
         try {
-        p0_1 = p0_1.touchLp;
+        p0_1 = ((PetWindowService) p0_1).touchLp;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -145,7 +145,7 @@ public class PetWindowService extends android.app.Service {
     public static android.os.Handler _$$Nest$fgetui(PetWindowService p0) {
         android.os.Handler p0_1 = null;
         try {
-        p0_1 = p0_1.ui;
+        p0_1 = ((PetWindowService) p0_1).ui;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -154,7 +154,7 @@ public class PetWindowService extends android.app.Service {
     public static android.webkit.WebView _$$Nest$fgetweb(PetWindowService p0) {
         android.webkit.WebView p0_1 = null;
         try {
-        p0_1 = p0_1.web;
+        p0_1 = ((PetWindowService) p0_1).web;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -163,7 +163,7 @@ public class PetWindowService extends android.app.Service {
     public static android.view.WindowManager _$$Nest$fgetwm(PetWindowService p0) {
         android.view.WindowManager p0_1 = null;
         try {
-        p0_1 = p0_1.wm;
+        p0_1 = ((PetWindowService) p0_1).wm;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -171,7 +171,7 @@ public class PetWindowService extends android.app.Service {
     }
     public static void _$$Nest$fputlastProbeLog(PetWindowService p0, long p1) {
         try {
-        p0.lastProbeLog = p1;
+        ((PetWindowService) p0).lastProbeLog = p1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -179,7 +179,7 @@ public class PetWindowService extends android.app.Service {
     }
     public static void _$$Nest$fputpetAlpha(PetWindowService p0, float p1) {
         try {
-        p0.petAlpha = p1;
+        ((PetWindowService) p0).petAlpha = p1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -187,7 +187,7 @@ public class PetWindowService extends android.app.Service {
     }
     public static void _$$Nest$fputpetX(PetWindowService p0, float p1) {
         try {
-        p0.petX = p1;
+        ((PetWindowService) p0).petX = p1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -195,7 +195,7 @@ public class PetWindowService extends android.app.Service {
     }
     public static void _$$Nest$fputpetY(PetWindowService p0, float p1) {
         try {
-        p0.petY = p1;
+        ((PetWindowService) p0).petY = p1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -346,14 +346,14 @@ public class PetWindowService extends android.app.Service {
         long r4 = 0L;
         try {
         r0 = java.lang.System.currentTimeMillis();
-        r2 = this.inputFocusOn;
+        r2 = ((PetWindowService) this).inputFocusOn;
         if (p1 != r2) {
-            r2_1 = this.lastFocusLog;
+            r2_1 = ((PetWindowService) this).lastFocusLog;
             r2_1 = (r0 - r2_1);
             r4 = 300L;
             r2_2 = (r2_1 > r4 ? 1 : (r2_1 == r4 ? 0 : -1));
             if (r2_2 > 0) {
-                this.lastFocusLog = r0;
+                ((PetWindowService) this).lastFocusLog = r0;
                 r1 = "inputFocus=";
                 r0_1 = new java.lang.StringBuilder(r1);
                 r0_1 = r0_1.append(p1);
@@ -369,12 +369,12 @@ public class PetWindowService extends android.app.Service {
                 this.diag(r0_2);
             }
         }
-        r0_3 = this.inputFocusOn;
+        r0_3 = ((PetWindowService) this).inputFocusOn;
         if (p1 == r0_3) {
             return;
         }
-        this.inputFocusOn = p1;
-        r0_4 = this.ui;
+        ((PetWindowService) this).inputFocusOn = p1;
+        r0_4 = ((PetWindowService) this).ui;
         r1_1 = new PetWindowService_16(this, p1);
         r0_4.post(r1_1);
         return;
@@ -450,24 +450,24 @@ public class PetWindowService extends android.app.Service {
                     r0 = "PetWindow";
                     r2 = null;
                     r1 = new PetWindowService_PetHostBridge(this, r2);
-                    r2_1 = this.web;
+                    r2_1 = ((PetWindowService) this).web;
                     r3 = "petHostNative";
                     r2_1.addJavascriptInterface(r1, r3);
                     r1_1 = new VoiceBridge(this, r2_1);
                     r3 = "petVoiceNative";
                     r2_1.addJavascriptInterface(r1_1, r3);
-                    r1_2 = this.web;
+                    r1_2 = ((PetWindowService) this).web;
                     r2_2 = new PetWindowService_5(this);
                     r1_2.setWebViewClient(r2_2);
-                    r1_2 = this.web;
+                    r1_2 = ((PetWindowService) this).web;
                     r2_3 = new PetWindowService_6(this);
                     r1_2.setWebChromeClient(r2_3);
                     r1_3 = new android.widget.FrameLayout(this);
-                    this.showBox = r1_3;
+                    ((PetWindowService) this).showBox = r1_3;
                     r2 = null;
                     r1_3.setBackgroundColor(r2);
-                    r1_3 = this.showBox;
-                    r3_1 = this.web;
+                    r1_3 = ((PetWindowService) this).showBox;
+                    r3_1 = ((PetWindowService) this).web;
                     r5 = -1;
                     r4 = new android.widget.FrameLayout.LayoutParams(r5, r5);
                     r1_3.addView(r3_1, r4);
@@ -478,41 +478,41 @@ public class PetWindowService extends android.app.Service {
                     r6 = r1_4;
                     r9 = p1;
                     r6 = new android.view.WindowManager.LayoutParams(r7, r8, r9, r10, r11);
-                    this.showLp = r1_4;
+                    ((PetWindowService) this).showLp = r1_4;
                     r1_5 = 1065353216;
                     r3 = "coopanion";
                     r3_2 = this.getSharedPreferences(r3, r2);
                     r4_1 = "pet_alpha";
                     r3_3 = r3_2.getFloat(r4_1, r1_5);
-                    this.petAlpha = r3_3;
-                    r3_3 = this.petAlpha;
+                    ((PetWindowService) this).petAlpha = r3_3;
+                    r3_3 = ((PetWindowService) this).petAlpha;
                     r4_2 = null;
                     r3_4 = (r3_3 > r4_2 ? 1 : (r3_3 == r4_2 ? 0 : -1));
                     if (r3_4 >= 0) { _pc = 1; break; }
-                    this.petAlpha = r4_2;
+                    ((PetWindowService) this).petAlpha = r4_2;
                     _pc = 1; break;
                     case 1:
-                    r3_3 = this.petAlpha;
+                    r3_3 = ((PetWindowService) this).petAlpha;
                     r3_4 = (r3_3 < r1_5 ? -1 : (r3_3 == r1_5 ? 0 : 1));
                     if (r3_4 <= 0) { _pc = 2; break; }
-                    this.petAlpha = r1_5;
+                    ((PetWindowService) this).petAlpha = r1_5;
                     _pc = 2; break;
                     case 2:
-                    r1_4 = this.showLp;
-                    r3_3 = this.petAlpha;
-                    r1_4.alpha = r3_3;
-                    r1_4 = this.showLp;
+                    r1_4 = ((PetWindowService) this).showLp;
+                    r3_3 = ((PetWindowService) this).petAlpha;
+                    ((android.view.WindowManager.LayoutParams) r1_4).alpha = r3_3;
+                    r1_4 = ((PetWindowService) this).showLp;
                     r3_4 = 8388659;
-                    r1_4.gravity = r3_4;
-                    r1_4 = this.showLp;
-                    r1_4.x = r2;
-                    r1_4 = this.showLp;
-                    r1_4.y = r2;
-                    r1_6 = this.wm;
-                    r4_3 = this.showBox;
-                    r5_1 = this.showLp;
+                    ((android.view.WindowManager.LayoutParams) r1_4).gravity = r3_4;
+                    r1_4 = ((PetWindowService) this).showLp;
+                    ((android.view.WindowManager.LayoutParams) r1_4).x = r2;
+                    r1_4 = ((PetWindowService) this).showLp;
+                    ((android.view.WindowManager.LayoutParams) r1_4).y = r2;
+                    r1_6 = ((PetWindowService) this).wm;
+                    r4_3 = ((PetWindowService) this).showBox;
+                    r5_1 = ((PetWindowService) this).showLp;
                     r1_6.addView(r4_3, r5_1);
-                    r4_3 = this.showBox;
+                    r4_3 = ((PetWindowService) this).showBox;
                     PetKeyboardGuard.install(this, r4_3, r4_3);
                     r1_7 = "[PET] 显示层已挂载（全屏穿透）";
                     android.util.Log.i(r0, r1_7);
@@ -525,10 +525,10 @@ public class PetWindowService extends android.app.Service {
                     _pc = 3; break;
                     case 3:
                     r1_3 = new android.widget.FrameLayout(this);
-                    this.touchBox = r1_3;
+                    ((PetWindowService) this).touchBox = r1_3;
                     PetKeyboardGuard.setTouchLayer(r1_3);
                     r1_3.setBackgroundColor(r2);
-                    r1_3 = this.touchBox;
+                    r1_3 = ((PetWindowService) this).touchBox;
                     r4_2 = new PetWindowService_7(this);
                     r1_3.setOnTouchListener(r4_2);
                     r9_1 = 808;
@@ -538,51 +538,51 @@ public class PetWindowService extends android.app.Service {
                     r5_3 = r1_4;
                     r8_1 = p1;
                     r5_3 = new android.view.WindowManager.LayoutParams(r6_1, r7, r8_1, r9_1, r10);
-                    this.touchLp = r1_4;
-                    r1_4.gravity = r3_4;
-                    p1_1 = this.touchLp;
-                    p1_1.x = r2;
-                    p1_1 = this.touchLp;
-                    p1_1.y = r2;
-                    p1_1 = this.touchLp;
+                    ((PetWindowService) this).touchLp = r1_4;
+                    ((android.view.WindowManager.LayoutParams) r1_4).gravity = r3_4;
+                    p1_1 = ((PetWindowService) this).touchLp;
+                    ((android.view.WindowManager.LayoutParams) p1_1).x = r2;
+                    p1_1 = ((PetWindowService) this).touchLp;
+                    ((android.view.WindowManager.LayoutParams) p1_1).y = r2;
+                    p1_1 = ((PetWindowService) this).touchLp;
                     r1_5 = 16;
-                    p1_1.softInputMode = r1_5;
-                    p1_2 = this.touchBox;
+                    ((android.view.WindowManager.LayoutParams) p1_1).softInputMode = r1_5;
+                    p1_2 = ((PetWindowService) this).touchBox;
                     p1_2.setFocusable(r2);
-                    p1_2 = this.touchBox;
+                    p1_2 = ((PetWindowService) this).touchBox;
                     p1_2.setFocusableInTouchMode(r2);
                     p1_3 = new PetWindowService_8(this, this);
-                    this.imeProxy = p1_3;
+                    ((PetWindowService) this).imeProxy = p1_3;
                     p1_3.setBackgroundColor(r2);
-                    p1_4 = this.imeProxy;
+                    p1_4 = ((PetWindowService) this).imeProxy;
                     p1_4.setTextColor(r2);
-                    p1_4 = this.imeProxy;
+                    p1_4 = ((PetWindowService) this).imeProxy;
                     p1_4.setCursorVisible(r2);
-                    p1_4 = this.imeProxy;
+                    p1_4 = ((PetWindowService) this).imeProxy;
                     r1_5 = 33554438;
                     p1_4.setImeOptions(r1_5);
-                    p1_4 = this.imeProxy;
+                    p1_4 = ((PetWindowService) this).imeProxy;
                     r1_5 = 1;
                     p1_4.setInputType(r1_5);
-                    p1_4 = this.imeProxy;
+                    p1_4 = ((PetWindowService) this).imeProxy;
                     p1_4.setSingleLine((r1_5 != 0));
-                    p1_4 = this.imeProxy;
+                    p1_4 = ((PetWindowService) this).imeProxy;
                     p1_4.setFocusable(r2);
-                    p1_4 = this.imeProxy;
+                    p1_4 = ((PetWindowService) this).imeProxy;
                     p1_4.setFocusableInTouchMode(r2);
-                    p1_4 = this.imeProxy;
+                    p1_4 = ((PetWindowService) this).imeProxy;
                     r2_4 = new PetWindowService_9(this);
                     p1_4.addTextChangedListener(r2_4);
-                    p1_4 = this.imeProxy;
+                    p1_4 = ((PetWindowService) this).imeProxy;
                     r2_5 = new PetWindowService_10(this);
                     p1_4.setOnKeyListener(r2_5);
                     p1_5 = new android.widget.FrameLayout.LayoutParams(r1_5, r1_5);
-                    r1_3 = this.touchBox;
-                    r2_6 = this.imeProxy;
+                    r1_3 = ((PetWindowService) this).touchBox;
+                    r2_6 = ((PetWindowService) this).imeProxy;
                     r1_3.addView(r2_6, p1_5);
-                    p1_6 = this.wm;
-                    r1_3 = this.touchBox;
-                    r2 = this.touchLp;
+                    p1_6 = ((PetWindowService) this).wm;
+                    r1_3 = ((PetWindowService) this).touchBox;
+                    r2 = ((PetWindowService) this).touchLp;
                     p1_6.addView(r1_3, r2);
                     p1_7 = "[PET] 触摸层已挂载 520x520";
                     android.util.Log.i(r0, p1_7);
@@ -594,15 +594,15 @@ public class PetWindowService extends android.app.Service {
                     android.util.Log.e(r0, p1_9);
                     _pc = 4; break;
                     case 4:
-                    p1_2 = this.showBox;
+                    p1_2 = ((PetWindowService) this).showBox;
                     r0_1 = new PetWindowService_11(this);
                     p1_2.addOnLayoutChangeListener(r0_1);
-                    p1_10 = this.ui;
+                    p1_10 = ((PetWindowService) this).ui;
                     r0_2 = new PetWindowService_12(this);
                     r1_10 = 1000L;
                     p1_10.postDelayed(r0_2, r1_10, r2_7);
-                    p1_10 = this.ui;
-                    r0_3 = this.followTick;
+                    p1_10 = ((PetWindowService) this).ui;
+                    r0_3 = ((PetWindowService) this).followTick;
                     r1_10 = 300L;
                     p1_10.postDelayed(r0_3, r1_10, r2_7);
                     return;
@@ -676,25 +676,25 @@ public class PetWindowService extends android.app.Service {
         android.widget.EditText r3 = null;
         try {
         r0 = "[PET] 已请求 IME（hasFocus=";
-        r1 = this.imeProxy;
+        r1 = ((PetWindowService) this).imeProxy;
         if (r1 == null) {
             return;
         }
         r2 = 1;
         r1.setFocusable((r2 != 0));
-        r1 = this.imeProxy;
+        r1 = ((PetWindowService) this).imeProxy;
         r1.setFocusableInTouchMode((r2 != 0));
-        r1 = this.imeProxy;
+        r1 = ((PetWindowService) this).imeProxy;
         r1.requestFocus();
         r1_1 = "input_method";
         r1_2 = this.getSystemService(r1_1);
         if (r1_2 != null) {
-            r3 = this.imeProxy;
+            r3 = ((PetWindowService) this).imeProxy;
             ((android.view.inputmethod.InputMethodManager) r1_2).showSoftInput(r3, r2);
         }
         r1_1 = "PetWindow";
         r2_1 = new java.lang.StringBuilder(r0);
-        r0_1 = this.imeProxy;
+        r0_1 = ((PetWindowService) this).imeProxy;
         r0_2 = r0_1.hasFocus();
         r0_3 = r2_1.append(r0_2);
         r2_2 = "）";
@@ -720,7 +720,7 @@ public class PetWindowService extends android.app.Service {
                     case 0:
                     r0 = this;
                     r1 = p1;
-                    r2 = r0.web;
+                    r2 = ((PetWindowService) r0).web;
                     r3 = 0;
                     if (r2 != null) { _pc = 1; break; }
                     return (r3 != 0);
@@ -817,7 +817,7 @@ public class PetWindowService extends android.app.Service {
         String r0 = null;
         int r1 = 0;
         try {
-        p1_1 = this.web;
+        p1_1 = ((PetWindowService) this).web;
         if (p1_1 == null) {
             return;
         }
@@ -836,7 +836,7 @@ public class PetWindowService extends android.app.Service {
         String r0_2 = null;
         String r1 = null;
         try {
-        r0 = this.web;
+        r0 = ((PetWindowService) this).web;
         if (r0 == null) {
             return;
         }
@@ -847,7 +847,7 @@ public class PetWindowService extends android.app.Service {
         r0_2 = ";el.dispatchEvent(new Event('input',{bubbles:true}));return 'ok';}{return 'err';}})()";
         p1_1 = p1_1.append(r0_2);
         p1 = p1_1.toString();
-        r0 = this.web;
+        r0 = ((PetWindowService) this).web;
         r1 = null;
         r0.evaluateJavascript(p1, r1);
         return;
@@ -860,7 +860,7 @@ public class PetWindowService extends android.app.Service {
         PetWindowService_15 r1 = null;
         String r2 = null;
         try {
-        r0 = this.web;
+        r0 = ((PetWindowService) this).web;
         if (r0 == null) {
             return;
         }
@@ -889,7 +889,7 @@ public class PetWindowService extends android.app.Service {
             r0 = 2038;
         }
         r1_1 = new android.webkit.WebView(this);
-        this.web = r1_1;
+        ((PetWindowService) this).web = r1_1;
         r1_2 = r1_1.getSettings();
         r2 = 1;
         r1_2.setJavaScriptEnabled((r2 != 0));
@@ -900,16 +900,16 @@ public class PetWindowService extends android.app.Service {
         r1_2.setMediaPlaybackRequiresUserGesture((r3 != 0));
         r1_2.setUseWideViewPort((r2 != 0));
         r1_2.setLoadWithOverviewMode((r2 != 0));
-        r1_1 = this.web;
+        r1_1 = ((PetWindowService) this).web;
         r1_1.setBackgroundColor(r3);
-        r1_1 = this.web;
+        r1_1 = ((PetWindowService) this).web;
         r2 = 0;
         r1_1.setLayerType(r3, r2);
-        r1_1 = this.web;
+        r1_1 = ((PetWindowService) this).web;
         r1_1.setVerticalScrollBarEnabled((r3 != 0));
-        r1_1 = this.web;
+        r1_1 = ((PetWindowService) this).web;
         r1_1.setHorizontalScrollBarEnabled((r3 != 0));
-        r1_1 = this.web;
+        r1_1 = ((PetWindowService) this).web;
         r2 = 2;
         r1_1.setOverScrollMode(r2);
         r1_3 = new PetWindowService_2(this, r0);
@@ -930,24 +930,24 @@ public class PetWindowService extends android.app.Service {
         int r6 = 0;
         PetWindowService_17 r7 = null;
         try {
-        r0 = this.lastTouchX;
+        r0 = ((PetWindowService) this).lastTouchX;
         if (p1 == r0) {
-            r0 = this.lastTouchY;
+            r0 = ((PetWindowService) this).lastTouchY;
             if (p2 == r0) {
-                r0 = this.lastTouchW;
+                r0 = ((PetWindowService) this).lastTouchW;
                 if (p3 == r0) {
-                    r0 = this.lastTouchH;
+                    r0 = ((PetWindowService) this).lastTouchH;
                     if (p4 == r0) {
                         return;
                     }
                 }
             }
         }
-        this.lastTouchX = p1;
-        this.lastTouchY = p2;
-        this.lastTouchW = p3;
-        this.lastTouchH = p4;
-        r0_1 = this.ui;
+        ((PetWindowService) this).lastTouchX = p1;
+        ((PetWindowService) this).lastTouchY = p2;
+        ((PetWindowService) this).lastTouchW = p3;
+        ((PetWindowService) this).lastTouchH = p4;
+        r0_1 = ((PetWindowService) this).ui;
         r1 = r7;
         r2 = this;
         r3 = p1;
@@ -1039,7 +1039,7 @@ public class PetWindowService extends android.app.Service {
                     case 1:
                     r1 = 40;
                     if (r0 >= r1) { _pc = 2; break; }
-                    r1_1 = this.ui;
+                    r1_1 = ((PetWindowService) this).ui;
                     r2 = new PetWindowService_13(this, p1);
                     r0 = (r0 + 1);
                     r3 = (long) r0;
@@ -1142,7 +1142,7 @@ public class PetWindowService extends android.app.Service {
                     r13 = r7;
                     r13 = new android.view.WindowManager.LayoutParams(r14, r15, r16, r17, r18);
                     r1_5 = 8388659;
-                    r7.gravity = r1_5;
+                    ((android.view.WindowManager.LayoutParams) r7).gravity = r1_5;
                     r4_1 = new boolean[r2];
                     r4_1[r3] = r3;
                     r1_6 = r13_1;
@@ -1159,7 +1159,7 @@ public class PetWindowService extends android.app.Service {
                     r11.addView(r12, r14_1);
                     r1_2 = "http://127.0.0.1:7797/pet";
                     r0.loadUrl(r1_2);
-                    r0_1 = r8.ui;
+                    r0_1 = ((PetWindowService) r8).ui;
                     r1_8 = 2500L;
                     r0_1.postDelayed(r13_1, r1_8, r2_1);
                     _pc = 3; break;
@@ -1202,15 +1202,15 @@ public class PetWindowService extends android.app.Service {
         this.startForegroundCompat();
         r0 = "window";
         r0_1 = this.getSystemService(r0);
-        this.wm = r0_1;
+        ((PetWindowService) this).wm = r0_1;
         r0_2 = new android.util.DisplayMetrics();
-        r1 = this.wm;
+        r1 = ((PetWindowService) this).wm;
         r1_1 = r1.getDefaultDisplay();
         r1_1.getMetrics(r0_2);
-        r1_2 = r0_2.widthPixels;
-        this.screenW = r1_2;
-        r0_3 = r0_3.heightPixels;
-        this.screenH = r0_3;
+        r1_2 = ((android.util.DisplayMetrics) r0_2).widthPixels;
+        ((PetWindowService) this).screenW = r1_2;
+        r0_3 = ((android.util.DisplayMetrics) r0_3).heightPixels;
+        ((PetWindowService) this).screenH = r0_3;
         this.showPetWindow();
         return;
         } catch (Throwable _e9) {
@@ -1231,42 +1231,42 @@ public class PetWindowService extends android.app.Service {
         android.view.WindowManager r2_3 = null;
         int r3 = 0;
         try {
-        r0 = this.ui;
+        r0 = ((PetWindowService) this).ui;
         r1 = 0;
         r0.removeCallbacksAndMessages(r1);
-        r0_1 = this.imeProxy;
+        r0_1 = ((PetWindowService) this).imeProxy;
         if (r0_1 != null) {
             r0_2 = "input_method";
             r0_3 = this.getSystemService(r0_2);
             if (r0_3 != null) {
-                r2 = this.imeProxy;
+                r2 = ((PetWindowService) this).imeProxy;
                 r2_1 = r2.getWindowToken();
                 r3 = 0;
                 ((android.view.inputmethod.InputMethodManager) r0_3).hideSoftInputFromWindow(r2_1, r3);
             }
-            r0_1 = this.imeProxy;
+            r0_1 = ((PetWindowService) this).imeProxy;
             r0_1.clearFocus();
         }
-        r0_4 = this.web;
+        r0_4 = ((PetWindowService) this).web;
         if (r0_4 != null) {
             r2_2 = "about:blank";
             r0_4.loadUrl(r2_2);
-            r0_4 = this.web;
+            r0_4 = ((PetWindowService) this).web;
             r0_4.destroy();
-            this.web = r1;
+            ((PetWindowService) this).web = r1;
         }
-        r0_5 = this.touchBox;
+        r0_5 = ((PetWindowService) this).touchBox;
         if (r0_5 != null) {
-            r2_3 = this.wm;
+            r2_3 = ((PetWindowService) this).wm;
             r2_3.removeView(r0_5);
         }
-        r0_5 = this.showBox;
+        r0_5 = ((PetWindowService) this).showBox;
         if (r0_5 != null) {
-            r2_3 = this.wm;
+            r2_3 = ((PetWindowService) this).wm;
             r2_3.removeView(r0_5);
         }
-        this.touchBox = r1;
-        this.showBox = r1;
+        ((PetWindowService) this).touchBox = r1;
+        ((PetWindowService) this).showBox = r1;
         super.onDestroy();
         return;
         } catch (Throwable _e9) {
@@ -1289,9 +1289,9 @@ public class PetWindowService extends android.app.Service {
             p2_2 = p2_1.equals(p3_1);
             if (p2_2 != false) {
                 p2_1 = "alpha";
-                p3_2 = this.petAlpha;
+                p3_2 = ((PetWindowService) this).petAlpha;
                 p1_1 = p1.getFloatExtra(p2_1, p3_2);
-                p2_3 = this.ui;
+                p2_3 = ((PetWindowService) this).ui;
                 p3_3 = new PetWindowService_1(this, p1_1);
                 p2_3.post(p3_3);
             }

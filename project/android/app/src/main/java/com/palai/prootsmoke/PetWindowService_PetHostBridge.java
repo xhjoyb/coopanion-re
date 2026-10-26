@@ -9,7 +9,7 @@ public class PetWindowService_PetHostBridge {
     // ---- constructors ----
     public PetWindowService_PetHostBridge(PetWindowService p1) {
         super();
-        this.this$0 = p1;
+        ((PetWindowService_PetHostBridge) this).this$0 = p1;
         return;
     }
     public PetWindowService_PetHostBridge(PetWindowService p1, PetWindowService_PetHostBridge_IA p2) {
@@ -32,7 +32,7 @@ public class PetWindowService_PetHostBridge {
         PetWindowService r0 = null;
         float r0_1 = 0f;
         try {
-        r0 = this.this$0;
+        r0 = ((PetWindowService_PetHostBridge) this).this$0;
         r0_1 = PetWindowService._$$Nest$fgetpetAlpha(r0);
         return r0_1;
         } catch (Throwable _e9) {
@@ -51,7 +51,7 @@ public class PetWindowService_PetHostBridge {
         android.os.Handler r0_1 = null;
         PetWindowService_PetHostBridge_2 r1 = null;
         try {
-        r0 = this.this$0;
+        r0 = ((PetWindowService_PetHostBridge) this).this$0;
         r0_1 = PetWindowService._$$Nest$fgetui(r0);
         r1 = new PetWindowService_PetHostBridge_2(this);
         r0_1.post(r1);
@@ -91,7 +91,7 @@ public class PetWindowService_PetHostBridge {
         android.os.Handler r1 = null;
         PetWindowService_PetHostBridge_3 r2 = null;
         try {
-        r0 = this.this$0;
+        r0 = ((PetWindowService_PetHostBridge) this).this$0;
         r1 = PetWindowService._$$Nest$fgetui(r0);
         r2 = new PetWindowService_PetHostBridge_3(this, r0);
         r1.post(r2);
@@ -129,7 +129,7 @@ public class PetWindowService_PetHostBridge {
         if (r1 > 0) {
             p1_1 = r0_1;
         }
-        r0_2 = this.this$0;
+        r0_2 = ((PetWindowService_PetHostBridge) this).this$0;
         r1_1 = "coopanion";
         r2 = 0;
         r0_3 = r0_2.getSharedPreferences(r1_1, r2);
@@ -137,7 +137,7 @@ public class PetWindowService_PetHostBridge {
         r1_1 = "pet_alpha";
         r0_4 = r0_4.putFloat(r1_1, p1_1);
         r0_4.apply();
-        r0_2 = this.this$0;
+        r0_2 = ((PetWindowService_PetHostBridge) this).this$0;
         r0 = PetWindowService._$$Nest$fgetui(r0_2);
         r1_2 = new PetWindowService_PetHostBridge_1(this, p1_1);
         r0.post(r1_2);

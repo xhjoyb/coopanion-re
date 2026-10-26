@@ -11,7 +11,7 @@ public class MainActivity_24 {
     // ---- constructors ----
     public MainActivity_24(MainActivity p1) {
         super();
-        this.this$0 = p1;
+        ((MainActivity_24) this).this$0 = p1;
         return;
     }
     public MainActivity_24() {
@@ -22,9 +22,9 @@ public class MainActivity_24 {
     public void onClick(android.content.DialogInterface p1, int p2) {
         MainActivity p1_1 = null;
         try {
-        p1_1 = this.this$0;
+        p1_1 = ((MainActivity_24) this).this$0;
         MainActivity._$$Nest$mtogglePetWindow(p1_1);
-        p1_1 = this.this$0;
+        p1_1 = ((MainActivity_24) this).this$0;
         p2 = 3;
         MainActivity._$$Nest$mshowGuide(p1_1, p2);
         return;

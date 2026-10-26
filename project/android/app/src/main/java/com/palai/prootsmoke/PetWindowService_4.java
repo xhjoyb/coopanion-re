@@ -12,8 +12,8 @@ public class PetWindowService_4 extends android.webkit.WebViewClient {
     // ---- constructors ----
     public PetWindowService_4(PetWindowService p1, java.lang.Runnable p2) {
         super();
-        this.this$0 = p1;
-        this.val$finish = p2;
+        ((PetWindowService_4) this).this$0 = p1;
+        ((PetWindowService_4) this).val$finish = p2;
         return;
     }
     public PetWindowService_4() {
@@ -32,9 +32,9 @@ public class PetWindowService_4 extends android.webkit.WebViewClient {
         p1_1 = "PetWindow";
         p2_1 = "[PET] 预热页加载完成，再等 400ms 让合成器落定";
         android.util.Log.i(p1_1, p2_1);
-        p1_2 = this.this$0;
+        p1_2 = ((PetWindowService_4) this).this$0;
         p1_3 = PetWindowService._$$Nest$fgetui(p1_2);
-        p2_2 = this.val$finish;
+        p2_2 = ((PetWindowService_4) this).val$finish;
         r0 = 400L;
         p1_3.postDelayed(p2_2, r0, r1);
         return;

@@ -11,7 +11,7 @@ public class MainActivity_23 {
     // ---- constructors ----
     public MainActivity_23(MainActivity p1) {
         super();
-        this.this$0 = p1;
+        ((MainActivity_23) this).this$0 = p1;
         return;
     }
     public MainActivity_23() {

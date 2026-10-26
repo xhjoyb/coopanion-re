@@ -11,7 +11,7 @@ public class MainActivity_13 extends android.webkit.WebChromeClient {
     // ---- constructors ----
     public MainActivity_13(MainActivity p1) {
         super();
-        this.this$0 = p1;
+        ((MainActivity_13) this).this$0 = p1;
         return;
     }
     public MainActivity_13() {
@@ -56,15 +56,15 @@ public class MainActivity_13 extends android.webkit.WebChromeClient {
                     _pc = 1; break;
                     case 3:
                     if (r3 == 0) { _pc = 4; break; }
-                    r0_1 = this.this$0;
+                    r0_1 = ((MainActivity_13) this).this$0;
                     r1_1 = "[MIC] WebView 请求麦克风 -> 已放行";
                     MainActivity._$$Nest$mlog(r0_1, r1_1);
-                    r0_1 = this.this$0;
+                    r0_1 = ((MainActivity_13) this).this$0;
                     r1_2 = new MainActivity_13_1(this, p1);
                     r0_1.runOnUiThread(r1_2);
                     _pc = 5; break;
                     case 4:
-                    r0_1 = this.this$0;
+                    r0_1 = ((MainActivity_13) this).this$0;
                     r1_3 = new MainActivity_13_2(this, p1);
                     r0_1.runOnUiThread(r1_3);
                     _pc = 5; break;

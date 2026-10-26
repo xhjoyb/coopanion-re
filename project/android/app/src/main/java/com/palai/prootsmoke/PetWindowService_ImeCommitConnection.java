@@ -20,8 +20,8 @@ public class PetWindowService_ImeCommitConnection {
     // ---- constructors ----
     public PetWindowService_ImeCommitConnection(android.view.inputmethod.InputConnection p1, PetWindowService_ImeCommitConnection_Sink p2) {
         super();
-        this.base = p1;
-        this.sink = p2;
+        ((PetWindowService_ImeCommitConnection) this).base = p1;
+        ((PetWindowService_ImeCommitConnection) this).sink = p2;
         return;
     }
     public PetWindowService_ImeCommitConnection() {
@@ -33,7 +33,7 @@ public class PetWindowService_ImeCommitConnection {
         android.view.inputmethod.InputConnection r0 = null;
         boolean r0_1 = false;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         r0_1 = r0.beginBatchEdit();
         return r0_1;
         } catch (Throwable _e9) {
@@ -44,7 +44,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.clearMetaKeyStates(p1);
         return p1_1;
         } catch (Throwable _e9) {
@@ -54,7 +54,7 @@ public class PetWindowService_ImeCommitConnection {
     public void closeConnection() {
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         r0.closeConnection();
         return;
         } catch (Throwable _e9) {
@@ -65,7 +65,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.commitCompletion(p1);
         return p1_1;
         } catch (Throwable _e9) {
@@ -76,7 +76,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.commitContent(p1, p2, p3);
         return p1_1;
         } catch (Throwable _e9) {
@@ -87,7 +87,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.commitCorrection(p1);
         return p1_1;
         } catch (Throwable _e9) {
@@ -105,14 +105,14 @@ public class PetWindowService_ImeCommitConnection {
         if (p1 != null) {
             r0 = p1.length();
             if (r0 > 0) {
-                r0_1 = this.sink;
+                r0_1 = ((PetWindowService_ImeCommitConnection) this).sink;
                 r1 = p1.toString();
                 r0_1.onCommit(r1);
             }
         }
-        r0_2 = this.base;
+        r0_2 = ((PetWindowService_ImeCommitConnection) this).base;
         r0_2.commitText(p1, p2);
-        p1_1 = this.sink;
+        p1_1 = ((PetWindowService_ImeCommitConnection) this).sink;
         p1_1.onClearLocal();
         p1_2 = 1;
         return (p1_2 != 0);
@@ -124,7 +124,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.deleteSurroundingText(p1, p2);
         return p1_1;
         } catch (Throwable _e9) {
@@ -135,7 +135,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.deleteSurroundingTextInCodePoints(p1, p2);
         return p1_1;
         } catch (Throwable _e9) {
@@ -146,7 +146,7 @@ public class PetWindowService_ImeCommitConnection {
         android.view.inputmethod.InputConnection r0 = null;
         boolean r0_1 = false;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         r0_1 = r0.endBatchEdit();
         return r0_1;
         } catch (Throwable _e9) {
@@ -163,7 +163,7 @@ public class PetWindowService_ImeCommitConnection {
         PetWindowService_ImeCommitConnection_Sink r1_1 = null;
         int r2 = 0;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         r1 = 4096;
         r2 = 0;
         r0_1 = r0.getTextBeforeCursor(r1, r2);
@@ -171,13 +171,13 @@ public class PetWindowService_ImeCommitConnection {
             r1 = r0_1.length();
             if (r1 > 0) {
                 r0_2 = r0_1.toString();
-                r1_1 = this.sink;
+                r1_1 = ((PetWindowService_ImeCommitConnection) this).sink;
                 r1_1.onCommit(r0_2);
             }
         }
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         r0.finishComposingText();
-        r0_3 = this.sink;
+        r0_3 = ((PetWindowService_ImeCommitConnection) this).sink;
         r0_3.onClearLocal();
         r0_4 = 1;
         return (r0_4 != 0);
@@ -188,7 +188,7 @@ public class PetWindowService_ImeCommitConnection {
     public int getCursorCapsMode(int p1) {
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1 = r0.getCursorCapsMode(p1);
         return p1;
         } catch (Throwable _e9) {
@@ -199,7 +199,7 @@ public class PetWindowService_ImeCommitConnection {
         android.view.inputmethod.ExtractedText p1_1 = null;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.getExtractedText(p1, p2);
         return p1_1;
         } catch (Throwable _e9) {
@@ -210,7 +210,7 @@ public class PetWindowService_ImeCommitConnection {
         android.view.inputmethod.InputConnection r0 = null;
         android.os.Handler r0_1 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         r0_1 = r0.getHandler();
         return r0_1;
         } catch (Throwable _e9) {
@@ -221,7 +221,7 @@ public class PetWindowService_ImeCommitConnection {
         java.lang.CharSequence p1_1 = null;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.getSelectedText(p1);
         return p1_1;
         } catch (Throwable _e9) {
@@ -232,7 +232,7 @@ public class PetWindowService_ImeCommitConnection {
         java.lang.CharSequence p1_1 = null;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.getTextAfterCursor(p1, p2);
         return p1_1;
         } catch (Throwable _e9) {
@@ -243,7 +243,7 @@ public class PetWindowService_ImeCommitConnection {
         java.lang.CharSequence p1_1 = null;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.getTextBeforeCursor(p1, p2);
         return p1_1;
         } catch (Throwable _e9) {
@@ -254,7 +254,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.performContextMenuAction(p1);
         return p1_1;
         } catch (Throwable _e9) {
@@ -265,7 +265,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.performEditorAction(p1);
         return p1_1;
         } catch (Throwable _e9) {
@@ -276,7 +276,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.performPrivateCommand(p1, p2);
         return p1_1;
         } catch (Throwable _e9) {
@@ -286,7 +286,7 @@ public class PetWindowService_ImeCommitConnection {
     public boolean reportFullscreenMode(boolean p1) {
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1 = r0.reportFullscreenMode(p1);
         return p1;
         } catch (Throwable _e9) {
@@ -297,7 +297,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.requestCursorUpdates(p1);
         return p1_1;
         } catch (Throwable _e9) {
@@ -317,12 +317,12 @@ public class PetWindowService_ImeCommitConnection {
                 r0 = p1.getKeyCode();
                 r1 = 67;
                 if (r0 == r1) {
-                    r0_1 = this.sink;
+                    r0_1 = ((PetWindowService_ImeCommitConnection) this).sink;
                     r0_1.onDelete();
                 }
             }
         }
-        r0_2 = this.base;
+        r0_2 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0_2.sendKeyEvent(p1);
         return p1_1;
         } catch (Throwable _e9) {
@@ -332,7 +332,7 @@ public class PetWindowService_ImeCommitConnection {
     public boolean setComposingRegion(int p1, int p2) {
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         r0.setComposingRegion(p1, p2);
         p1 = 1;
         return (p1 != 0);
@@ -344,7 +344,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.setComposingText(p1, p2);
         return p1_1;
         } catch (Throwable _e9) {
@@ -355,7 +355,7 @@ public class PetWindowService_ImeCommitConnection {
         boolean p1_1 = false;
         android.view.inputmethod.InputConnection r0 = null;
         try {
-        r0 = this.base;
+        r0 = ((PetWindowService_ImeCommitConnection) this).base;
         p1_1 = r0.setSelection(p1, p2);
         return p1_1;
         } catch (Throwable _e9) {

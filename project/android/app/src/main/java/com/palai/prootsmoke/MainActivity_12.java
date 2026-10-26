@@ -11,7 +11,7 @@ public class MainActivity_12 extends android.webkit.WebViewClient {
     // ---- constructors ----
     public MainActivity_12(MainActivity p1) {
         super();
-        this.this$0 = p1;
+        ((MainActivity_12) this).this$0 = p1;
         return;
     }
     public MainActivity_12() {
@@ -28,7 +28,7 @@ public class MainActivity_12 extends android.webkit.WebViewClient {
         String r1_1 = null;
         String r2 = null;
         try {
-        r0 = this.this$0;
+        r0 = ((MainActivity_12) this).this$0;
         r2 = "[WEB] onPageFinished: ";
         r1 = new java.lang.StringBuilder(r2);
         p2_1 = r1.append(p2);
@@ -52,7 +52,7 @@ public class MainActivity_12 extends android.webkit.WebViewClient {
         String r0_1 = null;
         String r1 = null;
         try {
-        p1_1 = this.this$0;
+        p1_1 = ((MainActivity_12) this).this$0;
         r1 = "[WEB-ERR] ";
         r0 = new java.lang.StringBuilder(r1);
         p2_1 = r0.append(p2);

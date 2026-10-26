@@ -25,7 +25,7 @@ public class PetActivity extends android.app.Activity {
     public static android.webkit.ValueCallback _$$Nest$fgetfilePathCallback(PetActivity p0) {
         android.webkit.ValueCallback p0_1 = null;
         try {
-        p0_1 = p0_1.filePathCallback;
+        p0_1 = ((PetActivity) p0_1).filePathCallback;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -33,7 +33,7 @@ public class PetActivity extends android.app.Activity {
     }
     public static void _$$Nest$fputfilePathCallback(PetActivity p0, android.webkit.ValueCallback p1) {
         try {
-        p0.filePathCallback = p1;
+        ((PetActivity) p0).filePathCallback = p1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -76,10 +76,10 @@ public class PetActivity extends android.app.Activity {
                     p1 = r2;
                     _pc = 2; break;
                     case 2:
-                    p2_2 = this.filePathCallback;
+                    p2_2 = ((PetActivity) this).filePathCallback;
                     if (p2_2 == null) { _pc = 3; break; }
                     p2_2.onReceiveValue(p1);
-                    this.filePathCallback = r2;
+                    ((PetActivity) this).filePathCallback = r2;
                     _pc = 3; break;
                     case 3:
                     p3_1 = "[PETACT][FILE] onActivityResult ok=";
@@ -193,11 +193,11 @@ public class PetActivity extends android.app.Activity {
                     if (r3_2 < r4_1) { _pc = 4; break; }
                     r3_1 = this.getWindow();
                     r3_3 = r3_1.getAttributes();
-                    r3_3.layoutInDisplayCutoutMode = r1;
+                    ((android.view.WindowManager.LayoutParams) r3_3).layoutInDisplayCutoutMode = r1;
                     _pc = 4; break;
                     case 4:
                     r3_4 = new android.widget.FrameLayout(this);
-                    this.root = r3_4;
+                    ((PetActivity) this).root = r3_4;
                     r4_1 = -16052460;
                     if (p1_4 == 0) { _pc = 5; break; }
                     r5 = r2;
@@ -208,7 +208,7 @@ public class PetActivity extends android.app.Activity {
                     case 6:
                     r3_4.setBackgroundColor(r5_1);
                     r3_5 = new android.webkit.WebView(this);
-                    this.web = r3_5;
+                    ((PetActivity) this).web = r3_5;
                     r3_6 = r3_5.getSettings();
                     r3_6.setJavaScriptEnabled((r1 != 0));
                     r3_6.setDomStorageEnabled((r1 != 0));
@@ -220,28 +220,28 @@ public class PetActivity extends android.app.Activity {
                     r3_6.setSupportZoom((r2 != 0));
                     r3_6.setBuiltInZoomControls((r2 != 0));
                     r3_6.setDisplayZoomControls((r2 != 0));
-                    r3_5 = this.web;
+                    r3_5 = ((PetActivity) this).web;
                     if (p1_4 == 0) { _pc = 7; break; }
                     r4_1 = r2;
                     _pc = 7; break;
                     case 7:
                     r3_5.setBackgroundColor(r4_1);
-                    p1_5 = this.web;
+                    p1_5 = ((PetActivity) this).web;
                     r3_7 = new PetActivity_PetHostBridge();
                     r4_2 = "petHostNative";
                     p1_5.addJavascriptInterface(r3_7, r4_2);
-                    p1_5 = this.web;
+                    p1_5 = ((PetActivity) this).web;
                     r3_7 = new PetActivity_PetHostBridge();
                     r4_2 = "petHost";
                     p1_5.addJavascriptInterface(r3_7, r4_2);
-                    p1_5 = this.web;
+                    p1_5 = ((PetActivity) this).web;
                     r3_8 = new PetActivity_1(this);
                     p1_5.setWebChromeClient(r3_8);
-                    p1_5 = this.web;
+                    p1_5 = ((PetActivity) this).web;
                     r3_9 = new PetActivity_2(this);
                     p1_5.setWebViewClient(r3_9);
-                    p1_6 = this.root;
-                    r3_5 = this.web;
+                    p1_6 = ((PetActivity) this).root;
+                    r3_5 = ((PetActivity) this).web;
                     r5 = -1;
                     r4_3 = new android.widget.FrameLayout.LayoutParams(r5, r5);
                     p1_6.addView(r3_5, r4_3);
@@ -250,11 +250,11 @@ public class PetActivity extends android.app.Activity {
                     r4_1 = -2;
                     r3_10 = new android.widget.FrameLayout.LayoutParams(r4_1, r4_1);
                     r4_1 = 53;
-                    r3_10.gravity = r4_1;
+                    ((android.widget.FrameLayout.LayoutParams) r3_10).gravity = r4_1;
                     r4_1 = 40;
-                    r3_10.topMargin = r4_1;
+                    ((android.widget.FrameLayout.LayoutParams) r3_10).topMargin = r4_1;
                     r4_1 = 24;
-                    r3_10.rightMargin = r4_1;
+                    ((android.widget.FrameLayout.LayoutParams) r3_10).rightMargin = r4_1;
                     r4_4 = new android.widget.Button(this);
                     r5_2 = "✕ 退出";
                     r4_4.setText(r5_2);
@@ -263,9 +263,9 @@ public class PetActivity extends android.app.Activity {
                     r5_3 = new PetActivity_3(this);
                     r4_4.setOnClickListener(r5_3);
                     p1_7.addView(r4_4);
-                    r4_5 = this.root;
+                    r4_5 = ((PetActivity) this).root;
                     r4_5.addView(p1_7, r3_10);
-                    p1_6 = this.root;
+                    p1_6 = ((PetActivity) this).root;
                     this.setContentView(p1_6);
                     p1_4 = this.checkSelfPermission(r0);
                     if (p1_4 == 0) { _pc = 8; break; }
@@ -275,7 +275,7 @@ public class PetActivity extends android.app.Activity {
                     this.requestPermissions(p1_8, r0_1);
                     _pc = 8; break;
                     case 8:
-                    p1_5 = this.web;
+                    p1_5 = ((PetActivity) this).web;
                     r0 = "http://127.0.0.1:7797/pet?host=app";
                     p1_5.loadUrl(r0);
                     p1_1 = "[PETACT] loadUrl -> http://127.0.0.1:7797/pet?host=app";
@@ -294,14 +294,14 @@ public class PetActivity extends android.app.Activity {
         android.webkit.WebView r0 = null;
         String r1 = null;
         try {
-        r0 = this.web;
+        r0 = ((PetActivity) this).web;
         if (r0 != null) {
             r1 = "about:blank";
             r0.loadUrl(r1);
-            r0 = this.web;
+            r0 = ((PetActivity) this).web;
             r0.destroy();
             r0 = null;
-            this.web = r0;
+            ((PetActivity) this).web = r0;
         }
         super.onDestroy();
         return;

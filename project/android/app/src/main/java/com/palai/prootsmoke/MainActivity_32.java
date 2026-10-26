@@ -13,8 +13,8 @@ public class MainActivity_32 {
     // ---- constructors ----
     public MainActivity_32(MainActivity p1, android.content.SharedPreferences p2) {
         super();
-        this.this$0 = p1;
-        this.val$sp = p2;
+        ((MainActivity_32) this).this$0 = p1;
+        ((MainActivity_32) this).val$sp = p2;
         return;
     }
     public MainActivity_32() {
@@ -29,13 +29,13 @@ public class MainActivity_32 {
         String p2_1 = null;
         int r0 = 0;
         try {
-        p1_1 = this.val$sp;
+        p1_1 = ((MainActivity_32) this).val$sp;
         p1_2 = p1_1.edit();
         p2_1 = "pet_alpha";
         r0 = 1065353216;
         p1_2 = p1_2.putFloat(p2_1, r0);
         p1_2.apply();
-        p1_3 = this.this$0;
+        p1_3 = ((MainActivity_32) this).this$0;
         MainActivity._$$Nest$mpushAlphaToService(p1_3, r0);
         return;
         } catch (Throwable _e9) {

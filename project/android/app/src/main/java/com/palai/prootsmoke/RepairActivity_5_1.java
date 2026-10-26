@@ -9,7 +9,7 @@ public class RepairActivity_5_1 {
     // ---- constructors ----
     public RepairActivity_5_1(RepairActivity_5 p1) {
         super();
-        this.this$1 = p1;
+        ((RepairActivity_5_1) this).this$1 = p1;
         return;
     }
     public RepairActivity_5_1() {
@@ -56,21 +56,21 @@ public class RepairActivity_5_1 {
                     _pc = 2; break;
                     case 2:
                     if (p1_2 == 0) { _pc = 3; break; }
-                    r2_1 = this.this$1;
-                    r2_2 = r2_2.this$0;
+                    r2_1 = ((RepairActivity_5_1) this).this$1;
+                    r2_2 = ((RepairActivity_5) r2_2).this$0;
                     r2_3 = RepairActivity._$$Nest$fgetimeShown(r2_2);
                     if (r2_3 != false) { _pc = 3; break; }
-                    p1_3 = this.this$1;
-                    p1_4 = p1_4.this$0;
+                    p1_3 = ((RepairActivity_5_1) this).this$1;
+                    p1_4 = ((RepairActivity_5) p1_4).this$0;
                     RepairActivity._$$Nest$fputimeShown(p1_4, (r0 != 0));
-                    p1_3 = this.this$1;
-                    p1_4 = p1_4.this$0;
+                    p1_3 = ((RepairActivity_5_1) this).this$1;
+                    p1_4 = ((RepairActivity_5) p1_4).this$0;
                     RepairActivity._$$Nest$mshowImeNow(p1_4);
                     _pc = 4; break;
                     case 3:
                     if (p1_4 != null) { _pc = 4; break; }
-                    p1_3 = this.this$1;
-                    p1_4 = p1_4.this$0;
+                    p1_3 = ((RepairActivity_5_1) this).this$1;
+                    p1_4 = ((RepairActivity_5) p1_4).this$0;
                     RepairActivity._$$Nest$fputimeShown(p1_4, (r1 != 0));
                     _pc = 4; break;
                     case 4:

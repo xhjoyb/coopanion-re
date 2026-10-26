@@ -22,14 +22,14 @@ public class RepairActivity extends android.app.Activity {
         super();
         int r0 = 0;
         r0 = 0;
-        this.imeShown = (r0 != 0);
+        ((RepairActivity) this).imeShown = (r0 != 0);
         return;
     }
     // ---- methods ----
     public static android.webkit.ValueCallback _$$Nest$fgetfilePathCallback(RepairActivity p0) {
         android.webkit.ValueCallback p0_1 = null;
         try {
-        p0_1 = p0_1.filePathCallback;
+        p0_1 = ((RepairActivity) p0_1).filePathCallback;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -38,7 +38,7 @@ public class RepairActivity extends android.app.Activity {
     public static android.os.Handler _$$Nest$fgetimeHandler(RepairActivity p0) {
         android.os.Handler p0_1 = null;
         try {
-        p0_1 = p0_1.imeHandler;
+        p0_1 = ((RepairActivity) p0_1).imeHandler;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -47,7 +47,7 @@ public class RepairActivity extends android.app.Activity {
     public static boolean _$$Nest$fgetimeShown(RepairActivity p0) {
         boolean p0_1 = false;
         try {
-        p0_1 = p0_1.imeShown;
+        p0_1 = ((RepairActivity) p0_1).imeShown;
         return p0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -55,7 +55,7 @@ public class RepairActivity extends android.app.Activity {
     }
     public static void _$$Nest$fputfilePathCallback(RepairActivity p0, android.webkit.ValueCallback p1) {
         try {
-        p0.filePathCallback = p1;
+        ((RepairActivity) p0).filePathCallback = p1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -63,7 +63,7 @@ public class RepairActivity extends android.app.Activity {
     }
     public static void _$$Nest$fputimeShown(RepairActivity p0, boolean p1) {
         try {
-        p0.imeShown = p1;
+        ((RepairActivity) p0).imeShown = p1;
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -97,7 +97,7 @@ public class RepairActivity extends android.app.Activity {
         int r2 = 0;
         String r2_1 = null;
         try {
-            r0 = this.web;
+            r0 = ((RepairActivity) this).web;
             if (r0 == null) {
                 return;
             }
@@ -105,7 +105,7 @@ public class RepairActivity extends android.app.Activity {
             r0_1 = "input_method";
             r0_2 = this.getSystemService(r0_1);
             if (r0_2 != null) {
-                r1 = this.web;
+                r1 = ((RepairActivity) this).web;
                 r2 = 1;
                 ((android.view.inputmethod.InputMethodManager) r0_2).showSoftInput(r1, r2);
                 r0_1 = "[REPAIRACT][IME] showSoftInput requested";
@@ -128,14 +128,14 @@ public class RepairActivity extends android.app.Activity {
         android.os.Looper r1 = null;
         long r1_1 = 0L;
         try {
-        r0 = this.imeHandler;
+        r0 = ((RepairActivity) this).imeHandler;
         if (r0 == null) {
             r1 = android.os.Looper.getMainLooper();
             r0 = new android.os.Handler(r1);
-            this.imeHandler = r0;
+            ((RepairActivity) this).imeHandler = r0;
         }
         r0_1 = new RepairActivity_5(this, p1);
-        p1_1 = this.imeHandler;
+        p1_1 = ((RepairActivity) this).imeHandler;
         r1_1 = 600L;
         p1_1.postDelayed(r0_1, r1_1, r2);
         return;
@@ -184,10 +184,10 @@ public class RepairActivity extends android.app.Activity {
                     r0_3 = r2;
                     _pc = 2; break;
                     case 2:
-                    p3_2 = this.filePathCallback;
+                    p3_2 = ((RepairActivity) this).filePathCallback;
                     if (p3_2 == null) { _pc = 3; break; }
                     p3_2.onReceiveValue(r0_3);
-                    this.filePathCallback = r2;
+                    ((RepairActivity) this).filePathCallback = r2;
                     _pc = 3; break;
                     case 3:
                     r2 = "[REPAIRACT][FILE] onActivityResult req=";
@@ -267,7 +267,7 @@ public class RepairActivity extends android.app.Activity {
         r0 = -16052460;
         p1_3.setBackgroundColor(r0);
         r1 = new android.webkit.WebView(this);
-        this.web = r1;
+        ((RepairActivity) this).web = r1;
         r1_1 = r1.getSettings();
         r2 = 1;
         r1_1.setJavaScriptEnabled((r2 != 0));
@@ -281,26 +281,26 @@ public class RepairActivity extends android.app.Activity {
         r1_1.setBuiltInZoomControls(r3);
         r1_1.setAllowContentAccess((r2 != 0));
         r1_1.setJavaScriptCanOpenWindowsAutomatically((r2 != 0));
-        r1 = this.web;
+        r1 = ((RepairActivity) this).web;
         r1.setFocusable((r2 != 0));
-        r1 = this.web;
+        r1 = ((RepairActivity) this).web;
         r1.setFocusableInTouchMode((r2 != 0));
-        r1 = this.web;
+        r1 = ((RepairActivity) this).web;
         r1.setClickable((r2 != 0));
-        r1 = this.web;
+        r1 = ((RepairActivity) this).web;
         r1.requestFocus();
-        r1 = this.web;
+        r1 = ((RepairActivity) this).web;
         r1.setBackgroundColor(r0);
-        r0_1 = this.web;
+        r0_1 = ((RepairActivity) this).web;
         r1_2 = new RepairActivity_1(this);
         r0_1.setWebChromeClient(r1_2);
-        r0_1 = this.web;
+        r0_1 = ((RepairActivity) this).web;
         r1_3 = new RepairActivity_2(this);
         r0_1.setOnTouchListener(r1_3);
-        r0_1 = this.web;
+        r0_1 = ((RepairActivity) this).web;
         r1_4 = new RepairActivity_3(this);
         r0_1.setWebViewClient(r1_4);
-        r0_1 = this.web;
+        r0_1 = ((RepairActivity) this).web;
         r2 = -1;
         r1_5 = new android.widget.FrameLayout.LayoutParams(r2, r2);
         p1_3.addView(r0_1, r1_5);
@@ -309,11 +309,11 @@ public class RepairActivity extends android.app.Activity {
         r2 = -2;
         r1_5 = new android.widget.FrameLayout.LayoutParams(r2, r2);
         r2 = 51;
-        r1_5.gravity = r2;
+        ((android.widget.FrameLayout.LayoutParams) r1_5).gravity = r2;
         r2 = 40;
-        r1_5.topMargin = r2;
+        ((android.widget.FrameLayout.LayoutParams) r1_5).topMargin = r2;
         r2 = 20;
-        r1_5.leftMargin = r2;
+        ((android.widget.FrameLayout.LayoutParams) r1_5).leftMargin = r2;
         r2_1 = new android.widget.Button(this);
         r3_1 = "‹ 返回";
         r2_1.setText(r3_1);
@@ -324,7 +324,7 @@ public class RepairActivity extends android.app.Activity {
         r0_2.addView(r2_1);
         p1_3.addView(r0_2, r1_5);
         this.setContentView(p1_3);
-        p1_4 = this.web;
+        p1_4 = ((RepairActivity) this).web;
         r0_3 = "http://127.0.0.1:7797/repair";
         p1_4.loadUrl(r0_3);
         p1_1 = "[REPAIRACT] loadUrl -> http://127.0.0.1:7797/repair";
@@ -341,17 +341,17 @@ public class RepairActivity extends android.app.Activity {
         String r2 = null;
         try {
         r0 = 0;
-        r1 = this.imeHandler;
+        r1 = ((RepairActivity) this).imeHandler;
         if (r1 != null) {
             r1.removeCallbacksAndMessages(r0);
         }
-        r1_1 = this.web;
+        r1_1 = ((RepairActivity) this).web;
         if (r1_1 != null) {
             r2 = "about:blank";
             r1_1.loadUrl(r2);
-            r1_1 = this.web;
+            r1_1 = ((RepairActivity) this).web;
             r1_1.destroy();
-            this.web = r0;
+            ((RepairActivity) this).web = r0;
         }
         super.onDestroy();
         return;

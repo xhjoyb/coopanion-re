@@ -12,7 +12,7 @@ public class PetWindowService_10 {
     // ---- constructors ----
     public PetWindowService_10(PetWindowService p1) {
         super();
-        this.this$0 = p1;
+        ((PetWindowService_10) this).this$0 = p1;
         return;
     }
     public PetWindowService_10() {
@@ -29,7 +29,7 @@ public class PetWindowService_10 {
         if (p1_1 == 0) {
             p1_1 = 67;
             if (p2 == p1_1) {
-                p1_2 = this.this$0;
+                p1_2 = ((PetWindowService_10) this).this$0;
                 p2_1 = "Backspace";
                 PetWindowService._$$Nest$mpushKeyToPage(p1_2, p2_1);
                 p1_1 = 1;

@@ -12,7 +12,7 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
     // ---- constructors ----
     public PetWindowService_6(PetWindowService p1) {
         super();
-        this.this$0 = p1;
+        ((PetWindowService_6) this).this$0 = p1;
         return;
     }
     public PetWindowService_6() {

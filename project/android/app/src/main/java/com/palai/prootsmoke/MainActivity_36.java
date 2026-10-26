@@ -11,7 +11,7 @@ public class MainActivity_36 {
     // ---- constructors ----
     public MainActivity_36(MainActivity p1) {
         super();
-        this.this$0 = p1;
+        ((MainActivity_36) this).this$0 = p1;
         return;
     }
     public MainActivity_36() {
@@ -22,7 +22,7 @@ public class MainActivity_36 {
     public void onClick(android.content.DialogInterface p1, int p2) {
         MainActivity p1_1 = null;
         try {
-        p1_1 = this.this$0;
+        p1_1 = ((MainActivity_36) this).this$0;
         MainActivity._$$Nest$mrequestOverlay(p1_1);
         return;
         } catch (Throwable _e9) {

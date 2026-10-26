@@ -12,9 +12,9 @@ public class PetWindowService_11 {
     // ---- constructors ----
     public PetWindowService_11(PetWindowService p1) {
         super();
-        this.this$0 = p1;
+        ((PetWindowService_11) this).this$0 = p1;
         p1 = null;
-        this.loaded = p1;
+        ((PetWindowService_11) this).loaded = p1;
         return;
     }
     public PetWindowService_11() {
@@ -30,7 +30,7 @@ public class PetWindowService_11 {
         PetWindowService_11_1 p2_1 = null;
         long p3_1 = 0L;
         try {
-        p1_1 = this.loaded;
+        p1_1 = ((PetWindowService_11) this).loaded;
         if (p1_1 != false) {
             return;
         }
@@ -39,8 +39,8 @@ public class PetWindowService_11 {
             p5 = (p5 - p3);
             if (p5 > 0) {
                 p1_2 = 1;
-                this.loaded = (p1_2 != 0);
-                p1_3 = this.this$0;
+                ((PetWindowService_11) this).loaded = (p1_2 != 0);
+                p1_3 = ((PetWindowService_11) this).this$0;
                 p1_4 = PetWindowService._$$Nest$fgetui(p1_3);
                 p2_1 = new PetWindowService_11_1(this);
                 p3_1 = 32L;

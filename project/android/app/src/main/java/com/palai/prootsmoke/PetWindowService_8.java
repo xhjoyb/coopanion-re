@@ -13,7 +13,7 @@ public class PetWindowService_8 extends android.widget.EditText {
     // ---- constructors ----
     public PetWindowService_8(PetWindowService p1, android.content.Context p2) {
         super(p2);
-        this.this$0 = p1;
+        ((PetWindowService_8) this).this$0 = p1;
         return;
     }
     // ---- methods ----

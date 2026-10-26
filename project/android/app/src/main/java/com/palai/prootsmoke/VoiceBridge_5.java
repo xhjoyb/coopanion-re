@@ -11,7 +11,7 @@ public class VoiceBridge_5 {
     // ---- constructors ----
     public VoiceBridge_5(VoiceBridge p1) {
         super();
-        this.this$0 = p1;
+        ((VoiceBridge_5) this).this$0 = p1;
         return;
     }
     public VoiceBridge_5() {
@@ -25,7 +25,7 @@ public class VoiceBridge_5 {
         String r2 = null;
         String r3 = null;
         try {
-        r0 = this.this$0;
+        r0 = ((VoiceBridge_5) this).this$0;
         r1 = "";
         r2 = "speech";
         r3 = "level";
@@ -48,7 +48,7 @@ public class VoiceBridge_5 {
         String r2 = null;
         String r3 = null;
         try {
-        r0 = this.this$0;
+        r0 = ((VoiceBridge_5) this).this$0;
         r1 = "";
         r2 = "end";
         r3 = "level";
@@ -81,7 +81,7 @@ public class VoiceBridge_5 {
                     r0_1 = r0.toString();
                     r1 = "PetVoice";
                     android.util.Log.w(r1, r0_1);
-                    r0_2 = this.this$0;
+                    r0_2 = ((VoiceBridge_5) this).this$0;
                     r1_1 = VoiceBridge.access$300(r0_2);
                     if (r1_1 == false) { _pc = 1; break; }
                     r1_2 = 7;
@@ -123,7 +123,7 @@ public class VoiceBridge_5 {
         if (p1_1 != null) {
             r0 = p1_1.length();
             if (r0 > 0) {
-                r0_1 = this.this$0;
+                r0_1 = ((VoiceBridge_5) this).this$0;
                 r1 = "partial";
                 r2 = "";
                 VoiceBridge.access$500(r0_1, r1, p1_1, r2);
@@ -140,7 +140,7 @@ public class VoiceBridge_5 {
         String r1 = null;
         String r2 = null;
         try {
-        p1_1 = this.this$0;
+        p1_1 = ((VoiceBridge_5) this).this$0;
         r0 = "";
         r1 = "ready";
         r2 = "level";
@@ -156,7 +156,7 @@ public class VoiceBridge_5 {
         String r1 = null;
         String r2 = null;
         try {
-        r0 = this.this$0;
+        r0 = ((VoiceBridge_5) this).this$0;
         p1_1 = VoiceBridge.access$700(p1);
         r1 = "";
         r2 = "final";
@@ -173,7 +173,7 @@ public class VoiceBridge_5 {
         String r1 = null;
         String r2 = null;
         try {
-        r0 = this.this$0;
+        r0 = ((VoiceBridge_5) this).this$0;
         p1_1 = (int) p1_1;
         p1_2 = java.lang.String.valueOf(p1_1);
         r1 = "rms";

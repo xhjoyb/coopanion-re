@@ -13,7 +13,7 @@ public class RepairActivity_1 extends android.webkit.WebChromeClient {
     // ---- constructors ----
     public RepairActivity_1(RepairActivity p1) {
         super();
-        this.this$0 = p1;
+        ((RepairActivity_1) this).this$0 = p1;
         return;
     }
     public RepairActivity_1() {
@@ -38,15 +38,15 @@ public class RepairActivity_1 extends android.webkit.WebChromeClient {
         try {
             p1_1 = "[REPAIRACT][FILE] onShowFileChooser";
             AppLog.i(p1_1);
-            p1_2 = this.this$0;
+            p1_2 = ((RepairActivity_1) this).this$0;
             p1_3 = RepairActivity._$$Nest$fgetfilePathCallback(p1_2);
             p3 = null;
             if (p1_3 != null) {
-                p1_2 = this.this$0;
+                p1_2 = ((RepairActivity_1) this).this$0;
                 p1_3 = RepairActivity._$$Nest$fgetfilePathCallback(p1_2);
                 p1_3.onReceiveValue(p3);
             }
-            p1_2 = this.this$0;
+            p1_2 = ((RepairActivity_1) this).this$0;
             RepairActivity._$$Nest$fputfilePathCallback(p1_2, p2);
             p2_1 = "android.intent.action.GET_CONTENT";
             p1_4 = new android.content.Intent(p2_1);
@@ -54,7 +54,7 @@ public class RepairActivity_1 extends android.webkit.WebChromeClient {
             p1_4.addCategory(p2_1);
             p2_1 = "image/*";
             p1_4.setType(p2_1);
-            p2_2 = this.this$0;
+            p2_2 = ((RepairActivity_1) this).this$0;
             r0 = "select image";
             p1_4 = android.content.Intent.createChooser(p1_4, r0);
             r0_1 = 20818;
@@ -67,13 +67,13 @@ public class RepairActivity_1 extends android.webkit.WebChromeClient {
             p1_7 = p2_3.append(p1_6);
             p1_8 = p1_7.toString();
             AppLog.i(p1_8);
-            p1_2 = this.this$0;
+            p1_2 = ((RepairActivity_1) this).this$0;
             p1_3 = RepairActivity._$$Nest$fgetfilePathCallback(p1_2);
             if (p1_3 != null) {
-                p1_2 = this.this$0;
+                p1_2 = ((RepairActivity_1) this).this$0;
                 p1_3 = RepairActivity._$$Nest$fgetfilePathCallback(p1_2);
                 p1_3.onReceiveValue(p3);
-                p1_2 = this.this$0;
+                p1_2 = ((RepairActivity_1) this).this$0;
                 RepairActivity._$$Nest$fputfilePathCallback(p1_2, p3);
             }
             p1_2 = null;

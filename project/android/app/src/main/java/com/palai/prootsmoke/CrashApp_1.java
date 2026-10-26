@@ -10,8 +10,8 @@ public class CrashApp_1 {
     // ---- constructors ----
     public CrashApp_1(CrashApp p1, java.lang.Thread.UncaughtExceptionHandler p2) {
         super();
-        this.this$0 = p1;
-        this.val$prev = p2;
+        ((CrashApp_1) this).this$0 = p1;
+        ((CrashApp_1) this).val$prev = p2;
         return;
     }
     public CrashApp_1() {
@@ -23,9 +23,9 @@ public class CrashApp_1 {
         CrashApp r0 = null;
         java.lang.Thread.UncaughtExceptionHandler r0_1 = null;
         try {
-        r0 = this.this$0;
+        r0 = ((CrashApp_1) this).this$0;
         CrashApp._$$Nest$mdump(r0, p1, p2);
-        r0_1 = this.val$prev;
+        r0_1 = ((CrashApp_1) this).val$prev;
         if (r0_1 != null) {
             r0_1.uncaughtException(p1, p2);
         }

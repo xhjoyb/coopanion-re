@@ -11,7 +11,7 @@ public class MainActivity_29 {
     // ---- constructors ----
     public MainActivity_29(MainActivity p1) {
         super();
-        this.this$0 = p1;
+        ((MainActivity_29) this).this$0 = p1;
         return;
     }
     public MainActivity_29() {
@@ -24,14 +24,14 @@ public class MainActivity_29 {
         android.webkit.WebView p1_2 = null;
         String p2_1 = null;
         try {
-        p1_1 = this.this$0;
+        p1_1 = ((MainActivity_29) this).this$0;
         p1_2 = MainActivity._$$Nest$fgetweb(p1_1);
         if (p1_2 != null) {
-            p1_1 = this.this$0;
+            p1_1 = ((MainActivity_29) this).this$0;
             p1_2 = MainActivity._$$Nest$fgetweb(p1_1);
             p2_1 = "http://127.0.0.1:17788/";
             p1_2.loadUrl(p2_1);
-            p1_1 = this.this$0;
+            p1_1 = ((MainActivity_29) this).this$0;
             p2_1 = "[GUIDE] 切到控制台";
             MainActivity._$$Nest$mlog(p1_1, p2_1);
         }

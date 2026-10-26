@@ -11,7 +11,7 @@ public class MainActivity_25 {
     // ---- constructors ----
     public MainActivity_25(MainActivity p1) {
         super();
-        this.this$0 = p1;
+        ((MainActivity_25) this).this$0 = p1;
         return;
     }
     public MainActivity_25() {
@@ -22,7 +22,7 @@ public class MainActivity_25 {
     public void onClick(android.content.DialogInterface p1, int p2) {
         MainActivity p1_1 = null;
         try {
-        p1_1 = this.this$0;
+        p1_1 = ((MainActivity_25) this).this$0;
         p2 = 3;
         MainActivity._$$Nest$mshowGuide(p1_1, p2);
         return;

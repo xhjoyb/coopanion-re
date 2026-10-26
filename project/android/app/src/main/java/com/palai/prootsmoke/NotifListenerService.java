@@ -123,7 +123,7 @@ public class NotifListenerService extends android.service.notification.Notificat
             if (r0 != null) {
                 r2 = p1.getPackageName();
                 r0 = p1.getNotification();
-                r0_1 = r0_1.extras;
+                r0_1 = ((android.app.Notification) r0_1).extras;
                 r1 = null;
                 if (r0_1 != null) {
                     r3_1 = "android.title";

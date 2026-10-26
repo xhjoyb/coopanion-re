@@ -11,7 +11,7 @@ public class PetActivity_2 extends android.webkit.WebViewClient {
     // ---- constructors ----
     public PetActivity_2(PetActivity p1) {
         super();
-        this.this$0 = p1;
+        ((PetActivity_2) this).this$0 = p1;
         return;
     }
     public PetActivity_2() {
