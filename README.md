@@ -36,6 +36,7 @@ Cortico 控制台 :17788 · 眼睛 :17898 · 感知 :17899 · 桌宠页 :7797
 | Java 和页面之间怎么通信（最硬） | [`docs/03-Java与JS桥接协议.md`](docs/03-Java与JS桥接协议.md) |
 | 怎么把上面全部重做一遍 | [`docs/04-工具链与复现.md`](docs/04-工具链与复现.md) |
 | payload 里到底有什么、哪些能裁（P3 预编译清单） | [`docs/05-预编译清单与裁包评估.md`](docs/05-预编译清单与裁包评估.md) |
+| **怎么改一笔就出个能装的包**（改 JS → 重打包 → 签名 → 验签 → 装机） | [`docs/07-出包链.md`](docs/07-出包链.md)，一条命令复现基线：`bash tools/repro_pet3.sh` |
 | **源码还差多少** / 上游是哪一版 / 缺哪些文件 | [`UPSTREAM.md`](UPSTREAM.md) |
 | 哪些二进制必须入仓、`dist` 能不能重建 | [`PREBUILT.md`](PREBUILT.md) |
 | 重建时 `node_modules` 该装哪个精确版本 | [`BUILDDEPS.md`](BUILDDEPS.md) |
@@ -59,15 +60,16 @@ Coopanion_v12.71/
 │   ├── js/       12 段注入脚本（inj_01 … inj_12，共 4,776 B）
 │   ├── rootfs/   从 payload.asset 抽出的业务子树（1,910 文件 / 137,479,592 B）
 │   ├── recovered/ 可读源码树（863 文件 / 16,350,953 B）
+│   ├── dex-baseline/  pet3 携带的 dex（classes.dex 98,808 B / classes2.dex 37,308 B，见 docs/07 §5）
 │   └── *.py      20 个脚本（功能 9 + 工具链补丁 3 + 文档回改 8）
-├── mcp_out/      Coopanion-v12.71-mcp.apk     重签实证产物（见 docs/04 §2）
+├── mcp_out/      p3.tsv / p3_tarlist.txt  P3 清单与 tar 条目表（原重签实证产物已于 2026-10-30 清理）
 ├── UPSTREAM.md   上游锚点（谁的代码 / 哪一版 / 树指纹 / 缺哪些构建必需件）
 ├── PREBUILT.md   预编译二进制与构建产物清单（逐文件 sha256 + 可复现判定）
 ├── BUILDDEPS.md  构建期依赖版本锚（28 个缺包 / 四级证据链 / 可复算）
 ├── DEPS.md       依赖三分法（运行时已闭合 / 构建期已补锚）
 ├── BASELINE.md   验收台账（P0–P3 逐单元结果、出包记录、基线回退点）
-├── tools/        复现脚本（p4_verify 四层验收 / p4_repack / p4_gzip / p4_cut）
-└── docs/         00 导读 · 01 架构 · 02 Java · 03 协议 · 04 工具链 · 05 预编译清单
+├── tools/        复现脚本（p4_verify 四层验收 / p4_repack / p4_gzip / p4_cut）+ 出包链（apk_build / apk_verify / repro_pet3.sh / java/）
+└── docs/         00 导读 · 01 架构 · 02 Java · 03 协议 · 04 工具链 · 05 预编译清单 · 07 出包链
 ```
 
 ---

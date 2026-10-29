@@ -56,7 +56,7 @@
 | 产物 | 大小 | 不纳入原因 | 重现方式 |
 |---|---|---|---|
 | `apk/Coopanion-v12.71.apk` | 137 MB | 超 GitHub 单文件 100 MB 硬上限；且为原厂发行物 | 自行取得原包，`md5sum` 核对 `ed319932…e00b1` |
-| `mcp_out/Coopanion-v12.71-mcp.apk` | 137 MB | 同上 | 见 `docs/04 §2`：MT MCP 改 `versionName` → 重签 |
+| `mcp_out/Coopanion-v12.71-mcp.apk` | 137 MB | 同上 | ~~见 `docs/04 §2`：MT MCP 改 `versionName` → 重签~~ **已于 2026-10-30 清理删除**；重签链路见 `docs/07`，产物可用 `tools/apk_build.py` 一行重建 |
 | `src/rootfs/` | 1,910 文件 / 137,479,592 B | 体积 | `unzip -p apk/Coopanion-v12.71.apk assets/payload.asset \| tar -xz -C src/rootfs` |
 | `src/rootfs/…/node_modules/` | 119.2 MB / 95 个顶层条目 | 可下载依赖，非逆向产物 | 两步 npm + 4 条 `ln -s`（`DEPS.md §3.2`；`package-lock.json` 已在仓库，37,020 B） |
 | `src/recovered/cortico/dist/web/` | 8 文件 / 917,106 B | 构建产物（esbuild bundle） | `pnpm --filter cortico build:web` |
@@ -705,8 +705,19 @@ Gradle 工程仍挂起（用户「3 再说」）。
 
 ### P8 · 桌宠双开 + 调色盘图标（pet2 / pet3，真机验证）
 
-两轮改动都**只动 `vendor/pet/web/` 的前端 JS**：不改 Java、不改 dex、不改 payload 结构、不动裁包规则。出包链路仍是
-`patch_pet3.py`（tar 逐条目替换 + 重算 ustar 头 `chksum` + gzip L6 `mtime=0`）→ `repack8.py`（`STORED`/`lib/` → 4096 对齐，其余 4/1）→ `Sign2`（v2-only，apksig 2.3.0）→ `verify_pet3.py` + `Verify2`。
+两轮改动**只动 `vendor/pet/web/` 的前端 JS**：不改 Java、不改 payload 结构、不动裁包规则。
+
+> ⚠️ **更正（2026-10-30 实测）**：此前这里写的是「不改 dex」，**这是错的**。实测 pet3 的 dex 与原包不同 ——
+> 原包 `classes.dex` 98,744 B / `45b2e89e…`、`classes2.dex` 37,212 B / `cab5aed2…`；
+> pet3 `classes.dex` 98,808 B / `ffd82303…`、`classes2.dex` 37,308 B / `c1504c10…`。
+> 来源是那条已判运行时不可用的「反编译重建 Java 工程」线的 smali 往返产物（`.operit/sm/out1.dex` / `out2.dex`），
+> repack 时一并打进了包。**这条 dex 链在真机上跑得起来**（pet3 已覆盖安装并验证），所以基线事实保留，
+> 只是必须如实记录：`apk_build.py` 不带 `--dex` 时产出的是「原厂 dex + pet JS 补丁」的新变体，不是 pet3。
+> 为保证可复现，两份 dex 已入库 `src/dex-baseline/{classes,classes2}.dex`。
+
+出包链路（原 `.operit/` 一次性脚本）已收口为仓库内工具：
+`tools/apk_build.py`（tar 逐条目替换 + 重算 ustar 头 `chksum` + gzip L6 `mtime=0` → `STORED`/`lib/` 4096 对齐其余 4/1 的 zip 重组 → apksig v2-only 签名）、
+`tools/apk_verify.py`（出货自检）、`tools/java/{Sign2,Verify2}.java`。一条命令复现基线：`bash tools/repro_pet3.sh`。
 
 | 补丁 | 文件 | 改动 | 字节 |
 |---|---|---|---|
@@ -762,3 +773,30 @@ pet3 结构自检：`entries 25`、`arsc/dex %4=0`、`lib4096 [0,0,0,0,0]`、pay
 | `project/` | 已废弃的 Java 重建工程；连带回滚 `docs/00` 的「附 C：方法体自动翻译」段、删除 `tools/{body2java,smali2java,fix_dollar,fix_trycatch_files,trycatch_fix}.py` 与 `docs/06-方法体自动翻译完成报告.md` |
 
 保留：`src/` 158.6 M（源码基线与 smali 视图）、`.operit/repack/Coopanion_v12.71_pet3_signed.apk` + `.operit/patch/`、`apk/Coopanion-v12.71.apk` 原包（`.gitignore` 内）、`tools/` 现役 22 个脚本 + 新增 `tools/push_tree.py`（单文件并行推 blob，是 `push_repo.py` 的细化版）。
+### P9 · 出包链工具化 + 二次清理（2026-10-30）
+
+**起因**：能复现 pet3 的脚本全在 `.operit/`（`.gitignore` 内），克隆仓库造不出 pet3。现已收口进仓库。
+
+| 新增 | 作用 |
+|---|---|
+| `tools/apk_build.py` | payload tar 逐条目替换 → gzip L6 `mtime=0` → zip 对齐重组 → apksig v2 签名，一条命令；全程流式，不落 344 MB 临时 tar |
+| `tools/apk_verify.py` | 出货自检：zip/CRC、4096·4 对齐、payload gzip 头、tar 条目断言（含/不含/字节数/sha256）、`APK Sig Block 42`、apksig 验签、总指纹；退出码 0/1 |
+| `tools/java/Sign2.java`、`Verify2.java` | apksig 2.3.0 签名器 / 验签器（从 `.operit/sign/` 迁出） |
+| `tools/repro_pet3.sh` | 一条命令复现 pet3 并断言 sha256 |
+| `src/dex-baseline/{classes,classes2}.dex` | pet3 携带的 dex（98,808 / 37,308 B），见 P8 更正 |
+| `docs/07-出包链.md` | 完整用法：`apksig` jar 取址、keystore 参数、出包/验证/推送/装机 |
+
+**复现结果（实跑，28.6 s）**：`bash tools/repro_pet3.sh` → `137,195,102 B` / `sha256 38128c2e…d26032`，与 pet3 基线**逐字节一致**；`apk_verify.py` 全项 ✅（含负向用例：错 sha256 返回 rc=1）。
+
+**二次清理：849.7 M → 652.5 M（−197.2 M）**
+
+| 删除 | 体积 |
+|---|---:|
+| `mcp_out/Coopanion-v12.71-mcp.apk`（P0 重签实证包，已被 pet3 取代） | 131.0 M |
+| `.anchor-cache/`（npm 元数据缓存，`resolve_build_deps.py` 可重下） | 63.1 M |
+| `.operit/sm/`（smali 往返工作目录；dex 已入 `src/dex-baseline/`） | 2.2 M |
+| `.operit/*.py` × 183（一次性逆向脚本，语义已收口到 `tools/`） | 0.8 M |
+| `mcp_out/_*.bak` + `.operit/{b2j.*,g*.log,o.txt,push*.txt,fail.log}` | 0.4 M |
+
+删前快照（含 183 个脚本全名单）留档 `log/2026-10-30-cleanup.txt`；连带修正了 `README`/`docs/00`/`docs/04` 里对 `mcp_out/…mcp.apk` 的四处引用。
+保留：`apk/Coopanion-v12.71.apk`（对账锚点，不入库）、`.operit/repack/…pet3_signed.apk`（现役基线包）、`.operit/patch/`、`.operit/smali/*.jar`、`src/rootfs/`。
