@@ -318,6 +318,7 @@ public class MainActivity extends android.app.Activity {
                     r1 = new byte[r0];
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     r2 = 0L;
                     r2_1 = (p2 > r2 ? 1 : (p2 == r2 ? 0 : -1));
                     if (r2_1 <= 0) { _pc = 3; break; }
@@ -329,11 +330,13 @@ public class MainActivity extends android.app.Activity {
                     if (r2_1 >= 0) { _pc = 2; break; }
                     _pc = 3; break;
                     case 2:
+                    case 95001:
                     p1.write(r1, r3, r2_1);
                     r2 = (long) r2_1;
                     p2 = (p2 - r2);
                     _pc = 1; break;
                     case 3:
+                    case 95002:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -361,6 +364,7 @@ public class MainActivity extends android.app.Activity {
                     r0 = p1;
                     _pc = 1; break;
                     case 1:
+                    case 95003:
                     r1 = (p1 + p2);
                     if (r0 >= r1) { _pc = 2; break; }
                     r1_1 = p0[r0];
@@ -368,6 +372,7 @@ public class MainActivity extends android.app.Activity {
                     r0 = (r0 + 1);
                     _pc = 1; break;
                     case 2:
+                    case 95004:
                     r0 = (r0 - p1);
                     r1_2 = "UTF-8";
                     p2_1 = new java.lang.String(p0, p1, r0, r1_3);
@@ -399,6 +404,7 @@ public class MainActivity extends android.app.Activity {
                     if (r0 != false) { _pc = 1; break; }
                     _pc = 4; break;
                     case 1:
+                    case 95005:
                     r0 = p1.isDirectory();
                     if (r0 == false) { _pc = 3; break; }
                     r0_1 = p1.listFiles();
@@ -407,15 +413,18 @@ public class MainActivity extends android.app.Activity {
                     r2 = 0;
                     _pc = 2; break;
                     case 2:
+                    case 95006:
                     if (r2 >= r1) { _pc = 3; break; }
                     r3 = r0_1[r2];
                     this.deleteRec(r3);
                     r2 = (r2 + 1);
                     _pc = 2; break;
                     case 3:
+                    case 95007:
                     p1.delete();
                     _pc = 4; break;
                     case 4:
+                    case 95008:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -562,9 +571,11 @@ public class MainActivity extends android.app.Activity {
                     r7_1 = r7_2.getAbsolutePath();
                     _pc = 2; break;
                     case 1:
+                    case 95009:
                     r7 = "?";
                     _pc = 2; break;
                     case 2:
+                    case 95010:
                     r6 = r6.append(r7_1);
                     r7 = "/coop-run.log";
                     r6 = r6.append(r7_1);
@@ -578,6 +589,7 @@ public class MainActivity extends android.app.Activity {
                     try { r11_1.close(); } catch (java.lang.Throwable _ce0) { }
                     _pc = 5; break;
         case 90000:
+                    case 95011:
                     r12 = -1L;
                     r11 = this.getAssets();
                     r11_2 = r11.open(r4_1);
@@ -586,6 +598,7 @@ public class MainActivity extends android.app.Activity {
                     r15 = 0L;
                     _pc = 3; break;
                     case 3:
+                    case 95012:
                     r7_3 = r11_2.read(r14_1);
                     if (r7_3 <= 0) { _pc = 4; break; }
                     r7_4 = (long) r7_3;
@@ -593,9 +606,11 @@ public class MainActivity extends android.app.Activity {
                     _pc = 3; break;
                     case 4:
                     try { r11_2.close(); } catch (java.lang.Throwable _ce1) { }
+                    case 95013:
                     r12 = r15;
                     _pc = 5; break;
                     case 5:
+                    case 95014:
                     r7_3 = 0;
                     r8_1 = this.getPackageManager();
                     r11_3 = this.getPackageName();
@@ -604,9 +619,11 @@ public class MainActivity extends android.app.Activity {
                     r14_2 = (long) r8_3;
                     _pc = 6; break;
         case 90001:
+                    case 95015:
                     r14_2 = 0L;
                     _pc = 6; break;
                     case 6:
+                    case 95016:
                     r11_4 = this.getFilesDir();
                     r9 = new java.lang.StringBuilder();
                     r9 = r9.append(r2_1);
@@ -692,6 +709,7 @@ public class MainActivity extends android.app.Activity {
                     r13_3 = r12_1;
                     _pc = 7; break;
                     case 7:
+                    case 95017:
                     if (r12_1 >= r3_5) { _pc = 12; break; }
                     r14_5 = r4_2[r12_1];
                     r3_1 = java.lang.String.valueOf(r14_1[r7_3]);
@@ -707,10 +725,12 @@ public class MainActivity extends android.app.Activity {
                     r3_6 = r19;
                     _pc = 9; break;
                     case 8:
+                    case 95018:
                     r15_3 = r4_2;
                     r3_6 = -1L;
                     _pc = 9; break;
                     case 9:
+                    case 95019:
                     r19_1 = (r3_6 > r7_4 ? 1 : (r3_6 == r7_4 ? 0 : -1));
                     if (r19_1 == 0) { _pc = 10; break; }
                     r13_3 = (r13_3 + 1);
@@ -733,9 +753,11 @@ public class MainActivity extends android.app.Activity {
                     r13_3 = r19_1;
                     _pc = 11; break;
                     case 10:
+                    case 95020:
                     r20_1 = r15_1;
                     _pc = 11; break;
                     case 11:
+                    case 95021:
                     r12_1 = (r12_1 + 1);
                     r8 = r18;
                     r4_3 = r20_1;
@@ -743,6 +765,7 @@ public class MainActivity extends android.app.Activity {
                     r7_3 = 0;
                     _pc = 7; break;
                     case 12:
+                    case 95022:
                     r18 = r8;
                     r3_2 = new java.lang.StringBuilder();
                     r4 = "[CHK] critical files: ";
@@ -759,17 +782,21 @@ public class MainActivity extends android.app.Activity {
                     r4 = "  <-- !!! 解压有问题，语音会失败";
                     _pc = 14; break;
                     case 13:
+                    case 95023:
                     r4 = "";
                     _pc = 14; break;
                     case 14:
+                    case 95024:
                     r3_2 = r3_2.append(r4_1);
                     r3_1 = r3_2.toString();
                     r1.log(r3_1);
                     _pc = 15; break;
         case 90002:
+                    case 95025:
                     r18 = r8;
                     _pc = 15; break;
                     case 15:
+                    case 95026:
                     r9_2.createNewFile();
                     r3_2 = new java.lang.StringBuilder();
                     r4 = "    完成 ";
@@ -783,11 +810,13 @@ public class MainActivity extends android.app.Activity {
                     r1.log(r3_1);
                     _pc = 17; break;
                     case 16:
+                    case 95027:
                     r18 = r8;
                     r3 = "[1] rootfs 已解压（指纹一致）";
                     r1.log(r3_1);
                     _pc = 17; break;
                     case 17:
+                    case 95028:
                     r3_7 = this.getFilesDir();
                     r3_8 = r3_7.listFiles();
                     if (r3_8 == null) { _pc = 20; break; }
@@ -796,6 +825,7 @@ public class MainActivity extends android.app.Activity {
                     r8_3 = 0;
                     _pc = 18; break;
                     case 18:
+                    case 95029:
                     if (r8_3 >= r7_3) { _pc = 20; break; }
                     r9_2 = r3_8[r8_3];
                     r10_1 = r9_2.getName();
@@ -814,9 +844,11 @@ public class MainActivity extends android.app.Activity {
                     r1.log(r9_1);
                     _pc = 19; break;
                     case 19:
+                    case 95030:
                     r8_3 = (r8_3 + 1);
                     _pc = 18; break;
                     case 20:
+                    case 95031:
                     r3_7 = this.getFilesDir();
                     r4 = "ptmp";
                     r2_2 = new java.io.File(r3_7, r4_1);
@@ -874,6 +906,7 @@ public class MainActivity extends android.app.Activity {
                     r4_7.add(r5_1);
                     _pc = 22; break;
                     case 21:
+                    case 95032:
                     r5 = "[1b] 未找到 boot.sh，直接用 run-core.mjs 兜底启动 ...";
                     r1.log(r5_3);
                     r5 = "/bin/node";
@@ -884,6 +917,7 @@ public class MainActivity extends android.app.Activity {
                     r4_7.add(r5_1);
                     _pc = 22; break;
                     case 22:
+                    case 95033:
                     r5_6 = new java.lang.ProcessBuilder(r4_7);
                     r4_3 = 1;
                     r5_6.redirectErrorStream((r4_3 != 0));
@@ -933,9 +967,11 @@ public class MainActivity extends android.app.Activity {
                     r2_4 = new java.io.BufferedReader(r4_10);
                     _pc = 23; break;
                     case 23:
+                    case 95034:
                     r17_2 = 0;
                     _pc = 24; break;
                     case 24:
+                    case 95035:
                     r4_1 = r2_4.readLine();
                     if (r4_1 == null) { _pc = 27; break; }
                     r1.log(r4_1);
@@ -951,15 +987,18 @@ public class MainActivity extends android.app.Activity {
                     r4_11.start();
                     _pc = 25; break;
                     case 25:
+                    case 95036:
                     r4_3 = 1;
                     r5_11 = (r17_2 + 1);
                     r6_5 = 500;
                     if (r5_11 <= r6_5) { _pc = 26; break; }
                     _pc = 23; break;
                     case 26:
+                    case 95037:
                     r17_2 = r5_11;
                     _pc = 24; break;
                     case 27:
+                    case 95038:
                     r0_3 = r0_2.waitFor();
                     r4 = "app/coop-stage/home/companion/data/.restart-request";
                     r2_2 = new java.io.File(r8, r4_1);
@@ -1069,14 +1108,17 @@ public class MainActivity extends android.app.Activity {
                     r5 = new byte[r3_2];
                     _pc = 1; break;
                     case 1:
+                    case 95039:
                     r6 = MainActivity.readFull(r2_1, r5, r3_2);
                     if (r6 >= r3_2) { _pc = 2; break; }
                     _pc = 41; break;
                     case 2:
+                    case 95040:
                     r6 = 0;
                     r7 = r6;
                     _pc = 3; break;
                     case 3:
+                    case 95041:
                     if (r7 >= r3_2) { _pc = 41; break; }
                     r8 = r5[r7];
                     if (r8 == 0) { _pc = 40; break; }
@@ -1105,10 +1147,12 @@ public class MainActivity extends android.app.Activity {
                     r8_1 = r8_2.toString();
                     _pc = 4; break;
                     case 4:
+                    case 95042:
                     r14_3 = "\\";
                     r8_1 = r8_1.replace(r14_4, r3_5);
                     _pc = 5; break;
                     case 5:
+                    case 95043:
                     r14_3 = "./";
                     r15_2 = r8_1.startsWith(r14_1);
                     r4_1 = 2;
@@ -1117,6 +1161,7 @@ public class MainActivity extends android.app.Activity {
                     r4_1 = 65536;
                     _pc = 5; break;
                     case 6:
+                    case 95044:
                     r15_2 = r8_1.endsWith(r3_4);
                     r4_1 = 1;
                     if (r15_2 == false) { _pc = 7; break; }
@@ -1126,15 +1171,18 @@ public class MainActivity extends android.app.Activity {
                     r4_1 = 2;
                     _pc = 6; break;
                     case 7:
+                    case 95045:
                     r15 = r8_1.length();
                     if (r15 != 0) { _pc = 9; break; }
                     MainActivity.skipExactly(r2_1, r9_1);
                     _pc = 8; break;
                     case 8:
+                    case 95046:
                     r3_2 = 512;
                     r4_1 = 65536;
                     _pc = 1; break;
                     case 9:
+                    case 95047:
                     r15_3 = "UTF-8";
                     r6 = 76;
                     if (r13_2 == r6) { _pc = 35; break; }
@@ -1142,12 +1190,14 @@ public class MainActivity extends android.app.Activity {
                     if (r13_2 != r6) { _pc = 10; break; }
                     _pc = 35; break;
                     case 10:
+                    case 95048:
                     r6 = 120;
                     if (r13_2 == r6) { _pc = 29; break; }
                     r6 = 103;
                     if (r13_2 != r6) { _pc = 11; break; }
                     _pc = 29; break;
                     case 11:
+                    case 95049:
                     r6_1 = ((MainActivity) r0).pendingName;
                     r15_4 = null;
                     if (r6_1 == null) { _pc = 12; break; }
@@ -1157,6 +1207,7 @@ public class MainActivity extends android.app.Activity {
                     ((MainActivity) r0).pendingName = r15_4;
                     _pc = 12; break;
                     case 12:
+                    case 95050:
                     r6_1 = ((MainActivity) r0).pendingLink;
                     if (r6_1 == null) { _pc = 13; break; }
                     r6 = r6_1.length();
@@ -1165,12 +1216,14 @@ public class MainActivity extends android.app.Activity {
                     ((MainActivity) r0).pendingLink = r15_4;
                     _pc = 13; break;
                     case 13:
+                    case 95051:
                     r6_2 = r8_1.startsWith(r14_1);
                     if (r6_2 == false) { _pc = 14; break; }
                     r6 = 2;
                     r8_1 = r8_1.substring(r6);
                     _pc = 13; break;
                     case 14:
+                    case 95052:
                     r6_2 = r8_1.endsWith(r3_4);
                     if (r6_2 == false) { _pc = 15; break; }
                     r6 = r8_1.length();
@@ -1179,20 +1232,24 @@ public class MainActivity extends android.app.Activity {
                     r8_1 = r8_1.substring(r14, r6);
                     _pc = 14; break;
                     case 15:
+                    case 95053:
                     r3_2 = r8_1.length();
                     if (r3_2 != 0) { _pc = 16; break; }
                     MainActivity.skipExactly(r2_1, r9_1);
                     _pc = 8; break;
                     case 16:
+                    case 95054:
                     r3_6 = new java.io.File(r1, r8_1);
                     r6 = 53;
                     if (r13_2 != r6) { _pc = 18; break; }
                     r3_6.mkdirs();
                     _pc = 17; break;
                     case 17:
+                    case 95055:
                     r14 = 65536;
                     _pc = 28; break;
                     case 18:
+                    case 95056:
                     r6 = 50;
                     if (r13_2 != r6) { _pc = 20; break; }
                     r6_2 = r3_6.exists();
@@ -1200,6 +1257,7 @@ public class MainActivity extends android.app.Activity {
                     r3_6.delete();
                     _pc = 19; break;
                     case 19:
+                    case 95057:
                     r6_3 = java.lang.Runtime.getRuntime();
                     r8_3 = 4;
                     r8_4 = new java.lang.String[r8_3];
@@ -1217,6 +1275,7 @@ public class MainActivity extends android.app.Activity {
                     r3_7.waitFor();
                     _pc = 17; break;
                     case 20:
+                    case 95058:
                     r6 = 49;
                     if (r13_2 != r6) { _pc = 25; break; }
                     r6_4 = new java.io.File(r1, r7_1);
@@ -1225,23 +1284,27 @@ public class MainActivity extends android.app.Activity {
                     r7_2.mkdirs();
                     _pc = 21; break;
                     case 21:
+                    case 95059:
                     r7_3 = r3_6.exists();
                     if (r7_3 == false) { _pc = 22; break; }
                     r3_6.delete();
                     _pc = 22; break;
                     case 22:
+                    case 95060:
                     r7_4 = new java.io.FileInputStream(r6_4);
                     r6_5 = new java.io.FileOutputStream(r3_6);
                     r14 = 65536;
                     r8_5 = new byte[r14];
                     _pc = 23; break;
                     case 23:
+                    case 95061:
                     r11 = r7_4.read(r8_5);
                     if (r11 <= 0) { _pc = 24; break; }
                     r12 = 0;
                     r6_5.write(r8_5, r12, r11);
                     _pc = 23; break;
                     case 24:
+                    case 95062:
                     r12_1 = false;
                     try { r7_4.close(); } catch (java.lang.Throwable _ce2) { }
                     try { r6_5.close(); } catch (java.lang.Throwable _ce3) { }
@@ -1249,12 +1312,14 @@ public class MainActivity extends android.app.Activity {
                     r3_6.setExecutable((r4_1 != 0), r12_1);
                     _pc = 28; break;
                     case 25:
+                    case 95063:
                     r14 = 65536;
                     r6_4 = r3_6.getParentFile();
                     if (r6_4 == null) { _pc = 26; break; }
                     r6_4.mkdirs();
                     _pc = 26; break;
                     case 26:
+                    case 95064:
                     r6_5 = new java.io.FileOutputStream(r3_6);
                     MainActivity.copyN(r2_1, r6_6, r9_1);
                     try { r6_5.close(); } catch (java.lang.Throwable _ce4) { }
@@ -1280,13 +1345,16 @@ public class MainActivity extends android.app.Activity {
                     if (r6_2 == false) { _pc = 28; break; }
                     _pc = 27; break;
                     case 27:
+                    case 95065:
                     r6_2 = false;
                     r3_6.setExecutable((r4_1 != 0), r6_2);
                     _pc = 28; break;
                     case 28:
+                    case 95066:
                     MainActivity.skipPad(r2_1, r9_1);
                     _pc = 39; break;
                     case 29:
+                    case 95067:
                     r6 = 0;
                     r14 = 65536;
                     r3_2 = (int) r9_1;
@@ -1299,6 +1367,7 @@ public class MainActivity extends android.app.Activity {
                     r6 = 0;
                     _pc = 30; break;
                     case 30:
+                    case 95068:
                     if (r6 >= r4_1) { _pc = 34; break; }
                     r7_1 = r3_8[r6];
                     r8_3 = 32;
@@ -1306,6 +1375,7 @@ public class MainActivity extends android.app.Activity {
                     if (r8_3 > 0) { _pc = 31; break; }
                     _pc = 33; break;
                     case 31:
+                    case 95069:
                     r8_3 = (r8_3 + 1);
                     r7_1 = r7_1.substring(r8_3);
                     r8_6 = "path=";
@@ -1316,6 +1386,7 @@ public class MainActivity extends android.app.Activity {
                     ((MainActivity) r0).pendingName = r7_1;
                     _pc = 33; break;
                     case 32:
+                    case 95070:
                     r8_6 = "linkpath=";
                     r8_7 = r7_1.startsWith(r8_1);
                     if (r8_7 == false) { _pc = 33; break; }
@@ -1324,12 +1395,15 @@ public class MainActivity extends android.app.Activity {
                     ((MainActivity) r0).pendingLink = r7_1;
                     _pc = 33; break;
                     case 33:
+                    case 95071:
                     r6 = (r6 + 1);
                     _pc = 30; break;
                     case 34:
+                    case 95072:
                     MainActivity.skipPad(r2_1, r9_1);
                     _pc = 39; break;
                     case 35:
+                    case 95073:
                     r14 = 65536;
                     r3_2 = (int) r9_1;
                     r4_2 = new byte[r3_2];
@@ -1341,22 +1415,27 @@ public class MainActivity extends android.app.Activity {
                     r6_1 = r6_1.substring(r8_3, r3_2);
                     _pc = 36; break;
                     case 36:
+                    case 95074:
                     r3_4 = r6_1.trim();
                     r4_1 = 76;
                     if (r13_2 != r4_1) { _pc = 37; break; }
                     ((MainActivity) r0).pendingName = r3_4;
                     _pc = 38; break;
                     case 37:
+                    case 95075:
                     ((MainActivity) r0).pendingLink = r3_4;
                     _pc = 38; break;
                     case 38:
+                    case 95076:
                     MainActivity.skipPad(r2_1, r9_1);
                     _pc = 39; break;
                     case 39:
+                    case 95077:
                     r4_1 = r14;
                     r3_2 = 512;
                     _pc = 1; break;
                     case 40:
+                    case 95078:
                     r14 = r4_1;
                     r8_1 = r6_1;
                     r7 = (r7 + 1);
@@ -1364,6 +1443,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 3; break;
                     case 41:
                     try { r2.close(); } catch (java.lang.Throwable _ce5) { }
+                    case 95079:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -1400,12 +1480,14 @@ public class MainActivity extends android.app.Activity {
                     r0_1 = java.lang.reflect.Array.getLength(p1_1);
                     _pc = 1; break;
                     case 1:
+                    case 95080:
                     if (r1 >= r0_1) { _pc = 4; break; }
                     r2 = p1_1[r1];
                     this.fixPerms(r2);
                     r1 = (r1 + 1);
                     _pc = 1; break;
                     case 2:
+                    case 95081:
                     r0_2 = p1.getName();
                     r2_1 = "node";
                     r2_3 = r0_2.equals(r2_2);
@@ -1427,11 +1509,13 @@ public class MainActivity extends android.app.Activity {
                     if (r0 == false) { _pc = 4; break; }
                     _pc = 3; break;
                     case 3:
+                    case 95082:
                     r0_1 = 1;
                     p1.setExecutable((r0_1 != 0), (r1 != 0));
                     p1.setReadable((r0_1 != 0), (r1 != 0));
                     _pc = 4; break;
                     case 4:
+                    case 95083:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -1613,6 +1697,7 @@ public class MainActivity extends android.app.Activity {
                     r2 = p1;
                     _pc = 1; break;
                     case 1:
+                    case 95084:
                     r3 = (p1 + p2);
                     if (r2 >= r3) { _pc = 5; break; }
                     r3_1 = p0[r2];
@@ -1622,12 +1707,14 @@ public class MainActivity extends android.app.Activity {
                     if (r3 != r4) { _pc = 2; break; }
                     _pc = 5; break;
                     case 2:
+                    case 95085:
                     r4 = 48;
                     if (r3 < r4) { _pc = 4; break; }
                     r4 = 55;
                     if (r3 <= r4) { _pc = 3; break; }
                     _pc = 4; break;
                     case 3:
+                    case 95086:
                     r4 = 3;
                     r0 = (r0 << r4);
                     r3 = (r3 + -48);
@@ -1635,9 +1722,11 @@ public class MainActivity extends android.app.Activity {
                     r0 = (r0 + r3_2);
                     _pc = 4; break;
                     case 4:
+                    case 95087:
                     r2 = (r2 + 1);
                     _pc = 1; break;
                     case 5:
+                    case 95088:
                     return r0;
                             }
                         } catch (Throwable _e) {
@@ -1693,15 +1782,18 @@ public class MainActivity extends android.app.Activity {
                     r0 = 0;
                     _pc = 1; break;
                     case 1:
+                    case 95089:
                     if (r0 >= p2) { _pc = 3; break; }
                     r1 = (p2 - r0);
                     r1 = p0.read(p1, r0, r1);
                     if (r1 >= 0) { _pc = 2; break; }
                     _pc = 3; break;
                     case 2:
+                    case 95090:
                     r0 = (r0 + r1);
                     _pc = 1; break;
                     case 3:
+                    case 95091:
                     return r0;
                             }
                         } catch (Throwable _e) {
@@ -1951,6 +2043,7 @@ public class MainActivity extends android.app.Activity {
                     r0.setNegativeButton(p1_2, r1);
                     _pc = 5; break;
                     case 1:
+                    case 95092:
                     r2_2 = 1;
                     r3 = "下一步";
                     if (p1 != r2_2) { _pc = 2; break; }
@@ -1965,6 +2058,7 @@ public class MainActivity extends android.app.Activity {
                     r0.setNegativeButton(r1_2, p1_4);
                     _pc = 5; break;
                     case 2:
+                    case 95093:
                     r4 = 2;
                     if (p1 != r4) { _pc = 3; break; }
                     p1_1 = "第 2 步：把桌宠召唤到桌面（3/5）";
@@ -1978,6 +2072,7 @@ public class MainActivity extends android.app.Activity {
                     r0.setNegativeButton(r3_1, p1_4);
                     _pc = 5; break;
                     case 3:
+                    case 95094:
                     r4 = 3;
                     if (p1 != r4) { _pc = 4; break; }
                     p1_9 = this_1.senseStatus();
@@ -2006,6 +2101,7 @@ public class MainActivity extends android.app.Activity {
                     r0.setNegativeButton(r3_1, p1_4);
                     _pc = 5; break;
                     case 4:
+                    case 95095:
                     p1_1 = "第 4 步：让桌宠开口说话（5/5）";
                     r0.setTitle(p1_2);
                     p1_1 = "桌宠要说话，得先接上一家大模型：\n1. 打开「控制台」（顶部按钮）\n2. 去「模型供应商」页，选一家（DeepSeek / 通义 / Kimi /\nGLM / 豆包 / 千帆 / MiniMax / 阶跃 / OpenRouter）\n3. 把你申请到的 API Key 贴进去，保存\n小提示：第一次使用时，桌宠自己也会冒泡问你要 Key，\n跟着气泡点就行 —— 那是官方自带的引导。\n全部就绪后，桌宠就会「活」过来啦！";
@@ -2017,6 +2113,7 @@ public class MainActivity extends android.app.Activity {
                     r0.setNegativeButton(p1_2, r1);
                     _pc = 5; break;
                     case 5:
+                    case 95096:
                     p1_16 = new MainActivity_30(this_1, r0);
                     this_1.runOnUiThread(p1_17);
                     return;
@@ -2045,6 +2142,7 @@ public class MainActivity extends android.app.Activity {
                     r0 = p1;
                     _pc = 1; break;
                     case 1:
+                    case 95097:
                     r2 = 0L;
                     r4 = (r0 > r2 ? 1 : (r0 == r2 ? 0 : -1));
                     if (r4 <= 0) { _pc = 4; break; }
@@ -2055,12 +2153,15 @@ public class MainActivity extends android.app.Activity {
                     if (r2_1 >= 0) { _pc = 2; break; }
                     _pc = 4; break;
                     case 2:
+                    case 95098:
                     r4_1 = 1L;
                     _pc = 3; break;
                     case 3:
+                    case 95099:
                     r0 = (r0 - r4_1);
                     _pc = 1; break;
                     case 4:
+                    case 95100:
                     MainActivity.skipPad(p0, p1);
                     return;
                             }
@@ -2090,6 +2191,7 @@ public class MainActivity extends android.app.Activity {
                     p1 = (p1 % r0);
                     _pc = 1; break;
                     case 1:
+                    case 95101:
                     r0 = 0L;
                     r2 = (p1 > r0 ? 1 : (p1 == r0 ? 0 : -1));
                     if (r2 <= 0) { _pc = 3; break; }
@@ -2098,9 +2200,11 @@ public class MainActivity extends android.app.Activity {
                     if (r0_1 > 0) { _pc = 2; break; }
                     _pc = 3; break;
                     case 2:
+                    case 95102:
                     p1 = (p1 - r2_1);
                     _pc = 1; break;
                     case 3:
+                    case 95103:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -2414,9 +2518,11 @@ public class MainActivity extends android.app.Activity {
                     r1_1 = r2_2.getDimensionPixelSize(r1_1);
                     _pc = 2; break;
                     case 1:
+                    case 95104:
                     r1_1 = p1_4;
                     _pc = 2; break;
                     case 2:
+                    case 95105:
                     r2_3 = ((MainActivity) this_1).root;
                     r2_3.setPadding(p1_4, r1_1, p1_4, p1_4);
                     r1_2 = new android.widget.HorizontalScrollView(this);
@@ -2546,6 +2652,7 @@ public class MainActivity extends android.app.Activity {
                     this_1.log(r0_10);
                     _pc = 3; break;
         case 90000:
+                    case 95106:
                     r2 = "[SENSE] bridge start failed: ";
                     r1_13 = new java.lang.StringBuilder(r2_1);
                     r0_12 = r1_13.append(r0_11);
@@ -2553,12 +2660,14 @@ public class MainActivity extends android.app.Activity {
                     this_1.log(r0_10);
                     _pc = 3; break;
                     case 3:
+                    case 95107:
                     r0_5 = ((MainActivity) this_1).root;
                     r1_14 = new MainActivity_14(this_1);
                     r2_12 = 1200L;
                     r0_5.postDelayed(r1_15, r2_12);
                     _pc = 4; break;
         case 90001:
+                    case 95108:
                     r2 = "[GUIDE] 自动引导失败: ";
                     r1_13 = new java.lang.StringBuilder(r2_1);
                     r0_12 = r1_13.append(r0_11);
@@ -2566,6 +2675,7 @@ public class MainActivity extends android.app.Activity {
                     this_1.log(r0_10);
                     _pc = 4; break;
                     case 4:
+                    case 95109:
                     r0_9 = "coopanion";
                     r0_13 = this_1.getSharedPreferences(r0_10, p1_4);
                     r1_16 = "pet_window_wanted";
@@ -2577,6 +2687,7 @@ public class MainActivity extends android.app.Activity {
                     p1_3.postDelayed(r0_15, r1_18);
                     _pc = 5; break;
         case 90002:
+                    case 95110:
                     r1_16 = "[PET] 自动恢复悬浮窗失败: ";
                     r0_12 = new java.lang.StringBuilder(r1_17);
                     p1_7 = r0_12.append(p1_6);
@@ -2584,6 +2695,7 @@ public class MainActivity extends android.app.Activity {
                     this_1.log(p1_2);
                     _pc = 5; break;
                     case 5:
+                    case 95111:
                     r0_16 = new MainActivity_16(this_1);
                     p1_8 = new java.lang.Thread(r0_15);
                     p1_8.start();

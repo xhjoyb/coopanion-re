@@ -54,9 +54,11 @@ public class RepairActivity_5_1 implements android.webkit.ValueCallback {
                     p1_2 = r0;
                     _pc = 2; break;
                     case 1:
+                    case 95000:
                     p1_2 = r1;
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     if (p1_2 == 0) { _pc = 3; break; }
                     r2_2 = ((RepairActivity_5_1) this).this$1;
                     r2_3 = ((RepairActivity_5) r2_2).this$0;
@@ -70,12 +72,14 @@ public class RepairActivity_5_1 implements android.webkit.ValueCallback {
                     RepairActivity._$$Nest$mshowImeNow(p1_4);
                     _pc = 4; break;
                     case 3:
+                    case 95002:
                     if (p1_4 != null) { _pc = 4; break; }
                     p1_3 = ((RepairActivity_5_1) this).this$1;
                     p1_4 = ((RepairActivity_5) p1_3).this$0;
                     RepairActivity._$$Nest$fputimeShown(p1_4, (r1 != 0));
                     _pc = 4; break;
                     case 4:
+                    case 95003:
                     return;
                             }
                         } catch (Throwable _e) {

@@ -85,6 +85,7 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
                     try { p1_1.close(); } catch (java.lang.Throwable _ce0) { }
                     _pc = 1; break;
         case 90001:
+                    case 95000:
                     r1_3 = ((EyesService_Api30_1) this).val$fail;
                     r0_2 = java.lang.String.valueOf(r0_1);
                     r1_3.set(r0_1);
@@ -93,6 +94,7 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
                     _pc = 1; break;
                     case 1:
                     case 2:
+                    case 95001:
                     p1_2 = ((EyesService_Api30_1) this).val$latch;
                     p1_2.countDown();
                     return;

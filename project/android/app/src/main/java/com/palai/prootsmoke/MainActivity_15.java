@@ -43,6 +43,7 @@ public class MainActivity_15 implements java.lang.Runnable {
                     MainActivity._$$Nest$mstartPetWindowWhenReady(r0);
                     _pc = 2; break;
                     case 1:
+                    case 95000:
                     r0 = ((MainActivity_15) this).this$0;
                     r0_1 = MainActivity._$$Nest$mcanDrawOverlays(r0);
                     if (r0_1 != false) { _pc = 2; break; }
@@ -51,6 +52,7 @@ public class MainActivity_15 implements java.lang.Runnable {
                     MainActivity._$$Nest$mlog(r0, r1_1);
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     return;
                             }
                         } catch (Throwable _e) {

@@ -54,6 +54,7 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                     r3 = r2;
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     if (r2 >= r1) { _pc = 3; break; }
                     r4 = r0[r2];
                     r5 = "android.webkit.resource.AUDIO_CAPTURE";
@@ -62,9 +63,11 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                     r3 = 1;
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     r2 = (r2 + 1);
                     _pc = 1; break;
                     case 3:
+                    case 95002:
                     if (r3 == 0) { _pc = 4; break; }
                     r0_1 = "[PETACT][MIC] WebView 请求麦克风 -> 已放行";
                     AppLog.i(r0_2);
@@ -72,9 +75,11 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                     p1.grant(r0);
                     _pc = 5; break;
                     case 4:
+                    case 95003:
                     p1.deny();
                     _pc = 5; break;
         case 90000:
+                    case 95004:
                     r1_1 = "[PETACT][MIC] onPermissionRequest err: ";
                     r0_3 = new java.lang.StringBuilder(r1_2);
                     p1_2 = r0_3.append(p1_1);
@@ -82,6 +87,7 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                     AppLog.i(p1_3);
                     _pc = 5; break;
                     case 5:
+                    case 95005:
                     return;
                             }
                         } catch (Throwable _e) {

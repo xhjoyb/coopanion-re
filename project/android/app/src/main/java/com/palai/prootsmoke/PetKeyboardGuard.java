@@ -293,12 +293,14 @@ public final class PetKeyboardGuard {
                     if (p1 != null) { _pc = 1; break; }
                     _pc = 7; break;
                     case 1:
+                    case 95000:
                     r1 = PetKeyboardGuard.current;
                     if (r1 != null) { _pc = 3; break; }
                     if (p2 != null) { _pc = 2; break; }
                     p2 = p1;
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     r1 = new PetKeyboardGuard(p0, p1, p2);
                     p0_1 = ((PetKeyboardGuard) r1).ui;
                     p1_1 = ((PetKeyboardGuard) r1).tick;
@@ -306,13 +308,16 @@ public final class PetKeyboardGuard {
                     PetKeyboardGuard.current = r1;
                     _pc = 5; break;
                     case 3:
+                    case 95002:
                     if (p2 != null) { _pc = 4; break; }
                     p2_1 = p1_1;
                     _pc = 4; break;
                     case 4:
+                    case 95003:
                     r1.retarget(p1, p2);
                     _pc = 5; break;
                     case 5:
+                    case 95004:
                     p0_2 = new PetKeyboardGuard_2(r1);
                     EyesService.setImeListener(p0_3);
                     p0_4 = new java.lang.StringBuilder();
@@ -328,6 +333,7 @@ public final class PetKeyboardGuard {
                     android.util.Log.i(r0_1, p0_5);
                     _pc = 6; break;
         case 90000:
+                    case 95005:
                     p1_6 = new java.lang.StringBuilder();
                     p2_2 = "install failed: ";
                     p1_6 = p1_6.append(p2_3);
@@ -336,6 +342,7 @@ public final class PetKeyboardGuard {
                     android.util.Log.w(r0_1, p0_5);
                     _pc = 6; break;
                     case 6:
+                    case 95006:
                     return;
                             }
                         } catch (Throwable _e) {

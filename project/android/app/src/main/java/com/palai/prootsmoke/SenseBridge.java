@@ -156,6 +156,7 @@ public final class SenseBridge {
                     r2_1 = r0;
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     r3_2 = r1_3.hasNext();
                     if (r3_2 == false) { _pc = 3; break; }
                     r3_3 = r1_3.next();
@@ -166,13 +167,16 @@ public final class SenseBridge {
                     if (r4_1 <= 0) { _pc = 1; break; }
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     r2_4 = r3_4;
                     _pc = 1; break;
                     case 3:
+                    case 95002:
                     if (r2_4 == null) { _pc = 4; break; }
                     r0 = r2_4.getPackageName();
                     _pc = 4; break;
                     case 4:
+                    case 95003:
                     return r0;
                             }
                         } catch (Throwable _e) {
@@ -372,6 +376,7 @@ public final class SenseBridge {
                     ((SenseBridge) this).server = r0;
                     _pc = 1; break;
                     case 1:
+                    case 95004:
                     r0_1 = ((SenseBridge) this).running;
                     if (r0_1 == false) { _pc = 2; break; }
                     r0 = ((SenseBridge) this).server;
@@ -382,10 +387,12 @@ public final class SenseBridge {
                     r1_3.start();
                     _pc = 1; break;
         case 90000:
+                    case 95005:
                     r0_1 = false;
                     ((SenseBridge) this).running = r0_1;
                     _pc = 2; break;
                     case 2:
+                    case 95006:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -427,6 +434,7 @@ public final class SenseBridge {
                     r2_1 = r2.iterator();
                     _pc = 1; break;
                     case 1:
+                    case 95007:
                     r3 = r2_1.hasNext();
                     if (r3 == false) { _pc = 2; break; }
                     r3_1 = r2_1.next();
@@ -438,6 +446,7 @@ public final class SenseBridge {
                     r1.put(r3_1);
                     _pc = 1; break;
                     case 2:
+                    case 95008:
                     p1_1 = "cursor";
                     r2_2 = ((SenseBridge) this).notifSeq;
                     r0.put(p1_2, r2_2);
@@ -533,9 +542,11 @@ public final class SenseBridge {
                     if (r5_2 != r6) { _pc = 2; break; }
                     _pc = 1; break;
                     case 1:
+                    case 95009:
                     r3_3 = 1;
                     _pc = 2; break;
                     case 2:
+                    case 95010:
                     r5_2 = r1_1.getIntExtra(r2_2, r4);
                     r6_1 = "scale";
                     r7 = 100;
@@ -550,6 +561,7 @@ public final class SenseBridge {
                     r4 = java.lang.Math.round(r4_1);
                     _pc = 3; break;
                     case 3:
+                    case 95011:
                     r1_4 = "charging";
                     r0.put(r1_5, (r3_3 != 0));
                     r0.put(r2_2, r4);
@@ -603,9 +615,11 @@ public final class SenseBridge {
                     r1_4 = r2_2;
                     _pc = 2; break;
                     case 1:
+                    case 95012:
                     r1_5 = r3;
                     _pc = 2; break;
                     case 2:
+                    case 95013:
                     r4 = ((SenseBridge) this).ctx;
                     r5 = "keyguard";
                     r4_1 = r4.getSystemService(r5_1);
@@ -614,9 +628,11 @@ public final class SenseBridge {
                     if (r4_3 == false) { _pc = 3; break; }
                     _pc = 4; break;
                     case 3:
+                    case 95014:
                     r2 = r3;
                     _pc = 4; break;
                     case 4:
+                    case 95015:
                     r3 = "on";
                     r0.put(r3_1, r1_3);
                     r1_5 = "locked";
@@ -707,29 +723,34 @@ public final class SenseBridge {
                     p1_1 = "";
                     _pc = 1; break;
                     case 1:
+                    case 95016:
                     p6.put(p5_2, p1_2);
                     p1_1 = "app";
                     if (p2 != null) { _pc = 2; break; }
                     p2_1 = "";
                     _pc = 2; break;
                     case 2:
+                    case 95017:
                     p6.put(p1, p2_2);
                     p1_1 = "title";
                     if (p3 != null) { _pc = 3; break; }
                     p3_1 = "";
                     _pc = 3; break;
                     case 3:
+                    case 95018:
                     p6.put(p1, p3_2);
                     p1_1 = "text";
                     if (p4 != null) { _pc = 4; break; }
                     p4_1 = "";
                     _pc = 4; break;
                     case 4:
+                    case 95019:
                     p6.put(p1, p4_2);
                     p1_3 = ((SenseBridge) this).notifs;
                     p1_3.add(p6_1);
                     _pc = 5; break;
                     case 5:
+                    case 95020:
                     p1_3 = ((SenseBridge) this).notifs;
                     p1_4 = p1_3.size();
                     p2_3 = 64;
@@ -739,6 +760,7 @@ public final class SenseBridge {
                     p1_3.remove(p2_3);
                     _pc = 5; break;
                     case 6:
+                    case 95021:
                     return;
                             }
                         } catch (Throwable _e) {

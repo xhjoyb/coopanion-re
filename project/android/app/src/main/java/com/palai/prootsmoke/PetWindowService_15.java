@@ -48,6 +48,7 @@ public class PetWindowService_15 implements android.webkit.ValueCallback {
                     if (r1 >= r2) { _pc = 1; break; }
                     _pc = 6; break;
                     case 1:
+                    case 95000:
                     r1_1 = "\"";
                     r3 = "";
                     p1 = p1.replace(r1_2, r3_1);

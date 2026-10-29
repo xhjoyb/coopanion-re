@@ -107,6 +107,7 @@ public class CrashApp extends android.app.Application {
                     r0_2[r1_3] = r4_1;
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     if (r2_3 >= p2_3) { _pc = 2; break; }
                     r1_2 = r0_2[r2_3];
                     r4_3 = new java.io.File(r1_2);
@@ -124,6 +125,7 @@ public class CrashApp extends android.app.Application {
                     r2_3 = (r2_3 + 1);
                     _pc = 1; break;
                     case 2:
+                    case 95001:
                     return;
                             }
                         } catch (Throwable _e) {

@@ -97,9 +97,11 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
                     r1 = "empty";
                     _pc = 2; break;
                     case 1:
+                    case 95000:
                     r1 = "error";
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     r2 = "";
                     p1_1 = VoiceBridge.access$600(p1);
                     VoiceBridge.access$500(r0_2, r1_1, r2_1, p1_1);

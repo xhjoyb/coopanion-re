@@ -319,6 +319,7 @@ public class PetWindowService extends android.app.Service {
                     r3 = r0;
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     if (r3 >= r2_2) { _pc = 3; break; }
                     r4 = r1_1[r3];
                     r4_1 = p0.getSpanFlags(r4);
@@ -519,12 +520,14 @@ public class PetWindowService extends android.app.Service {
                     ((PetWindowService) this_1).petAlpha = r4_4;
                     _pc = 1; break;
                     case 1:
+                    case 95001:
                     r3_5 = ((PetWindowService) this_1).petAlpha;
                     r3_6 = (r3_5 < r1_6 ? -1 : (r3_5 == r1_6 ? 0 : 1));
                     if (r3_6 <= 0) { _pc = 2; break; }
                     ((PetWindowService) this_1).petAlpha = ((float) r1_6);
                     _pc = 2; break;
                     case 2:
+                    case 95002:
                     r1_5 = ((PetWindowService) this_1).showLp;
                     r3_5 = ((PetWindowService) this_1).petAlpha;
                     ((android.view.WindowManager.LayoutParams) r1_5).alpha = r3_5;
@@ -545,6 +548,7 @@ public class PetWindowService extends android.app.Service {
                     android.util.Log.i(r0_1, r1_9);
                     _pc = 3; break;
         case 90000:
+                    case 95003:
                     r5_3 = "[PET] 显示层 addView 失败: ";
                     r4_7 = new java.lang.StringBuilder(r5_4);
                     r1_10 = r4_7.append(r1_1);
@@ -552,6 +556,7 @@ public class PetWindowService extends android.app.Service {
                     android.util.Log.e(r0_1, r1_9);
                     _pc = 3; break;
                     case 3:
+                    case 95004:
                     r1_4 = new android.widget.FrameLayout(this_1);
                     ((PetWindowService) this_1).touchBox = r1_4;
                     PetKeyboardGuard.setTouchLayer(r1_11);
@@ -616,6 +621,7 @@ public class PetWindowService extends android.app.Service {
                     android.util.Log.i(r0_1, p1_9);
                     _pc = 4; break;
         case 90001:
+                    case 95005:
                     r2_15 = "[PET] 触摸层 addView 失败: ";
                     r1_10 = new java.lang.StringBuilder(r2_16);
                     p1_11 = r1_10.append(p1_10);
@@ -623,6 +629,7 @@ public class PetWindowService extends android.app.Service {
                     android.util.Log.e(r0_1, p1_9);
                     _pc = 4; break;
                     case 4:
+                    case 95006:
                     p1_2 = ((PetWindowService) this_1).showBox;
                     r0_2 = new PetWindowService_11(this);
                     p1_2.addOnLayoutChangeListener(r0_3);
@@ -799,6 +806,7 @@ public class PetWindowService extends android.app.Service {
                     r1_2 = 0;
                     _pc = 1; break;
                     case 1:
+                    case 95007:
                     r2 = p0.length();
                     r3 = 34;
                     if (r1_2 >= r2) { _pc = 8; break; }
@@ -808,18 +816,21 @@ public class PetWindowService extends android.app.Service {
                     if (r2_1 != r4) { _pc = 2; break; }
                     _pc = 6; break;
                     case 2:
+                    case 95008:
                     r3 = 10;
                     if (r2_1 != r3) { _pc = 3; break; }
                     r2_2 = "\n";
                     r0.append(r2_3);
                     _pc = 7; break;
                     case 3:
+                    case 95009:
                     r3 = 13;
                     if (r2 != r3) { _pc = 4; break; }
                     r2_2 = "\r";
                     r0.append(r2_3);
                     _pc = 7; break;
                     case 4:
+                    case 95010:
                     r3 = 32;
                     if (r2 >= r3) { _pc = 5; break; }
                     r2_4 = java.lang.Integer.valueOf(r2);
@@ -829,16 +840,20 @@ public class PetWindowService extends android.app.Service {
                     r0.append(r2_3);
                     _pc = 7; break;
                     case 5:
+                    case 95011:
                     r0.append(r2_1);
                     _pc = 7; break;
                     case 6:
+                    case 95012:
                     r3_3 = r0.append(((char) r4));
                     r3_3.append(r2_1);
                     _pc = 7; break;
                     case 7:
+                    case 95013:
                     r1_2 = (r1_2 + 1);
                     _pc = 1; break;
                     case 8:
+                    case 95014:
                     p0_1 = r0.append(r3_4);
                     p0 = p0_1.toString();
                     return p0;
@@ -1096,6 +1111,7 @@ public class PetWindowService extends android.app.Service {
                     r0 = 0;
                     _pc = 1; break;
                     case 1:
+                    case 95015:
                     r1 = 40;
                     if (r0 >= r1) { _pc = 2; break; }
                     r1_1 = ((PetWindowService) this).ui;
@@ -1107,6 +1123,7 @@ public class PetWindowService extends android.app.Service {
                     r1_1.postDelayed(r2_1, r3);
                     _pc = 1; break;
                     case 2:
+                    case 95016:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -1204,9 +1221,11 @@ public class PetWindowService extends android.app.Service {
                     r1_7 = 2038;
                     _pc = 2; break;
                     case 1:
+                    case 95017:
                     r1_7 = 2002;
                     _pc = 2; break;
                     case 2:
+                    case 95018:
                     r16 = r1_7;
                     r17 = 24;
                     r18 = -3;
@@ -1237,6 +1256,7 @@ public class PetWindowService extends android.app.Service {
                     r0_2.postDelayed(r13_2, r1_11);
                     _pc = 3; break;
         case 90000:
+                    case 95019:
                     r1_12 = r0_2;
                     r0_3 = new java.lang.StringBuilder(r10_1);
                     r0_3 = r0_3.append(r1_4);

@@ -76,31 +76,38 @@ public class PetActivity extends android.app.Activity {
                     p1_2[r1] = p2_1;
                     _pc = 2; break;
                     case 1:
+                    case 95000:
                     p1_3 = r2;
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     p2_2 = ((PetActivity) this).filePathCallback;
                     if (p2_2 == null) { _pc = 3; break; }
                     p2_2.onReceiveValue(p1_4);
                     ((PetActivity) this).filePathCallback = r2;
                     _pc = 3; break;
                     case 3:
+                    case 95002:
                     p3_1 = "[PETACT][FILE] onActivityResult ok=";
                     p2_3 = new java.lang.StringBuilder(p3_2);
                     if (p1_4 == null) { _pc = 4; break; }
                     _pc = 5; break;
                     case 4:
+                    case 95003:
                     r0 = r1;
                     _pc = 5; break;
                     case 5:
+                    case 95004:
                     p1_5 = p2_3.append((r0 != 0));
                     p1_6 = p1_5.toString();
                     AppLog.i(p1_6);
                     _pc = 7; break;
                     case 6:
+                    case 95005:
                     super.onActivityResult(p1, p2, p3);
                     _pc = 7; break;
                     case 7:
+                    case 95006:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -193,9 +200,11 @@ public class PetActivity extends android.app.Activity {
                     p1_5 = r1;
                     _pc = 2; break;
                     case 1:
+                    case 95007:
                     p1_4 = r2;
                     _pc = 2; break;
                     case 2:
+                    case 95008:
                     if (p1_4 == false) { _pc = 3; break; }
                     r3_2 = this_1.getWindow();
                     r4 = new android.graphics.drawable.ColorDrawable((r2 ? 1 : 0));
@@ -205,6 +214,7 @@ public class PetActivity extends android.app.Activity {
                     r3_2.addFlags(r4_2);
                     _pc = 3; break;
                     case 3:
+                    case 95009:
                     r3_2 = this_1.getWindow();
                     r4_2 = 1024;
                     r3_2.setFlags(r4_2, r4_2);
@@ -216,6 +226,7 @@ public class PetActivity extends android.app.Activity {
                     ((android.view.WindowManager.LayoutParams) r3_4).layoutInDisplayCutoutMode = r1;
                     _pc = 4; break;
                     case 4:
+                    case 95010:
                     r3_5 = new android.widget.FrameLayout(this);
                     ((PetActivity) this_1).root = r3_5;
                     r4_2 = -16052460;
@@ -223,9 +234,11 @@ public class PetActivity extends android.app.Activity {
                     r5 = r2;
                     _pc = 6; break;
                     case 5:
+                    case 95011:
                     r5_1 = r4_2;
                     _pc = 6; break;
                     case 6:
+                    case 95012:
                     r3_5.setBackgroundColor(r5_1);
                     r3_6 = new android.webkit.WebView(this);
                     ((PetActivity) this_1).web = r3_6;
@@ -245,6 +258,7 @@ public class PetActivity extends android.app.Activity {
                     r4_3 = r2;
                     _pc = 7; break;
                     case 7:
+                    case 95013:
                     r3_6.setBackgroundColor((r4_3 ? 1 : 0));
                     p1_6 = ((PetActivity) this_1).web;
                     r3_8 = new PetActivity_PetHostBridge();
@@ -295,6 +309,7 @@ public class PetActivity extends android.app.Activity {
                     this_1.requestPermissions(p1_10, r0_2);
                     _pc = 8; break;
                     case 8:
+                    case 95014:
                     p1_6 = ((PetActivity) this_1).web;
                     r0 = "http://127.0.0.1:7797/pet?host=app";
                     p1_6.loadUrl(r0_1);

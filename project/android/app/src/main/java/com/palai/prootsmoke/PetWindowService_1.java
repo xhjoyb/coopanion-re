@@ -48,14 +48,17 @@ public class PetWindowService_1 implements java.lang.Runnable {
                     if (r3 >= 0) { _pc = 2; break; }
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     r1_1 = r2;
                     _pc = 3; break;
                     case 2:
+                    case 95001:
                     r2 = 1065353216;
                     r3 = (r1_1 < r2 ? -1 : (r1_1 == r2 ? 0 : 1));
                     if (r3 <= 0) { _pc = 3; break; }
                     _pc = 1; break;
                     case 3:
+                    case 95002:
                     PetWindowService._$$Nest$fputpetAlpha(r0, ((float) r1_1));
                     r0 = ((PetWindowService_1) this).this$0;
                     r0_1 = PetWindowService._$$Nest$fgetshowLp(r0);
@@ -77,6 +80,7 @@ public class PetWindowService_1 implements java.lang.Runnable {
                     r0_3.updateViewLayout(r1_4, r2_3);
                     _pc = 4; break;
                     case 4:
+                    case 95003:
                     return;
                             }
                         } catch (Throwable _e) {

@@ -77,6 +77,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     ((EyesService) this).server = r0;
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     r1_3 = ((EyesService) this).running;
                     if (r1_3 == false) { _pc = 5; break; }
                     r1_4 = r0.accept();
@@ -84,27 +85,32 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r1_4.setSoTimeout(r2);
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     r2_1 = ((EyesService) this).workers;
                     if (r2_1 == null) { _pc = 3; break; }
                     r3_1 = new EyesService_2(this, r1_4);
                     r2_1.execute(r3_2);
                     _pc = 4; break;
                     case 3:
+                    case 95002:
                     this.close(r1_4);
                     _pc = 4; break;
                     case 4:
                     case 5:
         case 90001:
+                    case 95003:
                     r1_3 = ((EyesService) this).running;
                     if (r1_3 == false) { _pc = 6; break; }
                     r0_2 = java.lang.String.valueOf(r0_1);
                     ((EyesService) this).lastError = r0_2;
                     _pc = 6; break;
                     case 6:
+                    case 95004:
                     r0_3 = false;
                     ((EyesService) this).running = r0_3;
                     _pc = 7; break;
                     case 7:
+                    case 95005:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -274,6 +280,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     if (r1 < r2) { _pc = 1; break; }
                     _pc = 14; break;
                     case 1:
+                    case 95006:
                     r1_1 = p0.getText();
                     r1_2 = EyesService.safe(r1_1);
                     r2_1 = p0.getContentDescription();
@@ -283,9 +290,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r3_1 = r1_2;
                     _pc = 3; break;
                     case 2:
+                    case 95007:
                     r3_1 = r2_2;
                     _pc = 3; break;
                     case 3:
+                    case 95008:
                     r4 = r3_1.length();
                     if (r4 <= 0) { _pc = 7; break; }
                     r4_1 = new org.json.JSONObject();
@@ -303,6 +312,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r4_1.put(r1_2, r2_3);
                     _pc = 4; break;
                     case 4:
+                    case 95009:
                     r1_4 = new android.graphics.Rect();
                     p0.getBoundsInScreen(r1_4);
                     r2_4 = "b";
@@ -329,35 +339,43 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r0_1 = r0_1.substring(r1);
                     _pc = 5; break;
                     case 5:
+                    case 95010:
                     r1 = r0_1.length();
                     if (r1 <= 0) { _pc = 6; break; }
                     r1_3 = "c";
                     r4_1.put(r1_2, r0_3);
                     _pc = 6; break;
                     case 6:
+                    case 95011:
                     p1.put(r4_2);
                     _pc = 7; break;
                     case 7:
+                    case 95012:
                     r0_5 = p0.getChildCount();
                     r1 = 0;
                     _pc = 8; break;
                     case 8:
+                    case 95013:
                     if (r1 >= r0_5) { _pc = 12; break; }
                     r2_5 = p0.getChild(r1);
                     if (r2_5 != null) { _pc = 9; break; }
                     _pc = 10; break;
                     case 9:
+                    case 95014:
                     r3 = (p2 + 1);
                     EyesService.collect(r2_5, p1, r3);
                     r2_5.recycle();
                     _pc = 10; break;
                     case 10:
+                    case 95015:
                     r1 = (r1 + 1);
                     _pc = 8; break;
         case 90000:
+                    case 95016:
                     r2_5.recycle();
                     _pc = 11; break;
                     case 11:
+                    case 95017:
                     throw new RuntimeException(String.valueOf(p0));
                             }
                         } catch (Throwable _e) {
@@ -470,9 +488,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     if (r3_2 < r4) { _pc = 1; break; }
                     _pc = 2; break;
                     case 1:
+                    case 95018:
                     r2 = r5;
                     _pc = 2; break;
                     case 2:
+                    case 95019:
                     r0.put(r1_1, (r2 != 0));
                     r1 = "pkg";
                     r2_1 = ((EyesService) this).foregroundPkg;
@@ -480,9 +500,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r2_2 = "";
                     _pc = 4; break;
                     case 3:
+                    case 95020:
                     r2_1 = ((EyesService) this).foregroundPkg;
                     _pc = 4; break;
                     case 4:
+                    case 95021:
                     r0.put(r1_1, r2_3);
                     r1 = "frameWidth";
                     r2 = ((EyesService) this).lastWidth;
@@ -496,11 +518,13 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r2_5 = -1L;
                     _pc = 6; break;
                     case 5:
+                    case 95022:
                     r2_5 = java.lang.System.currentTimeMillis();
                     r6 = ((EyesService) this).lastJpegAt;
                     r2_5 = (r2_5 - r6);
                     _pc = 6; break;
                     case 6:
+                    case 95023:
                     r0.put(r1_1, r2_5);
                     r1 = "frameBytes";
                     r2_4 = ((EyesService) this).lastJpeg;
@@ -508,10 +532,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     _pc = 7; break;
                     case 7:
                     case 8:
+                    case 95024:
                     r2_4 = ((EyesService) this).lastJpeg;
                     r5 = java.lang.reflect.Array.getLength(r2_4);
                     _pc = 7; break;
                     case 9:
+                    case 95025:
                     r0.put(r1_1, r5);
                     r1 = "error";
                     r2_1 = ((EyesService) this).lastError;
@@ -644,6 +670,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r1_3 = r1_2.iterator();
                     _pc = 1; break;
                     case 1:
+                    case 95026:
                     r2 = r1_3.hasNext();
                     if (r2 == false) { _pc = 3; break; }
                     r2_1 = r1_3.next();
@@ -655,10 +682,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     _pc = 2; break;
                     case 2:
                     case 3:
+                    case 95027:
                     p0_3 = p0_2.getInputMethodList();
                     p0_4 = p0_3.iterator();
                     _pc = 4; break;
                     case 4:
+                    case 95028:
                     r1_4 = p0_4.hasNext();
                     if (r1_4 == false) { _pc = 6; break; }
                     r1_5 = p0_4.next();
@@ -670,6 +699,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     _pc = 5; break;
                     case 5:
                     case 6:
+                    case 95029:
                     return r0_1;
                             }
                         } catch (Throwable _e) {
@@ -739,12 +769,14 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     if (r0 != 0) { _pc = 1; break; }
                     _pc = 5; break;
                     case 1:
+                    case 95030:
                     r0_1 = "&";
                     p0_1 = p0.split(r0_2);
                     r0 = 0;
                     r1 = r0;
                     _pc = 2; break;
                     case 2:
+                    case 95031:
                     r2 = java.lang.reflect.Array.getLength(p0_1);
                     if (r1 >= r2) { _pc = 4; break; }
                     r2_1 = p0_1[r1];
@@ -791,9 +823,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r0_2 = 1;
                     _pc = 2; break;
                     case 1:
+                    case 95032:
                     r0_2 = 0;
                     _pc = 2; break;
                     case 2:
+                    case 95033:
                     return (r0_2 != 0);
                             }
                         } catch (Throwable _e) {
@@ -903,6 +937,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r1.put(r2_3, r3_3);
                     _pc = 1; break;
         case 90000:
+                    case 95034:
                     r3_4 = false;
                     r1.put(r0_1, r3_4);
                     r0 = "error";
@@ -910,6 +945,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r1.put(r0_1, r2_4);
                     _pc = 1; break;
                     case 1:
+                    case 95035:
                     r0_1 = r1.toString();
                     return r0_1;
                             }
@@ -1030,34 +1066,41 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r0_2 = r1;
                     _pc = 1; break;
                     case 1:
+                    case 95036:
                     r1 = 2160;
                     if (r0_2 <= r1) { _pc = 2; break; }
                     r0_2 = r1;
                     _pc = 2; break;
                     case 2:
+                    case 95037:
                     r1 = 20;
                     if (p2_1 >= r1) { _pc = 3; break; }
                     p2_1 = r1;
                     _pc = 3; break;
                     case 3:
+                    case 95038:
                     r1 = 95;
                     if (p2_1 <= r1) { _pc = 4; break; }
                     p2_1 = r1;
                     _pc = 4; break;
                     case 4:
+                    case 95039:
                     p2_2 = this.jpeg(r0_2, p2_1);
                     _pc = 5; break;
         case 90000:
+                    case 95040:
                     p2 = java.lang.String.valueOf(p2_3);
                     ((EyesService) this).lastError = p2;
                     p2 = null;
                     _pc = 5; break;
                     case 5:
+                    case 95041:
                     if (p2 == null) { _pc = 8; break; }
                     r0_2 = java.lang.reflect.Array.getLength(p2);
                     if (r0_2 != 0) { _pc = 6; break; }
                     _pc = 8; break;
                     case 6:
+                    case 95042:
                     p1_1 = p1.getOutputStream();
                     r0_3 = new java.lang.StringBuilder();
                     r1_1 = "HTTP/1.1 200 OK\nContent-Type: image/jpeg\nContent-Length: ";
@@ -1095,6 +1138,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     p1_1.flush();
                     _pc = 7; break;
                     case 7:
+                    case 95043:
                     return;
                             }
                         } catch (Throwable _e) {
@@ -1240,9 +1284,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r5_1 = "";
                     _pc = 2; break;
                     case 1:
+                    case 95044:
                     r5 = ((EyesService) this).foregroundPkg;
                     _pc = 2; break;
                     case 2:
+                    case 95045:
                     r2.put(r0_1, r5_2);
                     r5_1 = "screenOn";
                     r2.put(r5, (r4 != 0));
@@ -1257,12 +1303,15 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r2.put(r0_1, r6_2);
                     _pc = 3; break;
                     case 3:
+                    case 95046:
                     r4_1.recycle();
                     _pc = 5; break;
         case 90001:
+                    case 95047:
                     r4_1.recycle();
                     _pc = 4; break;
                     case 4:
+                    case 95048:
                     throw new RuntimeException(String.valueOf(r0_1));
                             }
                         } catch (Throwable _e) {

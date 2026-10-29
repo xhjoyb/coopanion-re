@@ -48,6 +48,7 @@ public class MainActivity_13 extends android.webkit.WebChromeClient {
                     r3 = r2;
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     if (r2 >= r1) { _pc = 3; break; }
                     r4 = r0[r2];
                     r5 = "android.webkit.resource.AUDIO_CAPTURE";
@@ -56,9 +57,11 @@ public class MainActivity_13 extends android.webkit.WebChromeClient {
                     r3 = 1;
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     r2 = (r2 + 1);
                     _pc = 1; break;
                     case 3:
+                    case 95002:
                     if (r3 == 0) { _pc = 4; break; }
                     r0_1 = ((MainActivity_13) this).this$0;
                     r1_1 = "[MIC] WebView 请求麦克风 -> 已放行";
@@ -68,11 +71,13 @@ public class MainActivity_13 extends android.webkit.WebChromeClient {
                     r0_1.runOnUiThread(r1_4);
                     _pc = 5; break;
                     case 4:
+                    case 95003:
                     r0_1 = ((MainActivity_13) this).this$0;
                     r1_5 = new MainActivity_13_2(this, p1);
                     r0_1.runOnUiThread(r1_4);
                     _pc = 5; break;
                     case 5:
+                    case 95004:
                     return;
                             }
                         } catch (Throwable _e) {

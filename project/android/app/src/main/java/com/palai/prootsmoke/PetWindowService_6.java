@@ -78,6 +78,7 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
                     r4 = r3;
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     if (r3 >= r2) { _pc = 3; break; }
                     r5 = r1[r3];
                     r6 = "android.webkit.resource.AUDIO_CAPTURE";
@@ -86,9 +87,11 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
                     r4 = 1;
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     r3 = (r3 + 1);
                     _pc = 1; break;
                     case 3:
+                    case 95002:
                     if (r4 == 0) { _pc = 4; break; }
                     r1_1 = "[PET][MIC] WebView 请求麦克风 -> 已放行";
                     android.util.Log.i(r0_1, r1_2);
@@ -96,9 +99,11 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
                     p1.grant(r1);
                     _pc = 5; break;
                     case 4:
+                    case 95003:
                     p1.deny();
                     _pc = 5; break;
         case 90000:
+                    case 95004:
                     r2_1 = "[PET][MIC] onPermissionRequest err: ";
                     r1_3 = new java.lang.StringBuilder(r2_2);
                     p1_2 = r1_3.append(p1_1);
@@ -106,6 +111,7 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
                     android.util.Log.i(r0_1, p1_3);
                     _pc = 5; break;
                     case 5:
+                    case 95005:
                     return;
                             }
                         } catch (Throwable _e) {

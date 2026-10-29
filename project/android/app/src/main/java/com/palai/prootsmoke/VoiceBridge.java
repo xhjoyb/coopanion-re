@@ -214,6 +214,7 @@ public class VoiceBridge {
                             default: _pc = 0;
                     }
                     break;
+                    case 95000:
                     r0 = new java.lang.StringBuilder();
                     r1 = "错误 ";
                     r0 = r0.append(r1_1);
@@ -316,6 +317,7 @@ public class VoiceBridge {
                     r1_2 = 0;
                     _pc = 1; break;
                     case 1:
+                    case 95001:
                     r2 = p0.length();
                     r3 = 39;
                     if (r1_2 >= r2) { _pc = 7; break; }
@@ -325,28 +327,34 @@ public class VoiceBridge {
                     if (r2_1 != r4) { _pc = 2; break; }
                     _pc = 5; break;
                     case 2:
+                    case 95002:
                     r3 = 10;
                     if (r2_1 != r3) { _pc = 3; break; }
                     r2_2 = "\n";
                     r0.append(r2_3);
                     _pc = 6; break;
                     case 3:
+                    case 95003:
                     r3 = 13;
                     if (r2 != r3) { _pc = 4; break; }
                     r2_2 = "\r";
                     r0.append(r2_3);
                     _pc = 6; break;
                     case 4:
+                    case 95004:
                     r0.append(r2_1);
                     _pc = 6; break;
                     case 5:
+                    case 95005:
                     r3_1 = r0.append(((char) r4));
                     r3_1.append(r2_1);
                     _pc = 6; break;
                     case 6:
+                    case 95006:
                     r1_2 = (r1_2 + 1);
                     _pc = 1; break;
                     case 7:
+                    case 95007:
                     p0_1 = r0.append(r3_2);
                     p0 = p0_1.toString();
                     return p0;

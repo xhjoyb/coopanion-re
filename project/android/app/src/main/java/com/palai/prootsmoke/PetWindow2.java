@@ -340,18 +340,21 @@ public final class PetWindow2 {
                     r0_1.removeCallbacks(r1);
                     _pc = 1; break;
                     case 1:
+                    case 95000:
                     r0_2 = PetWindow2.web;
                     if (r0_2 == null) { _pc = 2; break; }
                     r1_1 = PetWindow2.wm;
                     r1_1.removeView(r0_3);
                     _pc = 2; break;
                     case 2:
+                    case 95001:
                     r0_3 = PetWindow2.touch;
                     if (r0_3 == null) { _pc = 3; break; }
                     r1_1 = PetWindow2.wm;
                     r1_1.removeView(r0_3);
                     _pc = 3; break;
                     case 3:
+                    case 95002:
                     r0_2 = null;
                     PetWindow2.web = r0_2;
                     PetWindow2.touch = r0_3;
@@ -404,6 +407,7 @@ public final class PetWindow2 {
                     if (r0_1 > r1) { _pc = 1; break; }
                     _pc = 5; break;
                     case 1:
+                    case 95003:
                     r0_1 = 0;
                     r1 = 1065353216;
                     r2 = PetWindow2.web;
@@ -420,9 +424,11 @@ public final class PetWindow2 {
                     if (r3_2 <= 0) { _pc = 2; break; }
                     _pc = 3; break;
                     case 2:
+                    case 95004:
                     r1_1 = r2_3;
                     _pc = 3; break;
                     case 3:
+                    case 95005:
                     r2_4 = 1140981760;
                     r1_1 = (r1_1 * r2_3);
                     r1 = java.lang.Math.round(r1_1);
@@ -455,6 +461,7 @@ public final class PetWindow2 {
                     r0_2.updateViewLayout(r1_2, r2_6);
                     _pc = 4; break;
                     case 4:
+                    case 95006:
                     return;
                             }
                         } catch (Throwable _e) {
