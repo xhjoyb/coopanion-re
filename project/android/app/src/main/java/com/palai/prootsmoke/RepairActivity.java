@@ -178,7 +178,7 @@ public class RepairActivity extends android.app.Activity {
                     if (r0_1 == null) { _pc = 1; break; }
                     r0_2 = new android.net.Uri[r1];
                     p3_1 = p3.getData();
-                    r0_1[r3] = p3_1;
+                    r0_2[r3] = p3_1;
                     _pc = 2; break;
                     case 1:
                     r0_3 = r2;
@@ -208,7 +208,7 @@ public class RepairActivity extends android.app.Activity {
                     p2_1 = " uri=";
                     p1_1 = p1_1.append(p2_1);
                     if (r0_3 == null) { _pc = 6; break; }
-                    p2_2 = r0_1[r3];
+                    p2_2 = ((java.lang.Object[]) r0_3)[r3];
                     _pc = 7; break;
                     case 6:
                     p2_1 = "null";

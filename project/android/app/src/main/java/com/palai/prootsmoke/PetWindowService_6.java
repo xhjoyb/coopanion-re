@@ -53,7 +53,7 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
         String r2_1 = null;
         int r3 = 0;
         int r4 = 0;
-        Object r5 = null;
+        java.lang.String r5 = null;
         boolean r5_1 = false;
         String r6 = null;
         try {

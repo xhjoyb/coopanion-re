@@ -258,7 +258,7 @@ public class MainActivity extends android.app.Activity {
         r0_1 = r2_3.putBoolean(r0, (r4_1 != 0));
         r0_1.apply();
         r0_2 = new java.lang.String[r4_1];
-        r0_1[r3] = r1;
+        r0_2[r3] = r1;
         r1_1 = 10087;
         this.requestPermissions(r0_2, r1_1);
         return;
@@ -452,13 +452,14 @@ public class MainActivity extends android.app.Activity {
         byte[] r14_1 = null;
         long r14_2 = 0L;
         String r14_3 = null;
-        Object r14_4 = null;
+        java.lang.String[] r14_4 = null;
+        java.lang.String r14_5 = null;
         long r15 = 0L;
         int r15_1 = 0;
         java.io.File r15_2 = null;
         java.lang.String[][] r15_3 = null;
         String r15_4 = null;
-        Object r17 = null;
+        java.lang.String r17 = null;
         boolean r17_1 = false;
         int r17_2 = 0;
         java.io.File r18 = null;
@@ -478,10 +479,9 @@ public class MainActivity extends android.app.Activity {
         android.content.res.AssetManager r3_3 = null;
         java.io.InputStream r3_4 = null;
         int r3_5 = 0;
-        Object r3_6 = null;
-        long r3_7 = 0L;
-        java.io.File r3_8 = null;
-        java.io.File[] r3_9 = null;
+        long r3_6 = 0L;
+        java.io.File r3_7 = null;
+        java.io.File[] r3_8 = null;
         String r4 = null;
         java.lang.String[][] r4_1 = null;
         java.io.File r4_2 = null;
@@ -520,8 +520,7 @@ public class MainActivity extends android.app.Activity {
         java.lang.StringBuilder r9 = null;
         java.lang.String r9_1 = null;
         java.io.File r9_2 = null;
-        Object r9_3 = null;
-        String r9_4 = null;
+        String r9_3 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -662,10 +661,10 @@ public class MainActivity extends android.app.Activity {
                     r4_1[r14] = r13;
                     r12_2 = new java.lang.String[r12_1];
                     r13_1 = "bin/node";
-                    r12_1[r7_3] = r13_1;
+                    r12_2[r7_3] = r13_1;
                     r13_1 = "123024744";
                     r14 = 1;
-                    r12_1[r14] = r13_1;
+                    r12_2[r14] = r13_1;
                     r13_2 = 4;
                     r4_1[r13_2] = r12_2;
                     r12_1 = r7_3;
@@ -674,24 +673,24 @@ public class MainActivity extends android.app.Activity {
                     case 7:
                     if (r12_1 >= r3_5) { _pc = 12; break; }
                     r14_4 = r4_1[r12_1];
-                    r3_6 = r14_3[r7_3];
+                    r3_2 = r14_4[r7_3];
                     r15_2 = new java.io.File(r8, r3_2);
                     r3_5 = 1;
-                    r17 = r14_3[r3_5];
+                    r17 = r14_4[r3_5];
                     r18 = r8;
                     r7_4 = java.lang.Long.parseLong(r17);
                     r17_1 = r15_2.exists();
                     if (r17_1 == false) { _pc = 8; break; }
                     r19 = r15_2.length();
                     r15_3 = r4_1;
-                    r3_7 = r19;
+                    r3_6 = r19;
                     _pc = 9; break;
                     case 8:
                     r15_3 = r4_1;
-                    r3_7 = -1L;
+                    r3_6 = -1L;
                     _pc = 9; break;
                     case 9:
-                    r19_1 = (r3_7 > r7_4 ? 1 : (r3_7 == r7_4 ? 0 : -1));
+                    r19_1 = (r3_6 > r7_4 ? 1 : (r3_6 == r7_4 ? 0 : -1));
                     if (r19_1 == 0) { _pc = 10; break; }
                     r13_2 = (r13_2 + 1);
                     r19_1 = r13_2;
@@ -700,11 +699,11 @@ public class MainActivity extends android.app.Activity {
                     r15_4 = "[CHK] MISMATCH ";
                     r13_3 = r13_3.append(r15_4);
                     r15_2 = null;
-                    r14_4 = r14_3[r15_1];
-                    r13_3 = r13_3.append(r14_4);
+                    r14_5 = r14_4[r15_2];
+                    r13_3 = r13_3.append(r14_5);
                     r14_3 = " got=";
-                    r13_3 = r13_3.append(r14_3);
-                    r3_1 = r13_3.append(r3_7);
+                    r13_3 = r13_3.append(r14_5);
+                    r3_1 = r13_3.append(r3_6);
                     r4 = " want=";
                     r3_1 = r3_1.append(r4);
                     r3_1 = r3_1.append(r7_4);
@@ -767,16 +766,16 @@ public class MainActivity extends android.app.Activity {
                     r1.log(r3_2);
                     _pc = 17; break;
                     case 17:
-                    r3_8 = this.getFilesDir();
-                    r3_9 = r3_8.listFiles();
-                    if (r3_9 == null) { _pc = 20; break; }
+                    r3_7 = this.getFilesDir();
+                    r3_8 = r3_7.listFiles();
+                    if (r3_8 == null) { _pc = 20; break; }
                     r4_4 = r18.getName();
-                    r7_3 = java.lang.reflect.Array.getLength(r3_9);
+                    r7_3 = java.lang.reflect.Array.getLength(r3_8);
                     r8 = null;
                     _pc = 18; break;
                     case 18:
                     if (r8_3 >= r7_3) { _pc = 20; break; }
-                    r9_3 = r3_8[r8_3];
+                    r9_2 = r3_8[r8];
                     r10_1 = r9_2.getName();
                     r11_6 = r9_2.isDirectory();
                     if (r11_6 == false) { _pc = 19; break; }
@@ -796,9 +795,9 @@ public class MainActivity extends android.app.Activity {
                     r8_3 = (r8_3 + 1);
                     _pc = 18; break;
                     case 20:
-                    r3_8 = this.getFilesDir();
+                    r3_7 = this.getFilesDir();
                     r4 = "ptmp";
-                    r2_1 = new java.io.File(r3_8, r4_4);
+                    r2_1 = new java.io.File(r3_7, r4_4);
                     r2_1.mkdirs();
                     r3_5 = 1;
                     r4_5 = false;
@@ -880,7 +879,7 @@ public class MainActivity extends android.app.Activity {
                     r2 = "PROOT_LOADER";
                     r7_5 = new java.lang.StringBuilder();
                     r7_5 = r7_5.append(r6_1);
-                    r9_4 = "/libprootloader.so";
+                    r9_3 = "/libprootloader.so";
                     r7_5 = r7_5.append(r9_1);
                     r7_1 = r7_5.toString();
                     r4_7.put(r2, r7_1);
@@ -1014,7 +1013,6 @@ public class MainActivity extends android.app.Activity {
         java.io.File r7_2 = null;
         boolean r7_3 = false;
         java.io.FileInputStream r7_4 = null;
-        Object r7_5 = null;
         byte r8 = 0;
         java.lang.String r8_1 = null;
         java.lang.StringBuilder r8_2 = null;
@@ -1051,7 +1049,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 3; break;
                     case 3:
                     if (r7 >= r3_1) { _pc = 41; break; }
-                    r8 = ((byte[]) r5)[r7];
+                    r8 = r5[r7];
                     if (r8 == 0) { _pc = 40; break; }
                     r7 = 100;
                     r8_1 = MainActivity.cstr(r5, r6, r7);
@@ -1061,7 +1059,7 @@ public class MainActivity extends android.app.Activity {
                     r11 = 8;
                     r11_1 = MainActivity.parseOct(r5, r7, r11);
                     r13 = 156;
-                    r13_1 = ((byte[]) r5)[r13];
+                    r13_1 = r5[r13];
                     r13_2 = (char) r13_1;
                     r14 = 157;
                     r7_1 = MainActivity.cstr(r5, r14, r7);
@@ -1178,14 +1176,14 @@ public class MainActivity extends android.app.Activity {
                     r8_4 = new java.lang.String[r8_3];
                     r11_2 = "ln";
                     r12 = 0;
-                    r8_1[r12] = r11_2;
+                    r8_4[r12] = r11_2;
                     r11_2 = "-sf";
-                    r8_1[r4_1] = r11_2;
+                    r8_4[r4_1] = r11_2;
                     r4_1 = 2;
-                    r8_1[r4_1] = r7_1;
+                    r8_4[r4_1] = r7_1;
                     r3_4 = r3_3.getAbsolutePath();
                     r4_1 = 3;
-                    r8_1[r4_1] = r3_4;
+                    r8_4[r4_1] = r3_4;
                     r3_5 = r6_3.exec(r8_4);
                     r3_5.waitFor();
                     _pc = 17; break;
@@ -1273,7 +1271,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 30; break;
                     case 30:
                     if (r6 >= r4_1) { _pc = 34; break; }
-                    r7_5 = r3_4[r6];
+                    r7_1 = r3_6[r6];
                     r8_3 = 32;
                     r8_3 = r7_1.indexOf(r8_3);
                     if (r8_3 > 0) { _pc = 31; break; }
@@ -1492,18 +1490,16 @@ public class MainActivity extends android.app.Activity {
     }
     public void openSenseSettings() {
         java.lang.String[] r0 = null;
-        Object r0_1 = null;
+        java.lang.String r0_1 = null;
         java.lang.StringBuilder r0_2 = null;
-        java.lang.String r0_3 = null;
-        MainActivity_33 r0_4 = null;
-        MainActivity_34 r0_5 = null;
-        String r0_6 = null;
-        MainActivity_35 r0_7 = null;
+        MainActivity_33 r0_3 = null;
+        MainActivity_34 r0_4 = null;
+        String r0_5 = null;
+        MainActivity_35 r0_6 = null;
         java.lang.String r1 = null;
-        Object r1_1 = null;
-        java.lang.StringBuilder r1_2 = null;
-        String r1_3 = null;
-        android.content.DialogInterface.OnClickListener r1_4 = null;
+        java.lang.StringBuilder r1_1 = null;
+        String r1_2 = null;
+        android.content.DialogInterface.OnClickListener r1_3 = null;
         int r2 = 0;
         java.lang.StringBuilder r2_1 = null;
         java.lang.String r2_2 = null;
@@ -1514,7 +1510,7 @@ public class MainActivity extends android.app.Activity {
         try {
         r0 = this.senseStatus();
         r1 = null;
-        r1_1 = r0[r1];
+        r1 = r0[r1];
         r2 = 1;
         r0_1 = r0[r2];
         r3 = "[SENSE] usage=";
@@ -1530,25 +1526,25 @@ public class MainActivity extends android.app.Activity {
         r2_3.setTitle(r3);
         r4 = "桌宠要「感知手机」，需要两个独立开关（都不涉及无障碍）：\n① 使用情况访问：";
         r3_1 = new java.lang.StringBuilder(r4);
-        r1_2 = r3_1.append(r1);
+        r1_1 = r3_1.append(r1);
         r3 = "\n→ 让桌宠知道你在用哪个 App\n② 通知使用权：";
-        r1_2 = r1_2.append(r3);
-        r0_2 = r1_2.append(r0_1);
-        r1_3 = "\n→ 让桌宠知道你收到了什么通知\n点下面按钮逐个打开，在系统设置里找到本应用（Coopanion）打开开关，然后返回。";
+        r1_1 = r1_1.append(r3);
+        r0_2 = r1_1.append(r0_1);
+        r1_2 = "\n→ 让桌宠知道你收到了什么通知\n点下面按钮逐个打开，在系统设置里找到本应用（Coopanion）打开开关，然后返回。";
         r0_2 = r0_2.append(r1);
-        r0_3 = r0_2.toString();
-        r2_3.setMessage(r0_3);
-        r0_4 = new MainActivity_33(this);
-        r1_3 = "① 使用情况访问";
-        r2_3.setPositiveButton(r1_3, r0_4);
-        r0_5 = new MainActivity_34(this);
-        r1_3 = "② 通知使用权";
-        r2_3.setNeutralButton(r1_3, r0_5);
-        r0_6 = "关闭";
-        r1_4 = null;
-        r2_3.setNegativeButton(r0_6, r1_4);
-        r0_7 = new MainActivity_35(this, r2_3);
-        this.runOnUiThread(r0_7);
+        r0_1 = r0_2.toString();
+        r2_3.setMessage(r0_1);
+        r0_3 = new MainActivity_33(this);
+        r1_2 = "① 使用情况访问";
+        r2_3.setPositiveButton(r1_2, r0_3);
+        r0_4 = new MainActivity_34(this);
+        r1_2 = "② 通知使用权";
+        r2_3.setNeutralButton(r1_2, r0_4);
+        r0_5 = "关闭";
+        r1_3 = null;
+        r2_3.setNegativeButton(r0_5, r1_3);
+        r0_6 = new MainActivity_35(this, r2_3);
+        this.runOnUiThread(r0_6);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -1735,8 +1731,8 @@ public class MainActivity extends android.app.Activity {
         r3_4 = java.lang.String.valueOf(r3_3);
         r4_2 = 2;
         r4_3 = new java.lang.String[r4_2];
-        r4[r2] = r0_3;
-        r4[r1] = r3_4;
+        r4_3[r2] = r0_3;
+        r4_3[r1] = r3_4;
         return r4_3;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -1836,19 +1832,18 @@ public class MainActivity extends android.app.Activity {
     }
     public void showGuide(int p1) {
         String p1_1 = null;
-        java.lang.String p1_10 = null;
-        MainActivity_26 p1_11 = null;
-        MainActivity_27 p1_12 = null;
-        MainActivity_28 p1_13 = null;
-        MainActivity_29 p1_14 = null;
-        MainActivity_30 p1_15 = null;
+        MainActivity_26 p1_10 = null;
+        MainActivity_27 p1_11 = null;
+        MainActivity_28 p1_12 = null;
+        MainActivity_29 p1_13 = null;
+        MainActivity_30 p1_14 = null;
         MainActivity_21 p1_2 = null;
         MainActivity_22 p1_3 = null;
         MainActivity_23 p1_4 = null;
         MainActivity_24 p1_5 = null;
         MainActivity_25 p1_6 = null;
         java.lang.String[] p1_7 = null;
-        Object p1_8 = null;
+        java.lang.String p1_8 = null;
         java.lang.StringBuilder p1_9 = null;
         android.app.AlertDialog.Builder r0 = null;
         android.content.DialogInterface.OnClickListener r1 = null;
@@ -1860,7 +1855,6 @@ public class MainActivity extends android.app.Activity {
         int r4 = 0;
         String r4_1 = null;
         java.lang.String r4_2 = null;
-        Object r4_3 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -1917,7 +1911,7 @@ public class MainActivity extends android.app.Activity {
                     r4_1 = "桌宠想知道「你在用哪个 App」「谁给你发消息了」，\n需要你在系统里打开两个开关（都跟无障碍无关，可以放心开）：\n① 使用情况访问 —— 当前：";
                     r1_2 = new java.lang.StringBuilder(r4_1);
                     r4_2 = null;
-                    r4_3 = p1_7[r4];
+                    r4_2 = p1_7[r4_2];
                     r1_2 = r1_2.append(r4_2);
                     r4_1 = "\n作用：知道你在用微信 / 在看视频 / 在打游戏\n② 通知使用权 —— 当前：";
                     r1_2 = r1_2.append(r4_2);
@@ -1925,31 +1919,31 @@ public class MainActivity extends android.app.Activity {
                     p1_9 = r1_2.append(p1_8);
                     r1_1 = "\n作用：知道谁给你发了消息\n点下面按钮会跳到系统设置，找到「Coopanion」打开开关，再返回本页。";
                     p1_9 = p1_9.append(r1_1);
-                    p1_10 = p1_9.toString();
-                    r0.setMessage(p1_10);
-                    p1_11 = new MainActivity_26(this);
+                    p1_8 = p1_9.toString();
+                    r0.setMessage(p1_8);
+                    p1_10 = new MainActivity_26(this);
                     r1_1 = "① 使用情况访问";
-                    r0.setPositiveButton(r1_1, p1_11);
-                    p1_12 = new MainActivity_27(this);
+                    r0.setPositiveButton(r1_1, p1_10);
+                    p1_11 = new MainActivity_27(this);
                     r1_1 = "② 通知使用权";
-                    r0.setNeutralButton(r1_1, p1_12);
-                    p1_13 = new MainActivity_28(this);
-                    r0.setNegativeButton(r3, p1_13);
+                    r0.setNeutralButton(r1_1, p1_11);
+                    p1_12 = new MainActivity_28(this);
+                    r0.setNegativeButton(r3, p1_12);
                     _pc = 5; break;
                     case 4:
                     p1_1 = "第 4 步：让桌宠开口说话（5/5）";
                     r0.setTitle(p1_1);
                     p1_1 = "桌宠要说话，得先接上一家大模型：\n1. 打开「控制台」（顶部按钮）\n2. 去「模型供应商」页，选一家（DeepSeek / 通义 / Kimi /\nGLM / 豆包 / 千帆 / MiniMax / 阶跃 / OpenRouter）\n3. 把你申请到的 API Key 贴进去，保存\n小提示：第一次使用时，桌宠自己也会冒泡问你要 Key，\n跟着气泡点就行 —— 那是官方自带的引导。\n全部就绪后，桌宠就会「活」过来啦！";
                     r0.setMessage(p1_1);
-                    p1_14 = new MainActivity_29(this);
+                    p1_13 = new MainActivity_29(this);
                     r2 = "打开控制台";
-                    r0.setPositiveButton(r2, p1_14);
+                    r0.setPositiveButton(r2, p1_13);
                     p1_1 = "完成";
                     r0.setNegativeButton(p1_1, r1);
                     _pc = 5; break;
                     case 5:
-                    p1_15 = new MainActivity_30(this, r0);
-                    this.runOnUiThread(p1_15);
+                    p1_14 = new MainActivity_30(this, r0);
+                    this.runOnUiThread(p1_14);
                     return;
                             }
                         } catch (Throwable _e) {

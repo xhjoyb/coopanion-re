@@ -28,7 +28,7 @@ public class MainActivity_13 extends android.webkit.WebChromeClient {
         MainActivity_13_2 r1_3 = null;
         int r2 = 0;
         int r3 = 0;
-        Object r4 = null;
+        java.lang.String r4 = null;
         boolean r4_1 = false;
         String r5 = null;
         try {

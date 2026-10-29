@@ -697,7 +697,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         String r0_1 = null;
         String r1 = null;
         int r2 = 0;
-        Object r2_1 = null;
+        java.lang.String r2_1 = null;
         java.lang.String[] r2_2 = null;
         String r3 = null;
         int r3_1 = 0;
@@ -726,11 +726,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     if (r1 >= r2) { _pc = 4; break; }
                     r2_1 = p0_1[r1];
                     r3 = "=";
-                    r2_2 = ((java.lang.String) r2_1).split(r3);
+                    r2_2 = r2_1.split(r3);
                     r3_1 = java.lang.reflect.Array.getLength(r2_2);
                     r4 = 2;
                     if (r3_1 != r4) { _pc = 3; break; }
-                    r3_2 = r2_2[r0];
+                    r3_2 = r2_2[r0_1];
                     r3_3 = r3_2.equals(p1);
                     if (r3_3 == false) { _pc = 3; break; }
                     p0_2 = 1;

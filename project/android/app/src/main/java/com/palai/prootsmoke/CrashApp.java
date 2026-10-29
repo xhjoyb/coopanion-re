@@ -31,7 +31,7 @@ public class CrashApp extends android.app.Application {
         java.io.PrintWriter r1 = null;
         String r1_1 = null;
         int r1_2 = 0;
-        Object r1_3 = null;
+        java.lang.String r1_3 = null;
         java.io.FileOutputStream r1_4 = null;
         java.lang.StringBuilder r2 = null;
         java.lang.String r2_1 = null;
@@ -95,17 +95,17 @@ public class CrashApp extends android.app.Application {
                     r0_1 = new java.lang.String[p2_2];
                     r1_1 = "/sdcard/Download/coop-crash.txt";
                     r2_1 = null;
-                    r0[r2_3] = r1_1;
+                    r0_1[r2_1] = r1_1;
                     r1_1 = "/storage/emulated/0/Download/coop-crash.txt";
                     r3_3 = 1;
-                    r0[r3_3] = r1_1;
+                    r0_1[r3_3] = r1_1;
                     r1_2 = 2;
                     r4 = "/storage/emulated/10/Download/coop-crash.txt";
-                    r0[r1_2] = r4;
+                    r0_1[r1_2] = r4;
                     _pc = 1; break;
                     case 1:
                     if (r2_3 >= p2_2) { _pc = 2; break; }
-                    r1_3 = r0[r2_3];
+                    r1_3 = r0_1[r2_1];
                     r4_2 = new java.io.File(r1_3);
                     r1_4 = new java.io.FileOutputStream(r4_2, (r3_3 != 0));
                     r4_3 = new java.lang.StringBuilder();
