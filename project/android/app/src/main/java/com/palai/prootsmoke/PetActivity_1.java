@@ -96,6 +96,7 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
         int p1_5 = 0;
         java.lang.StringBuilder p1_7 = null;
         java.lang.String p1_8 = null;
+        boolean p1_9 = false;
         String p2_1 = null;
         PetActivity p2_2 = null;
         java.lang.StringBuilder p2_3 = null;
@@ -144,7 +145,7 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                 PetActivity._$$Nest$fputfilePathCallback(p1_2, ((android.webkit.ValueCallback) p3_1));
             }
             p1_2 = null;
-            return p1_2;
+            return p1_9;
         }
     }
 }

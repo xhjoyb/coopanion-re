@@ -90,7 +90,7 @@ public final class WebRetry {
         r0_2 = r1_1.append(r0_1);
         r1_2 = " in ";
         r0_2 = r0_2.append(r1_2);
-        r0_2 = r0_2.append(p1_2);
+        r0_2 = r0_2.append(((long) p1_2));
         r1_2 = "ms";
         r0_2 = r0_2.append(r1_2);
         r0_3 = r0_2.toString();
@@ -98,7 +98,7 @@ public final class WebRetry {
         r0_4 = WebRetry.UI;
         r1_3 = new WebRetry_1(p0);
         r2 = 300L;
-        p0_3 = java.lang.Math.max(r2, p1_2);
+        p0_3 = java.lang.Math.max(r2, ((long) p1_2));
         r0_4.postDelayed(r1_3, p0_3);
         return;
         } catch (Throwable _e9) {

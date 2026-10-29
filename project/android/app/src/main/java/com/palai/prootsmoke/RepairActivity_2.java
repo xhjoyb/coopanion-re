@@ -21,6 +21,7 @@ public class RepairActivity_2 implements android.view.View.OnTouchListener {
     }
     // ---- methods ----
     public boolean onTouch(android.view.View p1, android.view.MotionEvent p2) {
+        boolean p1_1 = false;
         int p2_1 = 0;
         try {
         p2_1 = p2.getAction();
@@ -28,7 +29,7 @@ public class RepairActivity_2 implements android.view.View.OnTouchListener {
             p1.requestFocus();
         }
         p1 = null;
-        return p1;
+        return p1_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }

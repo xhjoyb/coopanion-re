@@ -219,7 +219,7 @@ public class RepairActivity extends android.app.Activity {
                     AppLog.i(p1_2);
                     _pc = 9; break;
                     case 8:
-                    super.onActivityResult(p1_2, p2_1, p3);
+                    super.onActivityResult(p1, p2, p3);
                     _pc = 9; break;
                     case 9:
                     return;
@@ -318,7 +318,7 @@ public class RepairActivity extends android.app.Activity {
         r3_1 = "‹ 返回";
         r2_1.setText(r3_1);
         r3 = 1058642330;
-        r2_1.setAlpha(r3);
+        r2_1.setAlpha(((float) r3));
         r3_2 = new RepairActivity_4(this);
         r2_1.setOnClickListener(r3_2);
         r0_2.addView(r2_1);

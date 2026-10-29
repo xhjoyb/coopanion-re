@@ -54,7 +54,7 @@ public class PetWindowService_1 implements java.lang.Runnable {
                     if (r3 <= 0) { _pc = 3; break; }
                     _pc = 1; break;
                     case 3:
-                    PetWindowService._$$Nest$fputpetAlpha(r0, r1_1);
+                    PetWindowService._$$Nest$fputpetAlpha(r0, r1);
                     r0 = ((PetWindowService_1) this).this$0;
                     r0_1 = PetWindowService._$$Nest$fgetshowLp(r0);
                     if (r0_1 == null) { _pc = 4; break; }

@@ -24,10 +24,12 @@ public class MainActivity_20_1_2 implements java.lang.Runnable {
         android.webkit.WebView r0_3 = null;
         android.webkit.WebView r1 = null;
         int r2 = 0;
+        java.lang.String r2_1 = null;
         String r3 = null;
         String r4 = null;
         String r5 = null;
         int r6 = 0;
+        java.lang.String r6_1 = null;
         try {
         r0 = ((MainActivity_20_1_2) this).this$2;
         r0_1 = ((MainActivity_20_1) r0).this$1;
@@ -45,7 +47,7 @@ public class MainActivity_20_1_2 implements java.lang.Runnable {
         r2 = 0;
         r3 = "<html><body style='background:#0b0f14;color:#c88;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100%'><div style='text-align:center'>&#26700;&#23456;&#26381;&#21153;&#36830;&#25509;&#22833;&#36133;<br><small style='color:#567'>&#35831;&#30830;&#35748;&#20869;&#26680;&#24050;&#21551;&#21160;&#65292;&#28982;&#21518;&#28857;&#39;&#37325;&#35797;&#21551;&#21160;&#39;</small></div></body></html>";
         r4 = "text/html";
-        r1.loadDataWithBaseURL(r2, r3, r4, r5, r6);
+        r1.loadDataWithBaseURL(r2_1, r3, r4, r5, r6_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

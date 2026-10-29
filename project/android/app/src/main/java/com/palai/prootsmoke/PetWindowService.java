@@ -57,12 +57,12 @@ public class PetWindowService extends android.app.Service {
         PetWindowService_14 r1_2 = null;
         android.os.Looper r2 = null;
         r0 = 1065353216;
-        ((PetWindowService) this).petAlpha = r0;
+        ((PetWindowService) this).petAlpha = ((float) r0);
         r0_1 = false;
         ((PetWindowService) this).firstLoadReloaded = r0_1;
         r1 = -1082130432;
-        ((PetWindowService) this).petX = r1;
-        ((PetWindowService) this).petY = r1;
+        ((PetWindowService) this).petX = ((float) r1);
+        ((PetWindowService) this).petY = ((float) r1);
         r1 = -2147483648;
         ((PetWindowService) this).lastTouchX = r1;
         ((PetWindowService) this).lastTouchY = r1;
@@ -484,7 +484,7 @@ public class PetWindowService extends android.app.Service {
                     r3 = "coopanion";
                     r3_2 = this.getSharedPreferences(r3, r2_4);
                     r4_1 = "pet_alpha";
-                    r3_3 = r3_2.getFloat(r4_1, r1_5);
+                    r3_3 = r3_2.getFloat(r4_1, ((float) r1_5));
                     ((PetWindowService) this).petAlpha = r3_3;
                     r3_3 = ((PetWindowService) this).petAlpha;
                     r4_2 = 0f;
@@ -496,7 +496,7 @@ public class PetWindowService extends android.app.Service {
                     r3_3 = ((PetWindowService) this).petAlpha;
                     r3_4 = (r3_3 < r1_5 ? -1 : (r3_3 == r1_5 ? 0 : 1));
                     if (r3_4 <= 0) { _pc = 2; break; }
-                    ((PetWindowService) this).petAlpha = r1_5;
+                    ((PetWindowService) this).petAlpha = ((float) r1_5);
                     _pc = 2; break;
                     case 2:
                     r1_4 = ((PetWindowService) this).showLp;
@@ -748,6 +748,7 @@ public class PetWindowService extends android.app.Service {
         int r3 = 0;
         String r3_1 = null;
         java.lang.StringBuilder r3_2 = null;
+        char r3_3 = 0;
         int r4 = 0;
         try {
         int _pc = 0;
@@ -784,24 +785,24 @@ public class PetWindowService extends android.app.Service {
                     case 4:
                     r3 = 32;
                     if (r2 >= r3) { _pc = 5; break; }
-                    r2_3 = java.lang.Integer.valueOf(r2_2);
+                    r2_3 = java.lang.Integer.valueOf(r2);
                     r2_4 = new java.lang.Object[]{r2_3};
                     r3_1 = "\\u%04x";
                     r2_5 = java.lang.String.format(r3_1, r2_4);
                     r0.append(r2_5);
                     _pc = 7; break;
                     case 5:
-                    r0.append(r2_5);
+                    r0.append(r2_1);
                     _pc = 7; break;
                     case 6:
-                    r3_2 = r0.append(r4);
-                    r3_2.append(r2_5);
+                    r3_2 = r0.append(((char) r4));
+                    r3_2.append(r2_1);
                     _pc = 7; break;
                     case 7:
                     r1_1 = (r1_1 + 1);
                     _pc = 1; break;
                     case 8:
-                    p0_1 = r0.append(r3_2);
+                    p0_1 = r0.append(r3_3);
                     p0 = p0_1.toString();
                     return p0;
                             }

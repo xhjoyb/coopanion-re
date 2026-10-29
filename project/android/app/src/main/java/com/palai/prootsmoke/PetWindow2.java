@@ -396,7 +396,7 @@ public final class PetWindow2 {
                     r3 = "coopanion";
                     r2_2 = r2_1.getSharedPreferences(r3, r0_1);
                     r3 = "pet_scale";
-                    r2_3 = r2_2.getFloat(r3, r1);
+                    r2_3 = r2_2.getFloat(r3, ((float) r1));
                     r3_1 = 1045220557;
                     r3_1 = (r2_3 > r3_1 ? 1 : (r2_3 == r3_1 ? 0 : -1));
                     if (r3_1 <= 0) { _pc = 3; break; }

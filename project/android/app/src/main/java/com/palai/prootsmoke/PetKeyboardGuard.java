@@ -404,7 +404,7 @@ public final class PetKeyboardGuard {
             r1_1 = new java.lang.StringBuilder();
             r2 = "window.__petIme&&window.__petIme(";
             r1_1 = r1_1.append(r2);
-            p1_2 = r1_1.append(p1_1);
+            p1_2 = r1_1.append(p1);
             r1 = ",'";
             p1_2 = p1_2.append(r1);
             p1_2 = p1_2.append(p2);
@@ -453,7 +453,7 @@ public final class PetKeyboardGuard {
             r2_1 = new java.lang.StringBuilder();
             r3 = "window.__petKeyboard&&window.__petKeyboard(";
             r2_1 = r2_1.append(r3);
-            p1_2 = r2_1.append(p1_1);
+            p1_2 = r2_1.append(p1);
             r2_2 = ",";
             p1_2 = p1_2.append(r2_2);
             r2 = ((PetKeyboardGuard) this).seq;

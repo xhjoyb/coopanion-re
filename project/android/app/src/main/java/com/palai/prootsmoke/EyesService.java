@@ -583,7 +583,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         r0 = EyesService.instance;
         if (r0 == null) {
             r0 = null;
-            return r0;
+            return r0_1;
         }
         r0_1 = EyesService.imeHeightOf(r0);
         return r0_1;
@@ -1148,9 +1148,9 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
         r0 = 10;
         r1 = 32;
-        p0 = p0.replace(r0, r1);
+        p0 = p0.replace(((char) r0), ((char) r1));
         r0 = 13;
-        p0 = p0.replace(r0, r1);
+        p0 = p0.replace(((char) r0), ((char) r1));
         p0 = p0.trim();
         r0 = p0.length();
         if (r0 > p1) {

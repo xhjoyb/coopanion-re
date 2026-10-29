@@ -21,7 +21,7 @@ public final class PetWindow2_HostBridge {
         int r0 = 0;
         try {
         r0 = 1065353216;
-        return r0;
+        return ((float) r0);
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }
@@ -41,9 +41,10 @@ public final class PetWindow2_HostBridge {
         }
     }
     public boolean openApp(java.lang.String p1) {
+        boolean p1_1 = false;
         try {
         p1 = null;
-        return p1;
+        return p1_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }

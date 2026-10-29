@@ -136,11 +136,11 @@ public class PetWindowService_PetHostBridge {
         r0_3 = r0_2.getSharedPreferences(r1_1, r2);
         r0_4 = r0_3.edit();
         r1_1 = "pet_alpha";
-        r0_4 = r0_4.putFloat(r1_1, p1_2);
+        r0_4 = r0_4.putFloat(r1_1, ((float) p1_2));
         r0_4.apply();
         r0_2 = ((PetWindowService_PetHostBridge) this).this$0;
         r0 = PetWindowService._$$Nest$fgetui(r0_2);
-        r1_2 = new PetWindowService_PetHostBridge_1(this, p1_2);
+        r1_2 = new PetWindowService_PetHostBridge_1(this, ((float) p1_2));
         r0.post(r1_2);
         return;
         } catch (Throwable _e9) {

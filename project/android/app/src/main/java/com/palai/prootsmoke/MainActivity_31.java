@@ -58,7 +58,7 @@ public class MainActivity_31 {
         r0_1.setText(p2_3);
         if (p3 != false) {
             p2_4 = ((MainActivity_31) this).this$0;
-            MainActivity._$$Nest$mpushAlphaToService(p2_4, p1_2);
+            MainActivity._$$Nest$mpushAlphaToService(p2_4, ((float) p1_2));
         }
         return;
         } catch (Throwable _e9) {

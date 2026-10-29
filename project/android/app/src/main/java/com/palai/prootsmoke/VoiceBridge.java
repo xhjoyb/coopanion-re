@@ -292,6 +292,7 @@ public class VoiceBridge {
         String r2_2 = null;
         int r3 = 0;
         java.lang.StringBuilder r3_1 = null;
+        char r3_2 = 0;
         int r4 = 0;
         try {
         int _pc = 0;
@@ -326,17 +327,17 @@ public class VoiceBridge {
                     r0.append(r2_2);
                     _pc = 6; break;
                     case 4:
-                    r0.append(r2_2);
+                    r0.append(r2_1);
                     _pc = 6; break;
                     case 5:
-                    r3_1 = r0.append(r4);
-                    r3_1.append(r2_2);
+                    r3_1 = r0.append(((char) r4));
+                    r3_1.append(r2_1);
                     _pc = 6; break;
                     case 6:
                     r1_1 = (r1_1 + 1);
                     _pc = 1; break;
                     case 7:
-                    p0_1 = r0.append(r3_1);
+                    p0_1 = r0.append(r3_2);
                     p0 = p0_1.toString();
                     return p0;
                             }

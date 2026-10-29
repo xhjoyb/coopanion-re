@@ -31,6 +31,7 @@ public class MainActivity_19 implements java.lang.Runnable {
         String r4 = null;
         String r5 = null;
         int r6 = 0;
+        java.lang.String r6_1 = null;
         try {
         r0 = ((MainActivity_19) this).this$0;
         r0_1 = MainActivity._$$Nest$fgetweb(r0);
@@ -51,7 +52,7 @@ public class MainActivity_19 implements java.lang.Runnable {
         r6 = 0;
         r2 = null;
         r4 = "text/html";
-        r1.loadDataWithBaseURL(r2, r3, r4, r5, r6);
+        r1.loadDataWithBaseURL(r2, r3, r4, r5, r6_1);
         r0 = ((MainActivity_19) this).this$0;
         r0_1 = MainActivity._$$Nest$fgetweb(r0);
         r1_1 = "http://127.0.0.1:7797/pet?host=app";

@@ -33,10 +33,10 @@ public class MainActivity_32 implements android.content.DialogInterface.OnClickL
         p1_2 = p1_1.edit();
         p2_1 = "pet_alpha";
         r0 = 1065353216;
-        p1_2 = p1_2.putFloat(p2_1, r0);
+        p1_2 = p1_2.putFloat(p2_1, ((float) r0));
         p1_2.apply();
         p1_3 = ((MainActivity_32) this).this$0;
-        MainActivity._$$Nest$mpushAlphaToService(p1_3, r0);
+        MainActivity._$$Nest$mpushAlphaToService(p1_3, ((float) r0));
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

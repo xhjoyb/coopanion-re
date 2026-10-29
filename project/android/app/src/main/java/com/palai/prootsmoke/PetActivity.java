@@ -96,7 +96,7 @@ public class PetActivity extends android.app.Activity {
                     AppLog.i(p1_5);
                     _pc = 7; break;
                     case 6:
-                    super.onActivityResult(p1_5, p2_3, p3);
+                    super.onActivityResult(p1, p2, p3);
                     _pc = 7; break;
                     case 7:
                     return;
@@ -261,7 +261,7 @@ public class PetActivity extends android.app.Activity {
                     r5_2 = "✕ 退出";
                     r4_5.setText(r5_2);
                     r5_1 = 1057803469;
-                    r4_5.setAlpha(r5_1);
+                    r4_5.setAlpha(((float) r5_1));
                     r5_3 = new PetActivity_3(this);
                     r4_5.setOnClickListener(r5_3);
                     p1_7.addView(r4_5);

@@ -991,8 +991,8 @@ public class MainActivity extends android.app.Activity {
         java.util.zip.GZIPInputStream r3 = null;
         int r3_1 = 0;
         String r3_2 = null;
-        java.io.File r3_3 = null;
-        java.lang.String r3_4 = null;
+        java.lang.String r3_3 = null;
+        java.io.File r3_4 = null;
         java.lang.Process r3_5 = null;
         java.lang.String[] r3_6 = null;
         java.io.InputStream r4 = null;
@@ -1141,7 +1141,7 @@ public class MainActivity extends android.app.Activity {
                     r8_1 = r8_1.substring(r6);
                     _pc = 13; break;
                     case 14:
-                    r6_2 = r8_1.endsWith(r3_1);
+                    r6_2 = r8_1.endsWith(r3_3);
                     if (r6_2 == false) { _pc = 15; break; }
                     r6 = r8_1.length();
                     r6 = (r6 - r4_1);
@@ -1154,10 +1154,10 @@ public class MainActivity extends android.app.Activity {
                     MainActivity.skipExactly(r2, r9_1);
                     _pc = 8; break;
                     case 16:
-                    r3_3 = new java.io.File(r1, r8_1);
+                    r3_4 = new java.io.File(r1, r8_1);
                     r6 = 53;
                     if (r13_2 != r6) { _pc = 18; break; }
-                    r3_3.mkdirs();
+                    r3_4.mkdirs();
                     _pc = 17; break;
                     case 17:
                     r14 = 65536;
@@ -1165,9 +1165,9 @@ public class MainActivity extends android.app.Activity {
                     case 18:
                     r6 = 50;
                     if (r13_2 != r6) { _pc = 20; break; }
-                    r6_2 = r3_3.exists();
+                    r6_2 = r3_4.exists();
                     if (r6_2 == false) { _pc = 19; break; }
-                    r3_3.delete();
+                    r3_4.delete();
                     _pc = 19; break;
                     case 19:
                     r6_3 = java.lang.Runtime.getRuntime();
@@ -1180,9 +1180,9 @@ public class MainActivity extends android.app.Activity {
                     r8_4[r4_1] = r11_2;
                     r4_1 = 2;
                     r8_4[r4_1] = r7_1;
-                    r3_4 = r3_3.getAbsolutePath();
+                    r3_3 = r3_4.getAbsolutePath();
                     r4_1 = 3;
-                    r8_4[r4_1] = r3_4;
+                    r8_4[r4_1] = r3_3;
                     r3_5 = r6_3.exec(r8_4);
                     r3_5.waitFor();
                     _pc = 17; break;
@@ -1190,18 +1190,18 @@ public class MainActivity extends android.app.Activity {
                     r6 = 49;
                     if (r13_2 != r6) { _pc = 25; break; }
                     r6_4 = new java.io.File(r1, r7_1);
-                    r7_2 = r3_3.getParentFile();
+                    r7_2 = r3_4.getParentFile();
                     if (r7_2 == null) { _pc = 21; break; }
                     r7_2.mkdirs();
                     _pc = 21; break;
                     case 21:
-                    r7_3 = r3_3.exists();
+                    r7_3 = r3_4.exists();
                     if (r7_3 == false) { _pc = 22; break; }
-                    r3_3.delete();
+                    r3_4.delete();
                     _pc = 22; break;
                     case 22:
                     r7_4 = new java.io.FileInputStream(r6_4);
-                    r6_5 = new java.io.FileOutputStream(r3_3);
+                    r6_5 = new java.io.FileOutputStream(r3_4);
                     r14 = 65536;
                     r8_5 = new byte[r14];
                     _pc = 23; break;
@@ -1215,22 +1215,22 @@ public class MainActivity extends android.app.Activity {
                     r12_1 = false;
                     r7_4.close();
                     r6_5.close();
-                    r3_3.setReadable((r4_1 != 0), r12_1);
-                    r3_3.setExecutable((r4_1 != 0), r12_1);
+                    r3_4.setReadable((r4_1 != 0), r12_1);
+                    r3_4.setExecutable((r4_1 != 0), r12_1);
                     _pc = 28; break;
                     case 25:
                     r14 = 65536;
-                    r6_4 = r3_3.getParentFile();
+                    r6_4 = r3_4.getParentFile();
                     if (r6_4 == null) { _pc = 26; break; }
                     r6_4.mkdirs();
                     _pc = 26; break;
                     case 26:
-                    r6_5 = new java.io.FileOutputStream(r3_3);
+                    r6_5 = new java.io.FileOutputStream(r3_4);
                     MainActivity.copyN(r2, r6_5, r9_1);
                     r6_5.close();
                     r6_2 = false;
-                    r3_3.setReadable((r4_1 != 0), r6_2);
-                    r3_3.setWritable((r4_1 != 0), r6_2);
+                    r3_4.setReadable((r4_1 != 0), r6_2);
+                    r3_4.setWritable((r4_1 != 0), r6_2);
                     r6_6 = 73L;
                     r6_6 = (r6_6 & r11_1);
                     r11_1 = 0L;
@@ -1251,7 +1251,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 27; break;
                     case 27:
                     r6_2 = false;
-                    r3_3.setExecutable((r4_1 != 0), r6_2);
+                    r3_4.setExecutable((r4_1 != 0), r6_2);
                     _pc = 28; break;
                     case 28:
                     MainActivity.skipPad(r2, r9_1);
@@ -1264,7 +1264,7 @@ public class MainActivity extends android.app.Activity {
                     MainActivity.readFull(r2, r4_2, r3_1);
                     r7_1 = new java.lang.String(r4_2, r6, r3_1, r15_4);
                     r3_2 = "\n";
-                    r3_6 = r7_1.split(r3_4);
+                    r3_6 = r7_1.split(r3_3);
                     r4_1 = java.lang.reflect.Array.getLength(r3_6);
                     r6 = 0;
                     _pc = 30; break;
@@ -1311,13 +1311,13 @@ public class MainActivity extends android.app.Activity {
                     r6_1 = r6_1.substring(r8_3, r3_1);
                     _pc = 36; break;
                     case 36:
-                    r3_4 = r6_1.trim();
+                    r3_3 = r6_1.trim();
                     r4_1 = 76;
                     if (r13_2 != r4_1) { _pc = 37; break; }
-                    ((MainActivity) r0).pendingName = r3_4;
+                    ((MainActivity) r0).pendingName = r3_3;
                     _pc = 38; break;
                     case 37:
-                    ((MainActivity) r0).pendingLink = r3_4;
+                    ((MainActivity) r0).pendingLink = r3_3;
                     _pc = 38; break;
                     case 38:
                     MainActivity.skipPad(r2, r9_1);
@@ -1783,7 +1783,7 @@ public class MainActivity extends android.app.Activity {
         r0_1 = this.getSharedPreferences(r0, r1);
         r1_1 = "pet_alpha";
         r2 = 1065353216;
-        r1_2 = r0_1.getFloat(r1_1, r2);
+        r1_2 = r0_1.getFloat(r1_1, ((float) r2));
         r2_1 = new android.widget.SeekBar(this);
         r3 = 90;
         r2_1.setMax(r3);
@@ -2370,7 +2370,7 @@ public class MainActivity extends android.app.Activity {
                     r1_3 = new android.widget.TextView(this);
                     ((MainActivity) this).statusTv = r1_3;
                     r2_3 = 1098907648;
-                    r1_3.setTextSize(r2_3);
+                    r1_3.setTextSize(((float) r2_3));
                     r1_3 = ((MainActivity) this).statusTv;
                     r2_3 = 20;
                     r1_3.setPadding(r2_3, r2_3, r2_3, r2_3);
@@ -2383,7 +2383,7 @@ public class MainActivity extends android.app.Activity {
                     r1_3 = new android.widget.TextView(this);
                     ((MainActivity) this).tv = r1_3;
                     r2_3 = 1091567616;
-                    r1_3.setTextSize(r2_3);
+                    r1_3.setTextSize(((float) r2_3));
                     r1_3 = ((MainActivity) this).tv;
                     r2 = "=== Coopanion Android 宿主 ===\n";
                     r1_3.setText(r2);
@@ -2395,7 +2395,7 @@ public class MainActivity extends android.app.Activity {
                     r1_5.setVisibility(r2_3);
                     r3_2 = 1065353216;
                     r4_10 = -1;
-                    r2_5 = new android.widget.LinearLayout.LayoutParams(r4_10, p1_3, r3_2);
+                    r2_5 = new android.widget.LinearLayout.LayoutParams(r4_10, p1_3, ((float) r3_2));
                     r3_3 = ((MainActivity) this).root;
                     r3_3.addView(r1_5, r2_5);
                     r1_6 = new android.webkit.WebView(this);
@@ -2419,7 +2419,7 @@ public class MainActivity extends android.app.Activity {
                     r1_9 = new MainActivity_13(this);
                     r0_1.setWebChromeClient(r1_9);
                     r1_1 = 1073741824;
-                    r0_3 = new android.widget.LinearLayout.LayoutParams(r4_10, p1_3, r1_1);
+                    r0_3 = new android.widget.LinearLayout.LayoutParams(r4_10, p1_3, ((float) r1_1));
                     r1_4 = ((MainActivity) this).root;
                     r2_7 = ((MainActivity) this).web;
                     r1_4.addView(r2_7, r0_3);
