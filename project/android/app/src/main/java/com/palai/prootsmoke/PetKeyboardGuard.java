@@ -77,23 +77,19 @@ public final class PetKeyboardGuard {
         java.lang.String r1_1 = null;
         String r2 = null;
         java.lang.String r2_1 = null;
-        {
-            r0 = EyesService.imeHeight();
-            if (r0 > 0) {
-                r1 = new java.lang.StringBuilder();
-                r2 = "a11y=";
-                r1 = r1.append(r2_1);
-                r1 = r1.append(r0);
-                r1_1 = r1.toString();
-                ((PetKeyboardGuard) this).lastSource = r1_1;
-                r0 = this.clampH(r0);
-                return r0;
-            }  {
-                throw new RuntimeException(r0_1);
-            }
-            r0 = this.imeHeight();
+        r0 = EyesService.imeHeight();
+        if (r0 > 0) {
+            r1 = new java.lang.StringBuilder();
+            r2 = "a11y=";
+            r1 = r1.append(r2_1);
+            r1 = r1.append(r0);
+            r1_1 = r1.toString();
+            ((PetKeyboardGuard) this).lastSource = r1_1;
+            r0 = this.clampH(r0);
             return r0;
         }
+        r0 = this.imeHeight();
+        return r0;
     }
     public static void access$000(PetKeyboardGuard p0) {
         try {
