@@ -89,7 +89,6 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
                     _pc = 1; break;
                     case 1:
                     _pc = 2; break;
-                    _pc = 2; break;
                     case 2:
                     p1_2 = ((EyesService_Api30_1) this).val$latch;
                     p1_2.countDown();

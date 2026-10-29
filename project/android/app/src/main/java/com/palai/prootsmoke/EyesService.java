@@ -79,7 +79,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r2 = 20000;
                     r1_3.setSoTimeout(r2);
                     _pc = 2; break;
-                    _pc = 2; break;
                     case 2:
                     r2_1 = ((EyesService) this).workers;
                     if (r2_1 == null) { _pc = 3; break; }
@@ -209,7 +208,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
             ((EyesService) this).lastError = p1_3;
             return r10_1;
         } catch (java.lang.Throwable p1_4) {
-            while (false) {
+            if (false) {
                 p1_5 = java.lang.String.valueOf(p1_2);
                 ((EyesService) this).lastError = p1_5;
                 return r10_1;
@@ -342,13 +341,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     EyesService.collect(r2_4, p1, r3);
                     r2_4.recycle();
                     _pc = 10; break;
-                    _pc = 10; break;
                     case 10:
                     r1 = (r1 + 1);
                     _pc = 8; break;
         case 90000:
                     r2_4.recycle();
-                    _pc = 11; break;
                     _pc = 11; break;
                     case 11:
                     throw new RuntimeException(String.valueOf(p0));
@@ -886,7 +883,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r2_3 = java.lang.String.valueOf(r2_2);
                     r1.put(r0, r2_3);
                     _pc = 1; break;
-                    _pc = 1; break;
                     case 1:
                     r0_1 = r1.toString();
                     return r0_1;
@@ -1068,7 +1064,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     p1_1.write(p2_2);
                     p1_1.flush();
                     _pc = 7; break;
-                    _pc = 7; break;
                     case 7:
                     return;
                             }
@@ -1136,7 +1131,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
             if (r0_1 != null) {
                 r0_1.close();
             }
-            while (false) {
+            if (false) {
                 throw new RuntimeException(String.valueOf(r0_1));
             }
         }
@@ -1226,10 +1221,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     case 3:
                     r4_1.recycle();
                     _pc = 5; break;
-                    _pc = 5; break;
-        case 90000:
                     r4_1.recycle();
-                    _pc = 4; break;
                     _pc = 4; break;
                     case 4:
                     throw new RuntimeException(String.valueOf(r0));
@@ -1261,7 +1253,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                 }
             }
         } catch (java.lang.Throwable r0_2) {
-            while (false) {
+            if (false) {
                 return;
             }
         }
