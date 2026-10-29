@@ -31,5 +31,6 @@ public class PetWindowService_7 implements android.view.View.OnTouchListener {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
 }
