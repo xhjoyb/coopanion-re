@@ -1216,7 +1216,7 @@ public class PetWindowService extends android.app.Service {
                     r13 = new android.view.WindowManager.LayoutParams(r14, r15, r16, r17, r18);
                     r1_7 = 8388659;
                     ((android.view.WindowManager.LayoutParams) r7).gravity = r1_7;
-                    r4_1 = new boolean[r2 ? 1 : 0];
+                    r4_1 = new boolean[r2];
                     r4_1[r3] = (r3 != 0);
                     r1_8 = r13_1;
                     r2_1 = this;
