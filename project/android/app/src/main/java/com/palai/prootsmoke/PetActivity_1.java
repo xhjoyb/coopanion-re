@@ -141,7 +141,7 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                 p1_3 = PetActivity._$$Nest$fgetfilePathCallback(p1_2);
                 p1_3.onReceiveValue(p3_1);
                 p1_2 = ((PetActivity_1) this).this$0;
-                PetActivity._$$Nest$fputfilePathCallback(p1_2, p3_1);
+                PetActivity._$$Nest$fputfilePathCallback(p1_2, ((android.webkit.ValueCallback) p3_1));
             }
             p1_2 = null;
             return p1_2;

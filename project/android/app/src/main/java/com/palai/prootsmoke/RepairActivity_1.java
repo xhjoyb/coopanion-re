@@ -74,7 +74,7 @@ public class RepairActivity_1 extends android.webkit.WebChromeClient {
                 p1_3 = RepairActivity._$$Nest$fgetfilePathCallback(p1_2);
                 p1_3.onReceiveValue(p3_1);
                 p1_2 = ((RepairActivity_1) this).this$0;
-                RepairActivity._$$Nest$fputfilePathCallback(p1_2, p3_1);
+                RepairActivity._$$Nest$fputfilePathCallback(p1_2, ((android.webkit.ValueCallback) p3_1));
             }
             p1_2 = null;
             return p1_2;

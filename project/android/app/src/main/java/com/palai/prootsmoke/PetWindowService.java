@@ -1158,7 +1158,7 @@ public class PetWindowService extends android.app.Service {
                     r6 = r0;
                     r14_1 = r7;
                     r7_1 = p1;
-                    r1_6 = new PetWindowService_3(r2_1, r3_1, r4_2, r5, r6, r7_1);
+                    r1_6 = new PetWindowService_3(r2_1, r3_1, ((android.view.WindowManager) r4_2), r5, r6, r7_1);
                     r1_7 = new PetWindowService_4(r8, r13_1);
                     r0.setWebViewClient(r1_7);
                     ((android.view.WindowManager) r11).addView(r12, r14_1);
