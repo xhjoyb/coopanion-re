@@ -702,3 +702,63 @@ P0 已收口（源码 **863/863** 零漂移 + 依赖树 95/95 零差异）；P2 
 **现在只剩功能验证**：在 cut7（`apk/Coopanion-v12.71-cut-BCDEF-sym7-signed.apk`，106,227,477 B / `a12a65ea…`，已同步 `/sdcard/Download/rev_tmp/`）上把业务路径跑一遍 —— ① **语音**（sherpa 加载已过 `[B0]`，ASR/TTS 实跑未做）；② **扩展安装**（验 `npm` 缺失后确实走 `corepack pnpm`，唯一能正面证伪 `dead-dep-subtree` 的路径）；③ **桌宠**（悬浮窗权限已用 root 授予，需退出 App 看桌面）。Web 面板已在 cut7 上验过（`127.0.0.1:17788` 正常加载「控制台 · Coo」），`terminal` 与 `desktop-pet` 两个 World 都已启动。
 
 Gradle 工程仍挂起（用户「3 再说」）。
+
+### P8 · 桌宠双开 + 调色盘图标（pet2 / pet3，真机验证）
+
+两轮改动都**只动 `vendor/pet/web/` 的前端 JS**：不改 Java、不改 dex、不改 payload 结构、不动裁包规则。出包链路仍是
+`patch_pet3.py`（tar 逐条目替换 + 重算 ustar 头 `chksum` + gzip L6 `mtime=0`）→ `repack8.py`（`STORED`/`lib/` → 4096 对齐，其余 4/1）→ `Sign2`（v2-only，apksig 2.3.0）→ `verify_pet3.py` + `Verify2`。
+
+| 补丁 | 文件 | 改动 | 字节 |
+|---|---|---|---|
+| **pet2 · 桌宠双开** | `src/recovered/vendor/pet/web/pet-app.js` | 删掉原厂「本地 `localStorage` 没有 `pet_count` 记录就把数量强制回 1，并 `send({t:'petCount',count:1})` 回写服务端」的分支，改为 `want = clamp(1..MAX_PETS, p.count)` —— **服务端配置成为唯一真相**，控制台把「桌宠数量」改成 2 立即生效 | 96,183 → 96,120（−63） |
+| **pet3 · 调色盘图标** | `src/recovered/vendor/pet/web/pet-core.js` | `ICONS` 从 23 个增到 **24** 个，新增 `palette`（`<path d="M12 3.4a8.6 8.6 0 1 0 0 17.2c1.3 0 2.1-.9 2.1-1.9 …"/>` + 3 个 `<circle>`）；长按菜单「换颜色」（`quickPalette`）此前取 `ICONS.palette` 得 `undefined`，按钮渲染成空白 | 63,963 → 64,296（+333） |
+
+> **源码基线口径变化**：`src/recovered/vendor/pet/web/{pet-app,pet-core}.js` 这两份**已包含补丁**，不再等于 APK 内原厂字节。
+> 需要原厂原件时：`tar -xzOf apk/Coopanion-v12.71.apk assets/payload.asset` 取那份，或 `git show fd904bb:src/recovered/vendor/pet/web/pet-app.js`。
+> `tools/recon_upstream.py` 的 863/863 对账语义相应变成「入仓树 ↔ **当前装机态**（已含补丁）」，不再对着原厂发行态。
+
+**交付产物**
+
+| 版本 | 文件 | 字节 | sha256 | 签名 |
+|---|---|---:|---|---|
+| pet2 | `Coopanion_v12.71_pet2.apk` | 137,195,219 | `e669d231c13b8d242fabcb2db0c24ad966177d612ac0c6c6ad362cae118bf2ac` | v2 单签，`CN=Coopanion Rebuild` |
+| **pet3（现役基线）** | `Coopanion_v12.71_pet3.apk` | **137,195,102** | **`38128c2e423e5ec5bfcb323438dc5f61173578b5d32b6d8e6a5308d780d26032`** | v2 单签，`verified=true v2=true signers=1 cert=CN=Coopanion Rebuild, O=CoopanionRe, C=CN` |
+
+pet3 结构自检：`entries 25`、`arsc/dex %4=0`、`lib4096 [0,0,0,0,0]`、payload `ct=8 size=137,118,218 doff=430,018`（DEFLATE 不均齐属正常）、payload 头 `1f 8b 08 00 00 00 00 00 00 ff`、tar 5,096 条。
+包内 `pet-app.js` = 96,120 B / `c5767146…9fa44e`（与 pet2 逐字节相同 ⇒ 双桌宠补丁原样保留）、`pet-core.js` = 64,296 B / `2f980348…9fafa6`。
+
+**真机验证（pet3，2026-10-30 05:51:50 覆盖安装，`lastUpdateTime` 覆盖 pet2 的 `firstInstallTime 05:41:10`）**
+
+| # | 验证 | 结果 |
+|---|---|---|
+| 1 | 进程实际解压目录 `/proc/<node>/cwd/app/coop-stage/vendor/pet/web/` | `pet-core.js 64296`、`pet-app.js 96120`；`grep -c 'palette: icon('` = 1、`grep -c 'const want = Math.max(1, Math.min(MAX_PETS'` = 1 —— **不是「包里有、跑的是旧的」** |
+| 2 | `node --check` 两份 | `SYNTAX OK` |
+| 3 | 整目录拷到临时目录 + `{"type":"module"}` 后真实 `import` | `IMPORT OK export keys = 34`、`ICONS count = 24`、`keys = chat,feed,plus,clock,minus,moon,sun,play,pause,settings,power,mic,micOff,sound,soundOff,shirt,eye,external,eyeOff,palette,steps,roam_off,roam_calm,roam_free`、`palette html len = 415` |
+| 4 | 服务端口 `/proc/net/tcp{,6}` | `7797`(桌宠页) / `17788`(控制台) / `17899`(感知桥) 全部 LISTEN；`logcat` 无 `Uncaught`/`SyntaxError` |
+
+**排障留档：「装完桌宠没出现」不是 pet3 的锅**
+
+`shared_prefs/coopanion.xml` 里 `pet_window_wanted=false`，而它是冷启动自动恢复桌宠的唯一依据（`MainActivity$15.run()` 的 `if-eqz p1, :cond_220` 直接跳过 `startPetWindowWhenReady`）。
+把它写成 false 的是 `togglePetWindow()` 的关闭分支（`MainActivity.smali` `.line 906→913`：判 `petWinOn.get()==true` → `stopService` → `petWinOn.set(false)` → `syncPetSw(false)` → `putBoolean("pet_window_wanted", false)`）；而该方法的**唯一调用方是引导弹窗按钮**（`MainActivity$24`，`EnclosingMethod = showGuide(I)V`，`.line 748`）。
+日志时间线严丝合缝：`[05:52:08.208]` 自动恢复并启动桌宠 → `[05:52:09.455]` 页面已连接 → `[05:52:09.888]` 页面断开 → `[PET] 悬浮窗已关闭`（1.68 s）⇒ **自动恢复已经把桌宠开着，用户又在引导弹窗里点了一次「召唤桌宠」，等价于「收回」**。原厂逻辑坑，与本次补丁无关。
+
+处置：`cp` 偏好到 `/data/local/tmp/coopanion.xml.bak`（171 B）+ `am force-stop`。因 ReSukiSU 应用数据隔离（真实数据在进程私有挂载命名空间），shell 侧改不动该 XML，**需在 App 内手动点一次「召唤桌宠」**。
+
+**遗留（支线，未做）**
+
+1. 桌宠上限仍被两处硬钉在 2：`vendor/pet/web/pet-multi.js` 的 `MAX_PETS = 2` 与 `world.ts:512` 的 `Math.max(1, Math.min(2, …))`。要放开到 4 只必须同改两处，否则服务端配 4 也只会出 2。
+2. 「引导弹窗按钮 = 收回桌宠」是原厂交互缺陷；修它要改 Java 侧 `MainActivity` 的引导流程（改 smali），收益低、风险在客户端状态机，暂不动。
+
+### 2026-10-30 工作区清理口径
+
+用户指示「保留最新的作为基线然后提交」后，工作区从 **3.0 G 降到 805.6 M**：
+
+| 删除 | 内容 |
+|---|---|
+| `.operit/repack/` 8 个 APK | `rebuilt4_unsigned`、`rebuilt2_unsigned`、`v34b_signed`、`smali_base_{unsigned,signed}`、`pet2_{unsigned,signed}`、`pet3_unsigned`（**仅保留 `Coopanion_v12.71_pet3_signed.apk`**） |
+| `.operit/patch/` 4 个中间包 | `payload_new.tar`(344.1 M)、`payload_new.tar.gz`(130.8 M)、`payload_new2.tar.gz`(130.8 M)、`payload_new3.tar`(344.1 M)（**保留 `payload_new3.tar.gz` + `pet-app.patched.js`**） |
+| `.operit/ci` + `ci1`~`ci34` | 34 轮「反编译重建 Java 工程」CI 目录，该路线产物已证运行时不可用（沉没成本，仅 git 历史可溯） |
+| `apk/Coopanion-v12.71-cut-*.apk` | `cut-BCDE-sym5-signed`、`cut-BCDEF-sym6-signed`、`cut-BCDEF-sym7-signed` 三个裁包（裁包路线被 pet 系取代） |
+| `project/` | 已废弃的 Java 重建工程；连带回滚 `docs/00` 的「附 C：方法体自动翻译」段、删除 `tools/{body2java,smali2java,fix_dollar,fix_trycatch_files,trycatch_fix}.py` 与 `docs/06-方法体自动翻译完成报告.md` |
+
+保留：`src/` 158.6 M（源码基线与 smali 视图）、`.operit/repack/Coopanion_v12.71_pet3_signed.apk` + `.operit/patch/`、`apk/Coopanion-v12.71.apk` 原包（`.gitignore` 内）、`tools/` 现役 22 个脚本 + 新增 `tools/push_tree.py`（单文件并行推 blob，是 `push_repo.py` 的细化版）。

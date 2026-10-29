@@ -370,6 +370,8 @@ export const ICONS = {
   // a page that opens in the browser
   external: icon('<path d="M14 4h6v6M20 4l-8.5 8.5M18 14v4a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4"/>'),
   eyeOff: icon('<path d="M3 12s3.2-6 9-6c1.6 0 3 .4 4.2 1M21 12s-3.2 6-9 6c-1.6 0-3-.4-4.2-1"/><path d="M9.9 14.1a3 3 0 0 1 4.2-4.2M4 4l16 16"/>'),
+  // a painter's palette: the quick colour swap
+  palette: icon('<path d="M12 3.4a8.6 8.6 0 1 0 0 17.2c1.3 0 2.1-.9 2.1-1.9 0-.5-.2-.9-.5-1.3-.3-.4-.5-.8-.5-1.2 0-1 .9-1.8 1.9-1.8h1.7c2.3 0 4.2-1.9 4.2-4.2 0-3.9-3.9-6.8-8.9-6.8z"/><circle cx="8.3" cy="9.3" r="1"/><circle cx="11.8" cy="7" r="1"/><circle cx="15.5" cy="8.8" r="1"/>'),
   // three steps up: the pet standing on the desktop's icons
   steps: icon('<path d="M3.5 19h5v-4h5v-4h5V7"/>'),
   // how much the pet walks on its own, as a gauge: low, middle, high

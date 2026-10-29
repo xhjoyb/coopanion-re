@@ -421,19 +421,16 @@ function applyPrefs(p) {
   if (typeof p.scale === 'number') { prefs.scale = p.scale; ctl.resize(); }
   if (typeof p.user === 'string') prefs.user = p.user;
   if (typeof p.micDevice === 'string' && p.micDevice !== prefs.micDevice) { prefs.micDevice = p.micDevice; stopMic(); }
-  if (typeof p.count === 'number' && !countSeenFromServer) {
+  if (typeof p.count === 'number') {
+    /* 服务端配置是唯一真相：控制台「桌宠数量」改完要立刻生效。
+     * 原厂这里在本地没有记录时把数量强制改回 1，还 send petCount:1 回写服务端，
+     * 导致「桌宠数量」配 2 只永远只出 1 只。 */
+    const want = Math.max(1, Math.min(MAX_PETS, Math.round(p.count) || 1));
     countSeenFromServer = true;
-    let hasLocal = false;
-    try { hasLocal = Number(localStorage.getItem(PET_COUNT_KEY)) > 0; } catch (e) {}
-    if (!hasLocal) {
-      // 出厂默认只有第 1 只：**忽略**服务端/旧版本留下的 2 只
-      try { localStorage.removeItem(PET_COUNT_KEY_OLD); } catch (e) {}
-      prefs.count = 1;
-      world.ensure(1);
-      applySkins();
-      try { localStorage.setItem(PET_COUNT_KEY, '1'); } catch (e) {}
-      try { send({ t: 'petCount', count: 1 }); } catch (e) {}   // 世界的配置也改回 1
-    }
+    prefs.count = want;
+    world.ensure(want);
+    applySkins();
+    try { localStorage.setItem(PET_COUNT_KEY, String(want)); } catch (e) {}
   }
   if (typeof p.mic === 'boolean') { prefs.mic = p.mic; p.mic && !watching ? startMic() : stopMic(); }
   if (p.voice && typeof p.voice === 'object') prefs.voice = { ...prefs.voice, ...p.voice };
