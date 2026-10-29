@@ -25,7 +25,7 @@ public class PetWindowService_PetHostBridge {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public float getAlpha() {
@@ -36,14 +36,14 @@ public class PetWindowService_PetHostBridge {
         r0_1 = PetWindowService._$$Nest$fgetpetAlpha(r0);
         return r0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void grabFocus() {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void hide() {
@@ -58,7 +58,7 @@ public class PetWindowService_PetHostBridge {
         r0_1.post(r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public boolean openApp(java.lang.String p1) {
@@ -80,12 +80,12 @@ public class PetWindowService_PetHostBridge {
                         } catch (Throwable _e) {
                                 p1_1 = _e;
                                 _pc = 15;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void openDress() {
@@ -101,14 +101,14 @@ public class PetWindowService_PetHostBridge {
         r1.post(r2_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void releaseFocus() {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void setAlpha(float p1) {
@@ -149,7 +149,7 @@ public class PetWindowService_PetHostBridge {
         r0_4.post(r1_4);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void setInteractive(boolean p1) {
@@ -169,7 +169,7 @@ public class PetWindowService_PetHostBridge {
         android.util.Log.i(r0_2, p1_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

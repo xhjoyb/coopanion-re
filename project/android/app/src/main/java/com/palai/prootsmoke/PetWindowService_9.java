@@ -34,21 +34,21 @@ public class PetWindowService_9 implements android.text.TextWatcher {
         p1.clear();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void beforeTextChanged(java.lang.CharSequence p1, int p2, int p3, int p4) {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onTextChanged(java.lang.CharSequence p1, int p2, int p3, int p4) {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

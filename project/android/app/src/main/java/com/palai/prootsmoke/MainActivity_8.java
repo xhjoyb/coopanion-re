@@ -26,7 +26,7 @@ public class MainActivity_8 implements android.view.View.OnClickListener {
         MainActivity._$$Nest$mopenSenseSettings(p1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

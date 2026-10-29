@@ -41,7 +41,7 @@ public class PetWindowService_PetHostBridge_3 implements java.lang.Runnable {
         r1_3.startActivity(r0);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

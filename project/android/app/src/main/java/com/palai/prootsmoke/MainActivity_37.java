@@ -28,7 +28,7 @@ public class MainActivity_37 implements java.lang.Runnable {
         r0.show();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -30,7 +30,7 @@ public final class SenseBridge__ExternalSyntheticLambda1 implements java.lang.Ru
         SenseBridge.$r8$lambda$CN_0ZWdmF93s_ZMCumFomHqzwGM(r0, r1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

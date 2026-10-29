@@ -13,7 +13,7 @@ public class NotifListenerService extends android.service.notification.Notificat
     static {
         try {
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public NotifListenerService() {
@@ -38,7 +38,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         }
         return p1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean isConnected() {
@@ -47,7 +47,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         r0 = NotifListenerService.connected;
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean isEnabled(android.content.Context p0) {
@@ -76,7 +76,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         p0_4 = 0;
         return (p0_4 != 0);
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onListenerConnected() {
@@ -86,7 +86,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         NotifListenerService.connected = (r0 != 0);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onListenerDisconnected() {
@@ -96,7 +96,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         NotifListenerService.connected = r0;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onNotificationPosted(android.service.notification.StatusBarNotification p1) {
@@ -179,7 +179,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -49,7 +49,7 @@ public class MainActivity_38 implements java.lang.Runnable {
         r0_3.post(r1_4);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

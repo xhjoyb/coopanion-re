@@ -38,7 +38,7 @@ public class MainActivity_29 implements android.content.DialogInterface.OnClickL
         }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

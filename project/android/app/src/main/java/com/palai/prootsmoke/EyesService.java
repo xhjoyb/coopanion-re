@@ -116,12 +116,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 r2_2 = _e;
                                 _pc = 2;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void access$000(EyesService p0) {
@@ -129,7 +129,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         p0.acceptLoop();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void access$100(EyesService p0, java.net.Socket p1) {
@@ -137,7 +137,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         p0.handle(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static EyesService access$300() {
@@ -146,7 +146,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         r0 = EyesService.instance;
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int access$402(EyesService p0, int p1) {
@@ -154,7 +154,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         ((EyesService) p0).lastWidth = p1;
         return p1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int access$502(EyesService p0, int p1) {
@@ -162,7 +162,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         ((EyesService) p0).lastHeight = p1;
         return p1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public byte[] captureOnce(int p1, int p2) {
@@ -381,12 +381,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 r2_6 = _e;
                                 _pc = 9;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.lang.String escape(java.lang.String p0) {
@@ -403,11 +403,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     return p0;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void handle(java.net.Socket p1) {
@@ -438,12 +438,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 r0_1 = _e;
                                 _pc = 13;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public java.lang.String healthJson() {
@@ -548,12 +548,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 r0_2 = _e;
                                 _pc = 9;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public java.lang.String helpJson() {
@@ -563,7 +563,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         r0 = "{\"ok\":true,\"service\":\"coopanion-eyes\",\"routes\":[\"/health\",\"/screen.jpg?max=720&q=62\",\"/ui\",\"/open_settings\"]}";
         return r0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int imeHeight() {
@@ -582,7 +582,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
         return r1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int imeHeightOf(EyesService p0) {
@@ -612,12 +612,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 r8 = _e;
                                 _pc = 4;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int imeHeightSmart() {
@@ -632,7 +632,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         r0_1 = EyesService.imeHeightOf(r0);
         return r0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.util.Set imePackages(EyesService p0) {
@@ -705,12 +705,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 p0_5 = _e;
                                 _pc = 6;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean imeVisible() {
@@ -732,12 +732,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 r2 = _e;
                                 _pc = 4;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int intParam(java.lang.String p0, java.lang.String p1, int p2) {
@@ -797,12 +797,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 p0_3 = _e;
                                 _pc = 2;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean isRunning() {
@@ -831,11 +831,11 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     return (r0_2 != 0);
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public byte[] jpeg(int p1, int p2) {
@@ -867,12 +867,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 p1_2 = _e;
                                 _pc = 3;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void notifyIme(int p0) {
@@ -952,12 +952,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 r2_5 = _e;
                                 _pc = 0;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static EyesService peek() {
@@ -966,7 +966,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         r0 = EyesService.instance;
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.lang.String safe(java.lang.CharSequence p0) {
@@ -980,7 +980,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
         return p0_2;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void sendJson(java.net.Socket p1, int p2, java.lang.String p3) {
@@ -1144,12 +1144,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 p2_4 = _e;
                                 _pc = 4;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void setImeListener(EyesService_ImeListener p0) {
@@ -1245,7 +1245,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         }
         return p0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public java.lang.String uiJson() {
@@ -1317,12 +1317,12 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                         } catch (Throwable _e) {
                                 r0_2 = _e;
                                 _pc = 3;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onAccessibilityEvent(android.view.accessibility.AccessibilityEvent p1) {
@@ -1356,14 +1356,14 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         super.onDestroy();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onInterrupt() {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     protected void onServiceConnected() {
@@ -1373,7 +1373,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         this.startServer();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public boolean onUnbind(android.content.Intent p1) {
@@ -1386,7 +1386,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         p1_1 = super.onUnbind(p1);
         return p1_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

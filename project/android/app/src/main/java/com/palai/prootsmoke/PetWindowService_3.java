@@ -68,7 +68,7 @@ public class PetWindowService_3 implements java.lang.Runnable {
         r0_5.run();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

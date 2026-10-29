@@ -24,7 +24,7 @@ public final class AppLog {
         r0 = new java.text.SimpleDateFormat(r1_1, r2);
         AppLog.FMT = r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public AppLog() {
@@ -42,7 +42,7 @@ public final class AppLog {
         AppLog.write(r0_1, p0);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void i(java.lang.String p0) {
@@ -55,7 +55,7 @@ public final class AppLog {
         AppLog.write(r0_1, p0);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void init(android.content.Context p0) {
@@ -75,7 +75,7 @@ public final class AppLog {
         AppLog.LOG_FILE = p0_1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void write(java.lang.String p0, java.lang.String p1) {
@@ -124,7 +124,7 @@ public final class AppLog {
         try { p1_2.close(); } catch (java.lang.Throwable _ce0) { }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -36,7 +36,7 @@ public class MainActivity_5 implements android.view.View.OnClickListener {
         MainActivity._$$Nest$mloadPetWithRetry(p1_1, r0);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

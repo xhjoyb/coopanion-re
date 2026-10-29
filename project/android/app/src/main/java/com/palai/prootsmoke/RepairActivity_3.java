@@ -40,7 +40,7 @@ public class RepairActivity_3 extends android.webkit.WebViewClient {
         RepairActivity._$$Nest$mstartImeWatchdog(p2_3, p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

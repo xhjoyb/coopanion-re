@@ -26,7 +26,7 @@ public class MainActivity_14 implements java.lang.Runnable {
         MainActivity._$$Nest$mshowGuide(r0, r1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

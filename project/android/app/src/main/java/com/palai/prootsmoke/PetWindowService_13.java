@@ -35,7 +35,7 @@ public class PetWindowService_13 implements java.lang.Runnable {
         r0.evaluateJavascript(r1_1, r2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

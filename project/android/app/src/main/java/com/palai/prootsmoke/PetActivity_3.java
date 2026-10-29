@@ -26,7 +26,7 @@ public class PetActivity_3 implements android.view.View.OnClickListener {
         p1_1.finish();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -80,7 +80,7 @@ public class PetWindowService_PetHostBridge_1 implements java.lang.Runnable {
         android.util.Log.i(r1_6, r0_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

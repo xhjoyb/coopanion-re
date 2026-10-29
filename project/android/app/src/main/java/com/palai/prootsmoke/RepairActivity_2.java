@@ -31,7 +31,7 @@ public class RepairActivity_2 implements android.view.View.OnTouchListener {
         p1 = null;
         return p1_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -23,7 +23,7 @@ public class MainActivity_20_1 implements android.webkit.ValueCallback {
         this.onReceiveValue(p1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onReceiveValue(java.lang.String p1) {
@@ -117,7 +117,7 @@ public class MainActivity_20_1 implements android.webkit.ValueCallback {
         }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

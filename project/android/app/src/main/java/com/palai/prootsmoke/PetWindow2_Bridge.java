@@ -27,7 +27,7 @@ public final class PetWindow2_Bridge {
         android.util.Log.i(r0_2, p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void rect(float p1, float p2, float p3, float p4) {
@@ -43,7 +43,7 @@ public final class PetWindow2_Bridge {
         PetWindow2.access$602(p1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -43,7 +43,7 @@ public final class SenseBridge {
         p0.lambda$loop$0(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void $r8$lambda$IUo89o2fw9stkETEq7IynT6S0sk(SenseBridge p0) {
@@ -51,7 +51,7 @@ public final class SenseBridge {
         p0.loop();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public java.lang.String appLabel(java.lang.String p1) {
@@ -73,7 +73,7 @@ public final class SenseBridge {
         }
         return p1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public org.json.JSONObject currentAppJson() {
@@ -111,7 +111,7 @@ public final class SenseBridge {
         r0.put(r1, r2_2);
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public java.lang.String foregroundPackage() {
@@ -180,11 +180,11 @@ public final class SenseBridge {
                     return r0;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static SenseBridge get(android.content.Context p0) {
@@ -234,12 +234,12 @@ public final class SenseBridge {
                         } catch (Throwable _e) {
                                 r0_1 = _e;
                                 _pc = 14;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public boolean hasUsageAccess() {
@@ -271,7 +271,7 @@ public final class SenseBridge {
         }
         return (r0 != 0);
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public java.lang.String healthJson() {
@@ -307,7 +307,7 @@ public final class SenseBridge {
         r0_2 = r1_2.toString();
         return r0_2;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public boolean isAccessibilityOn() {
@@ -336,7 +336,7 @@ public final class SenseBridge {
         }
         return (r0 != 0);
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void lambda$loop$0(java.net.Socket p1) {
@@ -344,7 +344,7 @@ public final class SenseBridge {
         this.handle(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void loop() {
@@ -396,11 +396,11 @@ public final class SenseBridge {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public java.lang.String notificationsJson(long p1) {
@@ -458,12 +458,12 @@ public final class SenseBridge {
                         } catch (Throwable _e) {
                                 p1_3 = _e;
                                 _pc = 2;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public java.lang.String nowIso() {
@@ -481,7 +481,7 @@ public final class SenseBridge {
         r0_1 = r0.format(r1_2);
         return r0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static SenseBridge peek() {
@@ -490,7 +490,7 @@ public final class SenseBridge {
         r0 = SenseBridge.instance;
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public org.json.JSONObject powerJson() {
@@ -568,11 +568,11 @@ public final class SenseBridge {
                     return r0;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public org.json.JSONObject screenJson() {
@@ -640,11 +640,11 @@ public final class SenseBridge {
                     return r0;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public java.lang.String stateJson() {
@@ -668,7 +668,7 @@ public final class SenseBridge {
         r0_1 = r0.toString();
         return r0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void addNotification(java.lang.String p1, java.lang.String p2, java.lang.String p3, java.lang.String p4, long p5) {
@@ -766,12 +766,12 @@ public final class SenseBridge {
                         } catch (Throwable _e) {
                                 p1_5 = _e;
                                 _pc = 6;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void start() {
@@ -799,7 +799,7 @@ public final class SenseBridge {
         r0_2.start();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void stop() {
@@ -816,7 +816,7 @@ public final class SenseBridge {
         ((SenseBridge) this).server = r0_1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

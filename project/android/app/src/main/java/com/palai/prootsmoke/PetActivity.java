@@ -28,7 +28,7 @@ public class PetActivity extends android.app.Activity {
         p0_1 = ((PetActivity) p0).filePathCallback;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$fputfilePathCallback(PetActivity p0, android.webkit.ValueCallback p1) {
@@ -36,7 +36,7 @@ public class PetActivity extends android.app.Activity {
         ((PetActivity) p0).filePathCallback = p1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     protected void onActivityResult(int p1, int p2, android.content.Intent p3) {
@@ -111,11 +111,11 @@ public class PetActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onBackPressed() {
@@ -123,7 +123,7 @@ public class PetActivity extends android.app.Activity {
         this.finish();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     protected void onCreate(android.os.Bundle p1) {
@@ -318,11 +318,11 @@ public class PetActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     protected void onDestroy() {
@@ -342,7 +342,7 @@ public class PetActivity extends android.app.Activity {
         super.onDestroy();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

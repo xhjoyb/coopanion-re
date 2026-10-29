@@ -31,7 +31,7 @@ public class PetWindowService_8_1 implements PetWindowService_ImeCommitConnectio
         r0_2.setText(r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onCommit(java.lang.String p1) {
@@ -43,7 +43,7 @@ public class PetWindowService_8_1 implements PetWindowService_ImeCommitConnectio
         PetWindowService._$$Nest$mpushTextToPage(r0_1, p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onDelete() {
@@ -58,7 +58,7 @@ public class PetWindowService_8_1 implements PetWindowService_ImeCommitConnectio
         PetWindowService._$$Nest$mpushKeyToPage(r0_1, r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

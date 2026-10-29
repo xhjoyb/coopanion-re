@@ -22,7 +22,7 @@ public final class EyesService_Api30 {
         p0_1 = EyesService_Api30.encode(p0, p1, p2);
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void capture(android.accessibilityservice.AccessibilityService p0, java.util.concurrent.ExecutorService p1, int p2, int p3, java.util.concurrent.atomic.AtomicReference p4, java.util.concurrent.atomic.AtomicReference p5, java.util.concurrent.CountDownLatch p6) {
@@ -47,7 +47,7 @@ public final class EyesService_Api30 {
         p0.takeScreenshot(p2, p1_1, r6_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static byte[] encode(android.accessibilityservice.AccessibilityService.ScreenshotResult p0, int p1, int p2) {

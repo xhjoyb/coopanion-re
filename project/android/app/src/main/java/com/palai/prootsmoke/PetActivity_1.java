@@ -93,12 +93,12 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                         } catch (Throwable _e) {
                                 p1_4 = _e;
                                 _pc = 4;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public boolean onShowFileChooser(android.webkit.WebView p1, android.webkit.ValueCallback p2, android.webkit.WebChromeClient.FileChooserParams p3) {

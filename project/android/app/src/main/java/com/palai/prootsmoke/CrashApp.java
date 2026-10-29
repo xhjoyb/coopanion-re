@@ -17,7 +17,7 @@ public class CrashApp extends android.app.Application {
         p0.dump(p1, p2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void dump(java.lang.Thread p1, java.lang.Throwable p2) {
@@ -129,11 +129,11 @@ public class CrashApp extends android.app.Application {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onCreate() {
@@ -148,7 +148,7 @@ public class CrashApp extends android.app.Application {
         android.os.Looper.getMainLooper();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

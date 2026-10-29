@@ -53,7 +53,7 @@ public class MainActivity_20_1_2 implements java.lang.Runnable {
         r1.loadDataWithBaseURL(r2_1, r3_1, r4_1, r5_1, r6_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -26,7 +26,7 @@ public class MainActivity_36 implements android.content.DialogInterface.OnClickL
         MainActivity._$$Nest$mrequestOverlay(p1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

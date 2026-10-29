@@ -41,7 +41,7 @@ public class MainActivity extends android.app.Activity {
         r0 = new java.util.concurrent.atomic.AtomicBoolean(r1);
         MainActivity.petWinOn = r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public MainActivity() {
@@ -64,7 +64,7 @@ public class MainActivity extends android.app.Activity {
         p0_1 = ((MainActivity) p0).logScroll;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.widget.LinearLayout _$$Nest$fgetroot(MainActivity p0) {
@@ -73,7 +73,7 @@ public class MainActivity extends android.app.Activity {
         p0_1 = ((MainActivity) p0).root;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.widget.TextView _$$Nest$fgetstatusTv(MainActivity p0) {
@@ -82,7 +82,7 @@ public class MainActivity extends android.app.Activity {
         p0_1 = ((MainActivity) p0).statusTv;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.widget.TextView _$$Nest$fgettv(MainActivity p0) {
@@ -91,7 +91,7 @@ public class MainActivity extends android.app.Activity {
         p0_1 = ((MainActivity) p0).tv;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.webkit.WebView _$$Nest$fgetweb(MainActivity p0) {
@@ -100,7 +100,7 @@ public class MainActivity extends android.app.Activity {
         p0_1 = ((MainActivity) p0).web;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$fputpetRetry(MainActivity p0, int p1) {
@@ -108,7 +108,7 @@ public class MainActivity extends android.app.Activity {
         ((MainActivity) p0).petRetry = p1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mboot(MainActivity p0) {
@@ -116,7 +116,7 @@ public class MainActivity extends android.app.Activity {
         p0.boot();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean _$$Nest$mcanDrawOverlays(MainActivity p0) {
@@ -125,7 +125,7 @@ public class MainActivity extends android.app.Activity {
         p0_1 = p0.canDrawOverlays();
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mloadPetWithRetry(MainActivity p0, int p1) {
@@ -133,7 +133,7 @@ public class MainActivity extends android.app.Activity {
         p0.loadPetWithRetry(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mlog(MainActivity p0, java.lang.String p1) {
@@ -141,7 +141,7 @@ public class MainActivity extends android.app.Activity {
         p0.log(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mopenSenseSettings(MainActivity p0) {
@@ -149,7 +149,7 @@ public class MainActivity extends android.app.Activity {
         p0.openSenseSettings();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mpushAlphaToService(MainActivity p0, float p1) {
@@ -157,7 +157,7 @@ public class MainActivity extends android.app.Activity {
         p0.pushAlphaToService(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mrequestOverlay(MainActivity p0) {
@@ -165,7 +165,7 @@ public class MainActivity extends android.app.Activity {
         p0.requestOverlay();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mshowAlphaDialog(MainActivity p0) {
@@ -173,7 +173,7 @@ public class MainActivity extends android.app.Activity {
         p0.showAlphaDialog();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mshowGuide(MainActivity p0, int p1) {
@@ -181,7 +181,7 @@ public class MainActivity extends android.app.Activity {
         p0.showGuide(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mstartPetWindow(MainActivity p0) {
@@ -189,7 +189,7 @@ public class MainActivity extends android.app.Activity {
         p0.startPetWindow();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mstartPetWindowWhenReady(MainActivity p0) {
@@ -197,7 +197,7 @@ public class MainActivity extends android.app.Activity {
         p0.startPetWindowWhenReady();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mtogglePetWindow(MainActivity p0) {
@@ -205,7 +205,7 @@ public class MainActivity extends android.app.Activity {
         p0.togglePetWindow();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.util.concurrent.atomic.AtomicBoolean _$$Nest$sfgetpetWinOn() {
@@ -214,7 +214,7 @@ public class MainActivity extends android.app.Activity {
         r0 = MainActivity.petWinOn;
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean _$$Nest$smwaitPortOpen(java.lang.String p0, int p1, int p2) {
@@ -223,7 +223,7 @@ public class MainActivity extends android.app.Activity {
         p0_1 = MainActivity.waitPortOpen(p0, p1, p2);
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void askMicOnce() {
@@ -266,7 +266,7 @@ public class MainActivity extends android.app.Activity {
         this.requestPermissions(r0_3, r1_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void boot() {
@@ -298,7 +298,7 @@ public class MainActivity extends android.app.Activity {
         r0 = android.provider.Settings.canDrawOverlays(this);
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void copyN(java.io.InputStream p0, java.io.OutputStream p1, long p2) {
@@ -340,11 +340,11 @@ public class MainActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.lang.String cstr(byte[] p0, int p1, int p2) {
@@ -379,11 +379,11 @@ public class MainActivity extends android.app.Activity {
                     return p2_1;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void deleteRec(java.io.File p1) {
@@ -428,11 +428,11 @@ public class MainActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void doBoot() {
@@ -1021,12 +1021,12 @@ public class MainActivity extends android.app.Activity {
                         } catch (Throwable _e) {
                                 r0_7 = _e;
                                 _pc = 28;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void extractTarGz(java.io.InputStream p1, java.io.File p2) {
@@ -1447,11 +1447,11 @@ public class MainActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void fixPerms(java.io.File p1) {
@@ -1519,11 +1519,11 @@ public class MainActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void loadPetWithRetry(int p1) {
@@ -1563,7 +1563,7 @@ public class MainActivity extends android.app.Activity {
         r0_5.postDelayed(r1_5, r2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void log(java.lang.String p1) {
@@ -1605,7 +1605,7 @@ public class MainActivity extends android.app.Activity {
         this.runOnUiThread(r0_5);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void openSenseSettings() {
@@ -1676,7 +1676,7 @@ public class MainActivity extends android.app.Activity {
         this.runOnUiThread(r0_9);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static long parseOct(byte[] p0, int p1, int p2) {
@@ -1730,11 +1730,11 @@ public class MainActivity extends android.app.Activity {
                     return r0;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void pushAlphaToService(float p1) {
@@ -1766,7 +1766,7 @@ public class MainActivity extends android.app.Activity {
         this.startService(r0_4);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int readFull(java.io.InputStream p0, byte[] p1, int p2) {
@@ -1797,11 +1797,11 @@ public class MainActivity extends android.app.Activity {
                     return r0;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void requestOverlay() {
@@ -1880,7 +1880,7 @@ public class MainActivity extends android.app.Activity {
         r4_2[r1] = r3_5;
         return r4_4;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void setStatus(java.lang.String p1) {
@@ -1891,7 +1891,7 @@ public class MainActivity extends android.app.Activity {
         this.runOnUiThread(r0_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void showAlphaDialog() {
@@ -1986,7 +1986,7 @@ public class MainActivity extends android.app.Activity {
         r0_4.show();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void showGuide(int p1) {
@@ -2119,11 +2119,11 @@ public class MainActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void skipExactly(java.io.InputStream p0, long p1) {
@@ -2166,11 +2166,11 @@ public class MainActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void skipPad(java.io.InputStream p0, long p1) {
@@ -2208,11 +2208,11 @@ public class MainActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void startPetWindow() {
@@ -2277,14 +2277,14 @@ public class MainActivity extends android.app.Activity {
         r0.start();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void syncPetSw(boolean p1) {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void togglePetWindow() {
@@ -2354,7 +2354,7 @@ public class MainActivity extends android.app.Activity {
         this_1.startPetWindow();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean waitPortOpen(java.lang.String p0, int p1, int p2) {
@@ -2384,7 +2384,7 @@ public class MainActivity extends android.app.Activity {
         p0_1 = 0;
         return (p0_1 != 0);
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     protected void onActivityResult(int p1, int p2, android.content.Intent p3) {
@@ -2404,7 +2404,7 @@ public class MainActivity extends android.app.Activity {
         }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     protected void onCreate(android.os.Bundle p1) {
@@ -2704,12 +2704,12 @@ public class MainActivity extends android.app.Activity {
                         } catch (Throwable _e) {
                                 r0_17 = _e;
                                 _pc = 2;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onRequestPermissionsResult(int p1, java.lang.String[] p2, int[] p3) {
@@ -2741,7 +2741,7 @@ public class MainActivity extends android.app.Activity {
         }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

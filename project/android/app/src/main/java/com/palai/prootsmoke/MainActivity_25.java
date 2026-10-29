@@ -27,7 +27,7 @@ public class MainActivity_25 implements android.content.DialogInterface.OnClickL
         MainActivity._$$Nest$mshowGuide(p1_1, p2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

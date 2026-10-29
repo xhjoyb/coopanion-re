@@ -40,7 +40,7 @@ public class PetWindowService_4 extends android.webkit.WebViewClient {
         p1_4.postDelayed(p2_2, r0);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

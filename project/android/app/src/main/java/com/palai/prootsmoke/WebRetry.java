@@ -27,7 +27,7 @@ public final class WebRetry {
         r0_2 = 0L;
         WebRetry.lastAt = r0_2;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public WebRetry() {
@@ -107,7 +107,7 @@ public final class WebRetry {
         r0_4.postDelayed(r1_5, p0_3);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void ok() {
@@ -117,7 +117,7 @@ public final class WebRetry {
         WebRetry.tries = r0;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

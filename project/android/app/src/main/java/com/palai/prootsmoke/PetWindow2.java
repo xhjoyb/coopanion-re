@@ -51,7 +51,7 @@ public final class PetWindow2 {
         r0_3 = new PetWindow2_1();
         PetWindow2.tick = r0_4;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public PetWindow2() {
@@ -64,7 +64,7 @@ public final class PetWindow2 {
         PetWindow2.sync();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.os.Handler access$100() {
@@ -73,7 +73,7 @@ public final class PetWindow2 {
         r0 = PetWindow2.ui;
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean access$200(android.view.MotionEvent p0) {
@@ -82,7 +82,7 @@ public final class PetWindow2 {
         p0_1 = PetWindow2.forward(p0);
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int access$302(int p0) {
@@ -90,7 +90,7 @@ public final class PetWindow2 {
         PetWindow2.petL = p0;
         return p0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int access$402(int p0) {
@@ -98,7 +98,7 @@ public final class PetWindow2 {
         PetWindow2.petT = p0;
         return p0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int access$502(int p0) {
@@ -106,7 +106,7 @@ public final class PetWindow2 {
         PetWindow2.petR = p0;
         return p0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static int access$602(int p0) {
@@ -114,7 +114,7 @@ public final class PetWindow2 {
         PetWindow2.petB = p0;
         return p0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void build(android.content.Context p0) {
@@ -234,7 +234,7 @@ public final class PetWindow2 {
         android.util.Log.i(p0_5, r0_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean forward(android.view.MotionEvent p0) {
@@ -363,12 +363,12 @@ public final class PetWindow2 {
                         } catch (Throwable _e) {
                                 r0_4 = _e;
                                 _pc = 1;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void sync() {
@@ -467,12 +467,12 @@ public final class PetWindow2 {
                         } catch (Throwable _e) {
                                 r2_7 = _e;
                                 _pc = 3;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

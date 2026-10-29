@@ -19,7 +19,7 @@ public class PetWindow2_3 extends android.view.View {
         p1_1 = PetWindow2.access$200(p1);
         return p1_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

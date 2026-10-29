@@ -39,7 +39,7 @@ public class PetActivity_2 extends android.webkit.WebViewClient {
         p1.evaluateJavascript(r0_2, p2_3);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

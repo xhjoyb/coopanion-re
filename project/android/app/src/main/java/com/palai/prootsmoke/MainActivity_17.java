@@ -44,7 +44,7 @@ public class MainActivity_17 implements java.lang.Runnable {
         r0_2.runOnUiThread(r1_4);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

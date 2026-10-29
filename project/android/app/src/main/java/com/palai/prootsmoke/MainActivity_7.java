@@ -39,7 +39,7 @@ public class MainActivity_7 implements android.view.View.OnClickListener {
         MainActivity._$$Nest$mlog(p1_1, r0_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -31,7 +31,7 @@ public class PetWindowService_14 implements java.lang.Runnable {
         r0_1.postDelayed(this_1, r1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

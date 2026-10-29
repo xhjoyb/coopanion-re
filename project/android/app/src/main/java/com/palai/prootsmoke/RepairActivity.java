@@ -32,7 +32,7 @@ public class RepairActivity extends android.app.Activity {
         p0_1 = ((RepairActivity) p0).filePathCallback;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.os.Handler _$$Nest$fgetimeHandler(RepairActivity p0) {
@@ -41,7 +41,7 @@ public class RepairActivity extends android.app.Activity {
         p0_1 = ((RepairActivity) p0).imeHandler;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean _$$Nest$fgetimeShown(RepairActivity p0) {
@@ -50,7 +50,7 @@ public class RepairActivity extends android.app.Activity {
         p0_1 = ((RepairActivity) p0).imeShown;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$fputfilePathCallback(RepairActivity p0, android.webkit.ValueCallback p1) {
@@ -58,7 +58,7 @@ public class RepairActivity extends android.app.Activity {
         ((RepairActivity) p0).filePathCallback = p1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$fputimeShown(RepairActivity p0, boolean p1) {
@@ -66,7 +66,7 @@ public class RepairActivity extends android.app.Activity {
         ((RepairActivity) p0).imeShown = p1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mshowImeNow(RepairActivity p0) {
@@ -74,7 +74,7 @@ public class RepairActivity extends android.app.Activity {
         p0.showImeNow();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mstartImeWatchdog(RepairActivity p0, android.webkit.WebView p1) {
@@ -82,7 +82,7 @@ public class RepairActivity extends android.app.Activity {
         p0.startImeWatchdog(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void showImeNow() {
@@ -143,7 +143,7 @@ public class RepairActivity extends android.app.Activity {
         p1_1.postDelayed(r0_2, r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     protected void onActivityResult(int p1, int p2, android.content.Intent p3) {
@@ -243,11 +243,11 @@ public class RepairActivity extends android.app.Activity {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     protected void onCreate(android.os.Bundle p1) {
@@ -361,7 +361,7 @@ public class RepairActivity extends android.app.Activity {
         AppLog.i(p1_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     protected void onDestroy() {
@@ -388,7 +388,7 @@ public class RepairActivity extends android.app.Activity {
         super.onDestroy();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

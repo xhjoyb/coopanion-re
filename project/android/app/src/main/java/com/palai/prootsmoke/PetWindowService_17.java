@@ -62,7 +62,7 @@ public class PetWindowService_17 implements java.lang.Runnable {
         r0_2.updateViewLayout(r1_3, r2_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

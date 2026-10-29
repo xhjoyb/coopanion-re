@@ -24,7 +24,7 @@ public class PetKeyboardGuard_2 implements EyesService_ImeListener {
         PetKeyboardGuard.access$200(r0, p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

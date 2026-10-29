@@ -28,7 +28,7 @@ public class MainActivity_13_2 implements java.lang.Runnable {
         r0.deny();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

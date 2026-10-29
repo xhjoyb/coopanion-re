@@ -52,7 +52,7 @@ public class PetWindowService_11 implements android.view.View.OnLayoutChangeList
         }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

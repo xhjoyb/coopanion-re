@@ -30,7 +30,7 @@ public class MainActivity_2_1 implements java.lang.Runnable {
         r0_2.fullScroll(r1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

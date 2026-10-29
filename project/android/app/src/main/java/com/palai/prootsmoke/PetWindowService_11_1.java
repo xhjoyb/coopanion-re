@@ -36,7 +36,7 @@ public class PetWindowService_11_1 implements java.lang.Runnable {
         android.util.Log.i(r0_4, r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

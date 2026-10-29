@@ -29,7 +29,7 @@ public class PetWindowService_7 implements android.view.View.OnTouchListener {
         p1_2 = 1;
         return (p1_2 != 0);
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -26,7 +26,7 @@ public class PetWindowService_16_1 implements java.lang.Runnable {
         PetWindowService._$$Nest$mfocusImeAndShow(r0_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

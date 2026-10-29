@@ -54,7 +54,7 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
         p1_4.countDown();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onSuccess(android.accessibilityservice.AccessibilityService.ScreenshotResult p1) {
@@ -102,12 +102,12 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
                         } catch (Throwable _e) {
                                 p1_3 = _e;
                                 _pc = 0;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

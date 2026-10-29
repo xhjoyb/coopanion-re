@@ -63,7 +63,7 @@ public class MainActivity_19 implements java.lang.Runnable {
         r0_1.loadUrl(r1_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

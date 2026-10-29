@@ -28,7 +28,7 @@ public class MainActivity_3 implements android.view.View.OnClickListener {
         MainActivity._$$Nest$mshowGuide(p1_1, r0);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

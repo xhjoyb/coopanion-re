@@ -40,7 +40,7 @@ public class MainActivity_32 implements android.content.DialogInterface.OnClickL
         MainActivity._$$Nest$mpushAlphaToService(p1_3, ((float) r0));
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

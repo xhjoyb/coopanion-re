@@ -59,7 +59,7 @@ public class MainActivity_10 implements android.view.View.OnClickListener {
         p1_1.setText(r0_4);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -42,7 +42,7 @@ public class MainActivity_12 extends android.webkit.WebViewClient {
         MainActivity._$$Nest$mlog(r0, p1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onReceivedError(android.webkit.WebView p1, int p2, java.lang.String p3, java.lang.String p4) {
@@ -70,7 +70,7 @@ public class MainActivity_12 extends android.webkit.WebViewClient {
         MainActivity._$$Nest$mlog(p1_1, p2_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

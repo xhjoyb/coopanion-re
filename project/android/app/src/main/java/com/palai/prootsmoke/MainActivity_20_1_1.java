@@ -35,7 +35,7 @@ public class MainActivity_20_1_1 implements java.lang.Runnable {
         MainActivity._$$Nest$mloadPetWithRetry(r0_2, r1_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

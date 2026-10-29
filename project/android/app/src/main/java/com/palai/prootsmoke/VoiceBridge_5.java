@@ -35,14 +35,14 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         VoiceBridge.access$500(r0, r3_1, r1_1, r2_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onBufferReceived(byte[] p1) {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onEndOfSpeech() {
@@ -61,7 +61,7 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         VoiceBridge.access$500(r0, r3_1, r1_1, r2_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onError(int p1) {
@@ -108,18 +108,18 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onEvent(int p1, android.os.Bundle p2) {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onPartialResults(android.os.Bundle p1) {
@@ -143,7 +143,7 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onReadyForSpeech(android.os.Bundle p1) {
@@ -162,7 +162,7 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         VoiceBridge.access$500(p1_1, r2_1, r0_1, r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onResults(android.os.Bundle p1) {
@@ -180,7 +180,7 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         VoiceBridge.access$500(r0, r2_1, p1_1, r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onRmsChanged(float p1) {
@@ -200,7 +200,7 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         VoiceBridge.access$500(r0, r1_1, r2_1, p1_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

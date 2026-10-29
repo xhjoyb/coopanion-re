@@ -29,7 +29,7 @@ public class MainActivity_4 implements android.view.View.OnClickListener {
         p1_1.start();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

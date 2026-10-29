@@ -39,7 +39,7 @@ public class MainActivity_20 implements java.lang.Runnable {
         r0_1.evaluateJavascript(r2_1, r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

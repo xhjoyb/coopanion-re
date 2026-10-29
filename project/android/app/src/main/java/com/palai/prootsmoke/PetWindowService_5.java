@@ -44,7 +44,7 @@ public class PetWindowService_5 extends android.webkit.WebViewClient {
         PetWindowService._$$Nest$mstartRepaintWatchdog(p2_3, p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onPageStarted(android.webkit.WebView p1, java.lang.String p2, android.graphics.Bitmap p3) {
@@ -56,7 +56,7 @@ public class PetWindowService_5 extends android.webkit.WebViewClient {
         p1.evaluateJavascript(p2, p3_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

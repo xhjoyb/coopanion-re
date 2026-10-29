@@ -37,7 +37,7 @@ public class MainActivity_38_1 implements java.lang.Runnable {
         }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

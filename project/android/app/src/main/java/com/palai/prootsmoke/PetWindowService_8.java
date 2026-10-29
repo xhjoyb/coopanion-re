@@ -33,7 +33,7 @@ public class PetWindowService_8 extends android.widget.EditText {
         r0 = new PetWindowService_ImeCommitConnection(p1_1, r1_1);
         return r0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

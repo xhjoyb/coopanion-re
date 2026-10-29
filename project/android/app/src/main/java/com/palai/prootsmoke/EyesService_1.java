@@ -24,7 +24,7 @@ public class EyesService_1 implements java.lang.Runnable {
         EyesService.access$000(r0);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

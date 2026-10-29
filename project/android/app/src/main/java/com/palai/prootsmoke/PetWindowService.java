@@ -87,7 +87,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = ((PetWindowService) p0).imeProxy;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static long _$$Nest$fgetlastProbeLog(PetWindowService p0) {
@@ -96,7 +96,7 @@ public class PetWindowService extends android.app.Service {
         r0 = ((PetWindowService) p0).lastProbeLog;
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static float _$$Nest$fgetpetAlpha(PetWindowService p0) {
@@ -105,7 +105,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = ((PetWindowService) p0).petAlpha;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.widget.FrameLayout _$$Nest$fgetshowBox(PetWindowService p0) {
@@ -114,7 +114,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = ((PetWindowService) p0).showBox;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.view.WindowManager.LayoutParams _$$Nest$fgetshowLp(PetWindowService p0) {
@@ -123,7 +123,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = ((PetWindowService) p0).showLp;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.widget.FrameLayout _$$Nest$fgettouchBox(PetWindowService p0) {
@@ -132,7 +132,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = ((PetWindowService) p0).touchBox;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.view.WindowManager.LayoutParams _$$Nest$fgettouchLp(PetWindowService p0) {
@@ -141,7 +141,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = ((PetWindowService) p0).touchLp;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.os.Handler _$$Nest$fgetui(PetWindowService p0) {
@@ -150,7 +150,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = ((PetWindowService) p0).ui;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.webkit.WebView _$$Nest$fgetweb(PetWindowService p0) {
@@ -159,7 +159,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = ((PetWindowService) p0).web;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.view.WindowManager _$$Nest$fgetwm(PetWindowService p0) {
@@ -168,7 +168,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = ((PetWindowService) p0).wm;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$fputlastProbeLog(PetWindowService p0, long p1) {
@@ -176,7 +176,7 @@ public class PetWindowService extends android.app.Service {
         ((PetWindowService) p0).lastProbeLog = p1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$fputpetAlpha(PetWindowService p0, float p1) {
@@ -184,7 +184,7 @@ public class PetWindowService extends android.app.Service {
         ((PetWindowService) p0).petAlpha = p1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$fputpetX(PetWindowService p0, float p1) {
@@ -192,7 +192,7 @@ public class PetWindowService extends android.app.Service {
         ((PetWindowService) p0).petX = p1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$fputpetY(PetWindowService p0, float p1) {
@@ -200,7 +200,7 @@ public class PetWindowService extends android.app.Service {
         ((PetWindowService) p0).petY = p1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mapplyInputFocus(PetWindowService p0, boolean p1) {
@@ -208,7 +208,7 @@ public class PetWindowService extends android.app.Service {
         p0.applyInputFocus(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mbuildAndAttachLayers(PetWindowService p0, int p1) {
@@ -216,7 +216,7 @@ public class PetWindowService extends android.app.Service {
         p0.buildAndAttachLayers(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mdiag(PetWindowService p0, java.lang.String p1) {
@@ -224,7 +224,7 @@ public class PetWindowService extends android.app.Service {
         p0.diag(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mfocusImeAndShow(PetWindowService p0) {
@@ -232,7 +232,7 @@ public class PetWindowService extends android.app.Service {
         p0.focusImeAndShow();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean _$$Nest$mforwardToWeb(PetWindowService p0, android.view.MotionEvent p1) {
@@ -241,7 +241,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = p0.forwardToWeb(p1);
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mpushKeyToPage(PetWindowService p0, java.lang.String p1) {
@@ -249,7 +249,7 @@ public class PetWindowService extends android.app.Service {
         p0.pushKeyToPage(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mpushTextToPage(PetWindowService p0, java.lang.String p1) {
@@ -257,7 +257,7 @@ public class PetWindowService extends android.app.Service {
         p0.pushTextToPage(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mqueryPetRect(PetWindowService p0) {
@@ -265,7 +265,7 @@ public class PetWindowService extends android.app.Service {
         p0.queryPetRect();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$msizeTouchTo(PetWindowService p0, int p1, int p2, int p3, int p4) {
@@ -273,7 +273,7 @@ public class PetWindowService extends android.app.Service {
         p0.sizeTouchTo(p1, p2, p3, p4);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void _$$Nest$mstartRepaintWatchdog(PetWindowService p0, android.webkit.WebView p1) {
@@ -281,7 +281,7 @@ public class PetWindowService extends android.app.Service {
         p0.startRepaintWatchdog(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean _$$Nest$sm_isComposing(android.text.Editable p0) {
@@ -290,7 +290,7 @@ public class PetWindowService extends android.app.Service {
         p0_1 = PetWindowService._isComposing(p0);
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean _isComposing(android.text.Editable p0) {
@@ -329,11 +329,11 @@ public class PetWindowService extends android.app.Service {
                     return (p0_1 != 0);
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void applyInputFocus(boolean p1) {
@@ -385,7 +385,7 @@ public class PetWindowService extends android.app.Service {
         r0_4.post(r1_3);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void buildAndAttachLayers(int p1) {
@@ -646,12 +646,12 @@ public class PetWindowService extends android.app.Service {
                         } catch (Throwable _e) {
                                 r1_13 = _e;
                                 _pc = 2;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void diag(java.lang.String p1) {
@@ -697,7 +697,7 @@ public class PetWindowService extends android.app.Service {
         try { r1_3.close(); } catch (java.lang.Throwable _ce0) { }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void focusImeAndShow() {
@@ -746,7 +746,7 @@ public class PetWindowService extends android.app.Service {
         android.util.Log.i(r1_2, r0_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public boolean forwardToWeb(android.view.MotionEvent p1) {
@@ -769,11 +769,11 @@ public class PetWindowService extends android.app.Service {
                     return (r3 != 0);
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.lang.String jsStr(java.lang.String p0) {
@@ -859,11 +859,11 @@ public class PetWindowService extends android.app.Service {
                     return p0;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void pushKeyToPage(java.lang.String p1) {
@@ -881,7 +881,7 @@ public class PetWindowService extends android.app.Service {
         p1_1.evaluateJavascript(r0_1, r1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void pushTextToPage(java.lang.String p1) {
@@ -910,7 +910,7 @@ public class PetWindowService extends android.app.Service {
         r0.evaluateJavascript(p1, r1_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void queryPetRect() {
@@ -929,7 +929,7 @@ public class PetWindowService extends android.app.Service {
         r0.evaluateJavascript(r2_1, r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void showPetWindow() {
@@ -979,7 +979,7 @@ public class PetWindowService extends android.app.Service {
         this_1.warmUpRenderer(r1_4);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void sizeTouchTo(int p1, int p2, int p3, int p4) {
@@ -1022,7 +1022,7 @@ public class PetWindowService extends android.app.Service {
         r0_1.post(r7_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void startForegroundCompat() {
@@ -1090,7 +1090,7 @@ public class PetWindowService extends android.app.Service {
         this.startForeground(r0, r1_3);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void startRepaintWatchdog(android.webkit.WebView p1) {
@@ -1127,11 +1127,11 @@ public class PetWindowService extends android.app.Service {
                     return;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void warmUpRenderer(java.lang.Runnable p1) {
@@ -1268,12 +1268,12 @@ public class PetWindowService extends android.app.Service {
                         } catch (Throwable _e) {
                                 r0_5 = _e;
                                 _pc = 2;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public android.os.IBinder onBind(android.content.Intent p1) {
@@ -1282,7 +1282,7 @@ public class PetWindowService extends android.app.Service {
         p1 = null;
         return p1_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onCreate() {
@@ -1312,7 +1312,7 @@ public class PetWindowService extends android.app.Service {
         this.showPetWindow();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onDestroy() {
@@ -1374,7 +1374,7 @@ public class PetWindowService extends android.app.Service {
         super.onDestroy();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public int onStartCommand(android.content.Intent p1, int p2, int p3) {
@@ -1406,7 +1406,7 @@ public class PetWindowService extends android.app.Service {
         p1_2 = 1;
         return p1_2;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

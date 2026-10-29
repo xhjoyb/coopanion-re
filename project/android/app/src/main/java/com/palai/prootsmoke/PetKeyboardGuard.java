@@ -96,7 +96,7 @@ public final class PetKeyboardGuard {
         p0.evaluate();
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.os.Handler access$100(PetKeyboardGuard p0) {
@@ -105,7 +105,7 @@ public final class PetKeyboardGuard {
         p0_1 = ((PetKeyboardGuard) p0).ui;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void access$200(PetKeyboardGuard p0, int p1) {
@@ -113,7 +113,7 @@ public final class PetKeyboardGuard {
         p0.onImeFromA11y(p1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public int clampH(int p1) {
@@ -133,7 +133,7 @@ public final class PetKeyboardGuard {
         p1 = java.lang.Math.min(p1, r0);
         return p1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void evaluate() {
@@ -196,7 +196,7 @@ public final class PetKeyboardGuard {
         this.reportIme((r3_1 != 0), r0_2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.webkit.WebView findWeb(android.view.View p0) {
@@ -214,11 +214,11 @@ public final class PetKeyboardGuard {
                     return r0_1;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public int imeHeight() {
@@ -253,12 +253,12 @@ public final class PetKeyboardGuard {
                         } catch (Throwable _e) {
                                 r0_3 = _e;
                                 _pc = 2;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void install(android.content.Context p0, android.view.View p1, android.view.View p2) {
@@ -348,12 +348,12 @@ public final class PetKeyboardGuard {
                         } catch (Throwable _e) {
                                 p0_7 = _e;
                                 _pc = 5;
-                                if (++_hits > 8) { throw new RuntimeException(_e); }
-                        throw new RuntimeException(_e);
+                                if (++_hits > 8) { break; }
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onImeFromA11y(int p1) {
@@ -367,7 +367,7 @@ public final class PetKeyboardGuard {
         this.publish(p1, r0_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void publish(int p1, java.lang.String p2) {
@@ -384,7 +384,7 @@ public final class PetKeyboardGuard {
         this.reportIme(p1_1, p2);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void reportIme(boolean p1, java.lang.String p2) {
@@ -511,7 +511,7 @@ public final class PetKeyboardGuard {
         ((PetKeyboardGuard) this).web = p1_1;
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void setTouchLayer(android.view.View p0) {
@@ -540,7 +540,7 @@ public final class PetKeyboardGuard {
         android.util.Log.i(r0_2, p0_4);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

@@ -44,7 +44,7 @@ public class VoiceBridge {
         p0_1 = ((VoiceBridge) p0).web;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.speech.SpeechRecognizer access$100(VoiceBridge p0) {
@@ -53,7 +53,7 @@ public class VoiceBridge {
         p0_1 = ((VoiceBridge) p0).rec;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.speech.SpeechRecognizer access$102(VoiceBridge p0, android.speech.SpeechRecognizer p1) {
@@ -61,7 +61,7 @@ public class VoiceBridge {
         ((VoiceBridge) p0).rec = p1;
         return p1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.speech.SpeechRecognizer access$200(VoiceBridge p0) {
@@ -70,7 +70,7 @@ public class VoiceBridge {
         p0_1 = p0.build();
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean access$300(VoiceBridge p0) {
@@ -79,7 +79,7 @@ public class VoiceBridge {
         p0_1 = ((VoiceBridge) p0).wanted;
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static boolean access$302(VoiceBridge p0, boolean p1) {
@@ -87,7 +87,7 @@ public class VoiceBridge {
         ((VoiceBridge) p0).wanted = p1;
         return p1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static android.content.Intent access$400(VoiceBridge p0) {
@@ -96,7 +96,7 @@ public class VoiceBridge {
         p0_1 = p0.intent();
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static void access$500(VoiceBridge p0, java.lang.String p1, java.lang.String p2, java.lang.String p3) {
@@ -104,7 +104,7 @@ public class VoiceBridge {
         p0.deliver(p1, p2, p3);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.lang.String access$600(int p0) {
@@ -113,7 +113,7 @@ public class VoiceBridge {
         p0_1 = VoiceBridge.errName(p0);
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.lang.String access$700(android.os.Bundle p0) {
@@ -122,7 +122,7 @@ public class VoiceBridge {
         p0_1 = VoiceBridge.first(p0);
         return p0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public android.speech.SpeechRecognizer build() {
@@ -137,7 +137,7 @@ public class VoiceBridge {
         r0_1.setRecognitionListener(r1_1);
         return r0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void deliver(java.lang.String p1, java.lang.String p2, java.lang.String p3) {
@@ -185,7 +185,7 @@ public class VoiceBridge {
         p2_2.post(p3_3);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.lang.String errName(int p0) {
@@ -223,11 +223,11 @@ public class VoiceBridge {
                     return p0_2;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.lang.String first(android.os.Bundle p0) {
@@ -257,7 +257,7 @@ public class VoiceBridge {
         }
         return r0_1;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public android.content.Intent intent() {
@@ -288,7 +288,7 @@ public class VoiceBridge {
         r0.putExtra(r2_1, r1_1);
         return r0;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public static java.lang.String jsStr(java.lang.String p0) {
@@ -360,11 +360,11 @@ public class VoiceBridge {
                     return p0;
                             }
                         } catch (Throwable _e) {
-                                throw new RuntimeException(_e);
+            // [swallow] fabricated catch dropped
                             }
                     }
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public boolean available() {
@@ -390,7 +390,7 @@ public class VoiceBridge {
         r0.post(r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void start() {
@@ -403,7 +403,7 @@ public class VoiceBridge {
         r0.post(r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void stop() {
@@ -416,7 +416,7 @@ public class VoiceBridge {
         r0.post(r1_1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

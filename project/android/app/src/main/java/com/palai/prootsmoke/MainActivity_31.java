@@ -65,21 +65,21 @@ public class MainActivity_31 implements android.widget.SeekBar.OnSeekBarChangeLi
         }
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onStartTrackingTouch(android.widget.SeekBar p1) {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
     public void onStopTrackingTouch(android.widget.SeekBar p1) {
         try {
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }

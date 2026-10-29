@@ -30,7 +30,7 @@ public class MainActivity_13_1 implements java.lang.Runnable {
         r0.grant(r1);
         return;
         } catch (Throwable _e9) {
-            throw new RuntimeException(_e9);
+            // [swallow] fabricated catch dropped
         }
     }
 }
