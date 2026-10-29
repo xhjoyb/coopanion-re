@@ -1150,7 +1150,7 @@ public class PetWindowService extends android.app.Service {
                     r1_5 = 8388659;
                     ((android.view.WindowManager.LayoutParams) r7).gravity = r1_5;
                     r4_1 = new boolean[r2];
-                    r4_1[r3] = r3;
+                    r4_1[r3] = (r3 != 0);
                     r1_6 = r13_1;
                     r2_1 = this;
                     r3_1 = r4_1;
@@ -1188,9 +1188,10 @@ public class PetWindowService extends android.app.Service {
         }
     }
     public android.os.IBinder onBind(android.content.Intent p1) {
+        android.os.IBinder p1_1 = null;
         try {
         p1 = null;
-        return p1;
+        return p1_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }
@@ -1208,7 +1209,7 @@ public class PetWindowService extends android.app.Service {
         this.startForegroundCompat();
         r0 = "window";
         r0_1 = this.getSystemService(r0);
-        ((PetWindowService) this).wm = r0_1;
+        ((PetWindowService) this).wm = ((android.view.WindowManager) r0_1);
         r0_2 = new android.util.DisplayMetrics();
         r1 = ((PetWindowService) this).wm;
         r1_1 = r1.getDefaultDisplay();
@@ -1259,7 +1260,7 @@ public class PetWindowService extends android.app.Service {
             r0_4.loadUrl(r2_2);
             r0_4 = ((PetWindowService) this).web;
             r0_4.destroy();
-            ((PetWindowService) this).web = r1;
+            ((PetWindowService) this).web = ((android.webkit.WebView) r1);
         }
         r0_5 = ((PetWindowService) this).touchBox;
         if (r0_5 != null) {
@@ -1271,8 +1272,8 @@ public class PetWindowService extends android.app.Service {
             r2_3 = ((PetWindowService) this).wm;
             r2_3.removeView(r0_5);
         }
-        ((PetWindowService) this).touchBox = r1;
-        ((PetWindowService) this).showBox = r1;
+        ((PetWindowService) this).touchBox = ((android.widget.FrameLayout) r1);
+        ((PetWindowService) this).showBox = ((android.widget.FrameLayout) r1);
         super.onDestroy();
         return;
         } catch (Throwable _e9) {

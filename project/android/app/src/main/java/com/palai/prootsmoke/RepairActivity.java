@@ -351,7 +351,7 @@ public class RepairActivity extends android.app.Activity {
             r1_1.loadUrl(r2);
             r1_1 = ((RepairActivity) this).web;
             r1_1.destroy();
-            ((RepairActivity) this).web = r0;
+            ((RepairActivity) this).web = ((android.webkit.WebView) r0);
         }
         super.onDestroy();
         return;

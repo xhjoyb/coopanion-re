@@ -150,7 +150,7 @@ public final class PetWindow2 {
         try {
         r0 = "window";
         r0_1 = p0.getSystemService(r0);
-        PetWindow2.wm = r0_1;
+        PetWindow2.wm = ((android.view.WindowManager) r0_1);
         r0_2 = android.os.Build.VERSION.SDK_INT;
         r1 = 26;
         if (r0_2 < r1) {
@@ -342,7 +342,7 @@ public final class PetWindow2 {
                     case 3:
                     r0_2 = null;
                     PetWindow2.web = r0_2;
-                    PetWindow2.touch = r0_2;
+                    PetWindow2.touch = r0_3;
                     return;
                             }
                         } catch (Throwable _e) {

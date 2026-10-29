@@ -228,22 +228,23 @@ public class VoiceBridge {
         java.util.ArrayList p0_1 = null;
         java.lang.Object p0_2 = null;
         String r0 = null;
-        int r0_1 = 0;
+        java.lang.String r0_1 = null;
+        int r0_2 = 0;
         String r1 = null;
         boolean r1_1 = false;
         try {
         r0 = "";
         if (p0 == null) {
-            return r0;
+            return r0_1;
         }
         r1 = "results_recognition";
         p0_1 = p0.getStringArrayList(r1);
         if (p0_1 != null) {
             r1_1 = p0_1.isEmpty();
             if (r1_1 == false) {
-                r0_1 = 0;
-                p0_2 = p0_1.get(r0_1);
-                return p0_2;
+                r0_2 = 0;
+                p0_2 = p0_1.get(r0_2);
+                return ((java.lang.String) p0_2);
             } else {
             }
         }

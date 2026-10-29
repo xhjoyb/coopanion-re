@@ -76,9 +76,10 @@ public class PetActivity_PetHostBridge {
     }
     public java.lang.String sampleBackdrop() {
         int r0 = 0;
+        java.lang.String r0_1 = null;
         try {
         r0 = 0;
-        return r0;
+        return r0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }

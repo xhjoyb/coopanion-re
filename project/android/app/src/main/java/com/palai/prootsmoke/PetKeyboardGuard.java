@@ -200,6 +200,7 @@ public final class PetKeyboardGuard {
     }
     public static android.webkit.WebView findWeb(android.view.View p0) {
         int r0 = 0;
+        android.webkit.WebView r0_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -209,7 +210,7 @@ public final class PetKeyboardGuard {
                     case 0:
                     r0 = 0;
                     if (p0 != null) { _pc = 1; break; }
-                    return r0;
+                    return r0_1;
                             }
                         } catch (Throwable _e) {
                                 throw new RuntimeException(_e);
