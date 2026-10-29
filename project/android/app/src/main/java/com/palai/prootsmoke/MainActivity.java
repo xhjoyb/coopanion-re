@@ -66,6 +66,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.widget.LinearLayout _$$Nest$fgetroot(MainActivity p0) {
         android.widget.LinearLayout p0_1 = null;
@@ -75,6 +76,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.widget.TextView _$$Nest$fgetstatusTv(MainActivity p0) {
         android.widget.TextView p0_1 = null;
@@ -84,6 +86,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.widget.TextView _$$Nest$fgettv(MainActivity p0) {
         android.widget.TextView p0_1 = null;
@@ -93,6 +96,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.webkit.WebView _$$Nest$fgetweb(MainActivity p0) {
         android.webkit.WebView p0_1 = null;
@@ -102,6 +106,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static void _$$Nest$fputpetRetry(MainActivity p0, int p1) {
         try {
@@ -127,6 +132,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static void _$$Nest$mloadPetWithRetry(MainActivity p0, int p1) {
         try {
@@ -216,6 +222,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static boolean _$$Nest$smwaitPortOpen(java.lang.String p0, int p1, int p2) {
         boolean p0_1 = false;
@@ -225,6 +232,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public void askMicOnce() {
         String r0 = null;
@@ -300,6 +308,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static void copyN(java.io.InputStream p0, java.io.OutputStream p1, long p2) {
         int r0 = 0;
@@ -385,6 +394,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void deleteRec(java.io.File p1) {
         boolean r0 = false;
@@ -1736,6 +1746,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0L;
     }
     public void pushAlphaToService(float p1) {
         String r0 = null;
@@ -1803,6 +1814,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public void requestOverlay() {
         String r0 = null;
@@ -1882,6 +1894,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void setStatus(java.lang.String p1) {
         MainActivity_1 r0 = null;
@@ -2386,6 +2399,7 @@ public class MainActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     protected void onActivityResult(int p1, int p2, android.content.Intent p3) {
         boolean p1_1 = false;
