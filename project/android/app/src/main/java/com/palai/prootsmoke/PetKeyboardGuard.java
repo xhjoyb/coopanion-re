@@ -107,6 +107,7 @@ public final class PetKeyboardGuard {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static void access$200(PetKeyboardGuard p0, int p1) {
         try {
@@ -135,6 +136,7 @@ public final class PetKeyboardGuard {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public void evaluate() {
         boolean r0 = false;
@@ -220,6 +222,7 @@ public final class PetKeyboardGuard {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public int imeHeight() {
         String r0 = null;
@@ -260,6 +263,7 @@ public final class PetKeyboardGuard {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static void install(android.content.Context p0, android.view.View p1, android.view.View p2) {
         android.os.Handler p0_1 = null;
