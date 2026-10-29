@@ -75,6 +75,7 @@ public final class PetWindow2 {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static boolean access$200(android.view.MotionEvent p0) {
         boolean p0_1 = false;
@@ -84,6 +85,7 @@ public final class PetWindow2 {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static int access$302(int p0) {
         try {
@@ -92,6 +94,7 @@ public final class PetWindow2 {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static int access$402(int p0) {
         try {
@@ -100,6 +103,7 @@ public final class PetWindow2 {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static int access$502(int p0) {
         try {
@@ -108,6 +112,7 @@ public final class PetWindow2 {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static int access$602(int p0) {
         try {
@@ -116,6 +121,7 @@ public final class PetWindow2 {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static void build(android.content.Context p0) {
         android.view.WindowManager.LayoutParams p0_1 = null;

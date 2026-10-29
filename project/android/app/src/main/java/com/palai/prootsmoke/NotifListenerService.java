@@ -40,6 +40,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static boolean isConnected() {
         boolean r0 = false;
@@ -49,6 +50,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static boolean isEnabled(android.content.Context p0) {
         java.lang.String p0_1 = null;
@@ -78,6 +80,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public void onListenerConnected() {
         int r0 = 0;

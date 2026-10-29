@@ -30,6 +30,7 @@ public class PetActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static void _$$Nest$fputfilePathCallback(PetActivity p0, android.webkit.ValueCallback p1) {
         try {

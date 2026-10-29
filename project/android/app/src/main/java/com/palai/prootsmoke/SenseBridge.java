@@ -75,6 +75,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public org.json.JSONObject currentAppJson() {
         org.json.JSONObject r0 = null;
@@ -113,6 +114,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public java.lang.String foregroundPackage() {
         java.lang.String r0 = null;
@@ -186,6 +188,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static SenseBridge get(android.content.Context p0) {
         SenseBridge p0_1 = null;
@@ -273,6 +276,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public java.lang.String healthJson() {
         org.json.JSONObject r0 = null;
@@ -309,6 +313,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public boolean isAccessibilityOn() {
         int r0 = 0;
@@ -338,6 +343,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public void lambda$loop$0(java.net.Socket p1) {
         try {
@@ -465,6 +471,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public java.lang.String nowIso() {
         java.text.SimpleDateFormat r0 = null;
@@ -483,6 +490,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static SenseBridge peek() {
         SenseBridge r0 = null;
@@ -492,6 +500,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public org.json.JSONObject powerJson() {
         org.json.JSONObject r0 = null;
@@ -574,6 +583,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public org.json.JSONObject screenJson() {
         org.json.JSONObject r0 = null;
@@ -646,6 +656,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public java.lang.String stateJson() {
         org.json.JSONObject r0 = null;
@@ -670,6 +681,7 @@ public final class SenseBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void addNotification(java.lang.String p1, java.lang.String p2, java.lang.String p3, java.lang.String p4, long p5) {
         String p1_1 = null;

@@ -34,6 +34,7 @@ public class RepairActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.os.Handler _$$Nest$fgetimeHandler(RepairActivity p0) {
         android.os.Handler p0_1 = null;
@@ -43,6 +44,7 @@ public class RepairActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static boolean _$$Nest$fgetimeShown(RepairActivity p0) {
         boolean p0_1 = false;
@@ -52,6 +54,7 @@ public class RepairActivity extends android.app.Activity {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static void _$$Nest$fputfilePathCallback(RepairActivity p0, android.webkit.ValueCallback p1) {
         try {

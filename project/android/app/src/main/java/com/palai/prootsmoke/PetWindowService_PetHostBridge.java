@@ -38,6 +38,7 @@ public class PetWindowService_PetHostBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0f;
     }
     public void grabFocus() {
         try {
@@ -87,6 +88,7 @@ public class PetWindowService_PetHostBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public void openDress() {
         PetWindowService r0 = null;

@@ -42,5 +42,6 @@ public class PetWindowService_10 implements android.view.View.OnKeyListener {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
 }

@@ -25,6 +25,7 @@ public final class PetWindow2_HostBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0f;
     }
     public void grabFocus() {
         try {
@@ -48,6 +49,7 @@ public final class PetWindow2_HostBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public void openDress() {
         try {

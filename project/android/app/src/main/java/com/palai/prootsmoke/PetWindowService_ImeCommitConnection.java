@@ -39,6 +39,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean clearMetaKeyStates(int p1) {
         boolean p1_1 = false;
@@ -50,6 +51,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public void closeConnection() {
         android.view.inputmethod.InputConnection r0 = null;
@@ -71,6 +73,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean commitContent(android.view.inputmethod.InputContentInfo p1, int p2, android.os.Bundle p3) {
         boolean p1_1 = false;
@@ -82,6 +85,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean commitCorrection(android.view.inputmethod.CorrectionInfo p1) {
         boolean p1_1 = false;
@@ -93,6 +97,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean commitText(java.lang.CharSequence p1, int p2) {
         java.lang.Object p1_1 = null;
@@ -120,6 +125,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean deleteSurroundingText(int p1, int p2) {
         boolean p1_1 = false;
@@ -131,6 +137,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean deleteSurroundingTextInCodePoints(int p1, int p2) {
         boolean p1_1 = false;
@@ -142,6 +149,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean endBatchEdit() {
         android.view.inputmethod.InputConnection r0 = null;
@@ -153,6 +161,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean finishComposingText() {
         android.view.inputmethod.InputConnection r0 = null;
@@ -186,6 +195,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public int getCursorCapsMode(int p1) {
         android.view.inputmethod.InputConnection r0 = null;
@@ -196,6 +206,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public android.view.inputmethod.ExtractedText getExtractedText(android.view.inputmethod.ExtractedTextRequest p1, int p2) {
         android.view.inputmethod.ExtractedText p1_1 = null;
@@ -207,6 +218,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public android.os.Handler getHandler() {
         android.view.inputmethod.InputConnection r0 = null;
@@ -218,6 +230,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public java.lang.CharSequence getSelectedText(int p1) {
         java.lang.CharSequence p1_1 = null;
@@ -229,6 +242,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public java.lang.CharSequence getTextAfterCursor(int p1, int p2) {
         java.lang.CharSequence p1_1 = null;
@@ -240,6 +254,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public java.lang.CharSequence getTextBeforeCursor(int p1, int p2) {
         java.lang.CharSequence p1_1 = null;
@@ -251,6 +266,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public boolean performContextMenuAction(int p1) {
         boolean p1_1 = false;
@@ -262,6 +278,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean performEditorAction(int p1) {
         boolean p1_1 = false;
@@ -273,6 +290,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean performPrivateCommand(java.lang.String p1, android.os.Bundle p2) {
         boolean p1_1 = false;
@@ -284,6 +302,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean reportFullscreenMode(boolean p1) {
         android.view.inputmethod.InputConnection r0 = null;
@@ -294,6 +313,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean requestCursorUpdates(int p1) {
         boolean p1_1 = false;
@@ -305,6 +325,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean sendKeyEvent(android.view.KeyEvent p1) {
         boolean p1_1 = false;
@@ -330,6 +351,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean setComposingRegion(int p1, int p2) {
         android.view.inputmethod.InputConnection r0 = null;
@@ -341,6 +363,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean setComposingText(java.lang.CharSequence p1, int p2) {
         boolean p1_1 = false;
@@ -352,6 +375,7 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public boolean setSelection(int p1, int p2) {
         boolean p1_1 = false;
@@ -363,5 +387,6 @@ public class PetWindowService_ImeCommitConnection {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
 }

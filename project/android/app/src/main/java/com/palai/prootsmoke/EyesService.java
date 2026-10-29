@@ -148,6 +148,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static int access$402(EyesService p0, int p1) {
         try {
@@ -156,6 +157,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static int access$502(EyesService p0, int p1) {
         try {
@@ -164,6 +166,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public byte[] captureOnce(int p1, int p2) {
         java.util.concurrent.TimeUnit p1_1 = null;
@@ -409,6 +412,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void handle(java.net.Socket p1) {
         java.io.BufferedReader r0 = null;
@@ -555,6 +559,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public java.lang.String helpJson() {
         String r0 = null;
@@ -565,6 +570,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static int imeHeight() {
         EyesService r0 = null;
@@ -584,6 +590,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static int imeHeightOf(EyesService p0) {
         java.util.List p0_1 = null;
@@ -619,6 +626,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static int imeHeightSmart() {
         EyesService r0 = null;
@@ -634,6 +642,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static java.util.Set imePackages(EyesService p0) {
         java.lang.Object p0_1 = null;
@@ -712,6 +721,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static boolean imeVisible() {
         EyesService r0 = null;
@@ -739,6 +749,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static int intParam(java.lang.String p0, java.lang.String p1, int p2) {
         java.lang.String[] p0_1 = null;
@@ -804,6 +815,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
     public static boolean isRunning() {
         EyesService r0 = null;
@@ -837,6 +849,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public byte[] jpeg(int p1, int p2) {
         byte[] p1_1 = null;
@@ -874,6 +887,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static void notifyIme(int p0) {
         EyesService_ImeListener r0 = null;
@@ -959,6 +973,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static EyesService peek() {
         EyesService r0 = null;
@@ -968,6 +983,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static java.lang.String safe(java.lang.CharSequence p0) {
         String p0_1 = null;
@@ -982,6 +998,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void sendJson(java.net.Socket p1, int p2, java.lang.String p3) {
         java.io.OutputStream p1_1 = null;
@@ -1247,6 +1264,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public java.lang.String uiJson() {
         String r0 = null;
@@ -1324,6 +1342,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void onAccessibilityEvent(android.view.accessibility.AccessibilityEvent p1) {
         java.lang.CharSequence r0 = null;
@@ -1388,5 +1407,6 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
 }

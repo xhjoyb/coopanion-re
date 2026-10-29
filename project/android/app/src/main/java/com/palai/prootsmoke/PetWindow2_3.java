@@ -21,5 +21,6 @@ public class PetWindow2_3 extends android.view.View {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
 }

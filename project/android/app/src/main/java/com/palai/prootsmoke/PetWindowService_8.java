@@ -35,5 +35,6 @@ public class PetWindowService_8 extends android.widget.EditText {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
 }

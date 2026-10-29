@@ -42,6 +42,7 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public void onPermissionRequest(android.webkit.PermissionRequest p1) {
         java.lang.Object p1_1 = null;

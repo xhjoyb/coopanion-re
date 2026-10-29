@@ -84,6 +84,7 @@ public class PetActivity_PetHostBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void setInteractive(boolean p1) {
         try {

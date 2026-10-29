@@ -24,6 +24,7 @@ public final class EyesService_Api30 {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static void capture(android.accessibilityservice.AccessibilityService p0, java.util.concurrent.ExecutorService p1, int p2, int p3, java.util.concurrent.atomic.AtomicReference p4, java.util.concurrent.atomic.AtomicReference p5, java.util.concurrent.CountDownLatch p6) {
         java.util.concurrent.Executor p1_1 = null;

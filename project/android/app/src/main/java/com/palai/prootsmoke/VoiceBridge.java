@@ -46,6 +46,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.speech.SpeechRecognizer access$100(VoiceBridge p0) {
         android.speech.SpeechRecognizer p0_1 = null;
@@ -55,6 +56,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.speech.SpeechRecognizer access$102(VoiceBridge p0, android.speech.SpeechRecognizer p1) {
         try {
@@ -63,6 +65,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.speech.SpeechRecognizer access$200(VoiceBridge p0) {
         android.speech.SpeechRecognizer p0_1 = null;
@@ -72,6 +75,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static boolean access$300(VoiceBridge p0) {
         boolean p0_1 = false;
@@ -81,6 +85,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static boolean access$302(VoiceBridge p0, boolean p1) {
         try {
@@ -89,6 +94,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static android.content.Intent access$400(VoiceBridge p0) {
         android.content.Intent p0_1 = null;
@@ -98,6 +104,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static void access$500(VoiceBridge p0, java.lang.String p1, java.lang.String p2, java.lang.String p3) {
         try {
@@ -115,6 +122,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static java.lang.String access$700(android.os.Bundle p0) {
         java.lang.String p0_1 = null;
@@ -124,6 +132,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public android.speech.SpeechRecognizer build() {
         android.content.Context r0 = null;
@@ -139,6 +148,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void deliver(java.lang.String p1, java.lang.String p2, java.lang.String p3) {
         java.lang.StringBuilder p1_1 = null;
@@ -229,6 +239,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static java.lang.String first(android.os.Bundle p0) {
         java.util.ArrayList p0_1 = null;
@@ -259,6 +270,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public android.content.Intent intent() {
         android.content.Intent r0 = null;
@@ -290,6 +302,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static java.lang.String jsStr(java.lang.String p0) {
         java.lang.StringBuilder p0_1 = null;
@@ -366,6 +379,7 @@ public class VoiceBridge {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public boolean available() {
         android.content.Context r0 = null;
