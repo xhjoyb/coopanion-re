@@ -120,7 +120,7 @@ public class CrashApp extends android.app.Application {
                     r4_5 = r4_1.getBytes(r5_2);
                     r1_4.write(r4_5);
                     r1_4.flush();
-                    r1_4.close();
+                    try { r1_4.close(); } catch (java.lang.Throwable _ce0) { }
                     r2_3 = (r2_3 + 1);
                     _pc = 1; break;
                     case 2:

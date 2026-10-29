@@ -82,18 +82,16 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
                     r1_1 = EyesService_Api30.access$200(p1, r1, r2);
                     r0.set(r1_2);
                     p1_1 = p1.getHardwareBuffer();
-                    p1_1.close();
+                    try { p1_1.close(); } catch (java.lang.Throwable _ce0) { }
                     _pc = 1; break;
-                    _pc = 2; break;
-        case 90000:
+        case 90001:
                     r1_3 = ((EyesService_Api30_1) this).val$fail;
                     r0_2 = java.lang.String.valueOf(r0_1);
                     r1_3.set(r0_1);
                     p1_1 = p1.getHardwareBuffer();
-                    p1_1.close();
+                    try { p1_1.close(); } catch (java.lang.Throwable _ce1) { }
                     _pc = 1; break;
                     case 1:
-                    _pc = 2; break;
                     case 2:
                     p1_2 = ((EyesService_Api30_1) this).val$latch;
                     p1_2.countDown();

@@ -224,7 +224,7 @@ public final class SenseBridge {
                     r1 = new java.io.BufferedReader(r2_1);
                     r2_2 = r1.readLine();
                     if (r2_2 != null) { _pc = 1; break; }
-                    p1.close();
+                    try { p1.close(); } catch (java.lang.Throwable _ce0) { }
                     return;
                             }
                         } catch (Throwable _e) {
@@ -788,7 +788,7 @@ public final class SenseBridge {
         ((SenseBridge) this).running = r0;
         r0_1 = ((SenseBridge) this).server;
         if (r0_1 != null) {
-            r0_1.close();
+            try { r0_1.close(); } catch (java.lang.Throwable _ce1) { }
         }
         r0_1 = null;
         ((SenseBridge) this).server = r0_1;

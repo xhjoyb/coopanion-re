@@ -687,7 +687,7 @@ public class PetWindowService extends android.app.Service {
         p1_2 = p1.getBytes(r0_1);
         r1_3.write(p1_2);
         r1_3.flush();
-        r1_3.close();
+        try { r1_3.close(); } catch (java.lang.Throwable _ce0) { }
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -1216,7 +1216,7 @@ public class PetWindowService extends android.app.Service {
                     r13 = new android.view.WindowManager.LayoutParams(r14, r15, r16, r17, r18);
                     r1_7 = 8388659;
                     ((android.view.WindowManager.LayoutParams) r7).gravity = r1_7;
-                    r4_1 = new boolean[r2];
+                    r4_1 = new boolean[r2 ? 1 : 0];
                     r4_1[r3] = (r3 != 0);
                     r1_8 = r13_1;
                     r2_1 = this;

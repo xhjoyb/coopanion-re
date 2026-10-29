@@ -121,7 +121,7 @@ public final class AppLog {
         p0_2 = p0.getBytes(r0_1);
         p1_2.write(p0_2);
         p1_2.flush();
-        p1_2.close();
+        try { p1_2.close(); } catch (java.lang.Throwable _ce0) { }
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

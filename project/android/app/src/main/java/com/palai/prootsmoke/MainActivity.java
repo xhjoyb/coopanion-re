@@ -315,7 +315,7 @@ public class MainActivity extends android.app.Activity {
                         switch (_pc) {
                     case 0:
                     r0 = 65536;
-                    r1 = new byte[r0];
+                    r1 = new byte[r0 ? 1 : 0];
                     _pc = 1; break;
                     case 1:
                     r2 = 0L;
@@ -363,7 +363,7 @@ public class MainActivity extends android.app.Activity {
                     case 1:
                     r1 = (p1 + p2);
                     if (r0 >= r1) { _pc = 2; break; }
-                    r1_1 = p0[r0];
+                    r1_1 = p0[r0 ? 1 : 0];
                     if (r1_1 == 0) { _pc = 2; break; }
                     r0 = (r0 + 1);
                     _pc = 1; break;
@@ -575,7 +575,7 @@ public class MainActivity extends android.app.Activity {
                     r11 = this.getAssets();
                     r11_1 = r11.openFd(r4_1);
                     r12 = r11_1.getLength();
-                    r11_1.close();
+                    try { r11_1.close(); } catch (java.lang.Throwable _ce0) { }
                     _pc = 5; break;
         case 90000:
                     r12 = -1L;
@@ -592,7 +592,7 @@ public class MainActivity extends android.app.Activity {
                     r15 = (r15 + r7_4);
                     _pc = 3; break;
                     case 4:
-                    r11_2.close();
+                    try { r11_2.close(); } catch (java.lang.Throwable _ce1) { }
                     r12 = r15;
                     _pc = 5; break;
                     case 5:
@@ -652,37 +652,37 @@ public class MainActivity extends android.app.Activity {
                     r3_5 = 5;
                     r4_2 = new java.lang.String[r3_5][];
                     r12_1 = 2;
-                    r13 = new java.lang.String[r12_1];
+                    r13 = new java.lang.String[r12_1 ? 1 : 0];
                     r14_3 = "app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/sherpa-onnx.node";
-                    r13[r7_3] = r14_4;
+                    r13[r7_3 ? 1 : 0] = r14_4;
                     r14_3 = "804112";
                     r15_1 = 1;
                     r13[r15_1] = r14_4;
-                    r4_2[r7_3] = r13;
-                    r13 = new java.lang.String[r12_1];
+                    r4_2[r7_3 ? 1 : 0] = r13;
+                    r13 = new java.lang.String[r12_1 ? 1 : 0];
                     r14_3 = "app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/libonnxruntime.so";
-                    r13[r7_3] = r14_4;
+                    r13[r7_3 ? 1 : 0] = r14_4;
                     r14_3 = "34606912";
                     r15_1 = 1;
                     r13[r15_1] = r14_4;
                     r4_2[r15_1] = r13;
-                    r13 = new java.lang.String[r12_1];
+                    r13 = new java.lang.String[r12_1 ? 1 : 0];
                     r14_3 = "app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/libsherpa-onnx-c-api.so";
-                    r13[r7_3] = r14_4;
+                    r13[r7_3 ? 1 : 0] = r14_4;
                     r14_3 = "4613032";
                     r13[r15_1] = r14_4;
-                    r4_2[r12_1] = r13;
-                    r13 = new java.lang.String[r12_1];
+                    r4_2[r12_1 ? 1 : 0] = r13;
+                    r13 = new java.lang.String[r12_1 ? 1 : 0];
                     r14_3 = "app/coop-stage/node_modules/sherpa-onnx-node/node_modules/sherpa-onnx-linux-arm64/libsherpa-onnx-cxx-api.so";
-                    r13[r7_3] = r14_4;
+                    r13[r7_3 ? 1 : 0] = r14_4;
                     r14_3 = "281200";
                     r15_1 = 1;
                     r13[r15_1] = r14_4;
                     r14 = 3;
                     r4_2[r14] = r13;
-                    r12_2 = new java.lang.String[r12_1];
+                    r12_2 = new java.lang.String[r12_1 ? 1 : 0];
                     r13_1 = "bin/node";
-                    r12_2[r7_3] = r13_2;
+                    r12_2[r7_3 ? 1 : 0] = r13_2;
                     r13_1 = "123024744";
                     r14 = 1;
                     r12_2[r14] = r13_2;
@@ -693,11 +693,11 @@ public class MainActivity extends android.app.Activity {
                     _pc = 7; break;
                     case 7:
                     if (r12_1 >= r3_5) { _pc = 12; break; }
-                    r14_5 = r4_2[r12_1];
-                    r3_1 = r14_1[r7_3];
+                    r14_5 = r4_2[r12_1 ? 1 : 0];
+                    r3_1 = java.lang.String.valueOf(r14_1[r7_3 ? 1 : 0]);
                     r15_2 = new java.io.File(r8, r3_1);
                     r3_5 = 1;
-                    r17 = r14_1[r3_5];
+                    r17 = java.lang.String.valueOf(r14_1[r3_5]);
                     r18 = r8;
                     r7_4 = java.lang.Long.parseLong(r17);
                     r17_1 = r15_2.exists();
@@ -720,7 +720,7 @@ public class MainActivity extends android.app.Activity {
                     r15_4 = "[CHK] MISMATCH ";
                     r13_4 = r13_4.append(r15_5);
                     r15_1 = 0;
-                    r14_4 = r14_1[r15_1];
+                    r14_4 = java.lang.String.valueOf(r14_1[r15_1]);
                     r13_4 = r13_4.append(r14_4);
                     r14_3 = " got=";
                     r13_4 = r13_4.append(r14_4);
@@ -1088,7 +1088,7 @@ public class MainActivity extends android.app.Activity {
                     r11 = 8;
                     r11_1 = MainActivity.parseOct(r5, r7, r11);
                     r13 = 156;
-                    r13_1 = r5[r13];
+                    r13_1 = java.lang.String.valueOf(r5[r13]);
                     r13_2 = (char) r13_1;
                     r14 = 157;
                     r7_1 = MainActivity.cstr(r5, r14, r7);
@@ -1243,8 +1243,8 @@ public class MainActivity extends android.app.Activity {
                     _pc = 23; break;
                     case 24:
                     r12_1 = false;
-                    r7_4.close();
-                    r6_5.close();
+                    try { r7_4.close(); } catch (java.lang.Throwable _ce2) { }
+                    try { r6_5.close(); } catch (java.lang.Throwable _ce3) { }
                     r3_6.setReadable((r4_1 != 0), r12_1);
                     r3_6.setExecutable((r4_1 != 0), r12_1);
                     _pc = 28; break;
@@ -1257,7 +1257,7 @@ public class MainActivity extends android.app.Activity {
                     case 26:
                     r6_5 = new java.io.FileOutputStream(r3_6);
                     MainActivity.copyN(r2_1, r6_6, r9_1);
-                    r6_5.close();
+                    try { r6_5.close(); } catch (java.lang.Throwable _ce4) { }
                     r6_2 = false;
                     r3_6.setReadable((r4_1 != 0), r6_2);
                     r3_6.setWritable((r4_1 != 0), r6_2);
@@ -1363,7 +1363,7 @@ public class MainActivity extends android.app.Activity {
                     r3_2 = 512;
                     _pc = 3; break;
                     case 41:
-                    r2.close();
+                    try { r2.close(); } catch (java.lang.Throwable _ce5) { }
                     return;
                             }
                         } catch (Throwable _e) {
@@ -1401,7 +1401,7 @@ public class MainActivity extends android.app.Activity {
                     _pc = 1; break;
                     case 1:
                     if (r1 >= r0_1) { _pc = 4; break; }
-                    r2 = p1_1[r1];
+                    r2 = p1_1[r1 ? 1 : 0];
                     this.fixPerms(r2);
                     r1 = (r1 + 1);
                     _pc = 1; break;
@@ -1516,7 +1516,7 @@ public class MainActivity extends android.app.Activity {
         r2 = "UTF-8";
         r1_3 = r1_2.getBytes(r2_1);
         r0_3.write(r1_3);
-        r0_3.close();
+        try { r0_3.close(); } catch (java.lang.Throwable _ce6) { }
         r0_4 = new MainActivity_2(this, p1);
         this.runOnUiThread(r0_5);
         return;
@@ -1555,7 +1555,7 @@ public class MainActivity extends android.app.Activity {
         try {
         r0 = this.senseStatus();
         r1 = 0;
-        r1_1 = r0[r1];
+        r1_1 = r0[r1 ? 1 : 0];
         r2 = 1;
         r0_1 = r0[r2];
         r3 = "[SENSE] usage=";
@@ -1785,7 +1785,7 @@ public class MainActivity extends android.app.Activity {
         r4_3 = 2;
         r4_4 = new java.lang.String[r4_3];
         r4_2[r2] = r0_3;
-        r4_2[r1] = r3_5;
+        r4_2[r1 ? 1 : 0] = r3_5;
         return r4_4;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -1986,7 +1986,7 @@ public class MainActivity extends android.app.Activity {
                     r4_1 = "桌宠想知道「你在用哪个 App」「谁给你发消息了」，\n需要你在系统里打开两个开关（都跟无障碍无关，可以放心开）：\n① 使用情况访问 —— 当前：";
                     r1_3 = new java.lang.StringBuilder(r4_2);
                     r4 = 0;
-                    r4_2 = p1_9[r4];
+                    r4_2 = p1_9[r4 ? 1 : 0];
                     r1_3 = r1_3.append(r4_2);
                     r4_1 = "\n作用：知道你在用微信 / 在看视频 / 在打游戏\n② 通知使用权 —— 当前：";
                     r1_3 = r1_3.append(r4_2);
@@ -2273,7 +2273,7 @@ public class MainActivity extends android.app.Activity {
             p2_1 = new java.net.InetSocketAddress(p0, p1);
             r3 = 1200;
             r2_1.connect(p2_2, r3);
-            r2_1.close();
+            try { r2_1.close(); } catch (java.lang.Throwable _ce7) { }
             p0_1 = 1;
             return (p0_1 != 0);
         }

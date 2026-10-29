@@ -290,7 +290,7 @@ public class PetActivity extends android.app.Activity {
                     p1_5 = this_1.checkSelfPermission(r0_1);
                     if (p1_5 == 0) { _pc = 8; break; }
                     p1_10 = new java.lang.String[r1];
-                    p1_10[r2] = r0_1;
+                    p1_10[r2 ? 1 : 0] = r0_1;
                     r0_2 = 10088;
                     this_1.requestPermissions(p1_10, r0_2);
                     _pc = 8; break;
