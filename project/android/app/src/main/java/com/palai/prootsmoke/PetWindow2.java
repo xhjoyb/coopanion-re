@@ -35,6 +35,7 @@ public final class PetWindow2 {
         boolean r0_1 = false;
         android.os.Handler r0_2 = null;
         PetWindow2_1 r0_3 = null;
+        java.lang.Runnable r0_4 = null;
         android.os.Looper r1 = null;
         try {
         r0 = -1;
@@ -48,7 +49,7 @@ public final class PetWindow2 {
         r0_2 = new android.os.Handler(r1);
         PetWindow2.ui = r0_2;
         r0_3 = new PetWindow2_1();
-        PetWindow2.tick = r0_3;
+        PetWindow2.tick = r0_4;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }
@@ -121,27 +122,38 @@ public final class PetWindow2 {
         android.view.WindowManager p0_2 = null;
         android.os.Handler p0_3 = null;
         String p0_4 = null;
+        java.lang.String p0_5 = null;
         String r0 = null;
-        java.lang.Object r0_1 = null;
-        int r0_2 = 0;
-        android.view.View r0_3 = null;
-        java.lang.Runnable r0_4 = null;
+        java.lang.String r0_1 = null;
+        java.lang.Object r0_2 = null;
+        android.view.WindowManager r0_3 = null;
+        int r0_4 = 0;
+        android.view.View r0_5 = null;
+        java.lang.Runnable r0_6 = null;
         int r1 = 0;
         android.webkit.WebView r1_1 = null;
         android.webkit.WebSettings r1_2 = null;
         android.view.WindowManager.LayoutParams r1_3 = null;
         android.view.WindowManager r1_4 = null;
         PetWindow2_3 r1_5 = null;
+        android.view.View r1_6 = null;
+        android.view.ViewGroup.LayoutParams r1_7 = null;
         int r2 = 0;
         PetWindow2_Bridge r2_1 = null;
-        PetWindow2_HostBridge r2_2 = null;
-        PetWindow2_2 r2_3 = null;
-        String r2_4 = null;
-        android.webkit.WebView r2_5 = null;
+        java.lang.Object r2_2 = null;
+        PetWindow2_HostBridge r2_3 = null;
+        PetWindow2_2 r2_4 = null;
+        android.webkit.WebViewClient r2_5 = null;
+        String r2_6 = null;
+        java.lang.String r2_7 = null;
+        android.webkit.WebView r2_8 = null;
+        android.view.View r2_9 = null;
         android.graphics.Paint r3 = null;
         String r3_1 = null;
-        int r3_2 = 0;
-        android.view.WindowManager.LayoutParams r3_3 = null;
+        java.lang.String r3_2 = null;
+        int r3_3 = 0;
+        android.view.WindowManager.LayoutParams r3_4 = null;
+        android.view.ViewGroup.LayoutParams r3_5 = null;
         int r4 = 0;
         int r5 = 0;
         int r6 = 0;
@@ -149,14 +161,14 @@ public final class PetWindow2 {
         int r8 = 0;
         try {
         r0 = "window";
-        r0_1 = p0.getSystemService(r0);
-        PetWindow2.wm = ((android.view.WindowManager) r0_1);
-        r0_2 = android.os.Build.VERSION.SDK_INT;
+        r0_2 = p0.getSystemService(r0_1);
+        PetWindow2.wm = r0_3;
+        r0_4 = android.os.Build.VERSION.SDK_INT;
         r1 = 26;
-        if (r0_2 < r1) {
-            r0_2 = 2002;
+        if (r0_4 < r1) {
+            r0_4 = 2002;
         } else {
-            r0_2 = 2038;
+            r0_4 = 2038;
         }
         r1_1 = new android.webkit.WebView(p0);
         PetWindow2.web = r1_1;
@@ -176,50 +188,50 @@ public final class PetWindow2 {
         r1_1 = PetWindow2.web;
         r2_1 = new PetWindow2_Bridge();
         r3_1 = "pet2Native";
-        r1_1.addJavascriptInterface(r2_1, r3_1);
+        r1_1.addJavascriptInterface(r2_2, r3_2);
         r1_1 = PetWindow2.web;
-        r2_2 = new PetWindow2_HostBridge();
+        r2_3 = new PetWindow2_HostBridge();
         r3_1 = "petHostNative";
-        r1_1.addJavascriptInterface(r2_2, r3_1);
+        r1_1.addJavascriptInterface(r2_2, r3_2);
         r1_1 = PetWindow2.web;
-        r2_3 = new PetWindow2_2();
-        r1_1.setWebViewClient(r2_3);
+        r2_4 = new PetWindow2_2();
+        r1_1.setWebViewClient(r2_5);
         r1_1 = PetWindow2.web;
-        r2_4 = "http://127.0.0.1:7797/pet?pet=2";
-        r1_1.loadUrl(r2_4);
+        r2_6 = "http://127.0.0.1:7797/pet?pet=2";
+        r1_1.loadUrl(r2_7);
         r2 = -1;
-        r3_2 = -1;
+        r3_3 = -1;
         r5 = 792;
         r6 = -3;
         r1_3 = r7;
-        r4 = r0_2;
-        r1_3 = new android.view.WindowManager.LayoutParams(r2, r3_2, r4, r5, r6);
+        r4 = r0_4;
+        r1_3 = new android.view.WindowManager.LayoutParams(r2, r3_3, r4, r5, r6);
         PetWindow2.webLp = r7;
         r8 = 8388659;
         ((android.view.WindowManager.LayoutParams) r7).gravity = r8;
         r1_4 = PetWindow2.wm;
-        r2_5 = PetWindow2.web;
-        r3_3 = PetWindow2.webLp;
-        r1_4.addView(r2_5, r3_3);
+        r2_8 = PetWindow2.web;
+        r3_4 = PetWindow2.webLp;
+        r1_4.addView(r2_9, r3_5);
         r1_5 = new PetWindow2_3(p0);
-        PetWindow2.touch = r1_5;
+        PetWindow2.touch = r1_6;
         r2 = 520;
-        r3_2 = 520;
+        r3_3 = 520;
         r5 = 776;
         r1_3 = p0_1;
-        r1_3 = new android.view.WindowManager.LayoutParams(r2, r3_2, r4, r5, r6);
+        r1_3 = new android.view.WindowManager.LayoutParams(r2, r3_3, r4, r5, r6);
         PetWindow2.touchLp = p0_1;
         ((android.view.WindowManager.LayoutParams) p0_1).gravity = r8;
         p0_2 = PetWindow2.wm;
-        r0_3 = PetWindow2.touch;
+        r0_5 = PetWindow2.touch;
         r1_3 = PetWindow2.touchLp;
-        p0_2.addView(r0_3, r1_3);
+        p0_2.addView(r0_5, r1_7);
         p0_3 = PetWindow2.ui;
-        r0_4 = PetWindow2.tick;
-        p0_3.post(r0_4);
+        r0_6 = PetWindow2.tick;
+        p0_3.post(r0_6);
         p0_4 = "PetWin2";
         r0 = "started";
-        android.util.Log.i(p0_4, r0);
+        android.util.Log.i(p0_5, r0_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -272,14 +284,17 @@ public final class PetWindow2 {
         }
     }
     public static void start(android.content.Context p0) {
-        java.lang.StringBuilder p0_2 = null;
-        java.lang.String p0_3 = null;
-        boolean p0_4 = false;
+        java.lang.Object p0_2 = null;
+        java.lang.StringBuilder p0_3 = null;
+        java.lang.String p0_4 = null;
+        boolean p0_5 = false;
         boolean r0 = false;
         int r0_1 = 0;
         java.lang.StringBuilder r0_2 = null;
         String r0_3 = null;
+        java.lang.String r0_4 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
             r0 = PetWindow2.started;
             if (r0 != false) {
@@ -293,13 +308,13 @@ public final class PetWindow2 {
         } catch (java.lang.Throwable p0_1) {
             r0_2 = new java.lang.StringBuilder();
             r1 = "start: ";
-            r0_2 = r0_2.append(r1);
-            p0_2 = r0_2.append(p0_1);
-            p0_3 = p0_2.toString();
+            r0_2 = r0_2.append(r1_1);
+            p0_3 = r0_2.append(p0_2);
+            p0_4 = p0_3.toString();
             r0_3 = "PetWin2";
-            android.util.Log.e(r0_3, p0_3);
-            p0_4 = false;
-            PetWindow2.started = p0_4;
+            android.util.Log.e(r0_4, p0_4);
+            p0_5 = false;
+            PetWindow2.started = p0_5;
             return;
         }
     }
@@ -328,7 +343,7 @@ public final class PetWindow2 {
                     r0_2 = PetWindow2.web;
                     if (r0_2 == null) { _pc = 2; break; }
                     r1_1 = PetWindow2.wm;
-                    r1_1.removeView(r0_2);
+                    r1_1.removeView(r0_3);
                     _pc = 2; break;
                     case 2:
                     r0_3 = PetWindow2.touch;
@@ -346,6 +361,7 @@ public final class PetWindow2 {
                                 r0_4 = _e;
                                 _pc = 1;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {
@@ -365,9 +381,11 @@ public final class PetWindow2 {
         float r2_3 = 0f;
         int r2_4 = 0;
         android.view.WindowManager.LayoutParams r2_5 = null;
-        java.lang.Throwable r2_6 = null;
+        android.view.ViewGroup.LayoutParams r2_6 = null;
+        java.lang.Throwable r2_7 = null;
         String r3 = null;
-        int r3_1 = 0;
+        java.lang.String r3_1 = null;
+        int r3_2 = 0;
         int r4 = 0;
         android.view.WindowManager.LayoutParams r4_1 = null;
         try {
@@ -391,15 +409,15 @@ public final class PetWindow2 {
                     r2 = PetWindow2.web;
                     r2_1 = r2.getContext();
                     r3 = "coopanion";
-                    r2_2 = r2_1.getSharedPreferences(r3, r0_1);
+                    r2_2 = r2_1.getSharedPreferences(r3_1, r0_1);
                     r3 = "pet_scale";
-                    r2_3 = r2_2.getFloat(r3, ((float) r1));
-                    r3_1 = 1045220557;
-                    r3_1 = (r2_3 > r3_1 ? 1 : (r2_3 == r3_1 ? 0 : -1));
-                    if (r3_1 <= 0) { _pc = 3; break; }
-                    r3_1 = 1077936128;
-                    r3_1 = (r2_3 < r3_1 ? -1 : (r2_3 == r3_1 ? 0 : 1));
-                    if (r3_1 <= 0) { _pc = 2; break; }
+                    r2_3 = r2_2.getFloat(r3_1, ((float) r1));
+                    r3_2 = 1045220557;
+                    r3_2 = (r2_3 > r3_2 ? 1 : (r2_3 == r3_2 ? 0 : -1));
+                    if (r3_2 <= 0) { _pc = 3; break; }
+                    r3_2 = 1077936128;
+                    r3_2 = (r2_3 < r3_2 ? -1 : (r2_3 == r3_2 ? 0 : 1));
+                    if (r3_2 <= 0) { _pc = 2; break; }
                     _pc = 3; break;
                     case 2:
                     r1_1 = r2_3;
@@ -411,13 +429,13 @@ public final class PetWindow2 {
                     r2_4 = 160;
                     r1 = java.lang.Math.max(r2_4, r1);
                     r2_4 = PetWindow2.petL;
-                    r3_1 = PetWindow2.petR;
-                    r2_4 = (r2_4 + r3_1);
+                    r3_2 = PetWindow2.petR;
+                    r2_4 = (r2_4 + r3_2);
                     r2_4 = (r2_4 / 2);
-                    r3_1 = PetWindow2.petT;
+                    r3_2 = PetWindow2.petT;
                     r4 = PetWindow2.petB;
-                    r3_1 = (r3_1 + r4);
-                    r3_1 = (r3_1 / 2);
+                    r3_2 = (r3_2 + r4);
+                    r3_2 = (r3_2 / 2);
                     r4_1 = PetWindow2.touchLp;
                     ((android.view.WindowManager.LayoutParams) r4_1).width = r1;
                     r4_1 = PetWindow2.touchLp;
@@ -428,21 +446,22 @@ public final class PetWindow2 {
                     r2_4 = java.lang.Math.max(r0_1, r2_4);
                     ((android.view.WindowManager.LayoutParams) r4_1).x = r2_4;
                     r2_5 = PetWindow2.touchLp;
-                    r3_1 = (r3_1 - r1);
-                    r0_1 = java.lang.Math.max(r0_1, r3_1);
+                    r3_2 = (r3_2 - r1);
+                    r0_1 = java.lang.Math.max(r0_1, r3_2);
                     ((android.view.WindowManager.LayoutParams) r2_5).y = r0_1;
                     r0_2 = PetWindow2.wm;
                     r1_2 = PetWindow2.touch;
                     r2_5 = PetWindow2.touchLp;
-                    r0_2.updateViewLayout(r1_2, r2_5);
+                    r0_2.updateViewLayout(r1_2, r2_6);
                     _pc = 4; break;
                     case 4:
                     return;
                             }
                         } catch (Throwable _e) {
-                                r2_6 = _e;
+                                r2_7 = _e;
                                 _pc = 3;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {

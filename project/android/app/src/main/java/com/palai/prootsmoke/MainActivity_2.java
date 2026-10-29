@@ -25,7 +25,9 @@ public class MainActivity_2 implements java.lang.Runnable {
         android.widget.ScrollView r0_2 = null;
         java.lang.StringBuilder r1 = null;
         java.lang.String r1_1 = null;
-        MainActivity_2_1 r1_2 = null;
+        java.lang.CharSequence r1_2 = null;
+        MainActivity_2_1 r1_3 = null;
+        java.lang.Runnable r1_4 = null;
         java.lang.String r2 = null;
         String r2_1 = null;
         try {
@@ -40,14 +42,14 @@ public class MainActivity_2 implements java.lang.Runnable {
             r2_1 = "\n";
             r1 = r1.append(r2);
             r1_1 = r1.toString();
-            r0_1.append(r1_1);
+            r0_1.append(r1_2);
             r0 = ((MainActivity_2) this).this$0;
             r0_2 = MainActivity._$$Nest$fgetlogScroll(r0);
             if (r0_2 != null) {
                 r0 = ((MainActivity_2) this).this$0;
                 r0_2 = MainActivity._$$Nest$fgetlogScroll(r0);
-                r1_2 = new MainActivity_2_1(this);
-                r0_2.post(r1_2);
+                r1_3 = new MainActivity_2_1(this);
+                r0_2.post(r1_4);
             }
         }
         return;

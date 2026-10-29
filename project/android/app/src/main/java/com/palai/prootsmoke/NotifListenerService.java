@@ -24,6 +24,7 @@ public class NotifListenerService extends android.service.notification.Notificat
     public java.lang.String appLabel(java.lang.String p1) {
         android.content.pm.PackageManager r0 = null;
         java.lang.CharSequence r0_1 = null;
+        java.lang.Object r0_2 = null;
         int r1 = 0;
         android.content.pm.ApplicationInfo r1_1 = null;
         try {
@@ -32,7 +33,7 @@ public class NotifListenerService extends android.service.notification.Notificat
         r1_1 = r0.getApplicationInfo(p1, r1);
         r0_1 = r0.getApplicationLabel(r1_1);
         if (r0_1 != null) {
-            p1 = r0_1.toString();
+            p1 = r0_2.toString();
         } else {
         }
         return p1;
@@ -51,27 +52,29 @@ public class NotifListenerService extends android.service.notification.Notificat
     }
     public static boolean isEnabled(android.content.Context p0) {
         java.lang.String p0_1 = null;
-        boolean p0_2 = false;
-        int p0_3 = 0;
+        java.lang.CharSequence p0_2 = null;
+        boolean p0_3 = false;
+        int p0_4 = 0;
         android.content.ContentResolver r0 = null;
         java.lang.String r0_1 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r0 = p0.getContentResolver();
         r1 = "enabled_notification_listeners";
-        r0_1 = android.provider.Settings.Secure.getString(r0, r1);
+        r0_1 = android.provider.Settings.Secure.getString(r0, r1_1);
         if (r0_1 != null) {
             r0_1 = r0_1.toLowerCase();
             p0_1 = p0.getPackageName();
             p0_1 = p0_1.toLowerCase();
-            p0_2 = r0_1.contains(p0_1);
-            if (p0_2 != false) {
-                p0_3 = 1;
-                return (p0_3 != 0);
+            p0_3 = r0_1.contains(p0_2);
+            if (p0_3 != false) {
+                p0_4 = 1;
+                return (p0_4 != 0);
             }
         }
-        p0_3 = 0;
-        return (p0_3 != 0);
+        p0_4 = 0;
+        return (p0_4 != 0);
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }
@@ -105,12 +108,15 @@ public class NotifListenerService extends android.service.notification.Notificat
         boolean r0_5 = false;
         SenseBridge r1 = null;
         String r1_1 = null;
-        java.lang.CharSequence r1_2 = null;
+        java.lang.String r1_2 = null;
+        java.lang.CharSequence r1_3 = null;
+        java.lang.Object r1_4 = null;
         java.lang.String r2 = null;
         SenseBridge r3 = null;
         String r3_1 = null;
-        java.lang.CharSequence r3_2 = null;
-        java.lang.String r3_3 = null;
+        java.lang.String r3_2 = null;
+        java.lang.CharSequence r3_3 = null;
+        java.lang.Object r3_4 = null;
         String r4 = null;
         java.lang.String r4_1 = null;
         java.lang.String r5 = null;
@@ -125,33 +131,33 @@ public class NotifListenerService extends android.service.notification.Notificat
                 r1 = null;
                 if (r0_1 != null) {
                     r3_1 = "android.title";
-                    r3_2 = r0_1.getCharSequence(r3_1);
+                    r3_3 = r0_1.getCharSequence(r3_2);
                 } else {
                     r3 = r1;
                 }
                 if (r0_1 != null) {
                     r1_1 = "android.text";
-                    r1_2 = r0_1.getCharSequence(r1_1);
+                    r1_3 = r0_1.getCharSequence(r1_2);
                 } else {
                 }
-                if (r1_2 == null) {
+                if (r1_3 == null) {
                     if (r0_1 != null) {
                         r4 = "android.bigText";
-                        r0_2 = r0_1.getCharSequence(r4);
+                        r0_2 = r0_1.getCharSequence(r4_1);
                         if (r0_2 != null) {
-                            r1_2 = r0_2;
+                            r1_3 = r0_2;
                         }
                     }
                 }
                 r0_3 = "";
-                if (r3_2 != null) {
-                    r3_3 = r3_2.toString();
-                    r4_1 = r3_3;
+                if (r3_3 != null) {
+                    r3_2 = r3_4.toString();
+                    r4_1 = r3_2;
                 } else {
                     r4 = r0_3;
                 }
-                if (r1_2 != null) {
-                    r0_4 = r1_2.toString();
+                if (r1_3 != null) {
+                    r0_4 = r1_4.toString();
                 } else {
                 }
                 r5 = r0_4;
@@ -164,9 +170,9 @@ public class NotifListenerService extends android.service.notification.Notificat
                 }
                 r1 = SenseBridge.peek();
                 if (r1 != null) {
-                    r3_3 = this.appLabel(r2);
+                    r3_2 = this.appLabel(r2);
                     r6 = p1.getPostTime();
-                    r1.addNotification(r2, r3_3, r4_1, r5, r6);
+                    r1.addNotification(r2, r3_2, r4_1, r5, r6);
                 }
             } else {
             }

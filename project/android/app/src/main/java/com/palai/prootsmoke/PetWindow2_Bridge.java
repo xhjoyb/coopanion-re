@@ -14,15 +14,17 @@ public final class PetWindow2_Bridge {
         java.lang.StringBuilder p1_1 = null;
         java.lang.StringBuilder r0 = null;
         String r0_1 = null;
+        java.lang.String r0_2 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r0 = new java.lang.StringBuilder();
         r1 = "page: ";
-        r0 = r0.append(r1);
+        r0 = r0.append(r1_1);
         p1_1 = r0.append(p1);
         p1 = p1_1.toString();
         r0_1 = "PetWin2";
-        android.util.Log.i(r0_1, p1);
+        android.util.Log.i(r0_2, p1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

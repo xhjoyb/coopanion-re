@@ -26,14 +26,16 @@ public class MainActivity_12 extends android.webkit.WebViewClient {
         MainActivity r0 = null;
         java.lang.StringBuilder r1 = null;
         String r1_1 = null;
+        java.lang.String r1_2 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         r0 = ((MainActivity_12) this).this$0;
         r2 = "[WEB] onPageFinished: ";
-        r1 = new java.lang.StringBuilder(r2);
+        r1 = new java.lang.StringBuilder(r2_1);
         p2_1 = r1.append(p2);
         r1_1 = " title=";
-        p2_1 = p2_1.append(r1_1);
+        p2_1 = p2_1.append(r1_2);
         p1_1 = p1.getTitle();
         p1_2 = p2_1.append(p1_1);
         p1_1 = p1_2.toString();
@@ -50,14 +52,16 @@ public class MainActivity_12 extends android.webkit.WebViewClient {
         String p3_1 = null;
         java.lang.StringBuilder r0 = null;
         String r0_1 = null;
+        java.lang.String r0_2 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         p1_1 = ((MainActivity_12) this).this$0;
         r1 = "[WEB-ERR] ";
-        r0 = new java.lang.StringBuilder(r1);
+        r0 = new java.lang.StringBuilder(r1_1);
         p2_1 = r0.append(p2);
         r0_1 = " ";
-        p2_1 = p2_1.append(r0_1);
+        p2_1 = p2_1.append(r0_2);
         p2_1 = p2_1.append(p3);
         p3_1 = " @ ";
         p2_1 = p2_1.append(p3);

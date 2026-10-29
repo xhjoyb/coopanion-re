@@ -35,9 +35,10 @@ public class PetActivity_PetHostBridge {
         java.lang.StringBuilder p1_1 = null;
         java.lang.StringBuilder r0 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r1 = "[JS] ";
-        r0 = new java.lang.StringBuilder(r1);
+        r0 = new java.lang.StringBuilder(r1_1);
         p1_1 = r0.append(p1);
         p1 = p1_1.toString();
         AppLog.i(p1);

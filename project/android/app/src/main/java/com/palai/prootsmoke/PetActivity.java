@@ -43,12 +43,14 @@ public class PetActivity extends android.app.Activity {
         android.net.Uri p1_1 = null;
         android.net.Uri[] p1_2 = null;
         android.webkit.ValueCallback p1_3 = null;
-        java.lang.StringBuilder p1_4 = null;
-        java.lang.String p1_5 = null;
+        java.lang.Object p1_4 = null;
+        java.lang.StringBuilder p1_5 = null;
+        java.lang.String p1_6 = null;
         android.net.Uri p2_1 = null;
         android.webkit.ValueCallback p2_2 = null;
         java.lang.StringBuilder p2_3 = null;
         String p3_1 = null;
+        java.lang.String p3_2 = null;
         int r0 = 0;
         int r1 = 0;
         android.webkit.ValueCallback r2 = null;
@@ -79,21 +81,21 @@ public class PetActivity extends android.app.Activity {
                     case 2:
                     p2_2 = ((PetActivity) this).filePathCallback;
                     if (p2_2 == null) { _pc = 3; break; }
-                    p2_2.onReceiveValue(p1_3);
+                    p2_2.onReceiveValue(p1_4);
                     ((PetActivity) this).filePathCallback = r2;
                     _pc = 3; break;
                     case 3:
                     p3_1 = "[PETACT][FILE] onActivityResult ok=";
-                    p2_3 = new java.lang.StringBuilder(p3_1);
-                    if (p1_3 == null) { _pc = 4; break; }
+                    p2_3 = new java.lang.StringBuilder(p3_2);
+                    if (p1_4 == null) { _pc = 4; break; }
                     _pc = 5; break;
                     case 4:
                     r0 = r1;
                     _pc = 5; break;
                     case 5:
-                    p1_4 = p2_3.append((r0 != 0));
-                    p1_5 = p1_4.toString();
-                    AppLog.i(p1_5);
+                    p1_5 = p2_3.append((r0 != 0));
+                    p1_6 = p1_5.toString();
+                    AppLog.i(p1_6);
                     _pc = 7; break;
                     case 6:
                     super.onActivityResult(p1, p2, p3);
@@ -119,39 +121,55 @@ public class PetActivity extends android.app.Activity {
     }
     protected void onCreate(android.os.Bundle p1) {
         String p1_1 = null;
-        android.content.Intent p1_2 = null;
-        boolean p1_3 = false;
-        int p1_4 = 0;
-        android.webkit.WebView p1_5 = null;
-        android.widget.FrameLayout p1_6 = null;
-        android.widget.LinearLayout p1_7 = null;
-        java.lang.String[] p1_8 = null;
+        java.lang.String[] p1_10 = null;
+        java.lang.String p1_2 = null;
+        android.content.Intent p1_3 = null;
+        boolean p1_4 = false;
+        int p1_5 = 0;
+        android.webkit.WebView p1_6 = null;
+        android.widget.FrameLayout p1_7 = null;
+        android.widget.LinearLayout p1_8 = null;
+        android.view.View p1_9 = null;
         String r0 = null;
-        int r0_1 = 0;
+        java.lang.String r0_1 = null;
+        int r0_2 = 0;
         int r1 = 0;
         boolean r2 = false;
         String r3 = null;
-        android.view.Window r3_1 = null;
-        android.widget.FrameLayout.LayoutParams r3_10 = null;
-        int r3_2 = 0;
-        android.view.WindowManager.LayoutParams r3_3 = null;
-        android.widget.FrameLayout r3_4 = null;
-        android.webkit.WebView r3_5 = null;
-        android.webkit.WebSettings r3_6 = null;
-        PetActivity_PetHostBridge r3_7 = null;
-        PetActivity_1 r3_8 = null;
-        PetActivity_2 r3_9 = null;
+        java.lang.String r3_1 = null;
+        PetActivity_1 r3_10 = null;
+        android.webkit.WebChromeClient r3_11 = null;
+        PetActivity_2 r3_12 = null;
+        android.webkit.WebViewClient r3_13 = null;
+        android.view.View r3_14 = null;
+        android.widget.FrameLayout.LayoutParams r3_15 = null;
+        android.view.ViewGroup.LayoutParams r3_16 = null;
+        android.view.Window r3_2 = null;
+        int r3_3 = 0;
+        android.view.WindowManager.LayoutParams r3_4 = null;
+        android.widget.FrameLayout r3_5 = null;
+        android.webkit.WebView r3_6 = null;
+        android.webkit.WebSettings r3_7 = null;
+        PetActivity_PetHostBridge r3_8 = null;
+        java.lang.Object r3_9 = null;
         android.graphics.drawable.ColorDrawable r4 = null;
-        int r4_1 = 0;
-        boolean r4_2 = false;
-        String r4_3 = null;
-        android.widget.FrameLayout.LayoutParams r4_4 = null;
-        android.widget.Button r4_5 = null;
-        android.widget.FrameLayout r4_6 = null;
+        android.graphics.drawable.Drawable r4_1 = null;
+        android.widget.FrameLayout r4_10 = null;
+        int r4_2 = 0;
+        boolean r4_3 = false;
+        String r4_4 = null;
+        java.lang.String r4_5 = null;
+        android.widget.FrameLayout.LayoutParams r4_6 = null;
+        android.view.ViewGroup.LayoutParams r4_7 = null;
+        android.widget.Button r4_8 = null;
+        android.view.View r4_9 = null;
         boolean r5 = false;
         int r5_1 = 0;
         String r5_2 = null;
-        PetActivity_3 r5_3 = null;
+        java.lang.CharSequence r5_3 = null;
+        PetActivity_3 r5_4 = null;
+        android.view.View.OnClickListener r5_5 = null;
+        PetActivity this_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -163,125 +181,125 @@ public class PetActivity extends android.app.Activity {
                     super.onCreate(p1);
                     AppLog.init(this);
                     p1_1 = "[PETACT] ===== PetActivity onCreate =====";
-                    AppLog.i(p1_1);
-                    p1_2 = this.getIntent();
+                    AppLog.i(p1_2);
+                    p1_3 = this_1.getIntent();
                     r1 = 1;
                     r2 = false;
-                    if (p1_2 == null) { _pc = 1; break; }
-                    p1_2 = this.getIntent();
+                    if (p1_3 == null) { _pc = 1; break; }
+                    p1_3 = this_1.getIntent();
                     r3 = "transparent";
-                    p1_3 = p1_2.getBooleanExtra(r3, r2);
-                    if (p1_3 == false) { _pc = 1; break; }
-                    p1_4 = r1;
+                    p1_4 = p1_3.getBooleanExtra(r3_1, r2);
+                    if (p1_4 == false) { _pc = 1; break; }
+                    p1_5 = r1;
                     _pc = 2; break;
                     case 1:
-                    p1_3 = r2;
+                    p1_4 = r2;
                     _pc = 2; break;
                     case 2:
-                    if (p1_3 == false) { _pc = 3; break; }
-                    r3_1 = this.getWindow();
+                    if (p1_4 == false) { _pc = 3; break; }
+                    r3_2 = this_1.getWindow();
                     r4 = new android.graphics.drawable.ColorDrawable((r2 ? 1 : 0));
-                    r3_1.setBackgroundDrawable(r4);
-                    r3_1 = this.getWindow();
-                    r4_1 = 32;
-                    r3_1.addFlags(r4_1);
+                    r3_2.setBackgroundDrawable(r4_1);
+                    r3_2 = this_1.getWindow();
+                    r4_2 = 32;
+                    r3_2.addFlags(r4_2);
                     _pc = 3; break;
                     case 3:
-                    r3_1 = this.getWindow();
-                    r4_1 = 1024;
-                    r3_1.setFlags(r4_1, r4_1);
-                    r3_2 = android.os.Build.VERSION.SDK_INT;
-                    r4_1 = 28;
-                    if (r3_2 < r4_1) { _pc = 4; break; }
-                    r3_1 = this.getWindow();
-                    r3_3 = r3_1.getAttributes();
-                    ((android.view.WindowManager.LayoutParams) r3_3).layoutInDisplayCutoutMode = r1;
+                    r3_2 = this_1.getWindow();
+                    r4_2 = 1024;
+                    r3_2.setFlags(r4_2, r4_2);
+                    r3_3 = android.os.Build.VERSION.SDK_INT;
+                    r4_2 = 28;
+                    if (r3_3 < r4_2) { _pc = 4; break; }
+                    r3_2 = this_1.getWindow();
+                    r3_4 = r3_2.getAttributes();
+                    ((android.view.WindowManager.LayoutParams) r3_4).layoutInDisplayCutoutMode = r1;
                     _pc = 4; break;
                     case 4:
-                    r3_4 = new android.widget.FrameLayout(this);
-                    ((PetActivity) this).root = r3_4;
-                    r4_1 = -16052460;
-                    if (p1_3 == false) { _pc = 5; break; }
+                    r3_5 = new android.widget.FrameLayout(this);
+                    ((PetActivity) this_1).root = r3_5;
+                    r4_2 = -16052460;
+                    if (p1_4 == false) { _pc = 5; break; }
                     r5 = r2;
                     _pc = 6; break;
                     case 5:
-                    r5_1 = r4_1;
+                    r5_1 = r4_2;
                     _pc = 6; break;
                     case 6:
-                    r3_4.setBackgroundColor(r5_1);
-                    r3_5 = new android.webkit.WebView(this);
-                    ((PetActivity) this).web = r3_5;
-                    r3_6 = r3_5.getSettings();
-                    r3_6.setJavaScriptEnabled((r1 != 0));
-                    r3_6.setDomStorageEnabled((r1 != 0));
-                    r3_6.setMixedContentMode((r2 ? 1 : 0));
-                    r3_6.setAllowFileAccess((r1 != 0));
-                    r3_6.setMediaPlaybackRequiresUserGesture(r2);
-                    r3_6.setUseWideViewPort(r2);
-                    r3_6.setLoadWithOverviewMode(r2);
-                    r3_6.setSupportZoom(r2);
-                    r3_6.setBuiltInZoomControls(r2);
-                    r3_6.setDisplayZoomControls(r2);
-                    r3_5 = ((PetActivity) this).web;
-                    if (p1_3 == false) { _pc = 7; break; }
-                    r4_2 = r2;
+                    r3_5.setBackgroundColor(r5_1);
+                    r3_6 = new android.webkit.WebView(this);
+                    ((PetActivity) this_1).web = r3_6;
+                    r3_7 = r3_6.getSettings();
+                    r3_7.setJavaScriptEnabled((r1 != 0));
+                    r3_7.setDomStorageEnabled((r1 != 0));
+                    r3_7.setMixedContentMode((r2 ? 1 : 0));
+                    r3_7.setAllowFileAccess((r1 != 0));
+                    r3_7.setMediaPlaybackRequiresUserGesture(r2);
+                    r3_7.setUseWideViewPort(r2);
+                    r3_7.setLoadWithOverviewMode(r2);
+                    r3_7.setSupportZoom(r2);
+                    r3_7.setBuiltInZoomControls(r2);
+                    r3_7.setDisplayZoomControls(r2);
+                    r3_6 = ((PetActivity) this_1).web;
+                    if (p1_4 == false) { _pc = 7; break; }
+                    r4_3 = r2;
                     _pc = 7; break;
                     case 7:
-                    r3_5.setBackgroundColor((r4_2 ? 1 : 0));
-                    p1_5 = ((PetActivity) this).web;
-                    r3_7 = new PetActivity_PetHostBridge();
-                    r4_3 = "petHostNative";
-                    p1_5.addJavascriptInterface(r3_7, r4_3);
-                    p1_5 = ((PetActivity) this).web;
-                    r3_7 = new PetActivity_PetHostBridge();
-                    r4_3 = "petHost";
-                    p1_5.addJavascriptInterface(r3_7, r4_3);
-                    p1_5 = ((PetActivity) this).web;
-                    r3_8 = new PetActivity_1(this);
-                    p1_5.setWebChromeClient(r3_8);
-                    p1_5 = ((PetActivity) this).web;
-                    r3_9 = new PetActivity_2(this);
-                    p1_5.setWebViewClient(r3_9);
-                    p1_6 = ((PetActivity) this).root;
-                    r3_5 = ((PetActivity) this).web;
+                    r3_6.setBackgroundColor((r4_3 ? 1 : 0));
+                    p1_6 = ((PetActivity) this_1).web;
+                    r3_8 = new PetActivity_PetHostBridge();
+                    r4_4 = "petHostNative";
+                    p1_6.addJavascriptInterface(r3_9, r4_5);
+                    p1_6 = ((PetActivity) this_1).web;
+                    r3_8 = new PetActivity_PetHostBridge();
+                    r4_4 = "petHost";
+                    p1_6.addJavascriptInterface(r3_9, r4_5);
+                    p1_6 = ((PetActivity) this_1).web;
+                    r3_10 = new PetActivity_1(this_1);
+                    p1_6.setWebChromeClient(r3_11);
+                    p1_6 = ((PetActivity) this_1).web;
+                    r3_12 = new PetActivity_2(this_1);
+                    p1_6.setWebViewClient(r3_13);
+                    p1_7 = ((PetActivity) this_1).root;
+                    r3_6 = ((PetActivity) this_1).web;
                     r5_1 = -1;
-                    r4_4 = new android.widget.FrameLayout.LayoutParams(r5_1, r5_1);
-                    p1_6.addView(r3_5, r4_4);
-                    p1_7 = new android.widget.LinearLayout(this);
-                    p1_7.setOrientation((r2 ? 1 : 0));
-                    r4_1 = -2;
-                    r3_10 = new android.widget.FrameLayout.LayoutParams(r4_1, r4_1);
-                    r4_1 = 53;
-                    ((android.widget.FrameLayout.LayoutParams) r3_10).gravity = r4_1;
-                    r4_1 = 40;
-                    ((android.widget.FrameLayout.LayoutParams) r3_10).topMargin = r4_1;
-                    r4_1 = 24;
-                    ((android.widget.FrameLayout.LayoutParams) r3_10).rightMargin = r4_1;
-                    r4_5 = new android.widget.Button(this);
+                    r4_6 = new android.widget.FrameLayout.LayoutParams(r5_1, r5_1);
+                    p1_7.addView(r3_14, r4_7);
+                    p1_8 = new android.widget.LinearLayout(this);
+                    p1_8.setOrientation((r2 ? 1 : 0));
+                    r4_2 = -2;
+                    r3_15 = new android.widget.FrameLayout.LayoutParams(r4_2, r4_2);
+                    r4_2 = 53;
+                    ((android.widget.FrameLayout.LayoutParams) r3_15).gravity = r4_2;
+                    r4_2 = 40;
+                    ((android.widget.FrameLayout.LayoutParams) r3_15).topMargin = r4_2;
+                    r4_2 = 24;
+                    ((android.widget.FrameLayout.LayoutParams) r3_15).rightMargin = r4_2;
+                    r4_8 = new android.widget.Button(this);
                     r5_2 = "✕ 退出";
-                    r4_5.setText(r5_2);
+                    r4_8.setText(r5_3);
                     r5_1 = 1057803469;
-                    r4_5.setAlpha(((float) r5_1));
-                    r5_3 = new PetActivity_3(this);
-                    r4_5.setOnClickListener(r5_3);
-                    p1_7.addView(r4_5);
-                    r4_6 = ((PetActivity) this).root;
-                    r4_6.addView(p1_7, r3_10);
-                    p1_6 = ((PetActivity) this).root;
-                    this.setContentView(p1_6);
-                    p1_4 = this.checkSelfPermission(r0);
-                    if (p1_4 == 0) { _pc = 8; break; }
-                    p1_8 = new java.lang.String[r1];
-                    p1_8[r2] = r0;
-                    r0_1 = 10088;
-                    this.requestPermissions(p1_8, r0_1);
+                    r4_8.setAlpha(((float) r5_1));
+                    r5_4 = new PetActivity_3(this_1);
+                    r4_8.setOnClickListener(r5_5);
+                    p1_8.addView(r4_9);
+                    r4_10 = ((PetActivity) this_1).root;
+                    r4_10.addView(p1_9, r3_16);
+                    p1_7 = ((PetActivity) this_1).root;
+                    this_1.setContentView(p1_9);
+                    p1_5 = this_1.checkSelfPermission(r0_1);
+                    if (p1_5 == 0) { _pc = 8; break; }
+                    p1_10 = new java.lang.String[r1];
+                    p1_10[r2] = r0_1;
+                    r0_2 = 10088;
+                    this_1.requestPermissions(p1_10, r0_2);
                     _pc = 8; break;
                     case 8:
-                    p1_5 = ((PetActivity) this).web;
+                    p1_6 = ((PetActivity) this_1).web;
                     r0 = "http://127.0.0.1:7797/pet?host=app";
-                    p1_5.loadUrl(r0);
+                    p1_6.loadUrl(r0_1);
                     p1_1 = "[PETACT] loadUrl -> http://127.0.0.1:7797/pet?host=app";
-                    AppLog.i(p1_1);
+                    AppLog.i(p1_2);
                     return;
                             }
                         } catch (Throwable _e) {
@@ -295,11 +313,12 @@ public class PetActivity extends android.app.Activity {
     protected void onDestroy() {
         android.webkit.WebView r0 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r0 = ((PetActivity) this).web;
         if (r0 != null) {
             r1 = "about:blank";
-            r0.loadUrl(r1);
+            r0.loadUrl(r1_1);
             r0 = ((PetActivity) this).web;
             r0.destroy();
             r0 = null;

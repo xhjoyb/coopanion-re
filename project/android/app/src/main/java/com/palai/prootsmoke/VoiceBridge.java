@@ -129,11 +129,12 @@ public class VoiceBridge {
         android.content.Context r0 = null;
         android.speech.SpeechRecognizer r0_1 = null;
         VoiceBridge_5 r1 = null;
+        android.speech.RecognitionListener r1_1 = null;
         try {
         r0 = ((VoiceBridge) this).ctx;
         r0_1 = android.speech.SpeechRecognizer.createSpeechRecognizer(r0);
         r1 = new VoiceBridge_5(this);
-        r0_1.setRecognitionListener(r1);
+        r0_1.setRecognitionListener(r1_1);
         return r0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -145,10 +146,13 @@ public class VoiceBridge {
         android.os.Handler p2_2 = null;
         String p3_1 = null;
         VoiceBridge_1 p3_2 = null;
+        java.lang.Runnable p3_3 = null;
         android.webkit.WebView r0 = null;
         java.lang.StringBuilder r0_1 = null;
         String r0_2 = null;
+        java.lang.String r0_3 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r0 = ((VoiceBridge) this).web;
         if (r0 == null) {
@@ -156,18 +160,18 @@ public class VoiceBridge {
         }
         r0_1 = new java.lang.StringBuilder();
         r1 = "(function(){try{var f=window.__petVoiceResult;if(typeof f==='function')f(";
-        r0_1 = r0_1.append(r1);
+        r0_1 = r0_1.append(r1_1);
         p1 = VoiceBridge.jsStr(p1);
         p1_1 = r0_1.append(p1);
         r0_2 = ",";
-        p1_1 = p1_1.append(r0_2);
+        p1_1 = p1_1.append(r0_3);
         r1 = "";
         if (p2 == null) {
             p2_1 = r1;
         }
         p2 = VoiceBridge.jsStr(p2);
         p1_1 = p1_1.append(p2);
-        p1_1 = p1_1.append(r0_2);
+        p1_1 = p1_1.append(r0_3);
         if (p3 == null) {
             p3_1 = r1;
         }
@@ -178,7 +182,7 @@ public class VoiceBridge {
         p1 = p1_1.toString();
         p2_2 = ((VoiceBridge) this).ui;
         p3_2 = new VoiceBridge_1(this, p1);
-        p2_2.post(p3_2);
+        p2_2.post(p3_3);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -189,6 +193,7 @@ public class VoiceBridge {
         java.lang.String p0_2 = null;
         java.lang.StringBuilder r0 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -211,7 +216,7 @@ public class VoiceBridge {
                     break;
                     r0 = new java.lang.StringBuilder();
                     r1 = "错误 ";
-                    r0 = r0.append(r1);
+                    r0 = r0.append(r1_1);
                     p0_1 = r0.append(p0);
                     p0_2 = p0_1.toString();
                     return p0_2;
@@ -231,17 +236,18 @@ public class VoiceBridge {
         java.lang.String r0_1 = null;
         int r0_2 = 0;
         String r1 = null;
-        boolean r1_1 = false;
+        java.lang.String r1_1 = null;
+        boolean r1_2 = false;
         try {
         r0 = "";
         if (p0 == null) {
             return r0_1;
         }
         r1 = "results_recognition";
-        p0_1 = p0.getStringArrayList(r1);
+        p0_1 = p0.getStringArrayList(r1_1);
         if (p0_1 != null) {
-            r1_1 = p0_1.isEmpty();
-            if (r1_1 == false) {
+            r1_2 = p0_1.isEmpty();
+            if (r1_2 == false) {
                 r0_2 = 0;
                 p0_2 = p0_1.get(r0_2);
                 return ((java.lang.String) p0_2);
@@ -256,28 +262,29 @@ public class VoiceBridge {
     public android.content.Intent intent() {
         android.content.Intent r0 = null;
         String r1 = null;
-        android.content.Context r1_1 = null;
-        java.lang.String r1_2 = null;
+        java.lang.String r1_1 = null;
+        android.content.Context r1_2 = null;
         String r2 = null;
-        int r2_1 = 0;
+        java.lang.String r2_1 = null;
+        int r2_2 = 0;
         try {
         r1 = "android.speech.action.RECOGNIZE_SPEECH";
-        r0 = new android.content.Intent(r1);
+        r0 = new android.content.Intent(r1_1);
         r1 = "android.speech.extra.LANGUAGE_MODEL";
         r2 = "free_form";
-        r0.putExtra(r1, r2);
+        r0.putExtra(r1_1, r2_1);
         r1 = "android.speech.extra.LANGUAGE";
         r2 = "zh-CN";
-        r0.putExtra(r1, r2);
+        r0.putExtra(r1_1, r2_1);
         r1 = "android.speech.extra.PARTIAL_RESULTS";
-        r2_1 = 1;
-        r0.putExtra(r1, (r2_1 != 0));
+        r2_2 = 1;
+        r0.putExtra(r1_1, (r2_2 != 0));
         r1 = "android.speech.extra.MAX_RESULTS";
-        r0.putExtra(r1, r2_1);
-        r1_1 = ((VoiceBridge) this).ctx;
-        r1_2 = r1_1.getPackageName();
+        r0.putExtra(r1_1, r2_2);
+        r1_2 = ((VoiceBridge) this).ctx;
+        r1_1 = r1_2.getPackageName();
         r2 = "calling_package";
-        r0.putExtra(r2, r1_2);
+        r0.putExtra(r2_1, r1_1);
         return r0;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -287,10 +294,12 @@ public class VoiceBridge {
         java.lang.StringBuilder p0_1 = null;
         java.lang.StringBuilder r0 = null;
         String r1 = null;
-        int r1_1 = 0;
+        java.lang.String r1_1 = null;
+        int r1_2 = 0;
         int r2 = 0;
         char r2_1 = 0;
         String r2_2 = null;
+        java.lang.String r2_3 = null;
         int r3 = 0;
         java.lang.StringBuilder r3_1 = null;
         char r3_2 = 0;
@@ -303,14 +312,14 @@ public class VoiceBridge {
                         switch (_pc) {
                     case 0:
                     r1 = "'";
-                    r0 = new java.lang.StringBuilder(r1);
-                    r1_1 = 0;
+                    r0 = new java.lang.StringBuilder(r1_1);
+                    r1_2 = 0;
                     _pc = 1; break;
                     case 1:
                     r2 = p0.length();
                     r3 = 39;
-                    if (r1_1 >= r2) { _pc = 7; break; }
-                    r2_1 = p0.charAt(r1_1);
+                    if (r1_2 >= r2) { _pc = 7; break; }
+                    r2_1 = p0.charAt(r1_2);
                     r4 = 92;
                     if (r2_1 == r3) { _pc = 5; break; }
                     if (r2_1 != r4) { _pc = 2; break; }
@@ -319,13 +328,13 @@ public class VoiceBridge {
                     r3 = 10;
                     if (r2_1 != r3) { _pc = 3; break; }
                     r2_2 = "\n";
-                    r0.append(r2_2);
+                    r0.append(r2_3);
                     _pc = 6; break;
                     case 3:
                     r3 = 13;
                     if (r2 != r3) { _pc = 4; break; }
                     r2_2 = "\r";
-                    r0.append(r2_2);
+                    r0.append(r2_3);
                     _pc = 6; break;
                     case 4:
                     r0.append(r2_1);
@@ -335,7 +344,7 @@ public class VoiceBridge {
                     r3_1.append(r2_1);
                     _pc = 6; break;
                     case 6:
-                    r1_1 = (r1_1 + 1);
+                    r1_2 = (r1_2 + 1);
                     _pc = 1; break;
                     case 7:
                     p0_1 = r0.append(r3_2);
@@ -366,10 +375,11 @@ public class VoiceBridge {
     public void cancel() {
         android.os.Handler r0 = null;
         VoiceBridge_4 r1 = null;
+        java.lang.Runnable r1_1 = null;
         try {
         r0 = ((VoiceBridge) this).ui;
         r1 = new VoiceBridge_4(this);
-        r0.post(r1);
+        r0.post(r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -378,10 +388,11 @@ public class VoiceBridge {
     public void start() {
         android.os.Handler r0 = null;
         VoiceBridge_2 r1 = null;
+        java.lang.Runnable r1_1 = null;
         try {
         r0 = ((VoiceBridge) this).ui;
         r1 = new VoiceBridge_2(this);
-        r0.post(r1);
+        r0.post(r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -390,10 +401,11 @@ public class VoiceBridge {
     public void stop() {
         android.os.Handler r0 = null;
         VoiceBridge_3 r1 = null;
+        java.lang.Runnable r1_1 = null;
         try {
         r0 = ((VoiceBridge) this).ui;
         r1 = new VoiceBridge_3(this);
-        r0.post(r1);
+        r0.post(r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

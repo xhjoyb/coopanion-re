@@ -23,6 +23,7 @@ public class MainActivity_29 implements android.content.DialogInterface.OnClickL
         MainActivity p1_1 = null;
         android.webkit.WebView p1_2 = null;
         String p2_1 = null;
+        java.lang.String p2_2 = null;
         try {
         p1_1 = ((MainActivity_29) this).this$0;
         p1_2 = MainActivity._$$Nest$fgetweb(p1_1);
@@ -30,10 +31,10 @@ public class MainActivity_29 implements android.content.DialogInterface.OnClickL
             p1_1 = ((MainActivity_29) this).this$0;
             p1_2 = MainActivity._$$Nest$fgetweb(p1_1);
             p2_1 = "http://127.0.0.1:17788/";
-            p1_2.loadUrl(p2_1);
+            p1_2.loadUrl(p2_2);
             p1_1 = ((MainActivity_29) this).this$0;
             p2_1 = "[GUIDE] 切到控制台";
-            MainActivity._$$Nest$mlog(p1_1, p2_1);
+            MainActivity._$$Nest$mlog(p1_1, p2_2);
         }
         return;
         } catch (Throwable _e9) {

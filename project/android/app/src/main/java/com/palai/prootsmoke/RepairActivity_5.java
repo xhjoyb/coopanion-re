@@ -26,8 +26,11 @@ public class RepairActivity_5 implements java.lang.Runnable {
         RepairActivity r0_1 = null;
         android.os.Handler r0_2 = null;
         String r1 = null;
-        long r1_1 = 0L;
+        java.lang.String r1_1 = null;
+        long r1_2 = 0L;
         RepairActivity_5_1 r2 = null;
+        android.webkit.ValueCallback r2_1 = null;
+        java.lang.Runnable this_1 = null;
         try {
         r0 = ((RepairActivity_5) this).val$v;
         if (r0 == null) {
@@ -35,14 +38,14 @@ public class RepairActivity_5 implements java.lang.Runnable {
         }
         r1 = "(window.__imeProbe?window.__imeProbe():0)";
         r2 = new RepairActivity_5_1(this);
-        r0.evaluateJavascript(r1, r2);
+        r0.evaluateJavascript(r1_1, r2_1);
         r0_1 = ((RepairActivity_5) this).this$0;
         r0_2 = RepairActivity._$$Nest$fgetimeHandler(r0_1);
         if (r0_2 != null) {
             r0_1 = ((RepairActivity_5) this).this$0;
             r0_2 = RepairActivity._$$Nest$fgetimeHandler(r0_1);
-            r1_1 = 400L;
-            r0_2.postDelayed(this, r1_1);
+            r1_2 = 400L;
+            r0_2.postDelayed(this_1, r1_2);
         }
         return;
         } catch (Throwable _e9) {

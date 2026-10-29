@@ -21,13 +21,14 @@ public class PetWindowService_14 implements java.lang.Runnable {
         PetWindowService r0 = null;
         android.os.Handler r0_1 = null;
         long r1 = 0L;
+        java.lang.Runnable this_1 = null;
         try {
         r0 = ((PetWindowService_14) this).this$0;
         PetWindowService._$$Nest$mqueryPetRect(r0);
         r0 = ((PetWindowService_14) this).this$0;
         r0_1 = PetWindowService._$$Nest$fgetui(r0);
         r1 = 80L;
-        r0_1.postDelayed(this, r1);
+        r0_1.postDelayed(this_1, r1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

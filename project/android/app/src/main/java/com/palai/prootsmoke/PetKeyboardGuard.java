@@ -36,9 +36,11 @@ public final class PetKeyboardGuard {
         long r0_1 = 0L;
         int r0_2 = 0;
         String r0_3 = null;
-        boolean r0_4 = false;
-        PetKeyboardGuard_1 r0_5 = null;
-        android.content.Context r0_6 = null;
+        java.lang.String r0_4 = null;
+        boolean r0_5 = false;
+        PetKeyboardGuard_1 r0_6 = null;
+        java.lang.Runnable r0_7 = null;
+        android.content.Context r0_8 = null;
         android.os.Looper r1 = null;
         r1 = android.os.Looper.getMainLooper();
         r0 = new android.os.Handler(r1);
@@ -48,13 +50,13 @@ public final class PetKeyboardGuard {
         r0_2 = -1;
         ((PetKeyboardGuard) this).lastHeight = r0_2;
         r0_3 = "";
-        ((PetKeyboardGuard) this).lastSource = r0_3;
-        r0_4 = false;
-        ((PetKeyboardGuard) this).reportedOnce = r0_4;
-        r0_5 = new PetKeyboardGuard_1(this);
-        ((PetKeyboardGuard) this).tick = r0_5;
-        r0_6 = p1.getApplicationContext();
-        ((PetKeyboardGuard) this).app = r0_6;
+        ((PetKeyboardGuard) this).lastSource = r0_4;
+        r0_5 = false;
+        ((PetKeyboardGuard) this).reportedOnce = r0_5;
+        r0_6 = new PetKeyboardGuard_1(this);
+        ((PetKeyboardGuard) this).tick = r0_7;
+        r0_8 = p1.getApplicationContext();
+        ((PetKeyboardGuard) this).app = r0_8;
         ((PetKeyboardGuard) this).root = p2;
         ((PetKeyboardGuard) this).target = p3;
         p1_1 = p1.getResources();
@@ -74,18 +76,20 @@ public final class PetKeyboardGuard {
         java.lang.StringBuilder r1 = null;
         java.lang.String r1_1 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         {
             r0 = EyesService.imeHeight();
             if (r0 > 0) {
                 r1 = new java.lang.StringBuilder();
                 r2 = "a11y=";
-                r1 = r1.append(r2);
+                r1 = r1.append(r2_1);
                 r1 = r1.append(r0);
                 r1_1 = r1.toString();
                 ((PetKeyboardGuard) this).lastSource = r1_1;
                 r0 = this.clampH(r0);
                 return r0;
             }  {
+                throw new RuntimeException(r0_1);
             }
             r0 = this.imeHeight();
             return r0;
@@ -139,9 +143,9 @@ public final class PetKeyboardGuard {
     public void evaluate() {
         boolean r0 = false;
         String r0_1 = null;
-        int r0_2 = 0;
-        java.lang.StringBuilder r0_3 = null;
-        java.lang.String r0_4 = null;
+        java.lang.String r0_2 = null;
+        int r0_3 = 0;
+        java.lang.StringBuilder r0_4 = null;
         int r1 = 0;
         boolean r2 = false;
         String r2_1 = null;
@@ -149,6 +153,7 @@ public final class PetKeyboardGuard {
         boolean r3 = false;
         int r3_1 = 0;
         String r4 = null;
+        java.lang.String r4_1 = null;
         int r5 = 0;
         try {
         r0 = EyesService.isRunning();
@@ -168,31 +173,31 @@ public final class PetKeyboardGuard {
             } else {
                 r0_1 = "init a11y=on";
             }
-            android.util.Log.i(r4, r0_1);
-            this.reportIme(r3, r0_1);
+            android.util.Log.i(r4_1, r0_2);
+            this.reportIme(r3, r0_2);
         }
-        r0_2 = ((PetKeyboardGuard) this).lastHeight;
-        if (r1 != r0_2) {
-            r0_3 = new java.lang.StringBuilder();
+        r0_3 = ((PetKeyboardGuard) this).lastHeight;
+        if (r1 != r0_3) {
+            r0_4 = new java.lang.StringBuilder();
             r2_1 = "ime height ";
-            r0_3 = r0_3.append(r2_1);
-            r0_3 = r0_3.append(r1);
+            r0_4 = r0_4.append(r2_2);
+            r0_4 = r0_4.append(r1);
             r2_1 = " (";
-            r0_3 = r0_3.append(r2_1);
+            r0_4 = r0_4.append(r2_2);
             r2_2 = ((PetKeyboardGuard) this).lastSource;
-            r0_3 = r0_3.append(r2_2);
+            r0_4 = r0_4.append(r2_2);
             r2_1 = ")";
-            r0_3 = r0_3.append(r2_2);
-            r0_4 = r0_3.toString();
-            android.util.Log.i(r4, r0_4);
+            r0_4 = r0_4.append(r2_2);
+            r0_2 = r0_4.toString();
+            android.util.Log.i(r4_1, r0_2);
         }
         ((PetKeyboardGuard) this).lastHeight = r1;
         this.reportKeyboard(r1);
         if (r1 > 0) {
             r3_1 = r5;
         }
-        r0_4 = ((PetKeyboardGuard) this).lastSource;
-        this.reportIme((r3_1 != 0), r0_4);
+        r0_2 = ((PetKeyboardGuard) this).lastSource;
+        this.reportIme((r3_1 != 0), r0_2);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -222,11 +227,13 @@ public final class PetKeyboardGuard {
     }
     public int imeHeight() {
         String r0 = null;
-        int r0_1 = 0;
-        java.lang.Throwable r0_2 = null;
+        java.lang.String r0_1 = null;
+        int r0_2 = 0;
+        java.lang.Throwable r0_3 = null;
         java.lang.StringBuilder r1 = null;
         java.lang.String r1_1 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -235,22 +242,23 @@ public final class PetKeyboardGuard {
                         switch (_pc) {
                     case 0:
                     r0 = "";
-                    ((PetKeyboardGuard) this).lastSource = r0;
-                    r0_1 = EyesService.imeHeightSmart();
-                    if (r0_1 <= 0) { _pc = 1; break; }
+                    ((PetKeyboardGuard) this).lastSource = r0_1;
+                    r0_2 = EyesService.imeHeightSmart();
+                    if (r0_2 <= 0) { _pc = 1; break; }
                     r1 = new java.lang.StringBuilder();
                     r2 = "a11y=";
-                    r1 = r1.append(r2);
-                    r1 = r1.append(r0_1);
+                    r1 = r1.append(r2_1);
+                    r1 = r1.append(r0_2);
                     r1_1 = r1.toString();
                     ((PetKeyboardGuard) this).lastSource = r1_1;
-                    r0_1 = this.clampH(r0_1);
-                    return r0_1;
+                    r0_2 = this.clampH(r0_2);
+                    return r0_2;
                             }
                         } catch (Throwable _e) {
-                                r0_2 = _e;
+                                r0_3 = _e;
                                 _pc = 2;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {
@@ -260,17 +268,22 @@ public final class PetKeyboardGuard {
     public static void install(android.content.Context p0, android.view.View p1, android.view.View p2) {
         android.os.Handler p0_1 = null;
         PetKeyboardGuard_2 p0_2 = null;
-        java.lang.StringBuilder p0_3 = null;
-        java.lang.String p0_4 = null;
-        java.lang.Throwable p0_5 = null;
+        EyesService_ImeListener p0_3 = null;
+        java.lang.StringBuilder p0_4 = null;
+        java.lang.String p0_5 = null;
+        java.lang.Object p0_6 = null;
+        java.lang.Throwable p0_7 = null;
         java.lang.Runnable p1_1 = null;
         String p1_2 = null;
-        int p1_3 = 0;
-        boolean p1_4 = false;
-        java.lang.StringBuilder p1_5 = null;
+        java.lang.String p1_3 = null;
+        int p1_4 = 0;
+        boolean p1_5 = false;
+        java.lang.StringBuilder p1_6 = null;
         java.lang.Runnable p2_1 = null;
         String p2_2 = null;
+        java.lang.String p2_3 = null;
         String r0 = null;
+        java.lang.String r0_1 = null;
         PetKeyboardGuard r1 = null;
         try {
         int _pc = 0;
@@ -305,34 +318,35 @@ public final class PetKeyboardGuard {
                     _pc = 5; break;
                     case 5:
                     p0_2 = new PetKeyboardGuard_2(r1);
-                    EyesService.setImeListener(p0_2);
-                    p0_3 = new java.lang.StringBuilder();
+                    EyesService.setImeListener(p0_3);
+                    p0_4 = new java.lang.StringBuilder();
                     p1_2 = "installed screenH=";
-                    p0_3 = p0_3.append(p1_2);
-                    p1_3 = ((PetKeyboardGuard) r1).screenH;
-                    p0_3 = p0_3.append(p1_3);
+                    p0_4 = p0_4.append(p1_3);
+                    p1_4 = ((PetKeyboardGuard) r1).screenH;
+                    p0_4 = p0_4.append(p1_4);
                     p1_2 = " a11y=";
-                    p0_3 = p0_3.append(p1_2);
-                    p1_4 = EyesService.isRunning();
-                    p0_3 = p0_3.append(p1_4);
-                    p0_4 = p0_3.toString();
-                    android.util.Log.i(r0, p0_4);
+                    p0_4 = p0_4.append(p1_3);
+                    p1_5 = EyesService.isRunning();
+                    p0_4 = p0_4.append(p1_5);
+                    p0_5 = p0_4.toString();
+                    android.util.Log.i(r0_1, p0_5);
                     _pc = 6; break;
         case 90000:
-                    p1_5 = new java.lang.StringBuilder();
+                    p1_6 = new java.lang.StringBuilder();
                     p2_2 = "install failed: ";
-                    p1_5 = p1_5.append(p2_2);
-                    p0_3 = p1_5.append(p0_4);
-                    p0_4 = p0_3.toString();
-                    android.util.Log.w(r0, p0_4);
+                    p1_6 = p1_6.append(p2_3);
+                    p0_4 = p1_6.append(p0_6);
+                    p0_5 = p0_4.toString();
+                    android.util.Log.w(r0_1, p0_5);
                     _pc = 6; break;
                     case 6:
                     return;
                             }
                         } catch (Throwable _e) {
-                                p0_5 = _e;
+                                p0_7 = _e;
                                 _pc = 5;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {
@@ -341,12 +355,13 @@ public final class PetKeyboardGuard {
     }
     public void onImeFromA11y(int p1) {
         String r0 = null;
+        java.lang.String r0_1 = null;
         try {
         if (p1 < 0) {
             p1 = 0;
         }
         r0 = "a11y";
-        this.publish(p1, r0);
+        this.publish(p1, r0_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -371,16 +386,20 @@ public final class PetKeyboardGuard {
     }
     public void reportIme(boolean p1, java.lang.String p2) {
         String p1_1 = null;
-        java.lang.StringBuilder p1_2 = null;
-        java.lang.String p1_3 = null;
+        java.lang.String p1_2 = null;
+        java.lang.StringBuilder p1_3 = null;
         String p2_1 = null;
         android.webkit.ValueCallback p2_2 = null;
         android.webkit.WebView r0 = null;
         android.view.View r0_1 = null;
         String r0_2 = null;
+        java.lang.CharSequence r0_3 = null;
         String r1 = null;
-        java.lang.StringBuilder r1_1 = null;
+        java.lang.CharSequence r1_1 = null;
+        java.lang.StringBuilder r1_2 = null;
+        java.lang.String r1_3 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
             r0 = ((PetKeyboardGuard) this).web;
             if (r0 == null) {
@@ -392,29 +411,29 @@ public final class PetKeyboardGuard {
             if (r0 == null) {
                 p1_1 = "PetKb";
                 p2_1 = "no webview for ime report";
-                android.util.Log.w(p1_1, p2);
+                android.util.Log.w(p1_2, p2);
                 return;
             }
             if (p2_1 != null) {
                 r0_2 = "'";
                 r1 = " ";
-                p2 = p2.replace(r0_2, r1);
+                p2 = p2.replace(r0_3, r1_1);
             } else {
                 p2_1 = "";
             }
             r0 = ((PetKeyboardGuard) this).web;
-            r1_1 = new java.lang.StringBuilder();
+            r1_2 = new java.lang.StringBuilder();
             r2 = "window.__petIme&&window.__petIme(";
-            r1_1 = r1_1.append(r2);
-            p1_2 = r1_1.append(p1);
+            r1_2 = r1_2.append(r2_1);
+            p1_3 = r1_2.append(p1);
             r1 = ",'";
-            p1_2 = p1_2.append(r1);
-            p1_2 = p1_2.append(p2);
+            p1_3 = p1_3.append(r1_3);
+            p1_3 = p1_3.append(p2);
             p2_1 = "')";
-            p1_2 = p1_2.append(p2);
-            p1_3 = p1_2.toString();
+            p1_3 = p1_3.append(p2);
+            p1_2 = p1_3.toString();
             p2_2 = null;
-            r0.evaluateJavascript(p1_3, p2_2);
+            r0.evaluateJavascript(p1_2, p2_2);
             return;
         } catch (java.lang.Throwable p1_4) {
             return;
@@ -422,17 +441,21 @@ public final class PetKeyboardGuard {
     }
     public void reportKeyboard(int p1) {
         String p1_1 = null;
-        java.lang.StringBuilder p1_2 = null;
-        java.lang.String p1_3 = null;
+        java.lang.String p1_2 = null;
+        java.lang.StringBuilder p1_3 = null;
+        java.lang.Object p1_5 = null;
         String r0 = null;
+        java.lang.String r0_1 = null;
         android.webkit.WebView r1 = null;
         android.view.View r1_1 = null;
         java.lang.StringBuilder r1_2 = null;
         long r2 = 0L;
         java.lang.StringBuilder r2_1 = null;
         String r2_2 = null;
-        android.webkit.ValueCallback r2_3 = null;
+        java.lang.String r2_3 = null;
+        android.webkit.ValueCallback r2_4 = null;
         String r3 = null;
+        java.lang.String r3_1 = null;
         long r4 = 0L;
         try {
             r0 = "PetKb";
@@ -445,7 +468,7 @@ public final class PetKeyboardGuard {
             r1 = ((PetKeyboardGuard) this).web;
             if (r1 == null) {
                 p1_1 = "no webview for keyboard report";
-                android.util.Log.w(r0, p1_1);
+                android.util.Log.w(r0_1, p1_2);
                 return;
             }
             r2 = ((PetKeyboardGuard) this).seq;
@@ -454,25 +477,25 @@ public final class PetKeyboardGuard {
             ((PetKeyboardGuard) this).seq = r2;
             r2_1 = new java.lang.StringBuilder();
             r3 = "window.__petKeyboard&&window.__petKeyboard(";
-            r2_1 = r2_1.append(r3);
-            p1_2 = r2_1.append(p1);
+            r2_1 = r2_1.append(r3_1);
+            p1_3 = r2_1.append(p1);
             r2_2 = ",";
-            p1_2 = p1_2.append(r2_2);
+            p1_3 = p1_3.append(r2_3);
             r2 = ((PetKeyboardGuard) this).seq;
-            p1_2 = p1_2.append(r2);
+            p1_3 = p1_3.append(r2);
             r2_2 = ")";
-            p1_2 = p1_2.append(r2_2);
-            p1_3 = p1_2.toString();
-            r2_3 = null;
-            r1.evaluateJavascript(p1_3, r2_3);
+            p1_3 = p1_3.append(r2_3);
+            p1_2 = p1_3.toString();
+            r2_4 = null;
+            r1.evaluateJavascript(p1_2, r2_4);
             return;
         } catch (java.lang.Throwable p1_4) {
             r1_2 = new java.lang.StringBuilder();
             r2_2 = "reportKeyboard failed: ";
-            r1_2 = r1_2.append(r2_2);
-            p1_2 = r1_2.append(p1_4);
-            p1_3 = p1_2.toString();
-            android.util.Log.w(r0, p1_3);
+            r1_2 = r1_2.append(r2_3);
+            p1_3 = r1_2.append(p1_5);
+            p1_2 = p1_3.toString();
+            android.util.Log.w(r0_1, p1_2);
             return;
         }
     }
@@ -495,12 +518,14 @@ public final class PetKeyboardGuard {
         java.lang.String p0_4 = null;
         java.lang.StringBuilder r0 = null;
         String r0_1 = null;
+        java.lang.String r0_2 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         PetKeyboardGuard.touchLayer = p0;
         r0 = new java.lang.StringBuilder();
         r1 = "touch layer attached=";
-        r0 = r0.append(r1);
+        r0 = r0.append(r1_1);
         if (p0 == null) {
             p0_2 = false;
         } else {
@@ -509,7 +534,7 @@ public final class PetKeyboardGuard {
         p0_3 = r0.append(p0_2);
         p0_4 = p0_3.toString();
         r0_1 = "PetKb";
-        android.util.Log.i(r0_1, p0_4);
+        android.util.Log.i(r0_2, p0_4);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

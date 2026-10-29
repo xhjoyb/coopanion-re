@@ -95,8 +95,9 @@ public class PetWindowService_ImeCommitConnection {
         }
     }
     public boolean commitText(java.lang.CharSequence p1, int p2) {
-        PetWindowService_ImeCommitConnection_Sink p1_1 = null;
-        int p1_2 = 0;
+        java.lang.Object p1_1 = null;
+        PetWindowService_ImeCommitConnection_Sink p1_2 = null;
+        int p1_3 = 0;
         int r0 = 0;
         PetWindowService_ImeCommitConnection_Sink r0_1 = null;
         android.view.inputmethod.InputConnection r0_2 = null;
@@ -106,16 +107,16 @@ public class PetWindowService_ImeCommitConnection {
             r0 = p1.length();
             if (r0 > 0) {
                 r0_1 = ((PetWindowService_ImeCommitConnection) this).sink;
-                r1 = p1.toString();
+                r1 = p1_1.toString();
                 r0_1.onCommit(r1);
             }
         }
         r0_2 = ((PetWindowService_ImeCommitConnection) this).base;
         r0_2.commitText(p1, p2);
-        p1_1 = ((PetWindowService_ImeCommitConnection) this).sink;
-        p1_1.onClearLocal();
-        p1_2 = 1;
-        return (p1_2 != 0);
+        p1_2 = ((PetWindowService_ImeCommitConnection) this).sink;
+        p1_2.onClearLocal();
+        p1_3 = 1;
+        return (p1_3 != 0);
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }
@@ -156,9 +157,10 @@ public class PetWindowService_ImeCommitConnection {
     public boolean finishComposingText() {
         android.view.inputmethod.InputConnection r0 = null;
         java.lang.CharSequence r0_1 = null;
-        java.lang.String r0_2 = null;
-        PetWindowService_ImeCommitConnection_Sink r0_3 = null;
-        int r0_4 = 0;
+        java.lang.Object r0_2 = null;
+        java.lang.String r0_3 = null;
+        PetWindowService_ImeCommitConnection_Sink r0_4 = null;
+        int r0_5 = 0;
         int r1 = 0;
         PetWindowService_ImeCommitConnection_Sink r1_1 = null;
         int r2 = 0;
@@ -170,17 +172,17 @@ public class PetWindowService_ImeCommitConnection {
         if (r0_1 != null) {
             r1 = r0_1.length();
             if (r1 > 0) {
-                r0_2 = r0_1.toString();
+                r0_3 = r0_2.toString();
                 r1_1 = ((PetWindowService_ImeCommitConnection) this).sink;
-                r1_1.onCommit(r0_2);
+                r1_1.onCommit(r0_3);
             }
         }
         r0 = ((PetWindowService_ImeCommitConnection) this).base;
         r0.finishComposingText();
-        r0_3 = ((PetWindowService_ImeCommitConnection) this).sink;
-        r0_3.onClearLocal();
-        r0_4 = 1;
-        return (r0_4 != 0);
+        r0_4 = ((PetWindowService_ImeCommitConnection) this).sink;
+        r0_4.onClearLocal();
+        r0_5 = 1;
+        return (r0_5 != 0);
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }

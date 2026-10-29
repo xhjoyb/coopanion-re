@@ -23,7 +23,9 @@ public class MainActivity_20 implements java.lang.Runnable {
         MainActivity r0 = null;
         android.webkit.WebView r0_1 = null;
         MainActivity_20_1 r1 = null;
+        android.webkit.ValueCallback r1_1 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         r0 = ((MainActivity_20) this).this$0;
         r0_1 = MainActivity._$$Nest$fgetweb(r0);
@@ -34,7 +36,7 @@ public class MainActivity_20 implements java.lang.Runnable {
         r0_1 = MainActivity._$$Nest$fgetweb(r0);
         r1 = new MainActivity_20_1(this);
         r2 = "(function(){try{if(!document||!document.body)return 'empty';var b=document.body;var t=b.innerText||'';if(t.indexOf('ERR_CONNECTION')>=0||t.indexOf('无法')>=0)return 'err';if(b.querySelector('canvas')||b.children.length>0)return 'ok';return 'empty';}{return 'err';}})()";
-        r0_1.evaluateJavascript(r2, r1);
+        r0_1.evaluateJavascript(r2_1, r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

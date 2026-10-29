@@ -12,12 +12,15 @@ public class PetWindow2_1 implements java.lang.Runnable {
     // ---- methods ----
     public void run() {
         android.os.Handler r0 = null;
-        java.lang.StringBuilder r0_2 = null;
-        java.lang.String r0_3 = null;
+        java.lang.Object r0_2 = null;
+        java.lang.StringBuilder r0_3 = null;
+        java.lang.String r0_4 = null;
         long r1 = 0L;
         java.lang.StringBuilder r1_1 = null;
         String r1_2 = null;
+        java.lang.String r1_3 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
             PetWindow2.access$000();
             r0 = PetWindow2.access$100();
@@ -27,11 +30,11 @@ public class PetWindow2_1 implements java.lang.Runnable {
         } catch (java.lang.Throwable r0_1) {
             r1_1 = new java.lang.StringBuilder();
             r2 = "tick: ";
-            r1_1 = r1_1.append(r2);
-            r0_2 = r1_1.append(r0_1);
-            r0_3 = r0_2.toString();
+            r1_1 = r1_1.append(r2_1);
+            r0_3 = r1_1.append(r0_2);
+            r0_4 = r0_3.toString();
             r1_2 = "PetWin2";
-            android.util.Log.w(r1_2, r0_3);
+            android.util.Log.w(r1_3, r0_4);
             r0 = PetWindow2.access$100();
             r1 = 120L;
             r0.postDelayed(this, r1);

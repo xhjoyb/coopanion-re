@@ -24,13 +24,17 @@ public class MainActivity_13 extends android.webkit.WebChromeClient {
         MainActivity r0_1 = null;
         int r1 = 0;
         String r1_1 = null;
-        MainActivity_13_1 r1_2 = null;
-        MainActivity_13_2 r1_3 = null;
+        java.lang.String r1_2 = null;
+        MainActivity_13_1 r1_3 = null;
+        java.lang.Runnable r1_4 = null;
+        MainActivity_13_2 r1_5 = null;
         int r2 = 0;
         int r3 = 0;
         java.lang.String r4 = null;
-        boolean r4_1 = false;
+        java.lang.Object r4_1 = null;
+        boolean r4_2 = false;
         String r5 = null;
+        java.lang.String r5_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -47,8 +51,8 @@ public class MainActivity_13 extends android.webkit.WebChromeClient {
                     if (r2 >= r1) { _pc = 3; break; }
                     r4 = r0[r2];
                     r5 = "android.webkit.resource.AUDIO_CAPTURE";
-                    r4_1 = r5.equals(r4);
-                    if (r4_1 == false) { _pc = 2; break; }
+                    r4_2 = r5_1.equals(r4_1);
+                    if (r4_2 == false) { _pc = 2; break; }
                     r3 = 1;
                     _pc = 2; break;
                     case 2:
@@ -58,15 +62,15 @@ public class MainActivity_13 extends android.webkit.WebChromeClient {
                     if (r3 == 0) { _pc = 4; break; }
                     r0_1 = ((MainActivity_13) this).this$0;
                     r1_1 = "[MIC] WebView 请求麦克风 -> 已放行";
-                    MainActivity._$$Nest$mlog(r0_1, r1_1);
+                    MainActivity._$$Nest$mlog(r0_1, r1_2);
                     r0_1 = ((MainActivity_13) this).this$0;
-                    r1_2 = new MainActivity_13_1(this, p1);
-                    r0_1.runOnUiThread(r1_2);
+                    r1_3 = new MainActivity_13_1(this, p1);
+                    r0_1.runOnUiThread(r1_4);
                     _pc = 5; break;
                     case 4:
                     r0_1 = ((MainActivity_13) this).this$0;
-                    r1_3 = new MainActivity_13_2(this, p1);
-                    r0_1.runOnUiThread(r1_3);
+                    r1_5 = new MainActivity_13_2(this, p1);
+                    r0_1.runOnUiThread(r1_4);
                     _pc = 5; break;
                     case 5:
                     return;

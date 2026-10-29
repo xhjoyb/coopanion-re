@@ -32,8 +32,10 @@ public class PetWindowService_17 implements java.lang.Runnable {
         int r1 = 0;
         PetWindowService r1_1 = null;
         android.widget.FrameLayout r1_2 = null;
+        android.view.View r1_3 = null;
         PetWindowService r2 = null;
         android.view.WindowManager.LayoutParams r2_1 = null;
+        android.view.ViewGroup.LayoutParams r2_2 = null;
         try {
         r0 = ((PetWindowService_17) this).this$0;
         r0_1 = PetWindowService._$$Nest$fgettouchLp(r0);
@@ -57,7 +59,7 @@ public class PetWindowService_17 implements java.lang.Runnable {
         r1_2 = PetWindowService._$$Nest$fgettouchBox(r1_1);
         r2 = ((PetWindowService_17) this).this$0;
         r2_1 = PetWindowService._$$Nest$fgettouchLp(r2);
-        r0_2.updateViewLayout(r1_2, r2_1);
+        r0_2.updateViewLayout(r1_3, r2_2);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

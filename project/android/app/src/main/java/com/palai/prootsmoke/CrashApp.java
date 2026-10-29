@@ -25,30 +25,33 @@ public class CrashApp extends android.app.Application {
         java.lang.StringBuilder p1_2 = null;
         String p1_3 = null;
         String p2_1 = null;
-        int p2_2 = 0;
+        java.lang.String p2_2 = null;
+        int p2_3 = 0;
         java.io.StringWriter r0 = null;
-        java.lang.String[] r0_1 = null;
+        java.io.Writer r0_1 = null;
+        java.lang.String[] r0_2 = null;
         java.io.PrintWriter r1 = null;
         String r1_1 = null;
-        int r1_2 = 0;
-        java.lang.String r1_3 = null;
+        java.lang.String r1_2 = null;
+        int r1_3 = 0;
         java.io.FileOutputStream r1_4 = null;
         java.lang.StringBuilder r2 = null;
         java.lang.String r2_1 = null;
         String r2_2 = null;
         int r2_3 = 0;
         String r3 = null;
-        java.text.SimpleDateFormat r3_1 = null;
-        java.lang.String r3_2 = null;
+        java.lang.String r3_1 = null;
+        java.text.SimpleDateFormat r3_2 = null;
         int r3_3 = 0;
         String r4 = null;
-        java.util.Date r4_1 = null;
-        java.io.File r4_2 = null;
-        java.lang.StringBuilder r4_3 = null;
-        java.lang.String r4_4 = null;
+        java.lang.String r4_1 = null;
+        java.util.Date r4_2 = null;
+        java.io.File r4_3 = null;
+        java.lang.StringBuilder r4_4 = null;
         byte[] r4_5 = null;
         java.util.Locale r5 = null;
         String r5_1 = null;
+        java.lang.String r5_2 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -57,19 +60,19 @@ public class CrashApp extends android.app.Application {
                         switch (_pc) {
                     case 0:
                     r0 = new java.io.StringWriter();
-                    r1 = new java.io.PrintWriter(r0);
+                    r1 = new java.io.PrintWriter(r0_1);
                     r3 = "time=";
-                    r2 = new java.lang.StringBuilder(r3);
+                    r2 = new java.lang.StringBuilder(r3_1);
                     r4 = "yyyy-MM-dd HH:mm:ss";
                     r5 = java.util.Locale.US;
-                    r3_1 = new java.text.SimpleDateFormat(r4, r5);
-                    r4_1 = new java.util.Date();
-                    r3_2 = r3_1.format(r4_1);
-                    r2 = r2.append(r3_2);
+                    r3_2 = new java.text.SimpleDateFormat(r4_1, r5);
+                    r4_2 = new java.util.Date();
+                    r3_1 = r3_2.format(r4_2);
+                    r2 = r2.append(r3_1);
                     r2_1 = r2.toString();
                     r1.println(r2_1);
                     r3 = "thread=";
-                    r2 = new java.lang.StringBuilder(r3_2);
+                    r2 = new java.lang.StringBuilder(r3_1);
                     p1_1 = p1.getName();
                     p1_2 = r2.append(p1_1);
                     p1_1 = p1_2.toString();
@@ -90,31 +93,31 @@ public class CrashApp extends android.app.Application {
                     r1.flush();
                     p1_1 = r0.toString();
                     p2_1 = "CoopCrash";
-                    android.util.Log.e(p2_1, p1_1);
-                    p2_2 = 3;
-                    r0_1 = new java.lang.String[p2_2];
+                    android.util.Log.e(p2_2, p1_1);
+                    p2_3 = 3;
+                    r0_2 = new java.lang.String[p2_3];
                     r1_1 = "/sdcard/Download/coop-crash.txt";
                     r2_3 = 0;
-                    r0_1[r2_3] = r1_1;
+                    r0_2[r2_3] = r1_2;
                     r1_1 = "/storage/emulated/0/Download/coop-crash.txt";
                     r3_3 = 1;
-                    r0_1[r3_3] = r1_1;
-                    r1_2 = 2;
+                    r0_2[r3_3] = r1_2;
+                    r1_3 = 2;
                     r4 = "/storage/emulated/10/Download/coop-crash.txt";
-                    r0_1[r1_2] = r4;
+                    r0_2[r1_3] = r4_1;
                     _pc = 1; break;
                     case 1:
-                    if (r2_3 >= p2_2) { _pc = 2; break; }
-                    r1_3 = r0_1[r2_3];
-                    r4_2 = new java.io.File(r1_3);
-                    r1_4 = new java.io.FileOutputStream(r4_2, (r3_3 != 0));
-                    r4_3 = new java.lang.StringBuilder();
+                    if (r2_3 >= p2_3) { _pc = 2; break; }
+                    r1_2 = r0_2[r2_3];
+                    r4_3 = new java.io.File(r1_2);
+                    r1_4 = new java.io.FileOutputStream(r4_3, (r3_3 != 0));
+                    r4_4 = new java.lang.StringBuilder();
                     r5_1 = "\n========== CRASH ==========\n";
-                    r4_3 = r4_3.append(r5_1);
-                    r4_3 = r4_3.append(p1_1);
-                    r4_4 = r4_3.toString();
+                    r4_4 = r4_4.append(r5_2);
+                    r4_4 = r4_4.append(p1_1);
+                    r4_1 = r4_4.toString();
                     r5_1 = "UTF-8";
-                    r4_5 = r4_4.getBytes(r5_1);
+                    r4_5 = r4_1.getBytes(r5_2);
                     r1_4.write(r4_5);
                     r1_4.flush();
                     r1_4.close();
@@ -134,11 +137,12 @@ public class CrashApp extends android.app.Application {
     public void onCreate() {
         java.lang.Thread.UncaughtExceptionHandler r0 = null;
         CrashApp_1 r1 = null;
+        java.lang.Thread.UncaughtExceptionHandler r1_1 = null;
         try {
         super.onCreate();
         r0 = java.lang.Thread.getDefaultUncaughtExceptionHandler();
         r1 = new CrashApp_1(this, r0);
-        java.lang.Thread.setDefaultUncaughtExceptionHandler(r1);
+        java.lang.Thread.setDefaultUncaughtExceptionHandler(r1_1);
         android.os.Looper.getMainLooper();
         return;
         } catch (Throwable _e9) {

@@ -22,14 +22,17 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
     public void onBeginningOfSpeech() {
         VoiceBridge r0 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         String r3 = null;
+        java.lang.String r3_1 = null;
         try {
         r0 = ((VoiceBridge_5) this).this$0;
         r1 = "";
         r2 = "speech";
         r3 = "level";
-        VoiceBridge.access$500(r0, r3, r1, r2);
+        VoiceBridge.access$500(r0, r3_1, r1_1, r2_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -45,14 +48,17 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
     public void onEndOfSpeech() {
         VoiceBridge r0 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         String r3 = null;
+        java.lang.String r3_1 = null;
         try {
         r0 = ((VoiceBridge_5) this).this$0;
         r1 = "";
         r2 = "end";
         r3 = "level";
-        VoiceBridge.access$500(r0, r3, r1, r2);
+        VoiceBridge.access$500(r0, r3_1, r1_1, r2_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -64,9 +70,11 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         java.lang.String r0_1 = null;
         VoiceBridge r0_2 = null;
         String r1 = null;
-        boolean r1_1 = false;
-        int r1_2 = 0;
+        java.lang.String r1_1 = null;
+        boolean r1_2 = false;
+        int r1_3 = 0;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -76,16 +84,16 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
                     case 0:
                     r0 = new java.lang.StringBuilder();
                     r1 = "onError ";
-                    r0 = r0.append(r1);
+                    r0 = r0.append(r1_1);
                     r0 = r0.append(p1);
                     r0_1 = r0.toString();
                     r1 = "PetVoice";
-                    android.util.Log.w(r1, r0_1);
+                    android.util.Log.w(r1_1, r0_1);
                     r0_2 = ((VoiceBridge_5) this).this$0;
-                    r1_1 = VoiceBridge.access$300(r0_2);
-                    if (r1_1 == false) { _pc = 1; break; }
-                    r1_2 = 7;
-                    if (p1 != r1_2) { _pc = 1; break; }
+                    r1_2 = VoiceBridge.access$300(r0_2);
+                    if (r1_2 == false) { _pc = 1; break; }
+                    r1_3 = 7;
+                    if (p1 != r1_3) { _pc = 1; break; }
                     r1 = "empty";
                     _pc = 2; break;
                     case 1:
@@ -94,7 +102,7 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
                     case 2:
                     r2 = "";
                     p1_1 = VoiceBridge.access$600(p1);
-                    VoiceBridge.access$500(r0_2, r1, r2, p1_1);
+                    VoiceBridge.access$500(r0_2, r1_1, r2_1, p1_1);
                     return;
                             }
                         } catch (Throwable _e) {
@@ -117,7 +125,9 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         int r0 = 0;
         VoiceBridge r0_1 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         p1_1 = VoiceBridge.access$700(p1);
         if (p1_1 != null) {
@@ -126,7 +136,7 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
                 r0_1 = ((VoiceBridge_5) this).this$0;
                 r1 = "partial";
                 r2 = "";
-                VoiceBridge.access$500(r0_1, r1, p1_1, r2);
+                VoiceBridge.access$500(r0_1, r1_1, p1_1, r2_1);
             }
         }
         return;
@@ -137,14 +147,17 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
     public void onReadyForSpeech(android.os.Bundle p1) {
         VoiceBridge p1_1 = null;
         String r0 = null;
+        java.lang.String r0_1 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         p1_1 = ((VoiceBridge_5) this).this$0;
         r0 = "";
         r1 = "ready";
         r2 = "level";
-        VoiceBridge.access$500(p1_1, r2, r0, r1);
+        VoiceBridge.access$500(p1_1, r2_1, r0_1, r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -154,13 +167,15 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         java.lang.String p1_1 = null;
         VoiceBridge r0 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         r0 = ((VoiceBridge_5) this).this$0;
         p1_1 = VoiceBridge.access$700(p1);
         r1 = "";
         r2 = "final";
-        VoiceBridge.access$500(r0, r2, p1_1, r1);
+        VoiceBridge.access$500(r0, r2_1, p1_1, r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -171,14 +186,16 @@ public class VoiceBridge_5 implements android.speech.RecognitionListener {
         java.lang.String p1_2 = null;
         VoiceBridge r0 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         r0 = ((VoiceBridge_5) this).this$0;
         p1_1 = (int) p1;
         p1_2 = java.lang.String.valueOf(p1_1);
         r1 = "rms";
         r2 = "";
-        VoiceBridge.access$500(r0, r1, r2, p1_2);
+        VoiceBridge.access$500(r0, r1_1, r2_1, p1_2);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

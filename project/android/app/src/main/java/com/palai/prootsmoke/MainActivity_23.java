@@ -22,9 +22,10 @@ public class MainActivity_23 implements android.content.DialogInterface.OnClickL
     public void onClick(android.content.DialogInterface p1, int p2) {
         java.lang.Thread p1_1 = null;
         MainActivity_23_1 p2_1 = null;
+        java.lang.Runnable p2_2 = null;
         try {
         p2_1 = new MainActivity_23_1(this);
-        p1_1 = new java.lang.Thread(p2_1);
+        p1_1 = new java.lang.Thread(p2_2);
         p1_1.start();
         return;
         } catch (Throwable _e9) {

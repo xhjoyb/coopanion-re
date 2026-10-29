@@ -36,10 +36,13 @@ public class PetWindowService_3 implements java.lang.Runnable {
         android.view.WindowManager r0_1 = null;
         android.webkit.WebView r0_2 = null;
         String r0_3 = null;
-        java.lang.Runnable r0_4 = null;
+        java.lang.String r0_4 = null;
+        java.lang.Runnable r0_5 = null;
         int r1 = 0;
         android.widget.FrameLayout r1_1 = null;
-        String r1_2 = null;
+        android.view.View r1_2 = null;
+        String r1_3 = null;
+        java.lang.String r1_4 = null;
         boolean r2 = false;
         int r2_1 = 0;
         try {
@@ -53,16 +56,16 @@ public class PetWindowService_3 implements java.lang.Runnable {
         r0[r1] = (r2_1 != 0);
         r0_1 = ((PetWindowService_3) this).val$wm0;
         r1_1 = ((PetWindowService_3) this).val$holder;
-        r0_1.removeView(r1_1);
+        r0_1.removeView(r1_2);
         r0_2 = ((PetWindowService_3) this).val$warm;
         r0_2.stopLoading();
         r0_2 = ((PetWindowService_3) this).val$warm;
         r0_2.destroy();
         r0_3 = "PetWindow";
-        r1_2 = "[PET] 渲染器预热完成 → 开始正式挂载";
-        android.util.Log.i(r0_3, r1_2);
-        r0_4 = ((PetWindowService_3) this).val$done;
-        r0_4.run();
+        r1_3 = "[PET] 渲染器预热完成 → 开始正式挂载";
+        android.util.Log.i(r0_4, r1_4);
+        r0_5 = ((PetWindowService_3) this).val$done;
+        r0_5.run();
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

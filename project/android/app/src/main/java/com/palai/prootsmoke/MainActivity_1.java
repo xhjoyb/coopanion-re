@@ -23,6 +23,7 @@ public class MainActivity_1 implements java.lang.Runnable {
         MainActivity r0 = null;
         android.widget.TextView r0_1 = null;
         java.lang.String r1 = null;
+        java.lang.CharSequence r1_1 = null;
         try {
         r0 = ((MainActivity_1) this).this$0;
         r0_1 = MainActivity._$$Nest$fgetstatusTv(r0);
@@ -30,7 +31,7 @@ public class MainActivity_1 implements java.lang.Runnable {
             r0 = ((MainActivity_1) this).this$0;
             r0_1 = MainActivity._$$Nest$fgetstatusTv(r0);
             r1 = ((MainActivity_1) this).val$s;
-            r0_1.setText(r1);
+            r0_1.setText(r1_1);
         }
         return;
         } catch (Throwable _e9) {

@@ -20,32 +20,36 @@ public class PetKeyboardGuard_1 implements java.lang.Runnable {
     public void run() {
         PetKeyboardGuard r0 = null;
         android.os.Handler r0_1 = null;
-        java.lang.StringBuilder r0_3 = null;
-        java.lang.String r0_4 = null;
+        java.lang.Object r0_3 = null;
+        java.lang.StringBuilder r0_4 = null;
+        java.lang.String r0_5 = null;
         long r1 = 0L;
         java.lang.StringBuilder r1_1 = null;
         String r1_2 = null;
+        java.lang.String r1_3 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
+        java.lang.Runnable this_1 = null;
         try {
             r0 = ((PetKeyboardGuard_1) this).this$0;
             PetKeyboardGuard.access$000(r0);
             r0 = ((PetKeyboardGuard_1) this).this$0;
             r0_1 = PetKeyboardGuard.access$100(r0);
             r1 = 150L;
-            r0_1.postDelayed(this, r1);
+            r0_1.postDelayed(this_1, r1);
             return;
         } catch (java.lang.Throwable r0_2) {
             r1_1 = new java.lang.StringBuilder();
             r2 = "tick failed: ";
-            r1_1 = r1_1.append(r2);
-            r0_3 = r1_1.append(r0_2);
-            r0_4 = r0_3.toString();
+            r1_1 = r1_1.append(r2_1);
+            r0_4 = r1_1.append(r0_3);
+            r0_5 = r0_4.toString();
             r1_2 = "PetKb";
-            android.util.Log.w(r1_2, r0_4);
-            r0 = ((PetKeyboardGuard_1) this).this$0;
+            android.util.Log.w(r1_3, r0_5);
+            r0 = ((PetKeyboardGuard_1) this_1).this$0;
             r0_1 = PetKeyboardGuard.access$100(r0);
             r1 = 150L;
-            r0_1.postDelayed(this, r1);
+            r0_1.postDelayed(this_1, r1);
             return;
         }
     }

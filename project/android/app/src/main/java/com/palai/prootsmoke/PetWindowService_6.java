@@ -26,15 +26,17 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
         int p1_3 = 0;
         java.lang.StringBuilder r0 = null;
         String r0_1 = null;
+        java.lang.String r0_2 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r1 = "[PET-JS] ";
-        r0 = new java.lang.StringBuilder(r1);
+        r0 = new java.lang.StringBuilder(r1_1);
         p1_1 = p1.message();
         p1_2 = r0.append(p1_1);
         p1_1 = p1_2.toString();
         r0_1 = "PetWindow";
-        android.util.Log.i(r0_1, p1_1);
+        android.util.Log.i(r0_2, p1_1);
         p1_3 = 1;
         return (p1_3 != 0);
         } catch (Throwable _e9) {
@@ -42,20 +44,26 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
         }
     }
     public void onPermissionRequest(android.webkit.PermissionRequest p1) {
-        java.lang.StringBuilder p1_1 = null;
-        java.lang.String p1_2 = null;
-        java.lang.Throwable p1_3 = null;
+        java.lang.Object p1_1 = null;
+        java.lang.StringBuilder p1_2 = null;
+        java.lang.String p1_3 = null;
+        java.lang.Throwable p1_4 = null;
         String r0 = null;
+        java.lang.String r0_1 = null;
         java.lang.String[] r1 = null;
         String r1_1 = null;
-        java.lang.StringBuilder r1_2 = null;
+        java.lang.String r1_2 = null;
+        java.lang.StringBuilder r1_3 = null;
         int r2 = 0;
         String r2_1 = null;
+        java.lang.String r2_2 = null;
         int r3 = 0;
         int r4 = 0;
         java.lang.String r5 = null;
-        boolean r5_1 = false;
+        java.lang.Object r5_1 = null;
+        boolean r5_2 = false;
         String r6 = null;
+        java.lang.String r6_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -73,8 +81,8 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
                     if (r3 >= r2) { _pc = 3; break; }
                     r5 = r1[r3];
                     r6 = "android.webkit.resource.AUDIO_CAPTURE";
-                    r5_1 = r6.equals(r5);
-                    if (r5_1 == false) { _pc = 2; break; }
+                    r5_2 = r6_1.equals(r5_1);
+                    if (r5_2 == false) { _pc = 2; break; }
                     r4 = 1;
                     _pc = 2; break;
                     case 2:
@@ -83,7 +91,7 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
                     case 3:
                     if (r4 == 0) { _pc = 4; break; }
                     r1_1 = "[PET][MIC] WebView 请求麦克风 -> 已放行";
-                    android.util.Log.i(r0, r1_1);
+                    android.util.Log.i(r0_1, r1_2);
                     r1 = p1.getResources();
                     p1.grant(r1);
                     _pc = 5; break;
@@ -92,18 +100,19 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
                     _pc = 5; break;
         case 90000:
                     r2_1 = "[PET][MIC] onPermissionRequest err: ";
-                    r1_2 = new java.lang.StringBuilder(r2_1);
-                    p1_1 = r1_2.append(p1);
-                    p1_2 = p1_1.toString();
-                    android.util.Log.i(r0, p1_2);
+                    r1_3 = new java.lang.StringBuilder(r2_2);
+                    p1_2 = r1_3.append(p1_1);
+                    p1_3 = p1_2.toString();
+                    android.util.Log.i(r0_1, p1_3);
                     _pc = 5; break;
                     case 5:
                     return;
                             }
                         } catch (Throwable _e) {
-                                p1_3 = _e;
+                                p1_4 = _e;
                                 _pc = 4;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {

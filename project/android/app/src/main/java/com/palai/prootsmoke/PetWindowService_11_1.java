@@ -22,16 +22,18 @@ public class PetWindowService_11_1 implements java.lang.Runnable {
         PetWindowService r0_1 = null;
         android.webkit.WebView r0_2 = null;
         String r0_3 = null;
+        java.lang.String r0_4 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r0 = ((PetWindowService_11_1) this).this$1;
         r0_1 = ((PetWindowService_11) r0).this$0;
         r0_2 = PetWindowService._$$Nest$fgetweb(r0_1);
         r1 = "http://127.0.0.1:7797/pet";
-        r0_2.loadUrl(r1);
+        r0_2.loadUrl(r1_1);
         r0_3 = "PetWindow";
         r1 = "[PET] loadUrl(布局就绪后) -> http://127.0.0.1:7797/pet";
-        android.util.Log.i(r0_3, r1);
+        android.util.Log.i(r0_4, r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

@@ -50,11 +50,12 @@ public class PetWindowService_PetHostBridge {
         PetWindowService r0 = null;
         android.os.Handler r0_1 = null;
         PetWindowService_PetHostBridge_2 r1 = null;
+        java.lang.Runnable r1_1 = null;
         try {
         r0 = ((PetWindowService_PetHostBridge) this).this$0;
         r0_1 = PetWindowService._$$Nest$fgetui(r0);
         r1 = new PetWindowService_PetHostBridge_2(this);
-        r0_1.post(r1);
+        r0_1.post(r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -80,6 +81,7 @@ public class PetWindowService_PetHostBridge {
                                 p1_1 = _e;
                                 _pc = 15;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {
@@ -88,13 +90,15 @@ public class PetWindowService_PetHostBridge {
     }
     public void openDress() {
         PetWindowService r0 = null;
+        android.content.Context r0_1 = null;
         android.os.Handler r1 = null;
         PetWindowService_PetHostBridge_3 r2 = null;
+        java.lang.Runnable r2_1 = null;
         try {
         r0 = ((PetWindowService_PetHostBridge) this).this$0;
         r1 = PetWindowService._$$Nest$fgetui(r0);
-        r2 = new PetWindowService_PetHostBridge_3(this, r0);
-        r1.post(r2);
+        r2 = new PetWindowService_PetHostBridge_3(this, r0_1);
+        r1.post(r2_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -116,7 +120,9 @@ public class PetWindowService_PetHostBridge {
         android.os.Handler r0_4 = null;
         int r1 = 0;
         String r1_1 = null;
-        PetWindowService_PetHostBridge_1 r1_2 = null;
+        java.lang.String r1_2 = null;
+        PetWindowService_PetHostBridge_1 r1_3 = null;
+        java.lang.Runnable r1_4 = null;
         int r2 = 0;
         try {
         r0 = 0;
@@ -132,15 +138,15 @@ public class PetWindowService_PetHostBridge {
         r0_1 = ((PetWindowService_PetHostBridge) this).this$0;
         r1_1 = "coopanion";
         r2 = 0;
-        r0_2 = r0_1.getSharedPreferences(r1_1, r2);
+        r0_2 = r0_1.getSharedPreferences(r1_2, r2);
         r0_3 = r0_2.edit();
         r1_1 = "pet_alpha";
-        r0_3 = r0_3.putFloat(r1_1, ((float) p1_1));
+        r0_3 = r0_3.putFloat(r1_2, ((float) p1_1));
         r0_3.apply();
         r0_1 = ((PetWindowService_PetHostBridge) this).this$0;
         r0_4 = PetWindowService._$$Nest$fgetui(r0_1);
-        r1_2 = new PetWindowService_PetHostBridge_1(this, ((float) p1_1));
-        r0_4.post(r1_2);
+        r1_3 = new PetWindowService_PetHostBridge_1(this, ((float) p1_1));
+        r0_4.post(r1_4);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -151,14 +157,16 @@ public class PetWindowService_PetHostBridge {
         java.lang.String p1_2 = null;
         java.lang.StringBuilder r0 = null;
         String r0_1 = null;
+        java.lang.String r0_2 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r1 = "[PET] setInteractive=";
-        r0 = new java.lang.StringBuilder(r1);
+        r0 = new java.lang.StringBuilder(r1_1);
         p1_1 = r0.append(p1);
         p1_2 = p1_1.toString();
         r0_1 = "PetWindow";
-        android.util.Log.i(r0_1, p1_2);
+        android.util.Log.i(r0_2, p1_2);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

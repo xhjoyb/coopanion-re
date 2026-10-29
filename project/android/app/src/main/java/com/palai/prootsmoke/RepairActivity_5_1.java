@@ -18,8 +18,9 @@ public class RepairActivity_5_1 implements android.webkit.ValueCallback {
     }
     // ---- methods ----
     public void onReceiveValue(java.lang.Object p1) {
+        java.lang.String p1_1 = null;
         try {
-        this.onReceiveValue(((java.lang.String) p1));
+        this.onReceiveValue(p1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -33,9 +34,10 @@ public class RepairActivity_5_1 implements android.webkit.ValueCallback {
         int r0 = 0;
         int r1 = 0;
         String r2 = null;
-        RepairActivity_5 r2_1 = null;
-        RepairActivity r2_2 = null;
-        boolean r2_3 = false;
+        java.lang.CharSequence r2_1 = null;
+        RepairActivity_5 r2_2 = null;
+        RepairActivity r2_3 = null;
+        boolean r2_4 = false;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -47,7 +49,7 @@ public class RepairActivity_5_1 implements android.webkit.ValueCallback {
                     r1 = 0;
                     if (p1 == null) { _pc = 1; break; }
                     r2 = "1";
-                    p1_1 = p1.contains(r2);
+                    p1_1 = p1.contains(r2_1);
                     if (p1_1 == false) { _pc = 1; break; }
                     p1_2 = r0;
                     _pc = 2; break;
@@ -56,10 +58,10 @@ public class RepairActivity_5_1 implements android.webkit.ValueCallback {
                     _pc = 2; break;
                     case 2:
                     if (p1_2 == 0) { _pc = 3; break; }
-                    r2_1 = ((RepairActivity_5_1) this).this$1;
-                    r2_2 = ((RepairActivity_5) r2_1).this$0;
-                    r2_3 = RepairActivity._$$Nest$fgetimeShown(r2_2);
-                    if (r2_3 != false) { _pc = 3; break; }
+                    r2_2 = ((RepairActivity_5_1) this).this$1;
+                    r2_3 = ((RepairActivity_5) r2_2).this$0;
+                    r2_4 = RepairActivity._$$Nest$fgetimeShown(r2_3);
+                    if (r2_4 != false) { _pc = 3; break; }
                     p1_3 = ((RepairActivity_5_1) this).this$1;
                     p1_4 = ((RepairActivity_5) p1_3).this$0;
                     RepairActivity._$$Nest$fputimeShown(p1_4, (r0 != 0));

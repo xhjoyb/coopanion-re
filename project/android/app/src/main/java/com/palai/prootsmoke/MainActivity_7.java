@@ -23,6 +23,7 @@ public class MainActivity_7 implements android.view.View.OnClickListener {
         MainActivity p1_1 = null;
         android.webkit.WebView p1_2 = null;
         String r0 = null;
+        java.lang.String r0_1 = null;
         try {
         p1_1 = ((MainActivity_7) this).this$0;
         p1_2 = MainActivity._$$Nest$fgetweb(p1_1);
@@ -32,10 +33,10 @@ public class MainActivity_7 implements android.view.View.OnClickListener {
         p1_1 = ((MainActivity_7) this).this$0;
         p1_2 = MainActivity._$$Nest$fgetweb(p1_1);
         r0 = "http://127.0.0.1:17788/";
-        p1_2.loadUrl(r0);
+        p1_2.loadUrl(r0_1);
         p1_1 = ((MainActivity_7) this).this$0;
         r0 = "[PET] 切回控制台 -> http://127.0.0.1:17788/";
-        MainActivity._$$Nest$mlog(p1_1, r0);
+        MainActivity._$$Nest$mlog(p1_1, r0_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

@@ -18,8 +18,9 @@ public class PetActivity_2_1 implements android.webkit.ValueCallback {
     }
     // ---- methods ----
     public void onReceiveValue(java.lang.Object p1) {
+        java.lang.String p1_1 = null;
         try {
-        this.onReceiveValue(((java.lang.String) p1));
+        this.onReceiveValue(p1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -29,9 +30,10 @@ public class PetActivity_2_1 implements android.webkit.ValueCallback {
         java.lang.StringBuilder p1_1 = null;
         java.lang.StringBuilder r0 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r1 = "[PETACT] probe -> ";
-        r0 = new java.lang.StringBuilder(r1);
+        r0 = new java.lang.StringBuilder(r1_1);
         p1_1 = r0.append(p1);
         p1 = p1_1.toString();
         AppLog.i(p1);

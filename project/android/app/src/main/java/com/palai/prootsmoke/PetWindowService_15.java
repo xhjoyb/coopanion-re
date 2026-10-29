@@ -18,8 +18,9 @@ public class PetWindowService_15 implements android.webkit.ValueCallback {
     }
     // ---- methods ----
     public void onReceiveValue(java.lang.Object p1) {
+        java.lang.String p1_1 = null;
         try {
-        this.onReceiveValue(((java.lang.String) p1));
+        this.onReceiveValue(p1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -29,8 +30,10 @@ public class PetWindowService_15 implements android.webkit.ValueCallback {
         String r0 = null;
         int r1 = 0;
         String r1_1 = null;
+        java.lang.CharSequence r1_2 = null;
         int r2 = 0;
         String r3 = null;
+        java.lang.CharSequence r3_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -47,7 +50,7 @@ public class PetWindowService_15 implements android.webkit.ValueCallback {
                     case 1:
                     r1_1 = "\"";
                     r3 = "";
-                    p1 = p1.replace(r1_1, r3);
+                    p1 = p1.replace(r1_2, r3_1);
                     r1 = 124;
                     r1 = p1.lastIndexOf(r1);
                     if (r1 >= 0) { _pc = 2; break; }

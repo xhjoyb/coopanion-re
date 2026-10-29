@@ -23,20 +23,21 @@ public class PetWindowService_4 extends android.webkit.WebViewClient {
     // ---- methods ----
     public void onPageFinished(android.webkit.WebView p1, java.lang.String p2) {
         String p1_1 = null;
-        PetWindowService p1_2 = null;
-        android.os.Handler p1_3 = null;
+        java.lang.String p1_2 = null;
+        PetWindowService p1_3 = null;
+        android.os.Handler p1_4 = null;
         String p2_1 = null;
         java.lang.Runnable p2_2 = null;
         long r0 = 0L;
         try {
         p1_1 = "PetWindow";
         p2_1 = "[PET] 预热页加载完成，再等 400ms 让合成器落定";
-        android.util.Log.i(p1_1, p2);
-        p1_2 = ((PetWindowService_4) this).this$0;
-        p1_3 = PetWindowService._$$Nest$fgetui(p1_2);
+        android.util.Log.i(p1_2, p2);
+        p1_3 = ((PetWindowService_4) this).this$0;
+        p1_4 = PetWindowService._$$Nest$fgetui(p1_3);
         p2_2 = ((PetWindowService_4) this).val$finish;
         r0 = 400L;
-        p1_3.postDelayed(p2_2, r0);
+        p1_4.postDelayed(p2_2, r0);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

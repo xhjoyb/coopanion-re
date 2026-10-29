@@ -26,6 +26,7 @@ public final class EyesService_Api30 {
         }
     }
     public static void capture(android.accessibilityservice.AccessibilityService p0, java.util.concurrent.ExecutorService p1, int p2, int p3, java.util.concurrent.atomic.AtomicReference p4, java.util.concurrent.atomic.AtomicReference p5, java.util.concurrent.CountDownLatch p6) {
+        java.util.concurrent.Executor p1_1 = null;
         EyesService_Api30_1 r0 = null;
         java.util.concurrent.atomic.AtomicReference r1 = null;
         int r2 = 0;
@@ -33,6 +34,7 @@ public final class EyesService_Api30 {
         java.util.concurrent.atomic.AtomicReference r4 = null;
         java.util.concurrent.CountDownLatch r5 = null;
         EyesService_Api30_1 r6 = null;
+        android.accessibilityservice.AccessibilityService.TakeScreenshotCallback r6_1 = null;
         try {
         r0 = r6;
         r1 = p4;
@@ -42,7 +44,7 @@ public final class EyesService_Api30 {
         r5 = p6;
         r0 = new EyesService_Api30_1(r1, r2, r3, r4, r5);
         p2 = 0;
-        p0.takeScreenshot(p2, p1, r6);
+        p0.takeScreenshot(p2, p1_1, r6_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -57,7 +59,9 @@ public final class EyesService_Api30 {
         java.lang.IllegalStateException p0_6 = null;
         EyesService p1_1 = null;
         java.io.ByteArrayOutputStream p1_2 = null;
-        String p1_3 = null;
+        java.io.OutputStream p1_3 = null;
+        String p1_4 = null;
+        java.lang.String p1_5 = null;
         android.hardware.HardwareBuffer r0 = null;
         android.graphics.Bitmap.Config r0_1 = null;
         android.graphics.Bitmap r0_2 = null;
@@ -101,7 +105,7 @@ public final class EyesService_Api30 {
                     r1_1 = 262144;
                     p1_2 = new java.io.ByteArrayOutputStream(r1_1);
                     r1_3 = android.graphics.Bitmap.CompressFormat.JPEG;
-                    p0_2.compress(r1_3, p2, p1_2);
+                    p0_2.compress(r1_3, p2, p1_3);
                     if (p0_2 != r0_2) {
                         p0_2.recycle();
                     }
@@ -109,12 +113,12 @@ public final class EyesService_Api30 {
                     p0_5 = p1_2.toByteArray();
                     return p0_5;
                 }
-                p1_3 = "画面转换失败";
-                p0_6 = new java.lang.IllegalStateException(p1_3);
+                p1_4 = "画面转换失败";
+                p0_6 = new java.lang.IllegalStateException(p1_5);
                 throw p0_6;
             }
-            p1_3 = "拿不到画面";
-            p0_6 = new java.lang.IllegalStateException(p1_3);
+            p1_4 = "拿不到画面";
+            p0_6 = new java.lang.IllegalStateException(p1_5);
             throw p0_6;
         }
     }

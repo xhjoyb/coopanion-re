@@ -21,23 +21,26 @@ public class PetWindowService_PetHostBridge_1 implements java.lang.Runnable {
     // ---- methods ----
     public void run() {
         String r0 = null;
-        float r0_1 = 0f;
-        java.lang.StringBuilder r0_2 = null;
-        java.lang.String r0_3 = null;
+        java.lang.String r0_1 = null;
+        float r0_2 = 0f;
+        java.lang.StringBuilder r0_3 = null;
         PetWindowService_PetHostBridge r1 = null;
         PetWindowService r1_1 = null;
         android.view.WindowManager.LayoutParams r1_2 = null;
         android.widget.FrameLayout r1_3 = null;
         android.view.WindowManager r1_4 = null;
         String r1_5 = null;
+        java.lang.String r1_6 = null;
         float r2 = 0f;
         PetWindowService_PetHostBridge r2_1 = null;
         PetWindowService r2_2 = null;
         android.widget.FrameLayout r2_3 = null;
-        java.lang.StringBuilder r2_4 = null;
+        android.view.View r2_4 = null;
+        java.lang.StringBuilder r2_5 = null;
         PetWindowService_PetHostBridge r3 = null;
         PetWindowService r3_1 = null;
         android.view.WindowManager.LayoutParams r3_2 = null;
+        android.view.ViewGroup.LayoutParams r3_3 = null;
         try {
         r0 = "[PET] setAlpha=";
         r1 = ((PetWindowService_PetHostBridge_1) this).this$1;
@@ -66,15 +69,15 @@ public class PetWindowService_PetHostBridge_1 implements java.lang.Runnable {
                 r3 = ((PetWindowService_PetHostBridge_1) this).this$1;
                 r3_1 = ((PetWindowService_PetHostBridge) r3).this$0;
                 r3_2 = PetWindowService._$$Nest$fgetshowLp(r3_1);
-                r1_4.updateViewLayout(r2_3, r3_2);
+                r1_4.updateViewLayout(r2_4, r3_3);
             }
         }
         r1_5 = "PetWindow";
-        r2_4 = new java.lang.StringBuilder(r0);
-        r0_1 = ((PetWindowService_PetHostBridge_1) this).val$a;
-        r0_2 = r2_4.append(r0_1);
-        r0_3 = r0_2.toString();
-        android.util.Log.i(r1_5, r0_3);
+        r2_5 = new java.lang.StringBuilder(r0_1);
+        r0_2 = ((PetWindowService_PetHostBridge_1) this).val$a;
+        r0_3 = r2_5.append(r0_2);
+        r0_1 = r0_3.toString();
+        android.util.Log.i(r1_6, r0_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

@@ -28,13 +28,16 @@ public class MainActivity_31 implements android.widget.SeekBar.OnSeekBarChangeLi
         float p2_1 = 0f;
         java.lang.StringBuilder p2_2 = null;
         java.lang.String p2_3 = null;
-        MainActivity p2_4 = null;
+        java.lang.CharSequence p2_4 = null;
+        MainActivity p2_5 = null;
         int r0 = 0;
         android.widget.TextView r0_1 = null;
         int r1 = 0;
         java.lang.StringBuilder r1_1 = null;
         String r1_2 = null;
+        java.lang.String r1_3 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         p1_1 = (float) p2;
         p2 = 1120403456;
@@ -48,17 +51,17 @@ public class MainActivity_31 implements android.widget.SeekBar.OnSeekBarChangeLi
         }
         r0_1 = ((MainActivity_31) this).val$label;
         r2 = "桌宠透明度：";
-        r1_1 = new java.lang.StringBuilder(r2);
+        r1_1 = new java.lang.StringBuilder(r2_1);
         p2_1 = (p2_1 * p1_1);
         p2 = java.lang.Math.round(p2_1);
         p2_2 = r1_1.append(p2);
         r1_2 = "%";
-        p2_2 = p2_2.append(r1_2);
+        p2_2 = p2_2.append(r1_3);
         p2_3 = p2_2.toString();
-        r0_1.setText(p2_3);
+        r0_1.setText(p2_4);
         if (p3 != false) {
-            p2_4 = ((MainActivity_31) this).this$0;
-            MainActivity._$$Nest$mpushAlphaToService(p2_4, ((float) p1_2));
+            p2_5 = ((MainActivity_31) this).this$0;
+            MainActivity._$$Nest$mpushAlphaToService(p2_5, ((float) p1_2));
         }
         return;
         } catch (Throwable _e9) {

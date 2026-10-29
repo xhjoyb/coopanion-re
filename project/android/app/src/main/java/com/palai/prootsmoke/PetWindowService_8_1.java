@@ -22,12 +22,13 @@ public class PetWindowService_8_1 implements PetWindowService_ImeCommitConnectio
         PetWindowService r0_1 = null;
         android.widget.EditText r0_2 = null;
         String r1 = null;
+        java.lang.CharSequence r1_1 = null;
         try {
         r0 = ((PetWindowService_8_1) this).this$1;
         r0_1 = ((PetWindowService_8) r0).this$0;
         r0_2 = PetWindowService._$$Nest$fgetimeProxy(r0_1);
         r1 = "";
-        r0_2.setText(r1);
+        r0_2.setText(r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -49,11 +50,12 @@ public class PetWindowService_8_1 implements PetWindowService_ImeCommitConnectio
         PetWindowService_8 r0 = null;
         PetWindowService r0_1 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r0 = ((PetWindowService_8_1) this).this$1;
         r0_1 = ((PetWindowService_8) r0).this$0;
         r1 = "Backspace";
-        PetWindowService._$$Nest$mpushKeyToPage(r0_1, r1);
+        PetWindowService._$$Nest$mpushKeyToPage(r0_1, r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

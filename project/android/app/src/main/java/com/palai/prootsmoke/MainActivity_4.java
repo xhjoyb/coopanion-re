@@ -22,9 +22,10 @@ public class MainActivity_4 implements android.view.View.OnClickListener {
     public void onClick(android.view.View p1) {
         java.lang.Thread p1_1 = null;
         MainActivity_4_1 r0 = null;
+        java.lang.Runnable r0_1 = null;
         try {
         r0 = new MainActivity_4_1(this);
-        p1_1 = new java.lang.Thread(r0);
+        p1_1 = new java.lang.Thread(r0_1);
         p1_1.start();
         return;
         } catch (Throwable _e9) {

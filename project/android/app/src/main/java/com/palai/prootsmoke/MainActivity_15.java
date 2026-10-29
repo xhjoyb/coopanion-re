@@ -22,6 +22,7 @@ public class MainActivity_15 implements java.lang.Runnable {
         boolean r0_1 = false;
         java.util.concurrent.atomic.AtomicBoolean r0_2 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -37,7 +38,7 @@ public class MainActivity_15 implements java.lang.Runnable {
                     if (r0_1 != false) { _pc = 1; break; }
                     r0 = ((MainActivity_15) this).this$0;
                     r1 = "[PET] 上次桌宠开着，自动恢复悬浮窗（v10.3：先等 7797 就绪）";
-                    MainActivity._$$Nest$mlog(r0, r1);
+                    MainActivity._$$Nest$mlog(r0, r1_1);
                     r0 = ((MainActivity_15) this).this$0;
                     MainActivity._$$Nest$mstartPetWindowWhenReady(r0);
                     _pc = 2; break;
@@ -47,7 +48,7 @@ public class MainActivity_15 implements java.lang.Runnable {
                     if (r0_1 != false) { _pc = 2; break; }
                     r0 = ((MainActivity_15) this).this$0;
                     r1 = "[PET] 上次桌宠开着，但悬浮窗权限没了";
-                    MainActivity._$$Nest$mlog(r0, r1);
+                    MainActivity._$$Nest$mlog(r0, r1_1);
                     _pc = 2; break;
                     case 2:
                     return;

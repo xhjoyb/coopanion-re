@@ -18,8 +18,9 @@ public class MainActivity_20_1 implements android.webkit.ValueCallback {
     }
     // ---- methods ----
     public void onReceiveValue(java.lang.Object p1) {
+        java.lang.String p1_1 = null;
         try {
-        this.onReceiveValue(((java.lang.String) p1));
+        this.onReceiveValue(p1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -33,79 +34,86 @@ public class MainActivity_20_1 implements android.webkit.ValueCallback {
         int p1_5 = 0;
         android.os.Handler p1_6 = null;
         String r0 = null;
-        java.lang.String r0_1 = null;
-        java.lang.StringBuilder r0_2 = null;
-        int r0_3 = 0;
-        android.os.Looper r0_4 = null;
-        MainActivity_20_1_1 r0_5 = null;
-        MainActivity_20_1_2 r0_6 = null;
+        java.lang.CharSequence r0_1 = null;
+        java.lang.String r0_2 = null;
+        java.lang.Object r0_3 = null;
+        java.lang.StringBuilder r0_4 = null;
+        int r0_5 = 0;
+        android.os.Looper r0_6 = null;
+        MainActivity_20_1_1 r0_7 = null;
+        java.lang.Runnable r0_8 = null;
+        MainActivity_20_1_2 r0_9 = null;
         String r1 = null;
-        long r1_1 = 0L;
+        java.lang.CharSequence r1_1 = null;
+        java.lang.String r1_2 = null;
+        long r1_3 = 0L;
         String r2 = null;
-        MainActivity_20 r2_1 = null;
-        int r2_2 = 0;
-        java.lang.StringBuilder r2_3 = null;
+        java.lang.String r2_1 = null;
+        MainActivity_20 r2_2 = null;
+        int r2_3 = 0;
+        java.lang.StringBuilder r2_4 = null;
         String r3 = null;
-        MainActivity_20 r3_1 = null;
-        int r3_2 = 0;
+        java.lang.String r3_1 = null;
+        MainActivity_20 r3_2 = null;
+        int r3_3 = 0;
         try {
         r0 = "";
         if (p1 != null) {
             r1 = "\"";
-            p1 = p1.replace(r1, r0);
-            r0_1 = p1.trim();
+            p1 = p1.replace(r1_1, r0_1);
+            r0_2 = p1.trim();
         } else {
         }
         p1_1 = "ok";
-        p1_2 = p1.equals(r0_1);
+        p1_2 = p1.equals(r0_3);
         r1 = ")";
         if (p1_2 != false) {
             p1_3 = ((MainActivity_20_1) this).this$1;
             p1_4 = ((MainActivity_20) p1_3).this$0;
             r2 = "[PET] OK rendered (attempt ";
-            r0_2 = new java.lang.StringBuilder(r2);
-            r2_1 = ((MainActivity_20_1) this).this$1;
-            r2_2 = ((MainActivity_20) r2_1).val$attempt;
-            r2_2 = (r2_2 + 1);
-            r0_2 = r0_2.append(r2_2);
-            r0_2 = r0_2.append(r1);
-            r0_1 = r0_2.toString();
-            MainActivity._$$Nest$mlog(p1_4, r0_1);
+            r0_4 = new java.lang.StringBuilder(r2_1);
+            r2_2 = ((MainActivity_20_1) this).this$1;
+            r2_3 = ((MainActivity_20) r2_2).val$attempt;
+            r2_3 = (r2_3 + 1);
+            r0_4 = r0_4.append(r2_3);
+            r0_4 = r0_4.append(r1_2);
+            r0_2 = r0_4.toString();
+            MainActivity._$$Nest$mlog(p1_4, r0_2);
             return;
         }
         p1_3 = ((MainActivity_20_1) this).this$1;
         p1_4 = ((MainActivity_20) p1_3).this$0;
         r3 = "[PET] FAIL attempt ";
-        r2_3 = new java.lang.StringBuilder(r3);
-        r3_1 = ((MainActivity_20_1) this).this$1;
-        r3_2 = ((MainActivity_20) r3_1).val$attempt;
-        r3_2 = (r3_2 + 1);
-        r2_3 = r2_3.append(r3_2);
+        r2_4 = new java.lang.StringBuilder(r3_1);
+        r3_2 = ((MainActivity_20_1) this).this$1;
+        r3_3 = ((MainActivity_20) r3_2).val$attempt;
+        r3_3 = (r3_3 + 1);
+        r2_4 = r2_4.append(r3_3);
         r3 = " (";
-        r2_3 = r2_3.append(r3);
-        r0_2 = r2_3.append(r0_1);
-        r0_2 = r0_2.append(r1);
-        r0_1 = r0_2.toString();
-        MainActivity._$$Nest$mlog(p1_4, r0_1);
+        r2_4 = r2_4.append(r3_1);
+        r0_4 = r2_4.append(r0_2);
+        r0_4 = r0_4.append(r1_2);
+        r0_2 = r0_4.toString();
+        MainActivity._$$Nest$mlog(p1_4, r0_2);
         p1_3 = ((MainActivity_20_1) this).this$1;
         p1_5 = ((MainActivity_20) p1_3).val$attempt;
         p1_5 = (p1_5 + 1);
-        r0_3 = 20;
-        if (p1_5 >= r0_3) {
+        r0_5 = 20;
+        if (p1_5 >= r0_5) {
             p1_3 = ((MainActivity_20_1) this).this$1;
             p1_4 = ((MainActivity_20) p1_3).this$0;
             r0 = "[PET] retry limit reached, stop";
-            MainActivity._$$Nest$mlog(p1_4, r0_1);
+            MainActivity._$$Nest$mlog(p1_4, r0_2);
             p1_3 = ((MainActivity_20_1) this).this$1;
             p1_4 = ((MainActivity_20) p1_3).this$0;
-            r0_6 = new MainActivity_20_1_2(this);
-            p1_4.runOnUiThread(r0_6);
+            r0_9 = new MainActivity_20_1_2(this);
+            p1_4.runOnUiThread(r0_8);
         } else {
-            r0_4 = android.os.Looper.getMainLooper();
-            p1_6 = new android.os.Handler(r0_4);
-            r0_5 = new MainActivity_20_1_1(this);
-            r1_1 = 1500L;
-            p1_6.postDelayed(r0_5, r1_1);
+            r0_6 = android.os.Looper.getMainLooper();
+            p1_6 = new android.os.Handler(r0_6);
+            r0_7 = new MainActivity_20_1_1(this);
+            r1_3 = 1500L;
+            p1_6.postDelayed(r0_8, r1_3);
         }
         return;
         } catch (Throwable _e9) {

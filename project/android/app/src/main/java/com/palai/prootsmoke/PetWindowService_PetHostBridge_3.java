@@ -24,19 +24,21 @@ public class PetWindowService_PetHostBridge_3 implements java.lang.Runnable {
     public void run() {
         android.content.Intent r0 = null;
         String r1 = null;
-        int r1_1 = 0;
-        android.content.Context r1_2 = null;
+        java.lang.String r1_1 = null;
+        int r1_2 = 0;
+        android.content.Context r1_3 = null;
         String r2 = null;
-        android.net.Uri r2_1 = null;
+        java.lang.String r2_1 = null;
+        android.net.Uri r2_2 = null;
         try {
         r1 = "android.intent.action.VIEW";
         r2 = "http://127.0.0.1:7797/dress";
-        r2_1 = android.net.Uri.parse(r2);
-        r0 = new android.content.Intent(r1, r2_1);
-        r1_1 = 268435456;
-        r0.addFlags(r1_1);
-        r1_2 = ((PetWindowService_PetHostBridge_3) this).val$ctx;
-        r1_2.startActivity(r0);
+        r2_2 = android.net.Uri.parse(r2_1);
+        r0 = new android.content.Intent(r1_1, r2_2);
+        r1_2 = 268435456;
+        r0.addFlags(r1_2);
+        r1_3 = ((PetWindowService_PetHostBridge_3) this).val$ctx;
+        r1_3.startActivity(r0);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

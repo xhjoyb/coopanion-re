@@ -19,17 +19,20 @@ public class VoiceBridge_2 implements java.lang.Runnable {
     // ---- methods ----
     public void run() {
         String r0 = null;
+        java.lang.String r0_1 = null;
         VoiceBridge r1 = null;
         android.speech.SpeechRecognizer r1_1 = null;
-        java.lang.String r1_3 = null;
+        java.lang.Object r1_3 = null;
+        java.lang.String r1_4 = null;
         android.speech.SpeechRecognizer r2 = null;
         int r2_1 = 0;
         VoiceBridge r2_2 = null;
         android.content.Intent r2_3 = null;
         String r2_4 = null;
-        java.lang.StringBuilder r2_5 = null;
-        java.lang.String r2_6 = null;
+        java.lang.String r2_5 = null;
+        java.lang.StringBuilder r2_6 = null;
         String r3 = null;
+        java.lang.String r3_1 = null;
         try {
             r0 = "";
             r1 = ((VoiceBridge_2) this).this$0;
@@ -52,21 +55,21 @@ public class VoiceBridge_2 implements java.lang.Runnable {
             r1_1.startListening(r2_3);
             r1 = ((VoiceBridge_2) this).this$0;
             r2_4 = "start";
-            VoiceBridge.access$500(r1, r2_4, r0, r0);
+            VoiceBridge.access$500(r1, r2_5, r0_1, r0_1);
             return;
         } catch (java.lang.Throwable r1_2) {
-            r2_5 = new java.lang.StringBuilder();
+            r2_6 = new java.lang.StringBuilder();
             r3 = "start: ";
-            r2_5 = r2_5.append(r3);
-            r2_5 = r2_5.append(r1_2);
-            r2_6 = r2_5.toString();
+            r2_6 = r2_6.append(r3_1);
+            r2_6 = r2_6.append(r1_3);
+            r2_5 = r2_6.toString();
             r3 = "PetVoice";
-            android.util.Log.w(r3, r2_6);
+            android.util.Log.w(r3_1, r2_5);
             r2_2 = ((VoiceBridge_2) this).this$0;
-            r1_3 = r1_2.getMessage();
-            r1_3 = java.lang.String.valueOf(r1_3);
+            r1_4 = r1_2.getMessage();
+            r1_4 = java.lang.String.valueOf(r1_3);
             r3 = "error";
-            VoiceBridge.access$500(r2_2, r3, r0, r1_3);
+            VoiceBridge.access$500(r2_2, r3_1, r0_1, r1_4);
             return;
         }
     }

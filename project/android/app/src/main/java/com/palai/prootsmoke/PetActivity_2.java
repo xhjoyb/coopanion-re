@@ -22,18 +22,21 @@ public class PetActivity_2 extends android.webkit.WebViewClient {
     public void onPageFinished(android.webkit.WebView p1, java.lang.String p2) {
         java.lang.StringBuilder p2_1 = null;
         PetActivity_2_1 p2_2 = null;
+        android.webkit.ValueCallback p2_3 = null;
         java.lang.StringBuilder r0 = null;
         String r0_1 = null;
+        java.lang.String r0_2 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r1 = "[PETACT] onPageFinished: ";
-        r0 = new java.lang.StringBuilder(r1);
+        r0 = new java.lang.StringBuilder(r1_1);
         p2_1 = r0.append(p2);
         p2 = p2_1.toString();
         AppLog.i(p2);
         p2_2 = new PetActivity_2_1(this);
         r0_1 = "(function(){try{var e=document.getElementById('pet');var g=(function tick(){window.__rc=(window.__rc||0)+1;requestAnimationFrame(tick);})();return 'petEl='+(e?'yes':'NO')+' raf='+(typeof requestAnimationFrame)+' vp='+innerWidth+'x'+innerHeight;}{return 'err '+err;}})()";
-        p1.evaluateJavascript(r0_1, p2_2);
+        p1.evaluateJavascript(r0_2, p2_3);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

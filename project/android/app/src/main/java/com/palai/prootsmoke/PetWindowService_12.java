@@ -27,6 +27,7 @@ public class PetWindowService_12 implements java.lang.Runnable {
         java.lang.String r0_2 = null;
         String r0_3 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r0 = ((PetWindowService_12) this).this$0;
         r0_1 = PetWindowService._$$Nest$fgetweb(r0);
@@ -35,10 +36,10 @@ public class PetWindowService_12 implements java.lang.Runnable {
             r0 = ((PetWindowService_12) this).this$0;
             r0_1 = PetWindowService._$$Nest$fgetweb(r0);
             r1 = "http://127.0.0.1:7797/pet";
-            r0_1.loadUrl(r1);
+            r0_1.loadUrl(r1_1);
             r0_3 = "PetWindow";
             r1 = "[PET] loadUrl(兜底超时) -> http://127.0.0.1:7797/pet";
-            android.util.Log.i(r0_2, r1);
+            android.util.Log.i(r0_2, r1_1);
         }
         return;
         } catch (Throwable _e9) {

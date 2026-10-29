@@ -21,26 +21,29 @@ public class MainActivity_27 implements android.content.DialogInterface.OnClickL
     // ---- methods ----
     public void onClick(android.content.DialogInterface p1, int p2) {
         MainActivity p1_1 = null;
-        java.lang.StringBuilder p1_3 = null;
-        java.lang.String p1_4 = null;
+        java.lang.Object p1_3 = null;
+        java.lang.StringBuilder p1_4 = null;
+        java.lang.String p1_5 = null;
         android.content.Intent p2_1 = null;
         MainActivity p2_2 = null;
         String r0 = null;
-        java.lang.StringBuilder r0_1 = null;
+        java.lang.String r0_1 = null;
+        java.lang.StringBuilder r0_2 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
             p1_1 = ((MainActivity_27) this).this$0;
             r0 = "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS";
-            p2_1 = new android.content.Intent(r0);
+            p2_1 = new android.content.Intent(r0_1);
             p1_1.startActivity(p2_1);
             return;
         } catch (java.lang.Throwable p1_2) {
             p2_2 = ((MainActivity_27) this).this$0;
             r1 = "[GUIDE] 通知设置打不开: ";
-            r0_1 = new java.lang.StringBuilder(r1);
-            p1_3 = r0_1.append(p1_2);
-            p1_4 = p1_3.toString();
-            MainActivity._$$Nest$mlog(p2_2, p1_4);
+            r0_2 = new java.lang.StringBuilder(r1_1);
+            p1_4 = r0_2.append(p1_3);
+            p1_5 = p1_4.toString();
+            MainActivity._$$Nest$mlog(p2_2, p1_5);
             return;
         }
     }

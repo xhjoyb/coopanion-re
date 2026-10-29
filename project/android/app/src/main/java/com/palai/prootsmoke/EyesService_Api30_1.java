@@ -32,23 +32,26 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
     public void onFailure(int p1) {
         java.lang.StringBuilder p1_1 = null;
         java.lang.String p1_2 = null;
-        java.util.concurrent.CountDownLatch p1_3 = null;
+        java.lang.Object p1_3 = null;
+        java.util.concurrent.CountDownLatch p1_4 = null;
         java.util.concurrent.atomic.AtomicReference r0 = null;
         java.lang.StringBuilder r1 = null;
         String r1_1 = null;
+        java.lang.String r1_2 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         r0 = ((EyesService_Api30_1) this).val$fail;
         r1 = new java.lang.StringBuilder();
         r2 = "截屏失败(code=";
-        r1 = r1.append(r2);
+        r1 = r1.append(r2_1);
         p1_1 = r1.append(p1);
         r1_1 = ")";
-        p1_1 = p1_1.append(r1_1);
+        p1_1 = p1_1.append(r1_2);
         p1_2 = p1_1.toString();
-        r0.set(p1_2);
-        p1_3 = ((EyesService_Api30_1) this).val$latch;
-        p1_3.countDown();
+        r0.set(p1_3);
+        p1_4 = ((EyesService_Api30_1) this).val$latch;
+        p1_4.countDown();
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -59,10 +62,12 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
         java.util.concurrent.CountDownLatch p1_2 = null;
         java.lang.Throwable p1_3 = null;
         java.util.concurrent.atomic.AtomicReference r0 = null;
-        java.lang.String r0_1 = null;
+        java.lang.Object r0_1 = null;
+        java.lang.String r0_2 = null;
         int r1 = 0;
         byte[] r1_1 = null;
-        java.util.concurrent.atomic.AtomicReference r1_2 = null;
+        java.lang.Object r1_2 = null;
+        java.util.concurrent.atomic.AtomicReference r1_3 = null;
         int r2 = 0;
         try {
         int _pc = 0;
@@ -75,15 +80,15 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
                     r1 = ((EyesService_Api30_1) this).val$maxW;
                     r2 = ((EyesService_Api30_1) this).val$quality;
                     r1_1 = EyesService_Api30.access$200(p1, r1, r2);
-                    r0.set(r1_1);
+                    r0.set(r1_2);
                     p1_1 = p1.getHardwareBuffer();
                     p1_1.close();
                     _pc = 1; break;
                     _pc = 2; break;
         case 90000:
-                    r1_2 = ((EyesService_Api30_1) this).val$fail;
-                    r0_1 = java.lang.String.valueOf(r0);
-                    r1_2.set(r0_1);
+                    r1_3 = ((EyesService_Api30_1) this).val$fail;
+                    r0_2 = java.lang.String.valueOf(r0_1);
+                    r1_3.set(r0_1);
                     p1_1 = p1.getHardwareBuffer();
                     p1_1.close();
                     _pc = 1; break;
@@ -98,6 +103,7 @@ public class EyesService_Api30_1 implements android.accessibilityservice.Accessi
                                 p1_3 = _e;
                                 _pc = 0;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {

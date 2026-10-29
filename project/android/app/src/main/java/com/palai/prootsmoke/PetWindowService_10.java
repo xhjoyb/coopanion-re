@@ -24,6 +24,7 @@ public class PetWindowService_10 implements android.view.View.OnKeyListener {
         int p1_1 = 0;
         PetWindowService p1_2 = null;
         String p2_1 = null;
+        java.lang.String p2_2 = null;
         try {
         p1_1 = p3.getAction();
         if (p1_1 == 0) {
@@ -31,7 +32,7 @@ public class PetWindowService_10 implements android.view.View.OnKeyListener {
             if (p2 == p1_1) {
                 p1_2 = ((PetWindowService_10) this).this$0;
                 p2_1 = "Backspace";
-                PetWindowService._$$Nest$mpushKeyToPage(p1_2, p2_1);
+                PetWindowService._$$Nest$mpushKeyToPage(p1_2, p2_2);
                 p1_1 = 1;
                 return (p1_1 != 0);
             }

@@ -28,17 +28,22 @@ public class PetWindowService_16 implements java.lang.Runnable {
         android.os.Handler r0_5 = null;
         android.widget.EditText r0_6 = null;
         java.lang.Object r0_7 = null;
+        android.view.inputmethod.InputMethodManager r0_8 = null;
         int r1 = 0;
         PetWindowService r1_1 = null;
         android.widget.FrameLayout r1_2 = null;
-        PetWindowService_16_1 r1_3 = null;
-        PetWindowService_16_2 r1_4 = null;
-        String r1_5 = null;
+        android.view.View r1_3 = null;
+        PetWindowService_16_1 r1_4 = null;
+        java.lang.Runnable r1_5 = null;
+        PetWindowService_16_2 r1_6 = null;
+        String r1_7 = null;
+        java.lang.String r1_8 = null;
         PetWindowService r2 = null;
         android.view.WindowManager.LayoutParams r2_1 = null;
-        long r2_2 = 0L;
-        android.widget.EditText r2_3 = null;
-        android.os.IBinder r2_4 = null;
+        android.view.ViewGroup.LayoutParams r2_2 = null;
+        long r2_3 = 0L;
+        android.widget.EditText r2_4 = null;
+        android.os.IBinder r2_5 = null;
         try {
         r0 = ((PetWindowService_16) this).this$0;
         r0_1 = PetWindowService._$$Nest$fgettouchBox(r0);
@@ -66,7 +71,7 @@ public class PetWindowService_16 implements java.lang.Runnable {
                 r1_2 = PetWindowService._$$Nest$fgettouchBox(r1_1);
                 r2 = ((PetWindowService_16) this).this$0;
                 r2_1 = PetWindowService._$$Nest$fgettouchLp(r2);
-                r0_4.updateViewLayout(r1_2, r2_1);
+                r0_4.updateViewLayout(r1_3, r2_2);
             }
         }
         r0_3 = ((PetWindowService_16) this).val$on;
@@ -75,14 +80,14 @@ public class PetWindowService_16 implements java.lang.Runnable {
             r0_6 = PetWindowService._$$Nest$fgetimeProxy(r0);
             if (r0_6 != null) {
                 r0 = ((PetWindowService_16) this).this$0;
-                r1_5 = "input_method";
-                r0_7 = r0.getSystemService(r1_5);
+                r1_7 = "input_method";
+                r0_7 = r0.getSystemService(r1_8);
                 r1 = 0;
                 if (r0_7 != null) {
                     r2 = ((PetWindowService_16) this).this$0;
-                    r2_3 = PetWindowService._$$Nest$fgetimeProxy(r2);
-                    r2_4 = r2_3.getWindowToken();
-                    ((android.view.inputmethod.InputMethodManager) r0_7).hideSoftInputFromWindow(r2_4, r1);
+                    r2_4 = PetWindowService._$$Nest$fgetimeProxy(r2);
+                    r2_5 = r2_4.getWindowToken();
+                    r0_8.hideSoftInputFromWindow(r2_5, r1);
                 }
                 r0 = ((PetWindowService_16) this).this$0;
                 r0_6 = PetWindowService._$$Nest$fgetimeProxy(r0);
@@ -104,14 +109,14 @@ public class PetWindowService_16 implements java.lang.Runnable {
         } else {
             r0 = ((PetWindowService_16) this).this$0;
             r0_5 = PetWindowService._$$Nest$fgetui(r0);
-            r1_3 = new PetWindowService_16_1(this);
-            r2_2 = 120L;
-            r0_5.postDelayed(r1_3, r2_2);
+            r1_4 = new PetWindowService_16_1(this);
+            r2_3 = 120L;
+            r0_5.postDelayed(r1_5, r2_3);
             r0 = ((PetWindowService_16) this).this$0;
             r0_5 = PetWindowService._$$Nest$fgetui(r0);
-            r1_4 = new PetWindowService_16_2(this);
-            r2_2 = 450L;
-            r0_5.postDelayed(r1_4, r2_2);
+            r1_6 = new PetWindowService_16_2(this);
+            r2_3 = 450L;
+            r0_5.postDelayed(r1_5, r2_3);
         }
         return;
         } catch (Throwable _e9) {

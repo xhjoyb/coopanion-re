@@ -24,26 +24,29 @@ public class MainActivity_38 implements java.lang.Runnable {
         android.widget.LinearLayout r0_3 = null;
         int r1 = 0;
         String r1_1 = null;
-        MainActivity_38_1 r1_2 = null;
+        java.lang.String r1_2 = null;
+        MainActivity_38_1 r1_3 = null;
+        java.lang.Runnable r1_4 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
         r0 = 7797;
         r1 = 90000;
         r2 = "127.0.0.1";
-        r0_1 = MainActivity._$$Nest$smwaitPortOpen(r2, r0, r1);
+        r0_1 = MainActivity._$$Nest$smwaitPortOpen(r2_1, r0, r1);
         if (r0_1 != false) {
             r0_2 = ((MainActivity_38) this).this$0;
             r1_1 = "[PET] 7797 端口已就绪，启动桌宠悬浮窗";
-            MainActivity._$$Nest$mlog(r0_2, r1_1);
+            MainActivity._$$Nest$mlog(r0_2, r1_2);
         } else {
             r0_2 = ((MainActivity_38) this).this$0;
             r1_1 = "[PET] 7797 端口超时未就绪，仍尝试启动桌宠（可能显示空白）";
-            MainActivity._$$Nest$mlog(r0_2, r1_1);
+            MainActivity._$$Nest$mlog(r0_2, r1_2);
         }
         r0_2 = ((MainActivity_38) this).this$0;
         r0_3 = MainActivity._$$Nest$fgetroot(r0_2);
-        r1_2 = new MainActivity_38_1(this);
-        r0_3.post(r1_2);
+        r1_3 = new MainActivity_38_1(this);
+        r0_3.post(r1_4);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

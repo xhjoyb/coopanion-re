@@ -20,10 +20,12 @@ public class MainActivity_10 implements android.view.View.OnClickListener {
     }
     // ---- methods ----
     public void onClick(android.view.View p1) {
+        android.widget.Button p1_1 = null;
         MainActivity r0 = null;
         android.widget.ScrollView r0_1 = null;
         int r0_2 = 0;
         String r0_3 = null;
+        java.lang.CharSequence r0_4 = null;
         int r1 = 0;
         MainActivity r2 = null;
         android.widget.ScrollView r2_1 = null;
@@ -54,7 +56,7 @@ public class MainActivity_10 implements android.view.View.OnClickListener {
         } else {
             r0_3 = "收起日志";
         }
-        p1.setText(r0_3);
+        p1_1.setText(r0_4);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

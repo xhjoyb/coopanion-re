@@ -20,12 +20,15 @@ public class VoiceBridge_4 implements java.lang.Runnable {
     public void run() {
         VoiceBridge r0 = null;
         android.speech.SpeechRecognizer r0_1 = null;
-        java.lang.StringBuilder r0_3 = null;
-        java.lang.String r0_4 = null;
+        java.lang.Object r0_3 = null;
+        java.lang.StringBuilder r0_4 = null;
+        java.lang.String r0_5 = null;
         boolean r1 = false;
         java.lang.StringBuilder r1_1 = null;
         String r1_2 = null;
+        java.lang.String r1_3 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
             r0 = ((VoiceBridge_4) this).this$0;
             r1 = false;
@@ -41,11 +44,11 @@ public class VoiceBridge_4 implements java.lang.Runnable {
         } catch (java.lang.Throwable r0_2) {
             r1_1 = new java.lang.StringBuilder();
             r2 = "cancel: ";
-            r1_1 = r1_1.append(r2);
-            r0_3 = r1_1.append(r0_2);
-            r0_4 = r0_3.toString();
+            r1_1 = r1_1.append(r2_1);
+            r0_4 = r1_1.append(r0_3);
+            r0_5 = r0_4.toString();
             r1_2 = "PetVoice";
-            android.util.Log.w(r1_2, r0_4);
+            android.util.Log.w(r1_3, r0_5);
             return;
         }
     }

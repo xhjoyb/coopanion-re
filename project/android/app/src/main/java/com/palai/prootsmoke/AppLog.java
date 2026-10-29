@@ -16,11 +16,12 @@ public final class AppLog {
     static {
         java.text.SimpleDateFormat r0 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         java.util.Locale r2 = null;
         try {
         r1 = "HH:mm:ss.SSS";
         r2 = java.util.Locale.US;
-        r0 = new java.text.SimpleDateFormat(r1, r2);
+        r0 = new java.text.SimpleDateFormat(r1_1, r2);
         AppLog.FMT = r0;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -33,11 +34,12 @@ public final class AppLog {
     // ---- methods ----
     public static void e(java.lang.String p0) {
         String r0 = null;
+        java.lang.String r0_1 = null;
         try {
         r0 = "PetWindow";
-        android.util.Log.e(r0, p0);
+        android.util.Log.e(r0_1, p0);
         r0 = "E";
-        AppLog.write(r0, p0);
+        AppLog.write(r0_1, p0);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -45,11 +47,12 @@ public final class AppLog {
     }
     public static void i(java.lang.String p0) {
         String r0 = null;
+        java.lang.String r0_1 = null;
         try {
         r0 = "PetWindow";
-        android.util.Log.i(r0, p0);
+        android.util.Log.i(r0_1, p0);
         r0 = "I";
-        AppLog.write(r0, p0);
+        AppLog.write(r0_1, p0);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -60,6 +63,7 @@ public final class AppLog {
         java.lang.String r0 = null;
         java.io.File r0_1 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r0 = null;
         r0_1 = p0.getExternalFilesDir(r0);
@@ -67,7 +71,7 @@ public final class AppLog {
             r0_1 = p0.getFilesDir();
         }
         r1 = "coop-run.log";
-        p0_1 = new java.io.File(r0_1, r1);
+        p0_1 = new java.io.File(r0_1, r1_1);
         AppLog.LOG_FILE = p0_1;
         return;
         } catch (Throwable _e9) {
@@ -80,14 +84,16 @@ public final class AppLog {
         String p1_1 = null;
         java.io.FileOutputStream p1_2 = null;
         String r0 = null;
-        int r0_1 = 0;
+        java.lang.String r0_1 = null;
+        int r0_2 = 0;
         String r1 = null;
-        java.text.SimpleDateFormat r1_1 = null;
-        java.lang.String r1_2 = null;
+        java.lang.String r1_1 = null;
+        java.text.SimpleDateFormat r1_2 = null;
         java.lang.StringBuilder r1_3 = null;
         java.io.File r2 = null;
         java.lang.StringBuilder r3 = null;
         String r3_1 = null;
+        java.lang.String r3_2 = null;
         java.util.Date r4 = null;
         try {
         r0 = "/PetWindow: ";
@@ -96,23 +102,23 @@ public final class AppLog {
         if (r2 == null) {
             return;
         }
-        r3 = new java.lang.StringBuilder(r1);
-        r1_1 = AppLog.FMT;
+        r3 = new java.lang.StringBuilder(r1_1);
+        r1_2 = AppLog.FMT;
         r4 = new java.util.Date();
-        r1_2 = r1_1.format(r4);
-        r1_3 = r3.append(r1_2);
+        r1_1 = r1_2.format(r4);
+        r1_3 = r3.append(r1_1);
         r3_1 = "] ";
-        r1_3 = r1_3.append(r3_1);
+        r1_3 = r1_3.append(r3_2);
         p0_1 = r1_3.append(p0);
-        p0_1 = p0_1.append(r0);
+        p0_1 = p0_1.append(r0_1);
         p0_1 = p0_1.append(p1);
         p1_1 = "\n";
         p0_1 = p0_1.append(p1);
         p0 = p0_1.toString();
-        r0_1 = 1;
-        p1_2 = new java.io.FileOutputStream(r2, (r0_1 != 0));
+        r0_2 = 1;
+        p1_2 = new java.io.FileOutputStream(r2, (r0_2 != 0));
         r0 = "UTF-8";
-        p0_2 = p0.getBytes(r0);
+        p0_2 = p0.getBytes(r0_1);
         p1_2.write(p0_2);
         p1_2.flush();
         p1_2.close();

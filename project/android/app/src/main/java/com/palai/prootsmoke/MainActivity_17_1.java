@@ -22,16 +22,17 @@ public class MainActivity_17_1 implements java.lang.Runnable {
         MainActivity r0_1 = null;
         android.webkit.WebView r0_2 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r0 = ((MainActivity_17_1) this).this$1;
         r0_1 = ((MainActivity_17) r0).this$0;
         r1 = "[3] Web UI load (once) -> http://127.0.0.1:17788/";
-        MainActivity._$$Nest$mlog(r0_1, r1);
+        MainActivity._$$Nest$mlog(r0_1, r1_1);
         r0 = ((MainActivity_17_1) this).this$1;
         r0_1 = ((MainActivity_17) r0).this$0;
         r0_2 = MainActivity._$$Nest$fgetweb(r0_1);
         r1 = "http://127.0.0.1:17788/";
-        r0_2.loadUrl(r1);
+        r0_2.loadUrl(r1_1);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

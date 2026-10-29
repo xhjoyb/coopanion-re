@@ -26,9 +26,10 @@ public class RepairActivity_3 extends android.webkit.WebViewClient {
         java.lang.StringBuilder r0 = null;
         android.webkit.ValueCallback r0_1 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         try {
         r1 = "[REPAIRACT] onPageFinished: ";
-        r0 = new java.lang.StringBuilder(r1);
+        r0 = new java.lang.StringBuilder(r1_1);
         p2_1 = r0.append(p2);
         p2 = p2_1.toString();
         AppLog.i(p2);

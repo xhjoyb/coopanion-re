@@ -29,6 +29,7 @@ public class PetWindowService_11 implements android.view.View.OnLayoutChangeList
         PetWindowService p1_3 = null;
         android.os.Handler p1_4 = null;
         PetWindowService_11_1 p2_1 = null;
+        java.lang.Runnable p2_2 = null;
         long p3_1 = 0L;
         try {
         p1_1 = ((PetWindowService_11) this).loaded;
@@ -45,7 +46,7 @@ public class PetWindowService_11 implements android.view.View.OnLayoutChangeList
                 p1_4 = PetWindowService._$$Nest$fgetui(p1_3);
                 p2_1 = new PetWindowService_11_1(this);
                 p3_1 = 32L;
-                p1_4.postDelayed(p2_1, p3_1);
+                p1_4.postDelayed(p2_2, p3_1);
             } else {
             }
         }

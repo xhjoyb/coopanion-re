@@ -28,9 +28,11 @@ public class PetWindowService_1 implements java.lang.Runnable {
         int r1_1 = 0;
         PetWindowService r1_2 = null;
         android.widget.FrameLayout r1_3 = null;
+        android.view.View r1_4 = null;
         int r2 = 0;
         PetWindowService r2_1 = null;
         android.view.WindowManager.LayoutParams r2_2 = null;
+        android.view.ViewGroup.LayoutParams r2_3 = null;
         int r3 = 0;
         try {
         int _pc = 0;
@@ -72,7 +74,7 @@ public class PetWindowService_1 implements java.lang.Runnable {
                     r1_3 = PetWindowService._$$Nest$fgetshowBox(r1_2);
                     r2_1 = ((PetWindowService_1) this).this$0;
                     r2_2 = PetWindowService._$$Nest$fgetshowLp(r2_1);
-                    r0_3.updateViewLayout(r1_3, r2_2);
+                    r0_3.updateViewLayout(r1_4, r2_3);
                     _pc = 4; break;
                     case 4:
                     return;

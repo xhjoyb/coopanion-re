@@ -21,11 +21,14 @@ public class WebRetry_1 implements java.lang.Runnable {
     // ---- methods ----
     public void run() {
         android.webkit.WebView r0 = null;
-        java.lang.StringBuilder r0_2 = null;
-        java.lang.String r0_3 = null;
+        java.lang.Object r0_2 = null;
+        java.lang.StringBuilder r0_3 = null;
+        java.lang.String r0_4 = null;
         java.lang.StringBuilder r1 = null;
         String r1_1 = null;
+        java.lang.String r1_2 = null;
         String r2 = null;
+        java.lang.String r2_1 = null;
         try {
             r0 = ((WebRetry_1) this).val$web;
             r0.reload();
@@ -33,11 +36,11 @@ public class WebRetry_1 implements java.lang.Runnable {
         } catch (java.lang.Throwable r0_1) {
             r1 = new java.lang.StringBuilder();
             r2 = "reload: ";
-            r1 = r1.append(r2);
-            r0_2 = r1.append(r0_1);
-            r0_3 = r0_2.toString();
+            r1 = r1.append(r2_1);
+            r0_3 = r1.append(r0_2);
+            r0_4 = r0_3.toString();
             r1_1 = "PetWebRetry";
-            android.util.Log.w(r1_1, r0_3);
+            android.util.Log.w(r1_2, r0_4);
             return;
         }
     }

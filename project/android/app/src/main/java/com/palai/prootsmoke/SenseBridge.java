@@ -24,11 +24,12 @@ public final class SenseBridge {
     public SenseBridge(android.content.Context p1) {
         super();
         java.util.ArrayList r0 = null;
-        long r0_1 = 0L;
+        java.util.List r0_1 = null;
+        long r0_2 = 0L;
         r0 = new java.util.ArrayList();
-        ((SenseBridge) this).notifs = r0;
-        r0_1 = 0L;
-        ((SenseBridge) this).notifSeq = r0_1;
+        ((SenseBridge) this).notifs = r0_1;
+        r0_2 = 0L;
+        ((SenseBridge) this).notifSeq = r0_2;
         ((SenseBridge) this).ctx = p1;
         return;
     }
@@ -57,6 +58,7 @@ public final class SenseBridge {
         android.content.Context r0 = null;
         android.content.pm.PackageManager r0_1 = null;
         java.lang.CharSequence r0_2 = null;
+        java.lang.Object r0_3 = null;
         int r1 = 0;
         android.content.pm.ApplicationInfo r1_1 = null;
         try {
@@ -66,7 +68,7 @@ public final class SenseBridge {
         r1_1 = r0_1.getApplicationInfo(p1, r1);
         r0_2 = r0_1.getApplicationLabel(r1_1);
         if (r0_2 != null) {
-            p1 = r0_2.toString();
+            p1 = r0_3.toString();
         } else {
         }
         return p1;
@@ -80,10 +82,13 @@ public final class SenseBridge {
         String r1_1 = null;
         String r2 = null;
         java.lang.String r2_1 = null;
+        java.lang.Object r2_2 = null;
         String r3 = null;
         java.lang.String r3_1 = null;
+        java.lang.Object r3_2 = null;
         String r4 = null;
         java.lang.String r4_1 = null;
+        java.lang.Object r4_2 = null;
         try {
         r0 = new org.json.JSONObject();
         r1 = this.foregroundPackage();
@@ -94,16 +99,16 @@ public final class SenseBridge {
         } else {
             r4 = r3;
         }
-        r0.put(r2, r4_1);
+        r0.put(r2_1, r4_2);
         r2 = "label";
         if (r1 != null) {
             r3_1 = this.appLabel(r1);
         } else {
         }
-        r0.put(r2, r3_1);
+        r0.put(r2_1, r3_2);
         r1_1 = "ts";
         r2_1 = this.nowIso();
-        r0.put(r1, r2_1);
+        r0.put(r1, r2_2);
         return r0;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -116,12 +121,15 @@ public final class SenseBridge {
         java.util.List r1_2 = null;
         java.util.Iterator r1_3 = null;
         String r2 = null;
-        java.lang.Object r2_1 = null;
-        java.lang.String r2_2 = null;
+        java.lang.String r2_1 = null;
+        java.lang.Object r2_2 = null;
+        android.app.usage.UsageStatsManager r2_3 = null;
+        android.app.usage.UsageStats r2_4 = null;
         long r3 = 0L;
         int r3_1 = 0;
         boolean r3_2 = false;
         java.lang.Object r3_3 = null;
+        android.app.usage.UsageStats r3_4 = null;
         long r4 = 0L;
         int r4_1 = 0;
         long r6 = 0L;
@@ -135,34 +143,34 @@ public final class SenseBridge {
                     r0 = null;
                     r1 = ((SenseBridge) this).ctx;
                     r2 = "usagestats";
-                    r1_1 = r1.getSystemService(r2);
-                    r2_1 = r1_1;
-                    if (r2_1 == null) { _pc = 4; break; }
+                    r1_1 = r1.getSystemService(r2_1);
+                    r2_2 = r1_1;
+                    if (r2_2 == null) { _pc = 4; break; }
                     r6 = java.lang.System.currentTimeMillis();
                     r3 = 3600000L;
                     r4 = (r6 - r3);
                     r3_1 = 0;
-                    r1_2 = ((android.app.usage.UsageStatsManager) r2_1).queryUsageStats(r3_1, r4, r6);
+                    r1_2 = r2_3.queryUsageStats(r3_1, r4, r6);
                     if (r1_2 == null) { _pc = 4; break; }
                     r1_3 = r1_2.iterator();
-                    r2_2 = r0;
+                    r2_1 = r0;
                     _pc = 1; break;
                     case 1:
                     r3_2 = r1_3.hasNext();
                     if (r3_2 == false) { _pc = 3; break; }
                     r3_3 = r1_3.next();
-                    if (r2_2 == null) { _pc = 2; break; }
-                    r4 = ((android.app.usage.UsageStats) r3_3).getLastTimeUsed();
-                    r6 = r2_2.getLastTimeUsed();
+                    if (r2_1 == null) { _pc = 2; break; }
+                    r4 = r3_4.getLastTimeUsed();
+                    r6 = r2_4.getLastTimeUsed();
                     r4_1 = (r4 > r6 ? 1 : (r4 == r6 ? 0 : -1));
                     if (r4_1 <= 0) { _pc = 1; break; }
                     _pc = 2; break;
                     case 2:
-                    r2_1 = r3_3;
+                    r2_4 = r3_4;
                     _pc = 1; break;
                     case 3:
-                    if (r2_1 == null) { _pc = 4; break; }
-                    r0 = ((android.app.usage.UsageStats) r2_1).getPackageName();
+                    if (r2_4 == null) { _pc = 4; break; }
+                    r0 = r2_4.getPackageName();
                     _pc = 4; break;
                     case 4:
                     return r0;
@@ -198,7 +206,8 @@ public final class SenseBridge {
         java.lang.Throwable r0_1 = null;
         java.io.BufferedReader r1 = null;
         java.io.InputStreamReader r2 = null;
-        java.lang.String r2_1 = null;
+        java.io.Reader r2_1 = null;
+        java.lang.String r2_2 = null;
         java.io.InputStream r3 = null;
         java.nio.charset.Charset r4 = null;
         try {
@@ -212,9 +221,9 @@ public final class SenseBridge {
                     r3 = p1.getInputStream();
                     r4 = java.nio.charset.StandardCharsets.UTF_8;
                     r2 = new java.io.InputStreamReader(r3, r4);
-                    r1 = new java.io.BufferedReader(r2);
-                    r2_1 = r1.readLine();
-                    if (r2_1 != null) { _pc = 1; break; }
+                    r1 = new java.io.BufferedReader(r2_1);
+                    r2_2 = r1.readLine();
+                    if (r2_2 != null) { _pc = 1; break; }
                     p1.close();
                     return;
                             }
@@ -222,6 +231,7 @@ public final class SenseBridge {
                                 r0_1 = _e;
                                 _pc = 14;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {
@@ -232,8 +242,10 @@ public final class SenseBridge {
         int r0 = 0;
         android.content.Context r1 = null;
         java.lang.Object r1_1 = null;
-        int r1_2 = 0;
+        android.app.AppOpsManager r1_2 = null;
+        int r1_3 = 0;
         String r2 = null;
+        java.lang.String r2_1 = null;
         int r3 = 0;
         android.content.Context r4 = null;
         java.lang.String r4_1 = null;
@@ -241,7 +253,7 @@ public final class SenseBridge {
         r0 = 0;
         r1 = ((SenseBridge) this).ctx;
         r2 = "appops";
-        r1_1 = r1.getSystemService(r2);
+        r1_1 = r1.getSystemService(r2_1);
         if (r1_1 == null) {
             return (r0 != 0);
         }
@@ -249,8 +261,8 @@ public final class SenseBridge {
         r3 = android.os.Process.myUid();
         r4 = ((SenseBridge) this).ctx;
         r4_1 = r4.getPackageName();
-        r1_2 = ((android.app.AppOpsManager) r1_1).checkOpNoThrow(r2, r3, r4_1);
-        if (r1_2 == 0) {
+        r1_3 = r1_2.checkOpNoThrow(r2_1, r3, r4_1);
+        if (r1_3 == 0) {
             r0 = 1;
         }
         return (r0 != 0);
@@ -260,33 +272,36 @@ public final class SenseBridge {
     }
     public java.lang.String healthJson() {
         org.json.JSONObject r0 = null;
-        java.lang.String r0_1 = null;
+        java.lang.Object r0_1 = null;
+        java.lang.String r0_2 = null;
         String r1 = null;
-        org.json.JSONObject r1_1 = null;
+        java.lang.String r1_1 = null;
+        org.json.JSONObject r1_2 = null;
         boolean r2 = false;
         android.content.Context r2_1 = null;
         String r2_2 = null;
+        java.lang.String r2_3 = null;
         int r3 = 0;
         try {
         r0 = new org.json.JSONObject();
         r1 = "usage";
         r2 = this.hasUsageAccess();
-        r0.put(r1, r2);
+        r0.put(r1_1, r2);
         r1 = "notif";
         r2_1 = ((SenseBridge) this).ctx;
         r2 = NotifListenerService.isEnabled(r2_1);
-        r0.put(r1, r2);
+        r0.put(r1_1, r2);
         r1 = "accessibility";
         r2 = this.isAccessibilityOn();
-        r0.put(r1, r2);
-        r1_1 = new org.json.JSONObject();
+        r0.put(r1_1, r2);
+        r1_2 = new org.json.JSONObject();
         r2_2 = "ok";
         r3 = 1;
-        r1_1.put(r2_2, (r3 != 0));
+        r1_2.put(r2_3, (r3 != 0));
         r2_2 = "sources";
-        r1_1.put(r2_2, r0);
-        r0_1 = r1_1.toString();
-        return r0_1;
+        r1_2.put(r2_3, r0_1);
+        r0_2 = r1_2.toString();
+        return r0_2;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
         }
@@ -298,18 +313,19 @@ public final class SenseBridge {
         java.lang.String r1_2 = null;
         boolean r1_3 = false;
         String r2 = null;
-        android.content.Context r2_1 = null;
-        java.lang.String r2_2 = null;
+        java.lang.String r2_1 = null;
+        android.content.Context r2_2 = null;
+        java.lang.CharSequence r2_3 = null;
         try {
         r0 = 0;
         r1 = ((SenseBridge) this).ctx;
         r1_1 = r1.getContentResolver();
         r2 = "enabled_accessibility_services";
-        r1_2 = android.provider.Settings.Secure.getString(r1_1, r2);
+        r1_2 = android.provider.Settings.Secure.getString(r1_1, r2_1);
         if (r1_2 != null) {
-            r2_1 = ((SenseBridge) this).ctx;
-            r2_2 = r2_1.getPackageName();
-            r1_3 = r1_2.contains(r2_2);
+            r2_2 = ((SenseBridge) this).ctx;
+            r2_1 = r2_2.getPackageName();
+            r1_3 = r1_2.contains(r2_3);
             if (r1_3 != false) {
                 r0 = 1;
             }
@@ -332,11 +348,14 @@ public final class SenseBridge {
         boolean r0_1 = false;
         java.net.Socket r0_2 = null;
         String r0_3 = null;
+        java.lang.String r0_4 = null;
         String r1 = null;
-        java.net.InetAddress r1_1 = null;
-        java.lang.Thread r1_2 = null;
+        java.lang.String r1_1 = null;
+        java.net.InetAddress r1_2 = null;
+        java.lang.Thread r1_3 = null;
         int r2 = 0;
         SenseBridge__ExternalSyntheticLambda1 r2_1 = null;
+        java.lang.Runnable r2_2 = null;
         int r3 = 0;
         try {
         int _pc = 0;
@@ -346,10 +365,10 @@ public final class SenseBridge {
                         switch (_pc) {
                     case 0:
                     r1 = "127.0.0.1";
-                    r1_1 = java.net.InetAddress.getByName(r1);
+                    r1_2 = java.net.InetAddress.getByName(r1_1);
                     r2 = 17899;
                     r3 = 8;
-                    r0 = new java.net.ServerSocket(r2, r3, r1_1);
+                    r0 = new java.net.ServerSocket(r2, r3, r1_2);
                     ((SenseBridge) this).server = r0;
                     _pc = 1; break;
                     case 1:
@@ -359,8 +378,8 @@ public final class SenseBridge {
                     r0_2 = r0.accept();
                     r2_1 = new SenseBridge__ExternalSyntheticLambda1(this, r0_2);
                     r0_3 = "sense-bridge-conn";
-                    r1_2 = new java.lang.Thread(r2_1, r0_3);
-                    r1_2.start();
+                    r1_3 = new java.lang.Thread(r2_2, r0_4);
+                    r1_3.start();
                     _pc = 1; break;
         case 90000:
                     r0_1 = false;
@@ -383,14 +402,17 @@ public final class SenseBridge {
         java.lang.Throwable p1_3 = null;
         org.json.JSONObject r0 = null;
         org.json.JSONArray r1 = null;
+        java.lang.Object r1_1 = null;
         java.util.List r2 = null;
         java.util.Iterator r2_1 = null;
         long r2_2 = 0L;
         boolean r3 = false;
         java.lang.Object r3_1 = null;
+        org.json.JSONObject r3_2 = null;
         String r4 = null;
-        long r4_1 = 0L;
-        int r4_2 = 0;
+        java.lang.String r4_1 = null;
+        long r4_2 = 0L;
+        int r4_3 = 0;
         long r5 = 0L;
         try {
         int _pc = 0;
@@ -410,17 +432,17 @@ public final class SenseBridge {
                     r3_1 = r2_1.next();
                     r4 = "seq";
                     r5 = 0L;
-                    r4_1 = ((org.json.JSONObject) r3_1).optLong(r4, r5);
-                    r4_2 = (r4_1 > p1 ? 1 : (r4_1 == p1 ? 0 : -1));
-                    if (r4_2 < 0) { _pc = 1; break; }
+                    r4_2 = r3_2.optLong(r4_1, r5);
+                    r4_3 = (r4_2 > p1 ? 1 : (r4_2 == p1 ? 0 : -1));
+                    if (r4_3 < 0) { _pc = 1; break; }
                     r1.put(r3_1);
                     _pc = 1; break;
                     case 2:
                     p1_1 = "cursor";
                     r2_2 = ((SenseBridge) this).notifSeq;
-                    r0.put(p1_1, r2_2);
+                    r0.put(p1_2, r2_2);
                     p1_1 = "items";
-                    r0.put(p1_1, r1);
+                    r0.put(p1_2, r1_1);
                     p1_2 = r0.toString();
                     return p1_2;
                             }
@@ -428,6 +450,7 @@ public final class SenseBridge {
                                 p1_3 = _e;
                                 _pc = 2;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {
@@ -438,14 +461,15 @@ public final class SenseBridge {
         java.text.SimpleDateFormat r0 = null;
         java.lang.String r0_1 = null;
         String r1 = null;
-        java.util.Date r1_1 = null;
+        java.lang.String r1_1 = null;
+        java.util.Date r1_2 = null;
         java.util.Locale r2 = null;
         try {
         r1 = "yyyy-MM-dd'T'HH:mm:ssXXX";
         r2 = java.util.Locale.US;
-        r0 = new java.text.SimpleDateFormat(r1, r2);
-        r1_1 = new java.util.Date();
-        r0_1 = r0.format(r1_1);
+        r0 = new java.text.SimpleDateFormat(r1_1, r2);
+        r1_2 = new java.util.Date();
+        r0_1 = r0.format(r1_2);
         return r0_1;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);
@@ -467,17 +491,22 @@ public final class SenseBridge {
         int r1_2 = 0;
         float r1_3 = 0f;
         String r1_4 = null;
+        java.lang.String r1_5 = null;
         android.content.IntentFilter r2 = null;
         String r2_1 = null;
+        java.lang.String r2_2 = null;
         String r3 = null;
-        android.content.BroadcastReceiver r3_1 = null;
-        int r3_2 = 0;
+        java.lang.String r3_1 = null;
+        android.content.BroadcastReceiver r3_2 = null;
+        int r3_3 = 0;
         int r4 = 0;
         float r4_1 = 0f;
         String r5 = null;
-        int r5_1 = 0;
+        java.lang.String r5_1 = null;
+        int r5_2 = 0;
         int r6 = 0;
         String r6_1 = null;
+        java.lang.String r6_2 = null;
         int r7 = 0;
         try {
         int _pc = 0;
@@ -489,41 +518,41 @@ public final class SenseBridge {
                     r0 = new org.json.JSONObject();
                     r1 = ((SenseBridge) this).ctx;
                     r3 = "android.intent.action.BATTERY_CHANGED";
-                    r2 = new android.content.IntentFilter(r3);
-                    r3_1 = null;
-                    r1_1 = r1.registerReceiver(r3_1, r2);
+                    r2 = new android.content.IntentFilter(r3_1);
+                    r3_2 = null;
+                    r1_1 = r1.registerReceiver(r3_2, r2);
                     r2_1 = "level";
                     r3 = null;
                     r4 = -1;
                     if (r1_1 == null) { _pc = 3; break; }
                     r5 = "status";
-                    r5_1 = r1_1.getIntExtra(r5, r4);
+                    r5_2 = r1_1.getIntExtra(r5_1, r4);
                     r6 = 2;
-                    if (r5_1 == r6) { _pc = 1; break; }
+                    if (r5_2 == r6) { _pc = 1; break; }
                     r6 = 5;
-                    if (r5_1 != r6) { _pc = 2; break; }
+                    if (r5_2 != r6) { _pc = 2; break; }
                     _pc = 1; break;
                     case 1:
-                    r3_2 = 1;
+                    r3_3 = 1;
                     _pc = 2; break;
                     case 2:
-                    r5_1 = r1_1.getIntExtra(r2_1, r4);
+                    r5_2 = r1_1.getIntExtra(r2_2, r4);
                     r6_1 = "scale";
                     r7 = 100;
-                    r1_2 = r1_1.getIntExtra(r6_1, r7);
-                    if (r5_1 < 0) { _pc = 3; break; }
+                    r1_2 = r1_1.getIntExtra(r6_2, r7);
+                    if (r5_2 < 0) { _pc = 3; break; }
                     if (r1_2 <= 0) { _pc = 3; break; }
-                    r4_1 = (float) r5_1;
-                    r5_1 = 1120403456;
-                    r4_1 = (r4_1 * r5_1);
+                    r4_1 = (float) r5_2;
+                    r5_2 = 1120403456;
+                    r4_1 = (r4_1 * r5_2);
                     r1_3 = (float) r1_2;
                     r4_1 = (r4_1 / r1_3);
                     r4 = java.lang.Math.round(r4_1);
                     _pc = 3; break;
                     case 3:
                     r1_4 = "charging";
-                    r0.put(r1_4, (r3_2 != 0));
-                    r0.put(r2_1, r4);
+                    r0.put(r1_5, (r3_3 != 0));
+                    r0.put(r2_2, r4);
                     return r0;
                             }
                         } catch (Throwable _e) {
@@ -538,17 +567,23 @@ public final class SenseBridge {
         org.json.JSONObject r0 = null;
         android.content.Context r1 = null;
         java.lang.Object r1_1 = null;
-        boolean r1_2 = false;
-        int r1_3 = 0;
-        String r1_4 = null;
+        android.os.PowerManager r1_2 = null;
+        boolean r1_3 = false;
+        int r1_4 = 0;
+        String r1_5 = null;
+        java.lang.String r1_6 = null;
         String r2 = null;
-        int r2_1 = 0;
-        boolean r2_2 = false;
+        java.lang.String r2_1 = null;
+        int r2_2 = 0;
+        boolean r2_3 = false;
         String r3 = null;
+        java.lang.String r3_1 = null;
         android.content.Context r4 = null;
         java.lang.Object r4_1 = null;
-        boolean r4_2 = false;
+        android.app.KeyguardManager r4_2 = null;
+        boolean r4_3 = false;
         String r5 = null;
+        java.lang.String r5_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -559,33 +594,33 @@ public final class SenseBridge {
                     r0 = new org.json.JSONObject();
                     r1 = ((SenseBridge) this).ctx;
                     r2 = "power";
-                    r1_1 = r1.getSystemService(r2);
-                    r2_1 = 1;
+                    r1_1 = r1.getSystemService(r2_1);
+                    r2_2 = 1;
                     r3 = null;
                     if (r1_1 == null) { _pc = 1; break; }
-                    r1_2 = ((android.os.PowerManager) r1_1).isInteractive();
-                    if (r1_2 == false) { _pc = 1; break; }
-                    r1_3 = r2_1;
+                    r1_3 = r1_2.isInteractive();
+                    if (r1_3 == false) { _pc = 1; break; }
+                    r1_4 = r2_2;
                     _pc = 2; break;
                     case 1:
-                    r1_4 = r3;
+                    r1_5 = r3;
                     _pc = 2; break;
                     case 2:
                     r4 = ((SenseBridge) this).ctx;
                     r5 = "keyguard";
-                    r4_1 = r4.getSystemService(r5);
+                    r4_1 = r4.getSystemService(r5_1);
                     if (r4_1 == null) { _pc = 3; break; }
-                    r4_2 = ((android.app.KeyguardManager) r4_1).isKeyguardLocked();
-                    if (r4_2 == false) { _pc = 3; break; }
+                    r4_3 = r4_2.isKeyguardLocked();
+                    if (r4_3 == false) { _pc = 3; break; }
                     _pc = 4; break;
                     case 3:
                     r2 = r3;
                     _pc = 4; break;
                     case 4:
                     r3 = "on";
-                    r0.put(r3, r1_2);
-                    r1_4 = "locked";
-                    r0.put(r1_4, r2_2);
+                    r0.put(r3_1, r1_3);
+                    r1_5 = "locked";
+                    r0.put(r1_6, r2_3);
                     return r0;
                             }
                         } catch (Throwable _e) {
@@ -600,18 +635,20 @@ public final class SenseBridge {
         org.json.JSONObject r0 = null;
         java.lang.String r0_1 = null;
         String r1 = null;
+        java.lang.String r1_1 = null;
         org.json.JSONObject r2 = null;
+        java.lang.Object r2_1 = null;
         try {
         r0 = new org.json.JSONObject();
         r1 = "app";
         r2 = this.currentAppJson();
-        r0.put(r1, r2);
+        r0.put(r1_1, r2_1);
         r1 = "screen";
         r2 = this.screenJson();
-        r0.put(r1, r2);
+        r0.put(r1_1, r2_1);
         r1 = "power";
         r2 = this.powerJson();
-        r0.put(r1, r2);
+        r0.put(r1_1, r2_1);
         r0_1 = r0.toString();
         return r0_1;
         } catch (Throwable _e9) {
@@ -620,19 +657,26 @@ public final class SenseBridge {
     }
     public void addNotification(java.lang.String p1, java.lang.String p2, java.lang.String p3, java.lang.String p4, long p5) {
         String p1_1 = null;
-        java.util.List p1_2 = null;
-        int p1_3 = 0;
-        java.lang.Throwable p1_4 = null;
+        java.lang.Object p1_2 = null;
+        java.util.List p1_3 = null;
+        int p1_4 = 0;
+        java.lang.Throwable p1_5 = null;
         String p2_1 = null;
-        int p2_2 = 0;
+        java.lang.Object p2_2 = null;
+        int p2_3 = 0;
         String p3_1 = null;
+        java.lang.Object p3_2 = null;
         String p4_1 = null;
+        java.lang.Object p4_2 = null;
         String p5_1 = null;
-        java.lang.StringBuilder p5_2 = null;
-        java.lang.String p5_3 = null;
+        java.lang.String p5_2 = null;
+        java.lang.StringBuilder p5_3 = null;
+        java.lang.Object p5_4 = null;
         org.json.JSONObject p6 = null;
+        java.lang.Object p6_1 = null;
         long r0 = 0L;
         String r0_1 = null;
+        java.lang.String r0_2 = null;
         long r1 = 0L;
         java.lang.StringBuilder r1_1 = null;
         long r2 = 0L;
@@ -651,56 +695,57 @@ public final class SenseBridge {
                     p6 = new org.json.JSONObject();
                     r0_1 = "seq";
                     r1 = ((SenseBridge) this).notifSeq;
-                    p6.put(r0_1, r1);
+                    p6.put(r0_2, r1);
                     r0_1 = "id";
-                    r1_1 = new java.lang.StringBuilder(p5_1);
+                    r1_1 = new java.lang.StringBuilder(p5_2);
                     r2 = ((SenseBridge) this).notifSeq;
-                    p5_2 = r1_1.append(r2);
-                    p5_3 = p5_2.toString();
-                    p6.put(r0_1, p5_3);
+                    p5_3 = r1_1.append(r2);
+                    p5_2 = p5_3.toString();
+                    p6.put(r0_2, p5_4);
                     p5_1 = "pkg";
                     if (p1 != null) { _pc = 1; break; }
                     p1_1 = "";
                     _pc = 1; break;
                     case 1:
-                    p6.put(p5_3, p1_1);
+                    p6.put(p5_2, p1_2);
                     p1_1 = "app";
                     if (p2 != null) { _pc = 2; break; }
                     p2_1 = "";
                     _pc = 2; break;
                     case 2:
-                    p6.put(p1, p2_1);
+                    p6.put(p1, p2_2);
                     p1_1 = "title";
                     if (p3 != null) { _pc = 3; break; }
                     p3_1 = "";
                     _pc = 3; break;
                     case 3:
-                    p6.put(p1, p3_1);
+                    p6.put(p1, p3_2);
                     p1_1 = "text";
                     if (p4 != null) { _pc = 4; break; }
                     p4_1 = "";
                     _pc = 4; break;
                     case 4:
-                    p6.put(p1, p4_1);
-                    p1_2 = ((SenseBridge) this).notifs;
-                    p1_2.add(p6);
+                    p6.put(p1, p4_2);
+                    p1_3 = ((SenseBridge) this).notifs;
+                    p1_3.add(p6_1);
                     _pc = 5; break;
                     case 5:
-                    p1_2 = ((SenseBridge) this).notifs;
-                    p1_3 = p1_2.size();
-                    p2_2 = 64;
-                    if (p1_3 <= p2_2) { _pc = 6; break; }
-                    p1_2 = ((SenseBridge) this).notifs;
-                    p2_2 = 0;
-                    p1_2.remove(p2_2);
+                    p1_3 = ((SenseBridge) this).notifs;
+                    p1_4 = p1_3.size();
+                    p2_3 = 64;
+                    if (p1_4 <= p2_3) { _pc = 6; break; }
+                    p1_3 = ((SenseBridge) this).notifs;
+                    p2_3 = 0;
+                    p1_3.remove(p2_3);
                     _pc = 5; break;
                     case 6:
                     return;
                             }
                         } catch (Throwable _e) {
-                                p1_4 = _e;
+                                p1_5 = _e;
                                 _pc = 6;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {
@@ -713,7 +758,9 @@ public final class SenseBridge {
         java.lang.Thread r0_2 = null;
         java.lang.Thread r1 = null;
         SenseBridge__ExternalSyntheticLambda0 r2 = null;
+        java.lang.Runnable r2_1 = null;
         String r3 = null;
+        java.lang.String r3_1 = null;
         try {
         r0 = ((SenseBridge) this).running;
         if (r0 != false) {
@@ -723,7 +770,7 @@ public final class SenseBridge {
         ((SenseBridge) this).running = (r0_1 != 0);
         r2 = new SenseBridge__ExternalSyntheticLambda0(this);
         r3 = "sense-bridge";
-        r1 = new java.lang.Thread(r2, r3);
+        r1 = new java.lang.Thread(r2_1, r3_1);
         ((SenseBridge) this).thread = r1;
         r1.setDaemon((r0_1 != 0));
         r0_2 = ((SenseBridge) this).thread;

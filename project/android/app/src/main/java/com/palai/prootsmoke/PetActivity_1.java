@@ -23,19 +23,24 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
     }
     // ---- methods ----
     public void onPermissionRequest(android.webkit.PermissionRequest p1) {
-        java.lang.StringBuilder p1_1 = null;
-        java.lang.String p1_2 = null;
-        java.lang.Throwable p1_3 = null;
+        java.lang.Object p1_1 = null;
+        java.lang.StringBuilder p1_2 = null;
+        java.lang.String p1_3 = null;
+        java.lang.Throwable p1_4 = null;
         java.lang.String[] r0 = null;
         String r0_1 = null;
-        java.lang.StringBuilder r0_2 = null;
+        java.lang.String r0_2 = null;
+        java.lang.StringBuilder r0_3 = null;
         int r1 = 0;
         String r1_1 = null;
+        java.lang.String r1_2 = null;
         int r2 = 0;
         int r3 = 0;
         java.lang.String r4 = null;
-        boolean r4_1 = false;
+        java.lang.Object r4_1 = null;
+        boolean r4_2 = false;
         String r5 = null;
+        java.lang.String r5_1 = null;
         try {
         int _pc = 0;
         int _hits = 0;
@@ -52,8 +57,8 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                     if (r2 >= r1) { _pc = 3; break; }
                     r4 = r0[r2];
                     r5 = "android.webkit.resource.AUDIO_CAPTURE";
-                    r4_1 = r5.equals(r4);
-                    if (r4_1 == false) { _pc = 2; break; }
+                    r4_2 = r5_1.equals(r4_1);
+                    if (r4_2 == false) { _pc = 2; break; }
                     r3 = 1;
                     _pc = 2; break;
                     case 2:
@@ -62,7 +67,7 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                     case 3:
                     if (r3 == 0) { _pc = 4; break; }
                     r0_1 = "[PETACT][MIC] WebView 请求麦克风 -> 已放行";
-                    AppLog.i(r0_1);
+                    AppLog.i(r0_2);
                     r0 = p1.getResources();
                     p1.grant(r0);
                     _pc = 5; break;
@@ -71,18 +76,19 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                     _pc = 5; break;
         case 90000:
                     r1_1 = "[PETACT][MIC] onPermissionRequest err: ";
-                    r0_2 = new java.lang.StringBuilder(r1_1);
-                    p1_1 = r0_2.append(p1);
-                    p1_2 = p1_1.toString();
-                    AppLog.i(p1_2);
+                    r0_3 = new java.lang.StringBuilder(r1_2);
+                    p1_2 = r0_3.append(p1_1);
+                    p1_3 = p1_2.toString();
+                    AppLog.i(p1_3);
                     _pc = 5; break;
                     case 5:
                     return;
                             }
                         } catch (Throwable _e) {
-                                p1_3 = _e;
+                                p1_4 = _e;
                                 _pc = 4;
                                 if (++_hits > 8) { throw new RuntimeException(_e); }
+                        throw new RuntimeException(_e);
                             }
                     }
         } catch (Throwable _e9) {
@@ -91,62 +97,67 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
     }
     public boolean onShowFileChooser(android.webkit.WebView p1, android.webkit.ValueCallback p2, android.webkit.WebChromeClient.FileChooserParams p3) {
         String p1_1 = null;
-        PetActivity p1_2 = null;
-        android.webkit.ValueCallback p1_3 = null;
-        android.content.Intent p1_4 = null;
-        int p1_5 = 0;
-        java.lang.StringBuilder p1_7 = null;
-        java.lang.String p1_8 = null;
-        boolean p1_9 = false;
+        boolean p1_10 = false;
+        java.lang.String p1_2 = null;
+        PetActivity p1_3 = null;
+        android.webkit.ValueCallback p1_4 = null;
+        android.content.Intent p1_5 = null;
+        int p1_6 = 0;
+        java.lang.Object p1_8 = null;
+        java.lang.StringBuilder p1_9 = null;
         String p2_1 = null;
-        PetActivity p2_2 = null;
-        java.lang.StringBuilder p2_3 = null;
+        java.lang.String p2_2 = null;
+        PetActivity p2_3 = null;
+        java.lang.StringBuilder p2_4 = null;
         java.lang.Object p3_1 = null;
+        android.webkit.ValueCallback p3_2 = null;
         String r0 = null;
-        int r0_1 = 0;
+        java.lang.CharSequence r0_1 = null;
+        int r0_2 = 0;
+        java.lang.String r0_3 = null;
         try {
             p1_1 = "[PETACT][FILE] onShowFileChooser";
-            AppLog.i(p1_1);
-            p1_2 = ((PetActivity_1) this).this$0;
-            p1_3 = PetActivity._$$Nest$fgetfilePathCallback(p1_2);
+            AppLog.i(p1_2);
+            p1_3 = ((PetActivity_1) this).this$0;
+            p1_4 = PetActivity._$$Nest$fgetfilePathCallback(p1_3);
             p3_1 = null;
-            if (p1_3 != null) {
-                p1_2 = ((PetActivity_1) this).this$0;
-                p1_3 = PetActivity._$$Nest$fgetfilePathCallback(p1_2);
-                p1_3.onReceiveValue(p3_1);
+            if (p1_4 != null) {
+                p1_3 = ((PetActivity_1) this).this$0;
+                p1_4 = PetActivity._$$Nest$fgetfilePathCallback(p1_3);
+                p1_4.onReceiveValue(p3_1);
             }
-            p1_2 = ((PetActivity_1) this).this$0;
-            PetActivity._$$Nest$fputfilePathCallback(p1_2, p2);
+            p1_3 = ((PetActivity_1) this).this$0;
+            PetActivity._$$Nest$fputfilePathCallback(p1_3, p2);
             p2_1 = "android.intent.action.GET_CONTENT";
-            p1_4 = new android.content.Intent(p2_1);
+            p1_5 = new android.content.Intent(p2_2);
             p2_1 = "android.intent.category.OPENABLE";
-            p1_4.addCategory(p2_1);
+            p1_5.addCategory(p2_2);
             p2_1 = "image/*";
-            p1_4.setType(p2_1);
-            p2_2 = ((PetActivity_1) this).this$0;
+            p1_5.setType(p2_2);
+            p2_3 = ((PetActivity_1) this).this$0;
             r0 = "select image";
-            p1_4 = android.content.Intent.createChooser(p1_4, r0);
-            r0_1 = 20819;
-            p2_2.startActivityForResult(p1_4, r0_1);
-            p1_5 = 1;
-            return (p1_5 != 0);
-        } catch (java.lang.Throwable p1_6) {
+            p1_5 = android.content.Intent.createChooser(p1_5, r0_1);
+            r0_2 = 20819;
+            p2_3.startActivityForResult(p1_5, r0_2);
+            p1_6 = 1;
+            return (p1_6 != 0);
+        } catch (java.lang.Throwable p1_7) {
             r0 = "[PETACT][FILE] err: ";
-            p2_3 = new java.lang.StringBuilder(r0);
-            p1_7 = p2_3.append(p1_6);
-            p1_8 = p1_7.toString();
-            AppLog.i(p1_8);
-            p1_2 = ((PetActivity_1) this).this$0;
-            p1_3 = PetActivity._$$Nest$fgetfilePathCallback(p1_2);
-            if (p1_3 != null) {
-                p1_2 = ((PetActivity_1) this).this$0;
-                p1_3 = PetActivity._$$Nest$fgetfilePathCallback(p1_2);
-                p1_3.onReceiveValue(p3_1);
-                p1_2 = ((PetActivity_1) this).this$0;
-                PetActivity._$$Nest$fputfilePathCallback(p1_2, ((android.webkit.ValueCallback) p3_1));
+            p2_4 = new java.lang.StringBuilder(r0_3);
+            p1_9 = p2_4.append(p1_8);
+            p1_2 = p1_9.toString();
+            AppLog.i(p1_2);
+            p1_3 = ((PetActivity_1) this).this$0;
+            p1_4 = PetActivity._$$Nest$fgetfilePathCallback(p1_3);
+            if (p1_4 != null) {
+                p1_3 = ((PetActivity_1) this).this$0;
+                p1_4 = PetActivity._$$Nest$fgetfilePathCallback(p1_3);
+                p1_4.onReceiveValue(p3_1);
+                p1_3 = ((PetActivity_1) this).this$0;
+                PetActivity._$$Nest$fputfilePathCallback(p1_3, p3_2);
             }
-            p1_2 = null;
-            return p1_9;
+            p1_3 = null;
+            return p1_10;
         }
     }
 }

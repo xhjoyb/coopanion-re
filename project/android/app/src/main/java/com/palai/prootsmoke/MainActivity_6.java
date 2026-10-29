@@ -21,32 +21,37 @@ public class MainActivity_6 implements android.view.View.OnClickListener {
     // ---- methods ----
     public void onClick(android.view.View p1) {
         MainActivity p1_1 = null;
-        java.lang.StringBuilder p1_3 = null;
-        java.lang.String p1_4 = null;
+        java.lang.Object p1_3 = null;
+        java.lang.StringBuilder p1_4 = null;
+        java.lang.String p1_5 = null;
         android.content.Intent r0 = null;
         String r0_1 = null;
-        MainActivity r0_2 = null;
+        java.lang.String r0_2 = null;
+        MainActivity r0_3 = null;
         MainActivity r1 = null;
-        java.lang.StringBuilder r1_1 = null;
+        android.content.Context r1_1 = null;
+        java.lang.StringBuilder r1_2 = null;
         Class r2 = null;
-        String r2_1 = null;
+        java.lang.Class r2_1 = null;
+        String r2_2 = null;
+        java.lang.String r2_3 = null;
         try {
             p1_1 = ((MainActivity_6) this).this$0;
             r1 = ((MainActivity_6) this).this$0;
             r2 = PetActivity.class;
-            r0 = new android.content.Intent(r1, r2);
+            r0 = new android.content.Intent(r1_1, r2_1);
             p1_1.startActivity(r0);
             p1_1 = ((MainActivity_6) this).this$0;
             r0_1 = "[PET] 启动全屏桌宠 (PetActivity)";
-            MainActivity._$$Nest$mlog(p1_1, r0_1);
+            MainActivity._$$Nest$mlog(p1_1, r0_2);
             return;
         } catch (java.lang.Throwable p1_2) {
-            r0_2 = ((MainActivity_6) this).this$0;
-            r2_1 = "[PET] 启动 PetActivity 失败: ";
-            r1_1 = new java.lang.StringBuilder(r2_1);
-            p1_3 = r1_1.append(p1_2);
-            p1_4 = p1_3.toString();
-            MainActivity._$$Nest$mlog(r0_2, p1_4);
+            r0_3 = ((MainActivity_6) this).this$0;
+            r2_2 = "[PET] 启动 PetActivity 失败: ";
+            r1_2 = new java.lang.StringBuilder(r2_3);
+            p1_4 = r1_2.append(p1_3);
+            p1_5 = p1_4.toString();
+            MainActivity._$$Nest$mlog(r0_3, p1_5);
             return;
         }
     }
