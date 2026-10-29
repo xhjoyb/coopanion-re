@@ -89,6 +89,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static long _$$Nest$fgetlastProbeLog(PetWindowService p0) {
         long r0 = 0L;
@@ -98,6 +99,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0L;
     }
     public static float _$$Nest$fgetpetAlpha(PetWindowService p0) {
         float p0_1 = 0f;
@@ -107,6 +109,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0f;
     }
     public static android.widget.FrameLayout _$$Nest$fgetshowBox(PetWindowService p0) {
         android.widget.FrameLayout p0_1 = null;
@@ -116,6 +119,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.view.WindowManager.LayoutParams _$$Nest$fgetshowLp(PetWindowService p0) {
         android.view.WindowManager.LayoutParams p0_1 = null;
@@ -125,6 +129,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.widget.FrameLayout _$$Nest$fgettouchBox(PetWindowService p0) {
         android.widget.FrameLayout p0_1 = null;
@@ -134,6 +139,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.view.WindowManager.LayoutParams _$$Nest$fgettouchLp(PetWindowService p0) {
         android.view.WindowManager.LayoutParams p0_1 = null;
@@ -143,6 +149,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.os.Handler _$$Nest$fgetui(PetWindowService p0) {
         android.os.Handler p0_1 = null;
@@ -152,6 +159,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.webkit.WebView _$$Nest$fgetweb(PetWindowService p0) {
         android.webkit.WebView p0_1 = null;
@@ -161,6 +169,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static android.view.WindowManager _$$Nest$fgetwm(PetWindowService p0) {
         android.view.WindowManager p0_1 = null;
@@ -170,6 +179,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public static void _$$Nest$fputlastProbeLog(PetWindowService p0, long p1) {
         try {
@@ -243,6 +253,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static void _$$Nest$mpushKeyToPage(PetWindowService p0, java.lang.String p1) {
         try {
@@ -292,6 +303,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static boolean _isComposing(android.text.Editable p0) {
         int p0_1 = 0;
@@ -335,6 +347,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public void applyInputFocus(boolean p1) {
         long r0 = 0L;
@@ -775,6 +788,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return false;
     }
     public static java.lang.String jsStr(java.lang.String p0) {
         java.lang.StringBuilder p0_1 = null;
@@ -865,6 +879,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void pushKeyToPage(java.lang.String p1) {
         android.webkit.WebView p1_1 = null;
@@ -1284,6 +1299,7 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return null;
     }
     public void onCreate() {
         String r0 = null;
@@ -1408,5 +1424,6 @@ public class PetWindowService extends android.app.Service {
         } catch (Throwable _e9) {
             // [swallow] fabricated catch dropped
         }
+        return 0;
     }
 }
