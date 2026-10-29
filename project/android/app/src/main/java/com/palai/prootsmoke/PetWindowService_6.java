@@ -90,6 +90,7 @@ public class PetWindowService_6 extends android.webkit.WebChromeClient {
                     case 4:
                     p1.deny();
                     _pc = 5; break;
+        case 90000:
                     r2_1 = "[PET][MIC] onPermissionRequest err: ";
                     r1_2 = new java.lang.StringBuilder(r2_1);
                     p1_1 = r1_2.append(p1);

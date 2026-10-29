@@ -518,6 +518,7 @@ public class PetWindowService extends android.app.Service {
                     r1_7 = "[PET] 显示层已挂载（全屏穿透）";
                     android.util.Log.i(r0, r1_7);
                     _pc = 3; break;
+        case 90000:
                     r5_2 = "[PET] 显示层 addView 失败: ";
                     r4_4 = new java.lang.StringBuilder(r5_2);
                     r1_8 = r4_4.append(r1_7);
@@ -588,6 +589,7 @@ public class PetWindowService extends android.app.Service {
                     p1_7 = "[PET] 触摸层已挂载 520x520";
                     android.util.Log.i(r0, p1_7);
                     _pc = 4; break;
+        case 90001:
                     r2_9 = "[PET] 触摸层 addView 失败: ";
                     r1_8 = new java.lang.StringBuilder(r2_9);
                     p1_8 = r1_8.append(p1_7);
@@ -1169,6 +1171,7 @@ public class PetWindowService extends android.app.Service {
                     r1_8 = 2500L;
                     r0_1.postDelayed(r13_1, r1_8);
                     _pc = 3; break;
+        case 90000:
                     r1_9 = r0_1;
                     r0_2 = new java.lang.StringBuilder(r10);
                     r0_2 = r0_2.append(r1_3);

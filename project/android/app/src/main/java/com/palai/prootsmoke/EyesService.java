@@ -93,6 +93,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     _pc = 1; break;
                     case 5:
                     _pc = 7; break;
+        case 90000:
                     r1_2 = ((EyesService) this).running;
                     if (r1_2 == false) { _pc = 6; break; }
                     r0_1 = java.lang.String.valueOf(r0);
@@ -345,6 +346,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     case 10:
                     r1 = (r1 + 1);
                     _pc = 8; break;
+        case 90000:
                     r2_4.recycle();
                     _pc = 11; break;
                     _pc = 11; break;
@@ -877,6 +879,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r3 = "accessibility";
                     r1.put(r2_2, r3);
                     _pc = 1; break;
+        case 90000:
                     r3_2 = false;
                     r1.put(r0, r3_2);
                     r0 = "error";
@@ -1018,6 +1021,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     case 4:
                     p2_2 = this.jpeg(r0_1, p2_1);
                     _pc = 5; break;
+        case 90000:
                     p2 = java.lang.String.valueOf(p2_2);
                     ((EyesService) this).lastError = p2;
                     p2 = null;
@@ -1223,6 +1227,7 @@ public final class EyesService extends android.accessibilityservice.Accessibilit
                     r4_1.recycle();
                     _pc = 5; break;
                     _pc = 5; break;
+        case 90000:
                     r4_1.recycle();
                     _pc = 4; break;
                     _pc = 4; break;

@@ -557,6 +557,7 @@ public class MainActivity extends android.app.Activity {
                     r12 = r11_1.getLength();
                     r11_1.close();
                     _pc = 5; break;
+        case 90000:
                     r12 = -1L;
                     r11 = this.getAssets();
                     r11_2 = r11.open(r4);
@@ -582,6 +583,7 @@ public class MainActivity extends android.app.Activity {
                     r8_3 = ((android.content.pm.PackageInfo) r8_2).versionCode;
                     r14_2 = (long) r8_3;
                     _pc = 6; break;
+        case 90001:
                     r14_2 = 0L;
                     _pc = 6; break;
                     case 6:
@@ -744,6 +746,7 @@ public class MainActivity extends android.app.Activity {
                     r3_2 = r3_1.toString();
                     r1.log(r3_2);
                     _pc = 15; break;
+        case 90002:
                     r18 = r8;
                     _pc = 15; break;
                     case 15:
@@ -2432,6 +2435,7 @@ public class MainActivity extends android.app.Activity {
                     r0_7 = "[SENSE] bridge started on 127.0.0.1:17899";
                     this.log(r0_7);
                     _pc = 3; break;
+        case 90000:
                     r2 = "[SENSE] bridge start failed: ";
                     r1_10 = new java.lang.StringBuilder(r2);
                     r0_8 = r1_10.append(r0_7);
@@ -2444,6 +2448,7 @@ public class MainActivity extends android.app.Activity {
                     r2_8 = 1200L;
                     r0_4.postDelayed(r1_11, r2_8);
                     _pc = 4; break;
+        case 90001:
                     r2 = "[GUIDE] 自动引导失败: ";
                     r1_10 = new java.lang.StringBuilder(r2);
                     r0_8 = r1_10.append(r0_4);
@@ -2461,6 +2466,7 @@ public class MainActivity extends android.app.Activity {
                     r1_13 = 2500L;
                     p1_2.postDelayed(r0_11, r1_13);
                     _pc = 5; break;
+        case 90002:
                     r1_12 = "[PET] 自动恢复悬浮窗失败: ";
                     r0_8 = new java.lang.StringBuilder(r1_12);
                     p1_5 = r0_8.append(p1_2);

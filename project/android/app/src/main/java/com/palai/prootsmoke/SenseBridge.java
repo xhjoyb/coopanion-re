@@ -362,6 +362,7 @@ public final class SenseBridge {
                     r1_2 = new java.lang.Thread(r2_1, r0_3);
                     r1_2.start();
                     _pc = 1; break;
+        case 90000:
                     r0_1 = false;
                     ((SenseBridge) this).running = r0_1;
                     _pc = 2; break;

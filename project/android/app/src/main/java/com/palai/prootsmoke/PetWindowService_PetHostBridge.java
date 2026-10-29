@@ -108,40 +108,39 @@ public class PetWindowService_PetHostBridge {
         }
     }
     public void setAlpha(float p1) {
-        android.os.Handler p1_1 = null;
-        int p1_2 = 0;
-        android.os.Handler r0 = null;
-        int r0_1 = 0;
-        PetWindowService r0_2 = null;
-        android.content.SharedPreferences r0_3 = null;
-        android.content.SharedPreferences.Editor r0_4 = null;
+        int p1_1 = 0;
+        int r0 = 0;
+        PetWindowService r0_1 = null;
+        android.content.SharedPreferences r0_2 = null;
+        android.content.SharedPreferences.Editor r0_3 = null;
+        android.os.Handler r0_4 = null;
         int r1 = 0;
         String r1_1 = null;
         PetWindowService_PetHostBridge_1 r1_2 = null;
         int r2 = 0;
         try {
-        r0 = null;
+        r0 = 0;
         r1 = (p1 > r0 ? 1 : (p1 == r0 ? 0 : -1));
         if (r1 < 0) {
             p1_1 = r0;
         }
-        r0_1 = 1065353216;
-        r1 = (p1_1 < r0_1 ? -1 : (p1_1 == r0_1 ? 0 : 1));
+        r0 = 1065353216;
+        r1 = (p1_1 < r0 ? -1 : (p1_1 == r0 ? 0 : 1));
         if (r1 > 0) {
-            p1_2 = r0_1;
+            p1_1 = r0;
         }
-        r0_2 = ((PetWindowService_PetHostBridge) this).this$0;
+        r0_1 = ((PetWindowService_PetHostBridge) this).this$0;
         r1_1 = "coopanion";
         r2 = 0;
-        r0_3 = r0_2.getSharedPreferences(r1_1, r2);
-        r0_4 = r0_3.edit();
+        r0_2 = r0_1.getSharedPreferences(r1_1, r2);
+        r0_3 = r0_2.edit();
         r1_1 = "pet_alpha";
-        r0_4 = r0_4.putFloat(r1_1, ((float) p1_2));
-        r0_4.apply();
-        r0_2 = ((PetWindowService_PetHostBridge) this).this$0;
-        r0 = PetWindowService._$$Nest$fgetui(r0_2);
-        r1_2 = new PetWindowService_PetHostBridge_1(this, ((float) p1_2));
-        r0.post(r1_2);
+        r0_3 = r0_3.putFloat(r1_1, ((float) p1_1));
+        r0_3.apply();
+        r0_1 = ((PetWindowService_PetHostBridge) this).this$0;
+        r0_4 = PetWindowService._$$Nest$fgetui(r0_1);
+        r1_2 = new PetWindowService_PetHostBridge_1(this, ((float) p1_1));
+        r0_4.post(r1_2);
         return;
         } catch (Throwable _e9) {
             throw new RuntimeException(_e9);

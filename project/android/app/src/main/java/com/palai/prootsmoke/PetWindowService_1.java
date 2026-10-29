@@ -25,12 +25,12 @@ public class PetWindowService_1 implements java.lang.Runnable {
         android.widget.FrameLayout r0_2 = null;
         android.view.WindowManager r0_3 = null;
         float r1 = 0f;
-        android.view.WindowManager.LayoutParams r1_1 = null;
+        int r1_1 = 0;
         PetWindowService r1_2 = null;
         android.widget.FrameLayout r1_3 = null;
-        android.view.WindowManager.LayoutParams r2 = null;
-        int r2_1 = 0;
-        PetWindowService r2_2 = null;
+        int r2 = 0;
+        PetWindowService r2_1 = null;
+        android.view.WindowManager.LayoutParams r2_2 = null;
         int r3 = 0;
         try {
         int _pc = 0;
@@ -41,7 +41,7 @@ public class PetWindowService_1 implements java.lang.Runnable {
                     case 0:
                     r0 = ((PetWindowService_1) this).this$0;
                     r1 = ((PetWindowService_1) this).val$a;
-                    r2 = null;
+                    r2 = 0;
                     r3 = (r1 > r2 ? 1 : (r1 == r2 ? 0 : -1));
                     if (r3 >= 0) { _pc = 2; break; }
                     _pc = 1; break;
@@ -49,12 +49,12 @@ public class PetWindowService_1 implements java.lang.Runnable {
                     r1_1 = r2;
                     _pc = 3; break;
                     case 2:
-                    r2_1 = 1065353216;
-                    r3 = (r1_1 < r2_1 ? -1 : (r1_1 == r2_1 ? 0 : 1));
+                    r2 = 1065353216;
+                    r3 = (r1_1 < r2 ? -1 : (r1_1 == r2 ? 0 : 1));
                     if (r3 <= 0) { _pc = 3; break; }
                     _pc = 1; break;
                     case 3:
-                    PetWindowService._$$Nest$fputpetAlpha(r0, r1);
+                    PetWindowService._$$Nest$fputpetAlpha(r0, ((float) r1_1));
                     r0 = ((PetWindowService_1) this).this$0;
                     r0_1 = PetWindowService._$$Nest$fgetshowLp(r0);
                     if (r0_1 == null) { _pc = 4; break; }
@@ -70,9 +70,9 @@ public class PetWindowService_1 implements java.lang.Runnable {
                     r0_3 = PetWindowService._$$Nest$fgetwm(r0);
                     r1_2 = ((PetWindowService_1) this).this$0;
                     r1_3 = PetWindowService._$$Nest$fgetshowBox(r1_2);
-                    r2_2 = ((PetWindowService_1) this).this$0;
-                    r2 = PetWindowService._$$Nest$fgetshowLp(r2_2);
-                    r0_3.updateViewLayout(r1_3, r2);
+                    r2_1 = ((PetWindowService_1) this).this$0;
+                    r2_2 = PetWindowService._$$Nest$fgetshowLp(r2_1);
+                    r0_3.updateViewLayout(r1_3, r2_2);
                     _pc = 4; break;
                     case 4:
                     return;

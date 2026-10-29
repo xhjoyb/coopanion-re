@@ -69,6 +69,7 @@ public class PetActivity_1 extends android.webkit.WebChromeClient {
                     case 4:
                     p1.deny();
                     _pc = 5; break;
+        case 90000:
                     r1_1 = "[PETACT][MIC] onPermissionRequest err: ";
                     r0_2 = new java.lang.StringBuilder(r1_1);
                     p1_1 = r0_2.append(p1);

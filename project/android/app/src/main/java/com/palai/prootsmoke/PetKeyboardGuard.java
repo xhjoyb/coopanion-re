@@ -318,6 +318,7 @@ public final class PetKeyboardGuard {
                     p0_4 = p0_3.toString();
                     android.util.Log.i(r0, p0_4);
                     _pc = 6; break;
+        case 90000:
                     p1_5 = new java.lang.StringBuilder();
                     p2_2 = "install failed: ";
                     p1_5 = p1_5.append(p2_2);
