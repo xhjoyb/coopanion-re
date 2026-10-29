@@ -467,7 +467,7 @@ public class MainActivity extends android.app.Activity {
         int r19_1 = 0;
         String r2 = null;
         java.lang.String[][] r20 = null;
-        java.io.File r20_1 = null;
+        int r20_1 = 0;
         java.io.File r2_1 = null;
         java.lang.String r2_2 = null;
         java.io.BufferedReader r2_3 = null;
@@ -484,14 +484,13 @@ public class MainActivity extends android.app.Activity {
         java.io.File[] r3_8 = null;
         String r4 = null;
         java.lang.String[][] r4_1 = null;
-        java.io.File r4_2 = null;
-        int r4_3 = 0;
-        java.lang.String r4_4 = null;
-        boolean r4_5 = false;
-        java.util.ArrayList r4_6 = null;
-        java.util.Map r4_7 = null;
-        java.io.InputStreamReader r4_8 = null;
-        java.lang.Thread r4_9 = null;
+        int r4_2 = 0;
+        java.lang.String r4_3 = null;
+        boolean r4_4 = false;
+        java.util.ArrayList r4_5 = null;
+        java.util.Map r4_6 = null;
+        java.io.InputStreamReader r4_7 = null;
+        java.lang.Thread r4_8 = null;
         String r5 = null;
         java.lang.StringBuilder r5_1 = null;
         java.lang.String r5_2 = null;
@@ -698,8 +697,8 @@ public class MainActivity extends android.app.Activity {
                     r20 = r15_3;
                     r15_4 = "[CHK] MISMATCH ";
                     r13_3 = r13_3.append(r15_4);
-                    r15_2 = null;
-                    r14_5 = r14_4[r15_2];
+                    r15_1 = 0;
+                    r14_5 = r14_4[r15_1];
                     r13_3 = r13_3.append(r14_5);
                     r14_3 = " got=";
                     r13_3 = r13_3.append(r14_5);
@@ -712,7 +711,7 @@ public class MainActivity extends android.app.Activity {
                     r13_2 = r19_1;
                     _pc = 11; break;
                     case 10:
-                    r20_1 = r15_2;
+                    r20_1 = r15_1;
                     _pc = 11; break;
                     case 11:
                     r12_1 = (r12_1 + 1);
@@ -726,12 +725,12 @@ public class MainActivity extends android.app.Activity {
                     r3_1 = new java.lang.StringBuilder();
                     r4 = "[CHK] critical files: ";
                     r3_1 = r3_1.append(r4);
-                    r4_3 = 5 - r13_2;
-                    r3_1 = r3_1.append(r4_3);
+                    r4_2 = 5 - r13_2;
+                    r3_1 = r3_1.append(r4_2);
                     r4 = "/";
                     r3_1 = r3_1.append(r4);
-                    r4_3 = 5;
-                    r3_1 = r3_1.append(r4_3);
+                    r4_2 = 5;
+                    r3_1 = r3_1.append(r4_2);
                     r4 = " OK";
                     r3_1 = r3_1.append(r4);
                     if (r13_2 <= 0) { _pc = 13; break; }
@@ -769,19 +768,19 @@ public class MainActivity extends android.app.Activity {
                     r3_7 = this.getFilesDir();
                     r3_8 = r3_7.listFiles();
                     if (r3_8 == null) { _pc = 20; break; }
-                    r4_4 = r18.getName();
+                    r4_3 = r18.getName();
                     r7_3 = java.lang.reflect.Array.getLength(r3_8);
-                    r8 = null;
+                    r8_3 = 0;
                     _pc = 18; break;
                     case 18:
                     if (r8_3 >= r7_3) { _pc = 20; break; }
-                    r9_2 = r3_8[r8];
+                    r9_2 = r3_8[r8_3];
                     r10_1 = r9_2.getName();
                     r11_6 = r9_2.isDirectory();
                     if (r11_6 == false) { _pc = 19; break; }
                     r11_6 = r10_1.startsWith(r2);
                     if (r11_6 == false) { _pc = 19; break; }
-                    r11_6 = r10_1.equals(r4_4);
+                    r11_6 = r10_1.equals(r4_3);
                     if (r11_6 != false) { _pc = 19; break; }
                     r1.deleteRec(r9_2);
                     r9 = new java.lang.StringBuilder();
@@ -797,139 +796,139 @@ public class MainActivity extends android.app.Activity {
                     case 20:
                     r3_7 = this.getFilesDir();
                     r4 = "ptmp";
-                    r2_1 = new java.io.File(r3_7, r4_4);
+                    r2_1 = new java.io.File(r3_7, r4_3);
                     r2_1.mkdirs();
                     r3_5 = 1;
-                    r4_5 = false;
-                    r2_1.setReadable((r3_5 != 0), r4_5);
-                    r2_1.setWritable((r3_5 != 0), r4_5);
-                    r2_1.setExecutable((r3_5 != 0), r4_5);
+                    r4_4 = false;
+                    r2_1.setReadable((r3_5 != 0), r4_4);
+                    r2_1.setWritable((r3_5 != 0), r4_4);
+                    r2_1.setExecutable((r3_5 != 0), r4_4);
                     r4 = "[2] 启动 Coopanion Core ...";
-                    r1.log(r4_4);
-                    r4_6 = new java.util.ArrayList();
+                    r1.log(r4_3);
+                    r4_5 = new java.util.ArrayList();
                     r7_5 = new java.lang.StringBuilder();
                     r7_5 = r7_5.append(r6_1);
                     r8_4 = "/libproot.so";
                     r7_5 = r7_5.append(r8_4);
                     r7_1 = r7_5.toString();
-                    r4_6.add(r7_1);
+                    r4_5.add(r7_1);
                     r7 = "-0";
-                    r4_6.add(r7);
+                    r4_5.add(r7);
                     r7 = "-r";
-                    r4_6.add(r7);
+                    r4_5.add(r7);
                     r7_1 = r18.getAbsolutePath();
-                    r4_6.add(r7_1);
+                    r4_5.add(r7_1);
                     r7 = "--link2symlink";
-                    r4_6.add(r7);
-                    r4_6.add(r5);
+                    r4_5.add(r7);
+                    r4_5.add(r5);
                     r7 = "/dev";
-                    r4_6.add(r7);
-                    r4_6.add(r5);
+                    r4_5.add(r7);
+                    r4_5.add(r5);
                     r7 = "/proc";
-                    r4_6.add(r7);
-                    r4_6.add(r5);
+                    r4_5.add(r7);
+                    r4_5.add(r5);
                     r7 = "/sys";
-                    r4_6.add(r7);
-                    r4_6.add(r5);
+                    r4_5.add(r7);
+                    r4_5.add(r5);
                     r5_1 = new java.lang.StringBuilder();
                     r5_1 = r5_1.append(r6_1);
                     r7 = ":/hostlib";
                     r5_1 = r5_1.append(r7_1);
                     r5_2 = r5_1.toString();
-                    r4_6.add(r5_2);
+                    r4_5.add(r5_2);
                     r5 = "-w";
-                    r4_6.add(r5);
+                    r4_5.add(r5);
                     r5 = "/app/coop-stage";
-                    r4_6.add(r5);
+                    r4_5.add(r5);
                     r7 = "app/boot.sh";
                     r8 = r18;
                     r5_3 = new java.io.File(r8, r7_1);
                     r5_4 = r5_3.exists();
                     if (r5_4 == false) { _pc = 21; break; }
                     r5 = "/bin/sh";
-                    r4_6.add(r5);
+                    r4_5.add(r5);
                     r5 = "/app/boot.sh";
-                    r4_6.add(r5);
+                    r4_5.add(r5);
                     _pc = 22; break;
                     case 21:
                     r5 = "[1b] 未找到 boot.sh，直接用 run-core.mjs 兜底启动 ...";
                     r1.log(r5_2);
                     r5 = "/bin/node";
-                    r4_6.add(r5);
+                    r4_5.add(r5);
                     r5 = "--experimental-transform-types";
-                    r4_6.add(r5);
+                    r4_5.add(r5);
                     r5 = "run-core.mjs";
-                    r4_6.add(r5);
+                    r4_5.add(r5);
                     _pc = 22; break;
                     case 22:
-                    r5_5 = new java.lang.ProcessBuilder(r4_6);
-                    r4_3 = 1;
-                    r5_5.redirectErrorStream((r4_3 != 0));
+                    r5_5 = new java.lang.ProcessBuilder(r4_5);
+                    r4_2 = 1;
+                    r5_5.redirectErrorStream((r4_2 != 0));
                     r5_5.directory(r8);
-                    r4_7 = r5_5.environment();
+                    r4_6 = r5_5.environment();
                     r2_2 = r2_1.getAbsolutePath();
                     r7 = "TMPDIR";
-                    r4_7.put(r7, r2_2);
+                    r4_6.put(r7, r2_2);
                     r7 = "TMP";
-                    r4_7.put(r7, r2_2);
+                    r4_6.put(r7, r2_2);
                     r7 = "TEMP";
-                    r4_7.put(r7, r2_2);
+                    r4_6.put(r7, r2_2);
                     r7 = "PROOT_TMP_DIR";
-                    r4_7.put(r7, r2_2);
+                    r4_6.put(r7, r2_2);
                     r2 = "PROOT_LOADER";
                     r7_5 = new java.lang.StringBuilder();
                     r7_5 = r7_5.append(r6_1);
                     r9_3 = "/libprootloader.so";
                     r7_5 = r7_5.append(r9_1);
                     r7_1 = r7_5.toString();
-                    r4_7.put(r2, r7_1);
+                    r4_6.put(r2, r7_1);
                     r2 = "PROOT_LOADER_32";
                     r7_5 = new java.lang.StringBuilder();
                     r6 = r7_5.append(r6_1);
                     r7 = "/libprootloader32.so";
                     r6 = r6.append(r7_1);
                     r6_1 = r6.toString();
-                    r4_7.put(r2, r6_1);
+                    r4_6.put(r2, r6_1);
                     r2 = "PROOT_NO_SECCOMP";
-                    r4_7.put(r2, r0);
+                    r4_6.put(r2, r0);
                     r2 = "HOME";
                     r6_3 = "/root";
-                    r4_7.put(r2, r6_3);
+                    r4_6.put(r2, r6_3);
                     r2 = "LANG";
                     r6_3 = "en_US.UTF-8";
-                    r4_7.put(r2, r6_3);
+                    r4_6.put(r2, r6_3);
                     r2 = "TZ";
                     r6_3 = "Asia/Shanghai";
-                    r4_7.put(r2, r6_3);
+                    r4_6.put(r2, r6_3);
                     r2 = "CORTICO_SUPERVISED";
-                    r4_7.put(r2, r0);
+                    r4_6.put(r2, r0);
                     r0 = "LD_PRELOAD";
-                    r4_7.remove(r0);
+                    r4_6.remove(r0);
                     r0_1 = r5_5.start();
                     r5_6 = r0_1.getInputStream();
-                    r4_8 = new java.io.InputStreamReader(r5_6);
-                    r2_3 = new java.io.BufferedReader(r4_8);
+                    r4_7 = new java.io.InputStreamReader(r5_6);
+                    r2_3 = new java.io.BufferedReader(r4_7);
                     _pc = 23; break;
                     case 23:
                     r17_2 = 0;
                     _pc = 24; break;
                     case 24:
-                    r4_4 = r2_3.readLine();
-                    if (r4_4 == null) { _pc = 27; break; }
-                    r1.log(r4_4);
+                    r4_3 = r2_3.readLine();
+                    if (r4_3 == null) { _pc = 27; break; }
+                    r1.log(r4_3);
                     r5 = "core已启动";
-                    r4_5 = r4_4.contains(r5);
-                    if (r4_5 == false) { _pc = 25; break; }
-                    r4_5 = ((MainActivity) r1).coreReady;
-                    if (r4_5 != false) { _pc = 25; break; }
-                    r4_3 = 1;
-                    ((MainActivity) r1).coreReady = (r4_3 != 0);
+                    r4_4 = r4_3.contains(r5);
+                    if (r4_4 == false) { _pc = 25; break; }
+                    r4_4 = ((MainActivity) r1).coreReady;
+                    if (r4_4 != false) { _pc = 25; break; }
+                    r4_2 = 1;
+                    ((MainActivity) r1).coreReady = (r4_2 != 0);
                     r5_7 = new MainActivity_17(r1);
-                    r4_9 = new java.lang.Thread(r5_7);
-                    r4_9.start();
+                    r4_8 = new java.lang.Thread(r5_7);
+                    r4_8.start();
                     _pc = 25; break;
                     case 25:
-                    r4_3 = 1;
+                    r4_2 = 1;
                     r5_8 = (r17_2 + 1);
                     r6_4 = 500;
                     if (r5_8 <= r6_4) { _pc = 26; break; }
@@ -940,9 +939,9 @@ public class MainActivity extends android.app.Activity {
                     case 27:
                     r0_2 = r0_1.waitFor();
                     r4 = "app/coop-stage/home/companion/data/.restart-request";
-                    r2_1 = new java.io.File(r8, r4_4);
-                    r4_5 = r2_1.exists();
-                    if (r4_5 == false) { _pc = 28; break; }
+                    r2_1 = new java.io.File(r8, r4_3);
+                    r4_4 = r2_1.exists();
+                    if (r4_4 == false) { _pc = 28; break; }
                     r2_1.delete();
                     r0 = "[!] 检测到重启请求：扩展已安装，正在重启内核以生效 ...";
                     r1.log(r0);
@@ -1496,10 +1495,11 @@ public class MainActivity extends android.app.Activity {
         MainActivity_34 r0_4 = null;
         String r0_5 = null;
         MainActivity_35 r0_6 = null;
-        java.lang.String r1 = null;
-        java.lang.StringBuilder r1_1 = null;
-        String r1_2 = null;
-        android.content.DialogInterface.OnClickListener r1_3 = null;
+        int r1 = 0;
+        java.lang.String r1_1 = null;
+        java.lang.StringBuilder r1_2 = null;
+        String r1_3 = null;
+        android.content.DialogInterface.OnClickListener r1_4 = null;
         int r2 = 0;
         java.lang.StringBuilder r2_1 = null;
         java.lang.String r2_2 = null;
@@ -1509,13 +1509,13 @@ public class MainActivity extends android.app.Activity {
         String r4 = null;
         try {
         r0 = this.senseStatus();
-        r1 = null;
-        r1 = r0[r1];
+        r1 = 0;
+        r1_1 = r0[r1];
         r2 = 1;
         r0_1 = r0[r2];
         r3 = "[SENSE] usage=";
         r2_1 = new java.lang.StringBuilder(r3);
-        r2_1 = r2_1.append(r1);
+        r2_1 = r2_1.append(r1_1);
         r3 = " notif=";
         r2_1 = r2_1.append(r3);
         r2_1 = r2_1.append(r0_1);
@@ -1526,23 +1526,23 @@ public class MainActivity extends android.app.Activity {
         r2_3.setTitle(r3);
         r4 = "桌宠要「感知手机」，需要两个独立开关（都不涉及无障碍）：\n① 使用情况访问：";
         r3_1 = new java.lang.StringBuilder(r4);
-        r1_1 = r3_1.append(r1);
+        r1_2 = r3_1.append(r1_1);
         r3 = "\n→ 让桌宠知道你在用哪个 App\n② 通知使用权：";
-        r1_1 = r1_1.append(r3);
-        r0_2 = r1_1.append(r0_1);
-        r1_2 = "\n→ 让桌宠知道你收到了什么通知\n点下面按钮逐个打开，在系统设置里找到本应用（Coopanion）打开开关，然后返回。";
-        r0_2 = r0_2.append(r1);
+        r1_2 = r1_2.append(r3);
+        r0_2 = r1_2.append(r0_1);
+        r1_3 = "\n→ 让桌宠知道你收到了什么通知\n点下面按钮逐个打开，在系统设置里找到本应用（Coopanion）打开开关，然后返回。";
+        r0_2 = r0_2.append(r1_1);
         r0_1 = r0_2.toString();
         r2_3.setMessage(r0_1);
         r0_3 = new MainActivity_33(this);
-        r1_2 = "① 使用情况访问";
-        r2_3.setPositiveButton(r1_2, r0_3);
+        r1_3 = "① 使用情况访问";
+        r2_3.setPositiveButton(r1_3, r0_3);
         r0_4 = new MainActivity_34(this);
-        r1_2 = "② 通知使用权";
-        r2_3.setNeutralButton(r1_2, r0_4);
+        r1_3 = "② 通知使用权";
+        r2_3.setNeutralButton(r1_3, r0_4);
         r0_5 = "关闭";
-        r1_3 = null;
-        r2_3.setNegativeButton(r0_5, r1_3);
+        r1_4 = null;
+        r2_3.setNegativeButton(r0_5, r1_4);
         r0_6 = new MainActivity_35(this, r2_3);
         this.runOnUiThread(r0_6);
         return;
@@ -1910,8 +1910,8 @@ public class MainActivity extends android.app.Activity {
                     r0.setTitle(r1_1);
                     r4_1 = "桌宠想知道「你在用哪个 App」「谁给你发消息了」，\n需要你在系统里打开两个开关（都跟无障碍无关，可以放心开）：\n① 使用情况访问 —— 当前：";
                     r1_2 = new java.lang.StringBuilder(r4_1);
-                    r4_2 = null;
-                    r4_2 = p1_7[r4_2];
+                    r4 = 0;
+                    r4_2 = p1_7[r4];
                     r1_2 = r1_2.append(r4_2);
                     r4_1 = "\n作用：知道你在用微信 / 在看视频 / 在打游戏\n② 通知使用权 —— 当前：";
                     r1_2 = r1_2.append(r4_2);

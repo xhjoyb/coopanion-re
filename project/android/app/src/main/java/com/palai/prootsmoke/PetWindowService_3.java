@@ -37,14 +37,14 @@ public class PetWindowService_3 implements java.lang.Runnable {
         android.webkit.WebView r0_2 = null;
         String r0_3 = null;
         java.lang.Runnable r0_4 = null;
-        android.view.View r1 = null;
+        int r1 = 0;
         android.widget.FrameLayout r1_1 = null;
         String r1_2 = null;
         boolean r2 = false;
         int r2_1 = 0;
         try {
         r0 = ((PetWindowService_3) this).val$finished;
-        r1 = null;
+        r1 = 0;
         r2 = r0[r1];
         if (r2 != false) {
             return;
@@ -53,7 +53,7 @@ public class PetWindowService_3 implements java.lang.Runnable {
         r0[r1] = r2_1;
         r0_1 = ((PetWindowService_3) this).val$wm0;
         r1_1 = ((PetWindowService_3) this).val$holder;
-        r0_1.removeView(r1);
+        r0_1.removeView(r1_1);
         r0_2 = ((PetWindowService_3) this).val$warm;
         r0_2.stopLoading();
         r0_2 = ((PetWindowService_3) this).val$warm;
