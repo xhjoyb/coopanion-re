@@ -202,16 +202,6 @@ def check_zip(path, expect_sha=None):
     return z
 
 
-def run_java(java, tool_java, args):
-    cmd = [java] + list(JAVA_EXPORTS) + [tool_java] + args
-    log('$ ' + ' '.join(cmd[:-len(args)] + ['<args>']))
-    r = subprocess.run(cmd, capture_output=True, text=True)
-    sys.stdout.write(r.stdout)
-    if r.returncode != 0:
-        sys.stderr.write(r.stderr)
-        raise SystemExit('java 调用失败 rc=%d: %s' % (r.returncode, tool_java))
-
-
 def main():
     ap = argparse.ArgumentParser(description='payload 补丁 → APK 重组 → v2 签名')
     ap.add_argument('--base', default='apk/Coopanion-v12.71.apk')
